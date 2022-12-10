@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import YourProfile from "./pages/YourProfile";
+import SetProfile from "./pages/SetProfile";
+import SNSLogin from "./pages/SNSLogin";
+import PostDetail from "./pages/PostDetail";
+import PostUpload from "./pages/PostUpload";
+import Home from "./pages/Home";
+import SplashScreen from "./pages/SplashScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/ed" element={<YourProfile />} />
+        <Route path="/fd" element={<SetProfile />} />
+        <Route path="/dfs" element={<SNSLogin />} />
+        <Route path="/fds" element={<PostUpload />} />
+        <Route path="/asdf" element={<PostDetail />} />
+        <Route path="fj" element={<Home />} />
+        <Route path="/splash" element={<SplashScreen />} />
+      </Routes>
     </div>
   );
 }
