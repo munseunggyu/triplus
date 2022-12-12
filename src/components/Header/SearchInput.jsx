@@ -4,7 +4,8 @@ import styled from "styled-components";
 const SearchInp = styled.input`
   padding: 7px 16px;
   margin-left: auto;
-  width: 316px;
+  min-width: 316px;
+  width: 100%;
   background: #f2f2f2;
   border-radius: 32px;
   font-size: 14px;

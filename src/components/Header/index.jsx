@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+
 const HeaderContainer = styled.div`
-  width: 100%;
   position: fixed;
-  height: 48px;
-  overflow: hidden;
-  border-bottom: 0.5px solid rgb(219, 219, 219);
-  background-color: white;
+  left: 0;
+  top: 0;
+  min-width: 390px;
+  width: 100%;
+  background-color: #fff;
   z-index: 10;
 `;
 
 const HeaderWrapper = styled.header`
-  max-width: 450px;
-  height: 48px;
-  margin: 0 auto;
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
+  max-width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-bottom: 0.5px solid rgb(219, 219, 219);
 `;
 
 export default function Header({ children, h1Ir }) {

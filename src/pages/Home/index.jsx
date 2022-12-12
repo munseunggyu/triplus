@@ -1,11 +1,11 @@
 import React from "react";
-import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
-import Prev from "../../components/Header/Prev";
+import Navbar from "../../components/Navbar/Navbar";
 import SearchButton from "../../components/Header/SearchButton";
-import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
+import Prev from "../../components/Header/Prev";
+import SearchInput from "../../components/Header/SearchInput";
 
 export default function Home() {
   return (
@@ -14,7 +14,8 @@ export default function Home() {
         <HeaderTitle>메인 홈페이지입니다.</HeaderTitle>
         <SearchButton />
       </Header>
-      <MainContainer></MainContainer>
+      <MainContainer>ㅁㄴㅇㄹ</MainContainer>
+      <Navbar />
     </>
   );
 }
