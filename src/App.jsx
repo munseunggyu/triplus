@@ -16,7 +16,7 @@ function App() {
         <Route path="/dfs" element={<SNSLogin />} />
         <Route path="/fds" element={<PostUpload />} />
         <Route path="/asdf" element={<PostDetail />} />
-        <Route path="fj" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/splash" element={<SplashScreen />} />
       </Routes>
     </div>
