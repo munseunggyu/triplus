@@ -16,7 +16,10 @@ const GlobalStyle = createGlobalStyle`
   margin: -1px;
   overflow: hidden;
 }
-
+  button{
+    border:0;
+    cursor: pointer;
+  }
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

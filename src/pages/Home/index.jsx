@@ -11,9 +11,8 @@ export default function Home() {
     <>
       <Header>
         <Prev />
-        {/* <HeaderTitle tit="홈화면입니다" /> */}
-        {/* <Vertical /> */}
-        <SearchInput />
+        <HeaderTitle>감귤마켓 피드</HeaderTitle>
+        <Vertical />
       </Header>
       <MainContainer>ㅁㅇ니ㅏㄹ</MainContainer>
     </>
