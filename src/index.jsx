@@ -8,6 +8,15 @@ import { theme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  .ir {
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

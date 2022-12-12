@@ -1,5 +1,13 @@
-import React from 'react';
+import React from "react";
+import Header from "../../components/Header";
+import Prev from "../../components/Header/Prev";
+import Vertical from "../../components/Header/Vertical";
 
 export default function Myprrofile() {
-  return <div>Myprrofile</div>;
+  return (
+    <Header>
+      <Prev />
+      <Vertical />
+    </Header>
+  );
 }
