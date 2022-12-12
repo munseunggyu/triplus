@@ -4,12 +4,14 @@ import styled from "styled-components";
 const UserInfoContanier = styled.div`
   display: flex;
   gap: 12px;
-  margin-top: 5px;
+  margin-top: 20px;
   align-items: center;
 `;
 const UserInfoImg = styled.img`
   width: 50px;
   height: 50px;
+  object-fit: cover;
+
   border-radius: 50%;
 `;
 const UserInfoNameIdCon = styled.div`
