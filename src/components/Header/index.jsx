@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-const HeaderContainer = styled.article`
-  /* text-align: center; */
+const HeaderContainer = styled.div`
   width: 100%;
   position: fixed;
-  min-height: 48px;
+  height: 48px;
   overflow: hidden;
   border-bottom: 0.5px solid rgb(219, 219, 219);
   background-color: white;
@@ -13,17 +12,20 @@ const HeaderContainer = styled.article`
 
 const HeaderWrapper = styled.header`
   max-width: 450px;
+  height: 48px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  padding: 14px 12px;
   position: relative;
 `;
 
-export default function Header({ children }) {
+export default function Header({ children, h1Ir }) {
   return (
     <HeaderContainer>
-      <HeaderWrapper>{children}</HeaderWrapper>
+      <HeaderWrapper>
+        {h1Ir && <h1 className="ir">{h1Ir}</h1>}
+        {children}
+      </HeaderWrapper>
     </HeaderContainer>
   );
 }
