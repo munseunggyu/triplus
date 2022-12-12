@@ -6,14 +6,14 @@ import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
 
 export default function Home() {
-  return (
-    <>
-      <Header>
-        <Prev />
-        <HeaderTitle tit="홈화면입니다" />
-        <Vertical />
-      </Header>
-      <MainContainer>ㅁㄴㅇㄹ</MainContainer>
-    </>
-  );
+	return (
+		<>
+			<Header>
+				<Prev />
+				<HeaderTitle tit="홈화면입니다" />
+				<Vertical />
+			</Header>
+			<MainContainer>ㅁㄴㅇㄹ</MainContainer>
+		</>
+	);
 }
