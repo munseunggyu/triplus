@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
+import PostCardBtns from "./PostCardBtns";
 
 const PostCartList = styled.li`
   list-style: none;
@@ -45,44 +46,7 @@ const PostCardContentImg = styled.img`
   width: 100%;
   border-radius: 10px;
 `;
-const PostCardHeartChatCon = styled.div`
-  margin-top: 14px;
-  display: flex;
-  margin-bottom: 18px;
-`;
-const PostCardLikeBtn = styled.button`
-  margin-right: 18px;
-  display: flex;
-  align-items: center;
-  span {
-    color: #767676;
-  }
-  &::before {
-    content: "";
-    display: block;
-    margin-right: 8px;
-    width: 20px;
-    height: 20px;
-    background: url(${css_sprite}) -50px -190px;
-  }
-`;
-const PostCardChatLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  &::before {
-    content: "";
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-    background: url(${css_sprite}) -90px -190px;
-  }
-  span {
-    color: #767676;
-    font-size: 14px;
-    margin-top: 3px;
-  }
-`;
+
 const PostCardTime = styled.time`
   font-size: 12px;
   color: #767676;
@@ -103,17 +67,7 @@ export default function PostCard() {
           src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720__480.jpg"
           alt=""
         />
-        <PostCardHeartChatCon>
-          <PostCardLikeBtn>
-            <span className="ir">좋아요 버튼</span>
-            <span>8</span>
-          </PostCardLikeBtn>
-
-          <PostCardChatLink to="/">
-            <span className="ir">댓글창으로 이동</span>
-            <span>3</span>
-          </PostCardChatLink>
-        </PostCardHeartChatCon>
+        <PostCardBtns />
         <PostCardTime>2020년 10월 21일</PostCardTime>
       </div>
     </PostCartList>
