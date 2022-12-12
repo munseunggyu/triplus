@@ -4,8 +4,9 @@ import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import uploadBtn from "../../assets/images/upload_button.png";
 import { MainContainer } from "../../components/MainContainer";
-import smallProfile from "../../assets/images/small_profile.svg";
+import smallProfile from "../../assets/images/user_img_small.png";
 import uploadFile from "../../assets/images/upload-file.png";
+
 const UploadBtn = styled.button`
   background: url(${uploadBtn}) no-repeat;
   background-size: 90px;
@@ -39,8 +40,8 @@ const UploadTextarea = styled.textarea`
 const UploadFileBtn = styled.button`
   display: inline-block;
   position: fixed;
-  bottom: 3.6em;
-  right: 30em;
+  bottom: 16px;
+  right: 16px;
   background: url(${uploadFile}) no-repeat;
   background-size: 50px;
   width: 50px;
