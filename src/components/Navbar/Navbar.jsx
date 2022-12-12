@@ -11,6 +11,7 @@ const IconsUl = styled.ul`
   flex-direction: row;
   justify-content: center;
   gap: 14px;
+  border-top: 0.5px solid #dbdbdb;
 `;
 
 const Iconli = styled.div`
@@ -27,7 +28,7 @@ const Iconli = styled.div`
 const HomeIcon = styled.button`
   width: 24px;
   height: 24px;
-  background: url(${css_sprite}) -98px -102px;
+  background: url(${css_sprite}) -146px -54px;
   border: 0px;
   margin: 0 auto;
 `;
@@ -35,7 +36,7 @@ const HomeIcon = styled.button`
 const MessageIcon = styled.button`
   width: 24px;
   height: 24px;
-  background: url(${css_sprite}) -90px -190px;
+  background: url(${css_sprite}) -146px -54px;
   border: 0px;
 `;
 

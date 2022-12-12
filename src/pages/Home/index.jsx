@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
-import Navbar from "../../components/Header/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Prev from "../../components/Header/Prev";
 import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
