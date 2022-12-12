@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import SearchButton from "../../components/Header/SearchButton";
 import { MainContainer } from "../../components/MainContainer";
+import UserInfo from "../../components/UserInfo";
 
 export default function Home() {
   return (
@@ -11,7 +12,9 @@ export default function Home() {
         <HeaderTitle>피드</HeaderTitle>
         <SearchButton />
       </Header>
-      <MainContainer></MainContainer>
+      <MainContainer>
+        <UserInfo></UserInfo>
+      </MainContainer>
     </>
   );
 }
