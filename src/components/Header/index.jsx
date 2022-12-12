@@ -5,7 +5,6 @@ const HeaderContainer = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  min-width: 390px;
   width: 100%;
   background-color: #fff;
   z-index: 10;
