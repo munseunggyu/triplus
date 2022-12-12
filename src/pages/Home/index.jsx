@@ -4,8 +4,6 @@ import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar/Navbar";
 import { MainContainer } from "../../components/MainContainer";
 import Vertical from "../../components/Header/Vertical";
-import UserInfo from "../../components/UserInfo";
-import DeleteAlert from "../../components/DeleteAlert";
 import PostCard from "../../components/PostCard";
 
 export default function Home() {
@@ -16,10 +14,6 @@ export default function Home() {
         <Vertical />
       </Header>
       <MainContainer>
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
         <PostCard />
       </MainContainer>
       <Navbar />
