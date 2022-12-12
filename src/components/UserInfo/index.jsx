@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import user_img_small from "../../assets/images/user_img_small.png";
 
 const UserInfoContanier = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const UserInfoName = styled.strong`
 export default function UserInfo({ children }) {
   return (
     <UserInfoContanier>
-      <UserInfoImg src="https://firebasestorage.googleapis.com/v0/b/secret-lion-73f46.appspot.com/o/user_images%2FcdwV1LPNZqfCZw1qLmzY3OQlm9P2?alt=media&amp;token=1665af85-a3f8-498b-8754-2c09857eebe2" />
+      <UserInfoImg src={user_img_small} />
       <UserInfoNameIdCon>
         <UserInfoName>애월읍 위니브 감귤농장</UserInfoName>
         <UserInfoId>@ weniv_Mandarin</UserInfoId>

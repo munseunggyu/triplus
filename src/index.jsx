@@ -19,6 +19,11 @@ const GlobalStyle = createGlobalStyle`
   button{
     border:0;
     cursor: pointer;
+    background-color:transparent;
+  }
+  a{
+    color:black;
+    text-decoration:none;
   }
 `;
 
