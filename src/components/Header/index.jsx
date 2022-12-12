@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-const HeaderContainer = styled.article`
+const HeaderContainer = styled.div`
   width: 100%;
   position: fixed;
   height: 48px;
@@ -19,10 +19,13 @@ const HeaderWrapper = styled.header`
   position: relative;
 `;
 
-export default function Header({ children }) {
+export default function Header({ children, h1Ir }) {
   return (
     <HeaderContainer>
-      <HeaderWrapper>{children}</HeaderWrapper>
+      <HeaderWrapper>
+        {h1Ir && <h1 className="ir">{h1Ir}</h1>}
+        {children}
+      </HeaderWrapper>
     </HeaderContainer>
   );
 }

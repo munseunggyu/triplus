@@ -9,9 +9,9 @@ import { MainContainer } from "../../components/MainContainer";
 export default function Home() {
   return (
     <>
-      <Header>
+      <Header h1Ir="프로필">
         <Prev />
-        <HeaderTitle>감귤마켓 피드</HeaderTitle>
+        {/* <HeaderTitle>감귤마켓 피드</HeaderTitle> */}
         <Vertical />
       </Header>
       <MainContainer>ㅁㅇ니ㅏㄹ</MainContainer>
