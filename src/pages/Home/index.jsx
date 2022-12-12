@@ -7,6 +7,7 @@ import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
 
 export default function Home() {
+
   return (
     <>
       <Header h1Ir="프로필">
