@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Prev from "../../components/Header/Prev";
+import SearchInput from "../../components/Header/SearchInput";
 import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
 
@@ -10,10 +11,11 @@ export default function Home() {
     <>
       <Header>
         <Prev />
-        <HeaderTitle tit="홈화면입니다" />
-        <Vertical />
+        {/* <HeaderTitle tit="홈화면입니다" /> */}
+        {/* <Vertical /> */}
+        <SearchInput />
       </Header>
-      <MainContainer>ㅁㄴㅇㄹ</MainContainer>
+      <MainContainer>ㅁㅇ니ㅏㄹ</MainContainer>
     </>
   );
 }

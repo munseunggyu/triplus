@@ -6,5 +6,9 @@ const PrevBtn = styled.button`
 `;
 
 export default function Prev() {
-  return <PrevBtn>이전</PrevBtn>;
+  return (
+    <PrevBtn>
+      <span className="ir">이전 버튼</span>
+    </PrevBtn>
+  );
 }
