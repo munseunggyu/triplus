@@ -28,7 +28,7 @@ const Iconli = styled.div`
 const HomeIcon = styled.button`
   width: 24px;
   height: 24px;
-  background: url(${css_sprite}) -146px -54px;
+  background: url(${css_sprite}) -98px -102px;
   border: 0px;
   margin: 0 auto;
 `;
