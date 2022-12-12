@@ -9,7 +9,7 @@ const IconsUl = styled.ul`
   right: 0;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   gap: 14px;
   border-top: 0.5px solid #dbdbdb;
 `;

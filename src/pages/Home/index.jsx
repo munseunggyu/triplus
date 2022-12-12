@@ -2,21 +2,20 @@ import React from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar/Navbar";
-import Prev from "../../components/Header/Prev";
-import SearchInput from "../../components/Header/SearchInput";
-import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
+import SearchInput from "../../components/Header/SearchInput";
+import UserInfo from "../../components/UserInfo";
 
 export default function Home() {
-
   return (
     <>
-      <Header h1Ir="프로필">
-        <Prev />
-        {/* <HeaderTitle>감귤마켓 피드</HeaderTitle> */}
-        <Vertical />
+      <Header>
+        <HeaderTitle>메인 홈페이지입니다.</HeaderTitle>
+        <SearchInput />
       </Header>
-      <MainContainer>ㅁㄴㅇㄹ</MainContainer>
+      <MainContainer>
+        <UserInfo />
+      </MainContainer>
       <Navbar />
     </>
   );
