@@ -13,7 +13,7 @@ const SaveBtn = styled.button`
 	height: 32px;
 `;
 
-const UploadSection = styled.section`
+const MainUploadSection = styled.section`
 	margin: 48px auto 0;
 	padding: 34px 34px 0 34px;
 	width: 322px;
@@ -34,7 +34,6 @@ const ImgPreview = styled.div`
 	border: 0.5px solid #dbdbdb;
 	border-radius: 10px;
 	margin-bottom: 30px;
-
 	&::after {
 		content: "";
 		background-image: url(${imgFile});
@@ -46,15 +45,17 @@ const ImgPreview = styled.div`
 	}
 `;
 
-const ProductName = styled.div`
+const ProductName = styled.strong`
+	display: block;
 	width: 100%;
 	margin-bottom: 16px;
 `;
-const ProductPrice = styled.div`
+const ProductPrice = styled.span`
+	display: block;
 	width: 100%;
 	margin-bottom: 16px;
 `;
-const SaleLink = styled.div`
+const SaleLink = styled.span`
 	width: 100%;
 `;
 
@@ -108,7 +109,8 @@ export default function ProductUpload() {
 				<Prev />
 				<SaveBtn />
 			</Header>
-			<UploadSection>
+			<MainUploadSection>
+				<h2 className="ir">상품 등록 페이지</h2>
 				<ImageSave>이미지 등록</ImageSave>
 				<ImgPreview></ImgPreview>
 				<ProductName>
@@ -123,7 +125,7 @@ export default function ProductUpload() {
 					<SaleLinkLabel>판매 링크</SaleLinkLabel>
 					<SalelinkInput placeholder="URL을 입력해 주세요"></SalelinkInput>
 				</SaleLink>
-			</UploadSection>
+			</MainUploadSection>
 		</div>
 	);
 }
