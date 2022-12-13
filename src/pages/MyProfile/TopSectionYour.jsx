@@ -29,7 +29,7 @@ const YourProfileChatBtn = styled(Link)`
     width: 20px;
     height: 20px;
     background: ${(props) =>
-      props.isFollowIcon
+      props.isfollowicon
         ? `url(${css_sprite}) -130px -190px`
         : `url(${css_sprite}) -90px -190px`};
   }
@@ -43,7 +43,7 @@ export default function TopSectionYour() {
         <span />
       </YourProfileChatBtn>
       <YourProfileFollowBtn>상품 등록</YourProfileFollowBtn>
-      <YourProfileChatBtn isFollowIcon={true}>
+      <YourProfileChatBtn isfollowicon="1">
         <span className="ir">채팅하기</span>
         <span />
       </YourProfileChatBtn>

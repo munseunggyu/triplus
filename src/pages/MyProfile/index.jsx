@@ -1,11 +1,11 @@
 import React from "react";
-import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar/Navbar";
-import TopSection from "./TopSection";
+import ProfileMidSection from "./MidSection";
+import ProfileTopSection from "./TopSection";
 
 export default function Myprrofile() {
   return (
@@ -15,7 +15,8 @@ export default function Myprrofile() {
         <Vertical />
       </Header>
       <MainContainer>
-        <TopSection />
+        <ProfileTopSection />
+        <ProfileMidSection />
       </MainContainer>
       <Navbar />
     </>

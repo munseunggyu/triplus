@@ -5,14 +5,14 @@ import user_img_big from "../../assets/images/user_img_big.png";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
 
-const TopSec = styled.section`
+const ProfileTopSec = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
   padding-bottom: 26px;
   border-bottom: ${(props) => `5px solid ${props.theme.borderColor}`};
 `;
-const TopContainer = styled.div`
+const ProfileTopContainer = styled.div`
   max-width: 390px;
   padding-top: 30px;
   text-align: center;
@@ -45,7 +45,7 @@ const ProfileIntroduce = styled.p`
 const ProfileFollowers = styled(Link)`
   position: absolute;
   top: 85px;
-  left: ${(props) => (props.isFollowing ? "220px" : "-20px")};
+  left: ${(props) => (props.isfollowing ? "220px" : "-20px")};
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -53,18 +53,18 @@ const ProfileFollowers = styled(Link)`
 const ProfileFollowCount = styled.span`
   font-size: 18px;
   font-weight: 700;
-  color: ${(props) => (props.isFollowing ? props.theme.grayColor : "black")};
+  color: ${(props) => (props.isfollowing ? props.theme.grayColor : "black")};
 `;
 const ProfileFollowTxt = styled.span`
   font-size: 10px;
   color: ${(props) => props.theme.grayColor};
 `;
 
-export default function TopSection() {
+export default function ProfileTopSection() {
   return (
-    <TopSec>
+    <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
-      <TopContainer>
+      <ProfileTopContainer>
         <ProfileUserImg src={user_img_big} alt="프로필 이미지" />
         <ProfileUserName>애월읍 위니브 감귤농장</ProfileUserName>
         <PofileUserId>@sadf</PofileUserId>
@@ -77,11 +77,11 @@ export default function TopSection() {
           <ProfileFollowCount>2950</ProfileFollowCount>
           <ProfileFollowTxt>followers</ProfileFollowTxt>
         </ProfileFollowers>
-        <ProfileFollowers to="/" isFollowing={true}>
-          <ProfileFollowCount isFollowing={true}>128</ProfileFollowCount>
+        <ProfileFollowers to="/" isfollowing="1">
+          <ProfileFollowCount isfollowing="1">128</ProfileFollowCount>
           <ProfileFollowTxt>following</ProfileFollowTxt>
         </ProfileFollowers>
-      </TopContainer>
-    </TopSec>
+      </ProfileTopContainer>
+    </ProfileTopSec>
   );
 }
