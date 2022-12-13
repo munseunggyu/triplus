@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import YourProfile from "./pages/YourProfile";
+import MyProfile from "./pages/MyProfile";
 import SetProfile from "./pages/SetProfile";
 import SNSLogin from "./pages/SNSLogin";
 import PostDetail from "./pages/PostDetail";
@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/ed" element={<YourProfile />} />
+        <Route path="/ed" element={<MyProfile />} />
         <Route path="/fd" element={<SetProfile />} />
         <Route path="/dfs" element={<SNSLogin />} />
         <Route path="/fds" element={<PostUpload />} />
