@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { MainContainer } from "../../components/MainContainer";
 import Vertical from "../../components/Header/Vertical";
 import PostCard from "../../components/PostCard";
+import DeleteAlert from "../../components/DeleteAlert";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
         <Vertical />
       </Header>
       <MainContainer>
+        <PostCard />
+        <PostCard />
+        <PostCard />
         <PostCard />
       </MainContainer>
       <Navbar />

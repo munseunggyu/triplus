@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import css_sprite from "../../assets/images/css_sprites.png";
 import PostCardBtns from "./PostCardBtns";
 import user_img_small from "../../assets/images/user_img_small.png";
+import css_sprites from "../../assets/images/css_sprites.png";
 
 const PostCartList = styled.li`
   list-style: none;
@@ -11,6 +10,7 @@ const PostCartList = styled.li`
   display: flex;
   gap: 12px;
   margin: 0 auto 24px;
+  position: relative;
   &:first-child {
     padding-top: 20px;
   }
@@ -52,6 +52,15 @@ const PostCardTime = styled.time`
   font-size: 12px;
   color: #767676;
 `;
+
+const PostCardVertical = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: url(${css_sprites}) -170px -190px;
+`;
 export default function PostCard() {
   return (
     <PostCartList>
@@ -71,6 +80,9 @@ export default function PostCard() {
         <PostCardBtns />
         <PostCardTime>2020년 10월 21일</PostCardTime>
       </div>
+      <PostCardVertical>
+        <span className="ir">더보기 버튼</span>
+      </PostCardVertical>
     </PostCartList>
   );
 }
