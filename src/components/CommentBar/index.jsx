@@ -14,11 +14,9 @@ const CommentContainer = styled.div`
   border-top: 0.5px solid rgb(219, 219, 219);
 `;
 
-const CommentProfileImg = styled.div`
-  background: url(${user_img_small}) no-repeat center center;
-  background-size: 36px;
+const CommentProfileImg = styled.img`
   width: 50px;
-  padding-right: 18px;
+  padding: 0 18px;
 `;
 
 const CommentInput = styled.input`
@@ -45,7 +43,7 @@ const CommentBtn = styled.button`
 export default function CommentBar() {
   return (
     <CommentContainer>
-      <CommentProfileImg />
+      <CommentProfileImg src={user_img_small} alt="사용자 이름" />
       <CommentInput placeholder="댓글 입력하기..." />
       <CommentBtn>게시</CommentBtn>
     </CommentContainer>
