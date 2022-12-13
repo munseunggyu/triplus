@@ -30,7 +30,7 @@ const PostCardUserName = styled.strong`
 `;
 const PostCardUserId = styled.span`
   font-size: 12px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 const PostCardContentTxt = styled.pre`
   font-size: 16px;
@@ -50,7 +50,7 @@ const PostCardContentImg = styled.img`
 
 const PostCardTime = styled.time`
   font-size: 12px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 
 const PostCardVertical = styled.button`

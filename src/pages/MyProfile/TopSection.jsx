@@ -9,6 +9,8 @@ const TopSec = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 26px;
+  border-bottom: ${(props) => `5px solid ${props.theme.borderColor}`};
 `;
 const TopContainer = styled.div`
   max-width: 390px;
@@ -51,11 +53,11 @@ const ProfileFollowers = styled(Link)`
 const ProfileFollowCount = styled.span`
   font-size: 18px;
   font-weight: 700;
-  color: ${(props) => (props.isFollowing ? "#767676" : "black")};
+  color: ${(props) => (props.isFollowing ? props.theme.grayColor : "black")};
 `;
 const ProfileFollowTxt = styled.span`
   font-size: 10px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 
 export default function TopSection() {

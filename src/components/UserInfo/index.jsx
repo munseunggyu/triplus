@@ -22,7 +22,7 @@ const UserInfoNameIdCon = styled.div`
 `;
 const UserInfoId = styled.span`
   font-size: 12px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 const UserInfoName = styled.strong`
   font-size: 14px;

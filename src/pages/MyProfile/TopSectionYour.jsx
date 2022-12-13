@@ -10,7 +10,7 @@ const YourProfileBtnCon = styled.div`
 `;
 
 const YourProfileFollowBtn = styled.button`
-  border: 1px solid #dbdbdb;
+  border: ${(props) => `1px solid ${props.theme.borderColor}`};
   border-radius: 30px;
   padding: 8px 26px;
 `;
@@ -20,7 +20,7 @@ const YourProfileChatBtn = styled(Link)`
   height: 34px;
   box-sizing: border-box;
   background: url("css_sprites.png") -130px -190px;
-  border: 1px solid #dbdbdb;
+  border: ${(props) => `1px solid ${props.theme.borderColor}`};
   display: flex;
   align-items: center;
   justify-content: center;

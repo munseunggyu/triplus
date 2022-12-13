@@ -8,7 +8,7 @@ const MyProfileBtnCon = styled.div`
 `;
 
 const MyProfileBtn = styled.button`
-  border: 1px solid #dbdbdb;
+  border: ${(props) => `1px solid ${props.theme.borderColor}`};
   border-radius: 30px;
   padding: 8px 26px;
 `;

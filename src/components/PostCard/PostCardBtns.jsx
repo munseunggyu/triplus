@@ -14,7 +14,7 @@ const PostCardLikeBtn = styled.button`
   display: flex;
   align-items: center;
   span {
-    color: #767676;
+    color: ${(props) => props.theme.grayColor};
   }
   &::before {
     content: "";
@@ -37,7 +37,7 @@ const PostCardChatLink = styled(Link)`
     background: url(${css_sprite}) -90px -190px;
   }
   span {
-    color: #767676;
+    color: ${(props) => props.theme.grayColor};
     margin-top: 3px;
   }
 `;
