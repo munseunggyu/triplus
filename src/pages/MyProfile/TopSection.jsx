@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import user_img_big from "../../assets/images/user_img_big.png";
+import TopSectionMy from "./TopSectionMy";
+import TopSectionYour from "./TopSectionYour";
 
 const TopSec = styled.section`
   width: 100%;
@@ -47,6 +49,8 @@ export default function TopSection() {
         <ProfileIntroduce>
           애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장
         </ProfileIntroduce>
+        {/* <TopSectionMy /> */}
+        <TopSectionYour />
       </TopContainer>
     </TopSec>
   );
