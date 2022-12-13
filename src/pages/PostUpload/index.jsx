@@ -19,7 +19,9 @@ const UploadContainer = styled.div`
   padding-top: 20px;
 `;
 
-const UploadImg = styled.img`
+const UploadImg = styled.div`
+  background: ${smallProfile};
+  background-size: 42px;
   display: inline-block;
   width: 42px;
   height: 42px;
@@ -57,7 +59,7 @@ export default function PostUpload() {
       </Header>
       <MainContainer>
         <UploadContainer>
-          <UploadImg src={smallProfile} alt="" />
+          <UploadImg />
           <UploadTextarea placeholder="게시글 입력하기..." />
           <UploadFileBtn />
         </UploadContainer>
