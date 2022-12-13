@@ -5,6 +5,7 @@ import Vertical from "../../components/Header/Vertical";
 import PostCard from "../../components/PostCard";
 import Prev from "../../components/Header/Prev";
 import CommentBar from "../../components/CommentBar";
+import Comment from "./Comment";
 
 export default function PostDetail() {
   return (
@@ -15,6 +16,9 @@ export default function PostDetail() {
       </Header>
       <MainContainer>
         <PostCard />
+        <Comment />
+        <Comment />
+        <Comment />
       </MainContainer>
       <CommentBar />
     </>

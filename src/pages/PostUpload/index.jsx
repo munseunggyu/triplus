@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
-import uploadBtn from "../../assets/images/upload_button.png";
+import upload_button from "../../assets/images/upload_button.png";
 import { MainContainer } from "../../components/MainContainer";
-import smallProfile from "../../assets/images/user_img_small.png";
-import uploadFile from "../../assets/images/upload-file.png";
-import xIcon from "../../assets/images/x.png";
+import small_profile from "../../assets/images/user_img_small.png";
+import upload_file from "../../assets/images/upload-file.png";
+import x from "../../assets/images/x.png";
 
 const UploadContainer = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const UploadContentWrapper = styled.div`
 `;
 
 const SmallProfileImg = styled.div`
-  background: url(${smallProfile}) no-repeat;
+  background: url(${small_profile}) no-repeat;
   display: block;
   width: 42px;
   height: 42px;
@@ -55,7 +55,7 @@ const UploadContentImg = styled.div`
 
 // button
 const UploadBtn = styled.button`
-  background: url(${uploadBtn}) no-repeat;
+  background: url(${upload_button}) no-repeat;
   background-size: 90px;
   margin-left: auto;
   width: 90px;
@@ -67,7 +67,7 @@ const UploadFileBtn = styled.button`
   position: fixed;
   bottom: 16px;
   right: 16px;
-  background: url(${uploadFile}) no-repeat;
+  background: url(${upload_file}) no-repeat;
   background-size: 50px;
   width: 50px;
   height: 50px;
@@ -77,7 +77,7 @@ const DeleteBtn = styled.button`
   position: relative;
   bottom: 205px;
   left: 270px;
-  background: ${(props) => (props.uploadImg ? `url(${xIcon})` : "")};
+  background: ${(props) => (props.uploadImg ? `url(${x})` : "")};
   background-size: 22px;
   width: 22px;
   height: 22px;
