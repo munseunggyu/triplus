@@ -4,6 +4,7 @@ import Prev from "../../components/Header/Prev";
 import Vertical from "../../components/Header/Vertical";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar/Navbar";
+import ProfileBottomSection from "./BottomSection";
 import ProfileMidSection from "./MidSection";
 import ProfileTopSection from "./TopSection";
 
@@ -14,9 +15,10 @@ export default function Myprrofile() {
         <Prev />
         <Vertical />
       </Header>
-      <MainContainer>
+      <MainContainer ispadding="1">
         <ProfileTopSection />
         <ProfileMidSection />
+        <ProfileBottomSection />
       </MainContainer>
       <Navbar />
     </>

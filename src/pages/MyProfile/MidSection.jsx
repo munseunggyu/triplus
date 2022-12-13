@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ProfileMidSec = styled.section`
-  border-bottom: ${(props) => `5px solid ${props.theme.borderColor}`};
+  border-bottom: 8px solid #f2f2f2;
   display: flex;
   justify-content: center;
 `;
@@ -23,27 +23,7 @@ const ProfileMidSectionUl = styled.ul`
   overflow-y: hidden;
   padding-top: 16px;
 `;
-// const ProfileMidSectionLi = styled.li`
-//   img {
-//     width: 140px;
-//     height: 90px;
-//     object-fit: cover;
-//     border-radius: 8px;
-//   }
-//   strong {
-//     font-size: 14px;
-//     line-height: 18px;
-//     display: block;
-//     padding: 6px 0 4px;
-//     font-weight: 700;
-//   }
-//   span {
-//     font-weight: 700;
-//     font-size: 12px;
-//     line-height: 15px;
-//     color: ${(props) => props.theme.mainColor};
-//   }
-// `;
+
 const ProfileMidSectionImg = styled.img`
   width: 140px;
   height: 90px;

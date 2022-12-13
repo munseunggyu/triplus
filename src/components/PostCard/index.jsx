@@ -6,7 +6,8 @@ import css_sprites from "../../assets/images/css_sprites.png";
 
 const PostCartList = styled.li`
   list-style: none;
-  max-width: 390px;
+  max-width: 358px;
+  width: 100%;
   display: flex;
   gap: 12px;
   margin: 0 auto 24px;
@@ -24,7 +25,7 @@ const PostCartImg = styled.img`
 `;
 const PostCardUserName = styled.strong`
   margin-top: 4px;
-  font-size: 18px;
+  font-size: 16px;
   display: block;
   font-weight: 500;
 `;
@@ -33,7 +34,7 @@ const PostCardUserId = styled.span`
   color: ${(props) => props.theme.grayColor};
 `;
 const PostCardContentTxt = styled.pre`
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 20px;
   line-height: 1.4;
   white-space: -moz-pre-wrap;
@@ -55,7 +56,6 @@ const PostCardTime = styled.time`
 
 const PostCardVertical = styled.button`
   position: absolute;
-  top: 20px;
   right: 0;
   width: 18px;
   height: 18px;

@@ -10,7 +10,7 @@ const ProfileTopSec = styled.section`
   display: flex;
   justify-content: center;
   padding-bottom: 26px;
-  border-bottom: ${(props) => `5px solid ${props.theme.borderColor}`};
+  border-bottom: 8px solid #f2f2f2;
 `;
 const ProfileTopContainer = styled.div`
   max-width: 390px;

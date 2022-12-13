@@ -10,7 +10,7 @@ const PostCardHeartChatCon = styled.div`
 `;
 
 const PostCardLikeBtn = styled.button`
-  margin-right: 18px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   span {
