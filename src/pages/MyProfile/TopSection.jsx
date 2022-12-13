@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import user_img_big from "../../assets/images/user_img_big.png";
 import TopSectionMy from "./TopSectionMy";
@@ -13,6 +14,7 @@ const TopContainer = styled.div`
   max-width: 390px;
   padding-top: 30px;
   text-align: center;
+  position: relative;
 `;
 
 const ProfileUserImg = styled.img`
@@ -38,6 +40,24 @@ const ProfileIntroduce = styled.p`
   font-size: 14px;
   line-height: 18px;
 `;
+const ProfileFollowers = styled(Link)`
+  position: absolute;
+  top: 85px;
+  left: ${(props) => (props.isFollowing ? "220px" : "-20px")};
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+const ProfileFollowCount = styled.span`
+  font-size: 18px;
+  font-weight: 700;
+  color: ${(props) => (props.isFollowing ? "#767676" : "black")};
+`;
+const ProfileFollowTxt = styled.span`
+  font-size: 10px;
+  color: #767676;
+`;
+
 export default function TopSection() {
   return (
     <TopSec>
@@ -49,8 +69,16 @@ export default function TopSection() {
         <ProfileIntroduce>
           애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장
         </ProfileIntroduce>
-        {/* <TopSectionMy /> */}
+
         <TopSectionYour />
+        <ProfileFollowers to="/">
+          <ProfileFollowCount>2950</ProfileFollowCount>
+          <ProfileFollowTxt>followers</ProfileFollowTxt>
+        </ProfileFollowers>
+        <ProfileFollowers to="/" isFollowing={true}>
+          <ProfileFollowCount isFollowing={true}>128</ProfileFollowCount>
+          <ProfileFollowTxt>following</ProfileFollowTxt>
+        </ProfileFollowers>
       </TopContainer>
     </TopSec>
   );
