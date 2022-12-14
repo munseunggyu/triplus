@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
+import { useNavigate } from "react-router-dom";
 
 const IconsUl = styled.ul`
   background-color: white;
@@ -62,25 +63,43 @@ const NavSpan = styled.span`
 `;
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <IconsUl>
       <Iconli>
-        <HomeIcon />
+        <HomeIcon
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <NavSpan>홈</NavSpan>
       </Iconli>
 
       <Iconli>
-        <MessageIcon />
+        <MessageIcon
+          onClick={() => {
+            navigate("/chatlist");
+          }}
+        />
         <NavSpan>채팅</NavSpan>
       </Iconli>
 
       <Iconli>
-        <EditIcon />
+        <EditIcon
+          onClick={() => {
+            navigate("/postupload");
+          }}
+        />
         <NavSpan>게시물 작성</NavSpan>
       </Iconli>
 
       <Iconli>
-        <UserIcon />
+        <UserIcon
+          onClick={() => {
+            navigate("/profile");
+          }}
+        />
         <NavSpan>프로필</NavSpan>
       </Iconli>
     </IconsUl>
