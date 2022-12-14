@@ -71,6 +71,7 @@ const UploadFileBtn = styled.button`
   background-size: 50px;
   width: 50px;
   height: 50px;
+
 `;
 
 const DeleteBtn = styled.button`
