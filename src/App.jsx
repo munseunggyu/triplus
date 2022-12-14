@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import SplashScreen from "./pages/SplashScreen";
 import ProductUpload from "./pages/ProductUpload";
 import Follow from "./pages/Follow";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/jj" element={<ProductUpload />} />
-        <Route path="follow" element={<Follow />} />
+        <Route path="/follow" element={<Follow />} />
+        <Route path="/404" element={<ErrorPage />} />
       </Routes>
     </div>
   );
