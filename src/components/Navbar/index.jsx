@@ -3,6 +3,7 @@ import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
 
 const IconsUl = styled.ul`
+  background-color: white;
   position: fixed;
   bottom: 0;
   left: 0;

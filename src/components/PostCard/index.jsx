@@ -4,9 +4,10 @@ import PostCardBtns from "./PostCardBtns";
 import user_img_small from "../../assets/images/user_img_small.png";
 import css_sprites from "../../assets/images/css_sprites.png";
 
-const PostCartList = styled.li`
+const PostCardList = styled.li`
   list-style: none;
-  max-width: 390px;
+  max-width: 358px;
+  width: 100%;
   display: flex;
   gap: 12px;
   margin: 0 auto 24px;
@@ -16,7 +17,7 @@ const PostCartList = styled.li`
   }
 `;
 
-const PostCartImg = styled.img`
+const PostCardImg = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -24,16 +25,16 @@ const PostCartImg = styled.img`
 `;
 const PostCardUserName = styled.strong`
   margin-top: 4px;
-  font-size: 18px;
+  font-size: 16px;
   display: block;
   font-weight: 500;
 `;
 const PostCardUserId = styled.span`
   font-size: 12px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 const PostCardContentTxt = styled.pre`
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 20px;
   line-height: 1.4;
   white-space: -moz-pre-wrap;
@@ -50,12 +51,11 @@ const PostCardContentImg = styled.img`
 
 const PostCardTime = styled.time`
   font-size: 12px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 
 const PostCardVertical = styled.button`
   position: absolute;
-  top: 20px;
   right: 0;
   width: 18px;
   height: 18px;
@@ -63,8 +63,8 @@ const PostCardVertical = styled.button`
 `;
 export default function PostCard() {
   return (
-    <PostCartList>
-      <PostCartImg src={user_img_small} />
+    <PostCardList>
+      <PostCardImg src={user_img_small} />
       <div>
         <PostCardUserName>애월읍 위니브 감귤농장</PostCardUserName>
         <PostCardUserId>@ weniv_Mandarin</PostCardUserId>
@@ -83,6 +83,6 @@ export default function PostCard() {
       <PostCardVertical>
         <span className="ir">더보기 버튼</span>
       </PostCardVertical>
-    </PostCartList>
+    </PostCardList>
   );
 }

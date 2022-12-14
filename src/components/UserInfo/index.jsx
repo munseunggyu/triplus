@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import user_img_small from "../../assets/images/user_img_small.png";
 
-const UserInfoContanier = styled.div`
+const UserInfoContanier = styled.li`
   display: flex;
   gap: 12px;
   margin-top: 20px;
@@ -22,7 +22,7 @@ const UserInfoNameIdCon = styled.div`
 `;
 const UserInfoId = styled.span`
   font-size: 12px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
 `;
 const UserInfoName = styled.strong`
   font-size: 14px;
