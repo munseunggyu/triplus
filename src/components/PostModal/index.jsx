@@ -8,17 +8,57 @@ const PostModalSection = styled.section`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.3);
 	width: 100%;
-	height: 30px;
-	border: 1px solid black;
-	z-index: 100;
+	z-index: 10;
+`;
+
+const PostModalUl = styled.ul`
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	height: auto;
+	padding: 36px 0px 10px 0px;
+	background-color: #fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 16px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 50px;
+		height: 4px;
+		border-radius: 5px;
+		background-color: #dbdbdb;
+	}
+`;
+
+const PostModalList = styled.li`
+	width: 100%;
+	padding: 14px 0 14px 26px;
+`;
+
+const PostModalListBtn = styled.button`
+	font-size: 14px;
+	line-height: 17px;
 `;
 
 export default function PostModal() {
 	return (
 		<>
-			<PostModalSection>fff</PostModalSection>
+			<PostModalSection>
+				<PostModalUl>
+					<PostModalList>
+						<PostModalListBtn>삭제</PostModalListBtn>
+					</PostModalList>
+					<PostModalList>
+						<PostModalListBtn>수정</PostModalListBtn>
+					</PostModalList>
+				</PostModalUl>
+			</PostModalSection>
 		</>
 	);
 }
