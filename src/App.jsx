@@ -10,6 +10,7 @@ import ProductUpload from "./pages/ProductUpload";
 import Follow from "./pages/Follow";
 import ErrorPage from "./pages/ErrorPage";
 import Search from "./pages/Search";
+import ChatRoom from "./pages/ChatRoom";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/follow" element={<Follow />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
       </Routes>
     </div>
   );
