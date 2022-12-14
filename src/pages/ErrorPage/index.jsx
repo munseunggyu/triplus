@@ -30,7 +30,7 @@ const ErrorPageBtn = styled(Link)`
 export default function ErrorPage() {
   return (
     <ErrorPageContainer>
-      <img src={error_404} alt="심볼이미지" />
+      <img src={error_404} alt="404 이미지" />
       <ErrorMessage>페이지를 찾을 수 없습니다. :( </ErrorMessage>
       <ErrorPageBtn>이전 페이지</ErrorPageBtn>
     </ErrorPageContainer>
