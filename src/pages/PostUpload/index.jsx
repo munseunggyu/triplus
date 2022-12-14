@@ -10,7 +10,7 @@ import x from "../../assets/images/x.png";
 
 const UploadContainer = styled.div`
   display: flex;
-  padding-top: 16px;
+  padding: 16px;
   gap: 13px;
   min-height: 100px;
 `;
