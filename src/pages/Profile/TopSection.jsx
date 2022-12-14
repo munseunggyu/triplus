@@ -73,7 +73,7 @@ export default function ProfileTopSection() {
         </ProfileIntroduce>
 
         <TopSectionYour />
-        <ProfileFollowers to="/">
+        <ProfileFollowers to="/follow">
           <ProfileFollowCount>2950</ProfileFollowCount>
           <ProfileFollowTxt>followers</ProfileFollowTxt>
         </ProfileFollowers>
