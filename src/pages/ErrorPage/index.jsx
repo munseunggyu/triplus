@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import symbolImg from "../../assets/images/plain_blue.png";
-const HomeNoFollowing = styled.div`
+import error_404 from "../../assets/images/error_404.png";
+const ErrorPageContainer = styled.div`
   width: 358px;
   margin: 0 auto;
   height: calc(100vh - 108px);
@@ -10,13 +10,13 @@ const HomeNoFollowing = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 14px;
   gap: 25px;
+  font-size: 14px;
 `;
-const HomeNoFollowingP = styled.p`
+const ErrorMessage = styled.p`
   color: ${(props) => props.theme.grayColor};
 `;
-const HomeNoFollowingBtn = styled(Link)`
+const ErrorPageBtn = styled(Link)`
   width: 120px;
   height: 44px;
   color: white;
@@ -27,12 +27,12 @@ const HomeNoFollowingBtn = styled(Link)`
   justify-content: center;
 `;
 
-export default function HomeNoFollow() {
+export default function ErrorPage() {
   return (
-    <HomeNoFollowing>
-      <img src={symbolImg} alt="심볼이미지" />
-      <HomeNoFollowingP>유저를 검색해 팔로우 해보세요!</HomeNoFollowingP>
-      <HomeNoFollowingBtn>검색하기</HomeNoFollowingBtn>
-    </HomeNoFollowing>
+    <ErrorPageContainer>
+      <img src={error_404} alt="심볼이미지" />
+      <ErrorMessage>페이지를 찾을 수 없습니다. :( </ErrorMessage>
+      <ErrorPageBtn>이전 페이지</ErrorPageBtn>
+    </ErrorPageContainer>
   );
 }
