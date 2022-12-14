@@ -4,7 +4,6 @@ import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import saveBtn from "../../assets/images/save_button.png";
 import imgFile from "../../assets/images/file_gray.png";
-import PostModal from "../../components/PostModal";
 
 const SaveBtn = styled.button`
 	background: url(${saveBtn}) no-repeat;
@@ -127,7 +126,6 @@ export default function ProductUpload() {
 					<SalelinkInput placeholder="URL을 입력해 주세요"></SalelinkInput>
 				</SaleLink>
 			</MainUploadSection>
-			<PostModal />
 		</div>
 	);
 }
