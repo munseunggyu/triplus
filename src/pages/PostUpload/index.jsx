@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
@@ -84,7 +84,13 @@ const DeleteBtn = styled.button`
 `;
 
 export default function PostUpload() {
-  let [uploadImg, setUploadImg] = useState(true);
+  const [uploadImg, setUploadImg] = useState(true);
+  const textRef = useRef();
+
+  function handleResizeHeight() {
+    textRef.current.style.height = "auto";
+    textRef.current.style.height = textRef.current.scrollHeight + "px";
+  }
 
   return (
     <div>
@@ -92,14 +98,18 @@ export default function PostUpload() {
         <Prev />
         <UploadBtn />
       </Header>
+
       <MainContainer>
         <UploadContainer>
           <SmallProfileImg />
           <UploadContentWrapper>
-            <UploadText placeholder="게시글 입력하기..." />
-
+            <UploadText
+              placeholder="게시글 입력하기..."
+              onInput={handleResizeHeight}
+              ref={textRef}
+              maxLength="2000"
+            />
             <UploadContentImg uploadImg={uploadImg} />
-
             <DeleteBtn
               uploadImg={uploadImg}
               onClick={() => {
