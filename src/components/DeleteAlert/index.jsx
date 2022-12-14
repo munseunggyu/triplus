@@ -12,7 +12,7 @@ const DeleteAlertModal = styled.section`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 10;
+	z-index: 20;
 `;
 
 const DeleteAlertArticle = styled.div`
