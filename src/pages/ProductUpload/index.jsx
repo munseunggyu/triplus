@@ -126,8 +126,8 @@ export default function ProductUpload() {
 					<SaleLinkLabel>판매 링크</SaleLinkLabel>
 					<SalelinkInput placeholder="URL을 입력해 주세요"></SalelinkInput>
 				</SaleLink>
-				<PostModal />
 			</MainUploadSection>
+			<PostModal />
 		</div>
 	);
 }
