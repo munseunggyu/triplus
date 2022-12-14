@@ -12,7 +12,7 @@ const SearchBtn = styled(Link)`
 
 export default function SearchButton() {
   return (
-    <SearchBtn>
+    <SearchBtn to="/search">
       <span className="ir">검색 버튼</span>
     </SearchBtn>
   );

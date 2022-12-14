@@ -16,7 +16,7 @@ const HomeNoFollowing = styled.div`
 const HomeNoFollowingP = styled.p`
   color: ${(props) => props.theme.grayColor};
 `;
-const HomeNoFollowingBtn = styled(Link)`
+const HomeNoFollowingLink = styled(Link)`
   width: 120px;
   height: 44px;
   color: white;
@@ -32,7 +32,7 @@ export default function HomeNoFollow() {
     <HomeNoFollowing>
       <img src={symbolImg} alt="심볼이미지" />
       <HomeNoFollowingP>유저를 검색해 팔로우 해보세요!</HomeNoFollowingP>
-      <HomeNoFollowingBtn>검색하기</HomeNoFollowingBtn>
+      <HomeNoFollowingLink to="search">검색하기</HomeNoFollowingLink>
     </HomeNoFollowing>
   );
 }
