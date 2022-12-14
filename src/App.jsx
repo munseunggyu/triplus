@@ -7,12 +7,13 @@ import PostUpload from "./pages/PostUpload";
 import Home from "./pages/Home";
 import SplashScreen from "./pages/SplashScreen";
 import ProductUpload from "./pages/ProductUpload";
+import Followers from "./pages/Followers";
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/ed" element={<YourProfile />} />
+        <Route path="/ed" element={<MyProfile />} />
         <Route path="/fd" element={<SetProfile />} />
         <Route path="/dfs" element={<SNSLogin />} />
         <Route path="/fds" element={<PostUpload />} />
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/jj" element={<ProductUpload />} />
+        <Route path="follow" element={<Followers />} />
       </Routes>
     </div>
   );
