@@ -42,7 +42,7 @@ const MessageIcon = styled.button`
   border: 0px;
 `;
 
-const EditIcon = styled.button`
+const UploadIcon = styled.button`
   width: 24px;
   height: 24px;
   background: url(${css_sprite}) -10px -102px;
@@ -86,7 +86,7 @@ export default function Navbar() {
       </Iconli>
 
       <Iconli>
-        <EditIcon
+        <UploadIcon
           onClick={() => {
             navigate("/postupload");
           }}
