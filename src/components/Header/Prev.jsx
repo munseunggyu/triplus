@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
 
@@ -10,8 +11,13 @@ const PrevBtn = styled.button`
 `;
 
 export default function Prev() {
+  const navigate = useNavigate();
   return (
-    <PrevBtn>
+    <PrevBtn
+      onClick={() => {
+        navigate(-1);
+      }}
+    >
       <span className="ir">이전 버튼</span>
     </PrevBtn>
   );

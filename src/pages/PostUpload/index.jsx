@@ -10,7 +10,7 @@ import x from "../../assets/images/x.png";
 
 const UploadContainer = styled.div`
   display: flex;
-  padding-top: 16px;
+  padding: 16px;
   gap: 13px;
   min-height: 100px;
 `;
@@ -71,6 +71,7 @@ const UploadFileBtn = styled.button`
   background-size: 50px;
   width: 50px;
   height: 50px;
+
 `;
 
 const DeleteBtn = styled.button`
