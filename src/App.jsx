@@ -14,13 +14,12 @@ import ChatRoom from "./pages/ChatRoom";
 import ChatList from "./pages/ChatList";
 
 function App() {
-<<<<<<< HEAD
 	return (
 		<div>
 			<Routes>
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/editprofile" element={<SetProfile />} />
-				<Route path="/snslogin" element={<SNSLogin />} />
+				<Route path="/multiLogin" element={<MultiLogin />} />
 				<Route path="/postupload" element={<PostUpload />} />
 				<Route path="/postdetail" element={<PostDetail />} />
 				<Route path="/" element={<Home />} />
@@ -34,27 +33,6 @@ function App() {
 			</Routes>
 		</div>
 	);
-=======
-  return (
-    <div>
-      <Routes>
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/editprofile" element={<SetProfile />} />
-        <Route path="/multiLogin" element={<MultiLogin />} />
-        <Route path="/postupload" element={<PostUpload />} />
-        <Route path="/postdetail" element={<PostDetail />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/splash" element={<SplashScreen />} />
-        <Route path="/productupload" element={<ProductUpload />} />
-        <Route path="/follow" element={<Follow />} />
-        <Route path="/404" element={<ErrorPage />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/chatroom" element={<ChatRoom />} />
-        <Route path="/chatlist" element={<ChatList />} />
-      </Routes>
-    </div>
-  );
->>>>>>> 19b343fee73b2f4901f7ba8820d93243c3fb0901
 }
 
 export default App;
