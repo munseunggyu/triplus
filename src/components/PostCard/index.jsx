@@ -17,11 +17,12 @@ const PostCardList = styled.li`
   }
 `;
 
-const PostCardImg = styled.img`
+const PostCardUserImg = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 `;
 const PostCardUserName = styled.strong`
   margin-top: 4px;
@@ -64,7 +65,7 @@ const PostCardVertical = styled.button`
 export default function PostCard() {
   return (
     <PostCardList>
-      <PostCardImg src={user_img_small} />
+      <PostCardUserImg src={user_img_small} />
       <div>
         <PostCardUserName>애월읍 위니브 감귤농장</PostCardUserName>
         <PostCardUserId>@ weniv_Mandarin</PostCardUserId>
