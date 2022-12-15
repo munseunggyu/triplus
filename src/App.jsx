@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile";
 import SetProfile from "./pages/SetProfile";
-import SNSLogin from "./pages/SNSLogin";
+import MultiLogin from "./pages/MultiLogin";
 import PostDetail from "./pages/PostDetail";
 import PostUpload from "./pages/PostUpload";
 import Home from "./pages/Home";
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/profile" element={<Profile />} />
         <Route path="/editprofile" element={<SetProfile />} />
-        <Route path="/snslogin" element={<SNSLogin />} />
+        <Route path="/multiLogin" element={<MultiLogin />} />
         <Route path="/postupload" element={<PostUpload />} />
         <Route path="/postdetail" element={<PostDetail />} />
         <Route path="/" element={<Home />} />
