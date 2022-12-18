@@ -50,16 +50,20 @@ export default function ProfileMidSection() {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTMzNWY1MTdhZTY2NjU4MWMxZTIwYiIsImV4cCI6MTY3NjI2MzM5MywiaWF0IjoxNjcxMDc5MzkzfQ.xsbzJ5VLoY6BdOS0dccJLUDTfzdg5p0dfE0J0Kmrez0"; // 임시 토큰
 
   const getProductList = async () => {
-    const res = await axios.get(
-      `${process.env.REACT_APP_API_KEY}/product/sfne.sae`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
-        },
-      }
-    );
-    return res.data.product;
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_KEY}/product/sfne.sae`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      return res.data.product;
+    } catch (error) {
+      console.log(error);
+    }
   };
   const setData = async () => {
     const res = await getProductList();

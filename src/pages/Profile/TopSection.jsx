@@ -77,11 +77,17 @@ export default function ProfileTopSection() {
           },
         }
       );
-      setProfileData(res.data.profile);
-    } catch (error) {}
+      return res.data.profile;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const setProfile = async () => {
+    const res = await getProfileData();
+    setProfileData(res);
   };
   useEffect(() => {
-    getProfileData();
+    setProfile();
   }, []);
   return (
     <ProfileTopSec>
