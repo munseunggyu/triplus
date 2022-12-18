@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import more_vertical from "../../assets/images/more-vertical.png";
+import more_vertical from "../../assets/images/more_vertical.png";
 
 const CommentList = styled.li`
   list-style: none;
