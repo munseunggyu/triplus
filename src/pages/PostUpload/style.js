@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import upload_button from "../../assets/images/upload_button.png";
-import upload_disabled_button from "../../assets/images/upload_disabled_button.png";
 import small_profile from "../../assets/images/user_img_small.png";
 import upload_file from "../../assets/images/upload_file.png";
 import x from "../../assets/images/x.png";
@@ -52,17 +50,17 @@ export const UploadContentImg = styled.div`
 
 // button
 export const UploadBtn = styled.button`
-  background: ${(props) =>
-    props.isActive
-      ? `url(${upload_button}) no-repeat`
-      : `url(${upload_disabled_button}) no-repeat`};
+  background-color: ${(props) =>
+    props.isActive ? props.theme.mainColor : "#90bcff"};
+  border-radius: 32px;
+  color: #fff;
   background-size: 90px;
   margin-left: auto;
   width: 90px;
   height: 32px;
 `;
 
-export const UploadFileBtn = styled.button`
+export const UploadFileForm = styled.form`
   display: inline-block;
   position: fixed;
   bottom: 16px;

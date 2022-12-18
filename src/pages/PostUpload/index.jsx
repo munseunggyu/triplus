@@ -4,12 +4,13 @@ import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import axios from "axios";
 import * as S from "./style";
+// import UploadFileBtn from "./UploadFileBtn";
+import upload_file from "../../assets/images/upload_file.png";
 
 export default function PostUpload() {
   const [uploadImg, setUploadImg] = useState(true);
   const [fileName, setFileName] = useState([]);
   const [isActive, setIsActive] = useState(false);
-
   const textRef = useRef();
 
   function handleResizeHeight() {
@@ -21,6 +22,7 @@ export default function PostUpload() {
     e.target.value ? setIsActive(true) : setIsActive(false);
   }
 
+  // 업로드 버튼 클릭 시 게시글 POST
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -53,7 +55,9 @@ export default function PostUpload() {
     <div>
       <Header>
         <Prev />
-        <S.UploadBtn onClick={handleSubmit} isActive={isActive} />
+        <S.UploadBtn onClick={handleSubmit} isActive={isActive}>
+          업로드
+        </S.UploadBtn>
       </Header>
 
       <MainContainer>
@@ -68,7 +72,6 @@ export default function PostUpload() {
               ref={textRef}
               maxLength="2000"
             />
-
             <S.UploadContentImg uploadImg={uploadImg} />
             <S.DeleteBtn
               uploadImg={uploadImg}
@@ -79,7 +82,22 @@ export default function PostUpload() {
               }}
             />
           </S.UploadContentForm>
-          <S.UploadFileBtn />
+          <S.UploadFileForm>
+            <label htmlFor="post-upload-file">
+              <img
+                src={upload_file}
+                alt="이미지 파일 업로드"
+                style={{ width: "50px", height: "50px" }}
+              />
+            </label>
+            <input
+              type="file"
+              className="ir"
+              id="post-upload-file"
+              accept=".jpg, .gif, .png, .jpeg, .bmp, .tif, .heic"
+              // multiple // 이미지 3개 이상
+            />
+          </S.UploadFileForm>
         </S.UploadContainer>
       </MainContainer>
     </div>
