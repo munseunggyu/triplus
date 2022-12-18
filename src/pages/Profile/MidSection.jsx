@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ProfileMidSec = styled.section`
@@ -44,19 +45,46 @@ const ProfileMidSectionPrice = styled.span`
   color: ${(props) => props.theme.mainColor};
 `;
 export default function ProfileMidSection() {
+  const [productData, setProductData] = useState([]);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTMzNWY1MTdhZTY2NjU4MWMxZTIwYiIsImV4cCI6MTY3NjI2MzM5MywiaWF0IjoxNjcxMDc5MzkzfQ.xsbzJ5VLoY6BdOS0dccJLUDTfzdg5p0dfE0J0Kmrez0"; // 임시 토큰
+
+  const getProductList = async () => {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/product/sfne.sae`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
+    return res.data.product;
+  };
+  const setData = async () => {
+    const res = await getProductList();
+    setProductData(res);
+  };
+  useEffect(() => {
+    setData();
+  }, []);
   return (
     <ProfileMidSec>
       <ProfileMidSectionCon>
         <ProfileMidSectionH2>판매중인 상품</ProfileMidSectionH2>
         <ProfileMidSectionUl>
-          <li>
-            <ProfileMidSectionImg
-              src="http://146.56.183.55:5050/1670559846106.jpeg"
-              alt=""
-            />
-            <ProfileMidSectionTxt>애월읍 한라봉 10kg...</ProfileMidSectionTxt>
-            <ProfileMidSectionPrice>35,000원</ProfileMidSectionPrice>
-          </li>
+          {productData.map((product) => {
+            return (
+              <li key={product.id}>
+                <ProfileMidSectionImg
+                  src={product.itemImage}
+                  alt="상품 이미지"
+                />
+                <ProfileMidSectionTxt>{product.itemName} </ProfileMidSectionTxt>
+                <ProfileMidSectionPrice>{product.price}</ProfileMidSectionPrice>
+              </li>
+            );
+          })}
         </ProfileMidSectionUl>
       </ProfileMidSectionCon>
     </ProfileMidSec>

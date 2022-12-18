@@ -77,7 +77,6 @@ export default function ProfileTopSection() {
           },
         }
       );
-      console.log(res.data.profile);
       setProfileData(res.data.profile);
     } catch (error) {}
   };
