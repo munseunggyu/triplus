@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
@@ -28,26 +28,50 @@ const IsFollowBtn = styled.button`
 
 export default function Follow() {
   const { accountname } = useParams();
-  const [followingList, setFollowingList] = useState([]);
+  const [followList, setFollowList] = useState([]);
   const token = localStorage.getItem("token");
-
+  const path = useLocation();
+  console.log(path.pathname.includes("follower"));
   const getFollowingList = async () => {
-    const res = await axios.get(
-      `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
-        },
-      }
-    );
-    setFollowingList(res.data);
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      setFollowList(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getFollowerList = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      setFollowList(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
-    getFollowingList();
+    if (path.pathname.includes("follower")) {
+      getFollowerList();
+    } else {
+      getFollowingList();
+    }
   }, []);
 
-  console.log(followingList);
   return (
     <>
       <Header>
@@ -56,11 +80,11 @@ export default function Follow() {
       </Header>
       <MainContainer>
         <FollowContainer>
-          {followingList.map((following) => {
+          {followList.map((follow) => {
             return (
-              <UserInfo {...following}>
-                <IsFollowBtn isFollow={following.isfollow}>
-                  {following.isfollow ? "취소" : "팔로우"}
+              <UserInfo {...follow}>
+                <IsFollowBtn isFollow={follow.isfollow}>
+                  {follow.isfollow ? "취소" : "팔로우"}
                 </IsFollowBtn>
               </UserInfo>
             );
