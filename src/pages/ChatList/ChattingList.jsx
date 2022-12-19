@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import userImg from "../../assets/images/user_img_big.png";
+import circle from "../../assets/images/circle.png";
 
 const ChattingListWrap = styled.li`
 	display: flex;
@@ -9,6 +10,7 @@ const ChattingListWrap = styled.li`
 	margin-bottom: 20px;
 	overflow: hidden;
 	align-items: center;
+	position: relative;
 `;
 
 const UserProfileImg = styled.img`
@@ -57,41 +59,59 @@ const ChatDate = styled.p`
 	color: ${(props) => props.theme.borderColor};
 `;
 
-export default function ChattingList() {
+const ReadCircle = styled.div`
+	background-image: url(${circle});
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 0;
+	z-index: 10;
+`;
+
+function User({ user }) {
 	return (
 		<>
 			<ChattingListWrap>
+				{user.read === false && <ReadCircle />}
 				<UserProfileImg src={userImg} alt="유저 프로필 이미지" />
 				<UserInfo>
-					<UserName>애월읍 위니브 감귤농장</UserName>
+					<UserName>{user.username}</UserName>
 					<ChatContents>
-						<UserChat>이번에 정정 언제하맨마씸?</UserChat>
-						<ChatDate>2020.10.25</ChatDate>
+						<UserChat>{user.txt}</UserChat>
+						<ChatDate>{user.date}</ChatDate>
 					</ChatContents>
 				</UserInfo>
 			</ChattingListWrap>
+		</>
+	);
+}
 
-			<ChattingListWrap>
-				<UserProfileImg src={userImg} alt="유저 프로필 이미지" />
-				<UserInfo>
-					<UserName>제주감귤마을</UserName>
-					<ChatContents>
-						<UserChat>깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지</UserChat>
-						<ChatDate>2020.10.25</ChatDate>
-					</ChatContents>
-				</UserInfo>
-			</ChattingListWrap>
-
-			<ChattingListWrap>
-				<UserProfileImg src={userImg} alt="유저 프로필 이미지" />
-				<UserInfo>
-					<UserName>누구네 농장 친환경 한라봉</UserName>
-					<ChatContents>
-						<UserChat>내 차는 내가 평가한다. 오픈 이벤트에 참여 하</UserChat>
-						<ChatDate>2020.10.25</ChatDate>
-					</ChatContents>
-				</UserInfo>
-			</ChattingListWrap>
+export default function ChattingList() {
+	const users = [
+		{
+			username: "애월읍 위니브 감귤농장",
+			txt: "오늘 눈이 왔어요",
+			date: "2022.12.15",
+			read: false,
+		},
+		{
+			username: "제주감귤냠냠",
+			txt: "눈사람 만들러 가실분 선착 123명",
+			date: "2022.12.19",
+			read: true,
+		},
+		{
+			username: "멍멍",
+			txt: "멍멍멍",
+			date: "2022.12.20",
+			read: false,
+		},
+	];
+	return (
+		<>
+			{users.map((user) => (
+				<User key={user.username} user={user} />
+			))}
 		</>
 	);
 }
