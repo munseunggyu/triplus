@@ -6,7 +6,7 @@ import axios from "axios";
 import * as S from "./style";
 import PreviewList from "./PreviewList";
 
-export const token = localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
 const PostUpload = () => {
   const [fileName, setFileName] = useState([]);
