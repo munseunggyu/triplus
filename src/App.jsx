@@ -25,7 +25,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/productupload" element={<ProductUpload />} />
-        <Route path="/follow" element={<Follow />} />
+        <Route path="/profile/:accountname/following" element={<Follow />} />
+        <Route path="/profile/:accountname/follower" element={<Follow />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/search" element={<Search />} />
         <Route path="/chatroom" element={<ChatRoom />} />
