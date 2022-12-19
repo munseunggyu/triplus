@@ -27,7 +27,7 @@ function App() {
         <Route path="/myprofileedit" element={<MyProfileEdit />} />
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:accountname" element={<Profile />} />
         <Route path="/profile/:accountname/following" element={<Follow />} />
         <Route path="/profile/:accountname/follower" element={<Follow />} />
         <Route path="/editprofile" element={<SetProfile />} />

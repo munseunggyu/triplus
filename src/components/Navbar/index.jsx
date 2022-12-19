@@ -97,7 +97,7 @@ export default function Navbar() {
       <Iconli>
         <UserIcon
           onClick={() => {
-            navigate("/profile");
+            navigate("/profile/sfne.sae");
           }}
         />
         <NavSpan>프로필</NavSpan>
