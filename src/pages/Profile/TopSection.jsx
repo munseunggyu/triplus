@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-// import user_img_big from "../../assets/images/user_img_big.png";
 import user_img_big from "../../assets/images/user_img_big.png";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
@@ -45,12 +44,14 @@ const ProfileIntroduce = styled.p`
   line-height: 18px;
 `;
 const ProfileFollowers = styled(Link)`
-  position: absolute;
-  top: 75px;
-  left: ${(props) => (props.isfollowing ? "220px" : "-20px")};
   display: flex;
   flex-direction: column;
   gap: 6px;
+`;
+const ProfileImgFollowBtnsCon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 46px;
 `;
 const ProfileFollowCount = styled.span`
   font-size: 18px;
@@ -66,6 +67,7 @@ export default function ProfileTopSection() {
   const [profileData, setProfileData] = useState({});
   const token = localStorage.getItem("token");
   const { accountname } = useParams();
+  const [activeFollowBtn, isActiveFollowBtn] = useState(false);
 
   const getProfileData = async () => {
     try {
@@ -89,29 +91,39 @@ export default function ProfileTopSection() {
   };
   useEffect(() => {
     setProfile();
-  }, [accountname]);
+  }, [accountname, activeFollowBtn]);
   return (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
       <ProfileTopContainer>
-        <ProfileUserImg src={user_img_big} alt="프로필 이미지" />
+        <ProfileImgFollowBtnsCon>
+          <ProfileFollowers to={`/profile/${profileData.accountname}/follower`}>
+            <ProfileFollowCount>{profileData.followerCount}</ProfileFollowCount>
+            <ProfileFollowTxt>followers</ProfileFollowTxt>
+          </ProfileFollowers>
+          <ProfileUserImg src={user_img_big} alt="프로필 이미지" />
+
+          <ProfileFollowers
+            to={`/profile/${profileData.accountname}/following`}
+          >
+            <ProfileFollowCount isfollowing="1">
+              {profileData.followingCount}
+            </ProfileFollowCount>
+            <ProfileFollowTxt>following</ProfileFollowTxt>
+          </ProfileFollowers>
+        </ProfileImgFollowBtnsCon>
         <ProfileUserName>{profileData.username}</ProfileUserName>
         <PofileUserId>@{profileData.accountname} </PofileUserId>
         <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
-        <TopSectionMy />
-        <ProfileFollowers to={`/profile/${profileData.accountname}/follower`}>
-          <ProfileFollowCount> {profileData.followerCount} </ProfileFollowCount>
-          <ProfileFollowTxt>followers</ProfileFollowTxt>
-        </ProfileFollowers>
-        <ProfileFollowers
-          to={`/profile/${profileData.accountname}/following`}
-          isfollowing="1"
-        >
-          <ProfileFollowCount isfollowing="1">
-            {profileData.followingCount}
-          </ProfileFollowCount>
-          <ProfileFollowTxt>following</ProfileFollowTxt>
-        </ProfileFollowers>
+        {accountname === "sfne.sae" ? (
+          <TopSectionMy />
+        ) : (
+          <TopSectionYour
+            isfollow={profileData.isfollow}
+            userAccountName={profileData.accountname}
+            isActiveFollowBtn={isActiveFollowBtn}
+          />
+        )}
       </ProfileTopContainer>
     </ProfileTopSec>
   );
