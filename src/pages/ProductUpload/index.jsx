@@ -82,21 +82,21 @@ const SaleLinkLabel = styled.label`
 `;
 const ProdutNameInput = styled.input`
 	width: 100%;
-	border: none;
+	border: 0;
 	border-bottom: 1px solid #dbdbdb;
 	font-size: 14px;
 	color: #dbdbdb;
 `;
 const ProdutPriceInput = styled.input`
 	width: 100%;
-	border: none;
+	border: 0;
 	border-bottom: 1px solid #dbdbdb;
 	font-size: 14px;
 	color: #dbdbdb;
 `;
 const SalelinkInput = styled.input`
 	width: 100%;
-	border: none;
+	border: 0;
 	border-bottom: 1px solid #dbdbdb;
 	font-size: 14px;
 	color: #dbdbdb;
