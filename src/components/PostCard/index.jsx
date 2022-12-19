@@ -17,11 +17,12 @@ const PostCardList = styled.li`
   }
 `;
 
-const PostCardImg = styled.img`
+const PostCardUserImg = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 `;
 const PostCardUserName = styled.strong`
   margin-top: 4px;
@@ -61,24 +62,41 @@ const PostCardVertical = styled.button`
   height: 18px;
   background: url(${css_sprites}) -170px -190px;
 `;
-export default function PostCard() {
+export default function PostCard({
+  id,
+  author,
+  content,
+  createdAt,
+  image,
+  commentCount,
+  heartCount,
+  hearted,
+  comments,
+}) {
+  const date = new Date(createdAt);
+  const dateOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+  const createAtFormat = new Intl.DateTimeFormat("ko-KR", dateOptions).format(
+    date
+  );
   return (
     <PostCardList>
-      <PostCardImg src={user_img_small} />
+      <PostCardUserImg src={user_img_small} />
       <div>
-        <PostCardUserName>애월읍 위니브 감귤농장</PostCardUserName>
-        <PostCardUserId>@ weniv_Mandarin</PostCardUserId>
-        <PostCardContentTxt>
-          옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
-          이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
-          뛰노는 인생의 힘있다.
-        </PostCardContentTxt>
-        <PostCardContentImg
-          src="https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720__480.jpg"
-          alt=""
+        <PostCardUserName>{author.username}</PostCardUserName>
+        <PostCardUserId>@{author.accountname}</PostCardUserId>
+        <PostCardContentTxt>{content}</PostCardContentTxt>
+        {image && <PostCardContentImg src={image} alt="게시물 이미지" />}
+        <PostCardBtns
+          postkey={id}
+          commentCount={commentCount}
+          heartCount={heartCount}
+          hearted={hearted}
         />
-        <PostCardBtns />
-        <PostCardTime>2020년 10월 21일</PostCardTime>
+        <PostCardTime>{createAtFormat} </PostCardTime>
       </div>
       <PostCardVertical>
         <span className="ir">더보기 버튼</span>

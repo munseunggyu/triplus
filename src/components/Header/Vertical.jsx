@@ -8,9 +8,9 @@ const VerticalBtn = styled.button`
   height: 24px;
   background: url(${css_sprite}) -102px -54px;
 `;
-export default function Vertical({ isUserinfo }) {
+export default function Vertical() {
   return (
-    <VerticalBtn isUserinfo={isUserinfo}>
+    <VerticalBtn>
       <span className="ir">버티컬 버튼</span>
     </VerticalBtn>
   );

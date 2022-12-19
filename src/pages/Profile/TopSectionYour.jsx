@@ -15,11 +15,10 @@ const YourProfileFollowBtn = styled.button`
   padding: 8px 26px;
 `;
 
-const YourProfileChatBtn = styled(Link)`
+const YourProfileBtn = styled(Link)`
   width: 34px;
   height: 34px;
   box-sizing: border-box;
-  background: url("css_sprites.png") -130px -190px;
   border: ${(props) => `1px solid ${props.theme.borderColor}`};
   display: flex;
   align-items: center;
@@ -38,15 +37,15 @@ const YourProfileChatBtn = styled(Link)`
 export default function TopSectionYour() {
   return (
     <YourProfileBtnCon>
-      <YourProfileChatBtn>
+      <YourProfileBtn>
         <span className="ir">채팅하기</span>
         <span />
-      </YourProfileChatBtn>
-      <YourProfileFollowBtn>상품 등록</YourProfileFollowBtn>
-      <YourProfileChatBtn isfollowicon="1">
+      </YourProfileBtn>
+      <YourProfileFollowBtn>팔로우</YourProfileFollowBtn>
+      <YourProfileBtn isfollowicon="1">
         <span className="ir">채팅하기</span>
         <span />
-      </YourProfileChatBtn>
+      </YourProfileBtn>
     </YourProfileBtnCon>
   );
 }

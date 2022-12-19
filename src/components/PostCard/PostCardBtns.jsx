@@ -22,7 +22,10 @@ const PostCardLikeBtn = styled.button`
     margin-right: 5px;
     width: 20px;
     height: 20px;
-    background: url(${css_sprite}) -50px -190px;
+    background: ${(props) =>
+      props.hearted
+        ? `url(${css_sprite}) -234px -10px`
+        : `url(${css_sprite}) -50px -190px`};
   }
 `;
 const PostCardChatLink = styled(Link)`
@@ -42,17 +45,22 @@ const PostCardChatLink = styled(Link)`
   }
 `;
 
-export default function PostCardBtns() {
+export default function PostCardBtns({
+  commentCount,
+  hearted,
+  heartCount,
+  postkey,
+}) {
   return (
     <PostCardHeartChatCon>
-      <PostCardLikeBtn>
+      <PostCardLikeBtn hearted={hearted}>
         <span className="ir">좋아요 버튼</span>
-        <span>8</span>
+        <span> {heartCount} </span>
       </PostCardLikeBtn>
 
       <PostCardChatLink to="/">
         <span className="ir">댓글창으로 이동</span>
-        <span>3</span>
+        <span> {commentCount} </span>
       </PostCardChatLink>
     </PostCardHeartChatCon>
   );
