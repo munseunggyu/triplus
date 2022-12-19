@@ -6,12 +6,17 @@ import axios from "axios";
 import * as S from "./style";
 import PreviewList from "./PreviewList";
 
+export const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MzBkMTdhZTY2NjU4MWM2MDY3OSIsImV4cCI6MTY3NjI1NDU5MSwiaWF0IjoxNjcxMDcwNTkxfQ.gNfhq23b6vEXTbhi4AOOkVN6yAErJBvyUtcX1URypNE";
+
 const PostUpload = () => {
   const [fileName, setFileName] = useState([]);
   const [previewImgUrl, setPreviewImgUrl] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const textRef = useRef();
   const fileRef = useRef();
+
+  const token = localStorage.getItem("token");
 
   const handleResizeHeight = () => {
     textRef.current.style.height = "auto";
