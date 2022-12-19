@@ -26,11 +26,7 @@ export default function PreviewList({ mapData, onClick }) {
         <ul>
           {mapData.map((image, index) => (
             <li key={index}>
-              <PreviewImg
-                // id={index}
-                src={image}
-                alt={`${index + 1}번째 업로드 이미지`}
-              />
+              <PreviewImg src={image} alt={`${index + 1}번째 업로드 이미지`} />
               <DeleteBtn id={index} onClick={onClick} type="button" />
             </li>
           ))}
