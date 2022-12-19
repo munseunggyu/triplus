@@ -17,7 +17,7 @@ import EmailSignUp from "./pages/EmailSignUp";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/multilogin" element={<MultiLogin />} />
@@ -36,7 +36,7 @@ function App() {
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/chatlist" element={<ChatList />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
