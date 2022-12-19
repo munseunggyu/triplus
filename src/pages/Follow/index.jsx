@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
@@ -17,13 +19,35 @@ const IsFollowBtn = styled.button`
   width: 56px;
   height: 28px;
   border-radius: 26px;
-  background-color: ${(props) => props.theme.mainColor};
-  color: white;
+  background-color: ${(props) =>
+    props.isFollow ? "white" : props.theme.mainColor};
+  color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
   border: ${(props) => `1px solid ${props.theme.borderColor}`};
   font-size: 12px;
 `;
 
 export default function Follow() {
+  const { accountname } = useParams();
+  const [followingList, setFollowingList] = useState([]);
+  const token = localStorage.getItem("token");
+
+  const getFollowingList = async () => {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
+    setFollowingList(res.data);
+  };
+  useEffect(() => {
+    getFollowingList();
+  }, []);
+
+  console.log(followingList);
   return (
     <>
       <Header>
@@ -32,18 +56,15 @@ export default function Follow() {
       </Header>
       <MainContainer>
         <FollowContainer>
-          <UserInfo>
-            <IsFollowBtn>팔로우</IsFollowBtn>
-          </UserInfo>
-          <UserInfo>
-            <IsFollowBtn>팔로우</IsFollowBtn>
-          </UserInfo>
-          <UserInfo>
-            <IsFollowBtn>팔로우</IsFollowBtn>
-          </UserInfo>
-          <UserInfo>
-            <IsFollowBtn>팔로우</IsFollowBtn>
-          </UserInfo>
+          {followingList.map((following) => {
+            return (
+              <UserInfo {...following}>
+                <IsFollowBtn isFollow={following.isfollow}>
+                  {following.isfollow ? "취소" : "팔로우"}
+                </IsFollowBtn>
+              </UserInfo>
+            );
+          })}
         </FollowContainer>
       </MainContainer>
       <Navbar />

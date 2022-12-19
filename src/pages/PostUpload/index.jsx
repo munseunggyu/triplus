@@ -11,7 +11,7 @@ export default function PostUpload() {
   const [isActive, setIsActive] = useState(false);
   const textRef = useRef();
   const fileRef = useRef();
-
+  const token = localStorage.getItem("token");
   function handleResizeHeight() {
     textRef.current.style.height = "auto";
     textRef.current.style.height = textRef.current.scrollHeight + "px";
