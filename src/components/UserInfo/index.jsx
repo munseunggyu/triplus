@@ -32,7 +32,6 @@ const UserInfoName = styled.strong`
   font-size: 14px;
 `;
 export default function UserInfo({ children, accountname, username, image }) {
-  console.log(image.includes("Ellipse"));
   return (
     <UserInfoContanier>
       <UserInfoImg

@@ -70,10 +70,9 @@ export default function ProfileMidSection() {
     const res = await getProductList();
     setProductData(res);
   };
-  console.log(productData);
   useEffect(() => {
     setProductDataList();
-  }, []);
+  }, [accountname]);
   return productData.length > 0 ? (
     <ProfileMidSec>
       <ProfileMidSectionCon>

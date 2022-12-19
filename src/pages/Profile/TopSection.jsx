@@ -89,7 +89,7 @@ export default function ProfileTopSection() {
   };
   useEffect(() => {
     setProfile();
-  }, []);
+  }, [accountname]);
   return (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
