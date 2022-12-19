@@ -27,13 +27,13 @@ const UserInfoId = styled.span`
 const UserInfoName = styled.strong`
   font-size: 14px;
 `;
-export default function UserInfo({ children }) {
+export default function UserInfo({ children, accountname, username, image }) {
   return (
     <UserInfoContanier>
       <UserInfoImg src={user_img_small} />
       <UserInfoNameIdCon>
-        <UserInfoName>애월읍 위니브 감귤농장</UserInfoName>
-        <UserInfoId>@ weniv_Mandarin</UserInfoId>
+        <UserInfoName>{username}</UserInfoName>
+        <UserInfoId>@{accountname}</UserInfoId>
       </UserInfoNameIdCon>
       {children}
     </UserInfoContanier>
