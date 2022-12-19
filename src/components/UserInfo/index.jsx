@@ -12,7 +12,7 @@ const UserInfoImg = styled.img`
   width: 50px;
   height: 50px;
   object-fit: cover;
-
+  font-size: 10px;
   border-radius: 50%;
 `;
 const UserInfoNameIdCon = styled.div`
@@ -23,17 +23,21 @@ const UserInfoNameIdCon = styled.div`
 const UserInfoId = styled.span`
   font-size: 12px;
   color: ${(props) => props.theme.grayColor};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 120px;
 `;
 const UserInfoName = styled.strong`
   font-size: 14px;
 `;
-export default function UserInfo({ children }) {
+export default function UserInfo({ children, username, accountname, image }) {
   return (
     <UserInfoContanier>
-      <UserInfoImg src={user_img_small} />
+      <UserInfoImg src={image || user_img_small} alt="프로필 이미지" />
       <UserInfoNameIdCon>
-        <UserInfoName>애월읍 위니브 감귤농장</UserInfoName>
-        <UserInfoId>@ weniv_Mandarin</UserInfoId>
+        <UserInfoName>{username}</UserInfoName>
+        <UserInfoId>@{accountname}</UserInfoId>
       </UserInfoNameIdCon>
       {children}
     </UserInfoContanier>

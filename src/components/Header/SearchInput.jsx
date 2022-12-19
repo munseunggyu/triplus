@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const SearchInp = styled.input`
@@ -11,13 +11,20 @@ const SearchInp = styled.input`
   border: 0;
 `;
 
-export default function SearchInput() {
+export default function SearchInput({ searchInputVal, setSearchInputVal }) {
   return (
     <>
       <label className="ir" htmlFor="searchId">
         계정검색
       </label>
-      <SearchInp id="searchId" placeholder="계정검색" />
+      <SearchInp
+        value={searchInputVal}
+        onChange={(e) => {
+          setSearchInputVal(e.target.value);
+        }}
+        id="searchId"
+        placeholder="계정검색"
+      />
     </>
   );
 }
