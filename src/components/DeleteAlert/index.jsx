@@ -37,7 +37,7 @@ const CancelBtn = styled.button`
 	background-color: white;
 	padding: 0;
 	border-bottom-left-radius: 10px;
-	border: none;
+	border: 0;
 	font-weight: 400;
 	font-size: 14px;
 	cursor: pointer;
@@ -47,7 +47,7 @@ const DeleteBtn = styled.button`
 	height: 46px;
 	background-color: white;
 	padding: 0;
-	border: none;
+	border: 0;
 	border-left: 0.5px solid rgba(219, 219, 219, 1);
 	font-size: 14px;
 	font-weight: 500;
