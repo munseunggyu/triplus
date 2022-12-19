@@ -40,7 +40,7 @@ export default function Search() {
     if (searchInputVal !== "") {
       const timeId = setTimeout(() => {
         getSearchList();
-      }, 1000);
+      }, 500);
       return () => {
         clearTimeout(timeId);
       };

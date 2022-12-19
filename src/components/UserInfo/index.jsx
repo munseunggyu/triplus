@@ -32,9 +32,13 @@ const UserInfoName = styled.strong`
   font-size: 14px;
 `;
 export default function UserInfo({ children, accountname, username, image }) {
+  console.log(image.includes("Ellipse"));
   return (
     <UserInfoContanier>
-      <UserInfoImg src={image || user_img_small} alt="프로필 이미지" />
+      <UserInfoImg
+        src={image.includes("Ellipse") ? user_img_small : image}
+        alt="프로필 이미지"
+      />
       <UserInfoNameIdCon>
         <UserInfoName>{username}</UserInfoName>
         <UserInfoId>@{accountname}</UserInfoId>
