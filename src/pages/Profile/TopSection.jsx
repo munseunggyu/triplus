@@ -63,8 +63,7 @@ const ProfileFollowTxt = styled.span`
 
 export default function ProfileTopSection() {
   const [profileData, setProfileData] = useState({});
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTMzNWY1MTdhZTY2NjU4MWMxZTIwYiIsImV4cCI6MTY3NjI2MzM5MywiaWF0IjoxNjcxMDc5MzkzfQ.xsbzJ5VLoY6BdOS0dccJLUDTfzdg5p0dfE0J0Kmrez0"; // 임시 토큰
+  const token = localStorage.getItem("token");
 
   const getProfileData = async () => {
     try {

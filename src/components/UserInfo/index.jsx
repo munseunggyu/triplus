@@ -31,7 +31,7 @@ const UserInfoId = styled.span`
 const UserInfoName = styled.strong`
   font-size: 14px;
 `;
-export default function UserInfo({ children, username, accountname, image }) {
+export default function UserInfo({ children, accountname, username, image }) {
   return (
     <UserInfoContanier>
       <UserInfoImg src={image || user_img_small} alt="프로필 이미지" />
