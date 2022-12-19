@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import small_profile from "../../assets/images/user_img_small.png";
 import upload_file from "../../assets/images/upload_file.png";
-import x from "../../assets/images/x.png";
 
 export const UploadContainer = styled.div`
   display: flex;
@@ -26,8 +25,7 @@ export const UploadProfileImg = styled.div`
 
 export const UploadText = styled.textarea`
   width: 100%;
-  height: 20vh;
-  border: none;
+  border: 0;
   resize: none;
   &:focus {
     outline: none;
@@ -74,14 +72,4 @@ export const UploadFileForm = styled.form`
   background-size: 50px;
   width: 50px;
   height: 50px;
-`;
-
-export const DeleteBtn = styled.button`
-  position: relative;
-  bottom: 205px;
-  left: 270px;
-  background: ${(props) => (props.uploadImg ? `url(${x})` : "")};
-  background-size: 22px;
-  width: 22px;
-  height: 22px;
 `;
