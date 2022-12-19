@@ -46,7 +46,6 @@ const ProfileMidSectionPrice = styled.span`
 `;
 export default function ProfileMidSection() {
   const [productData, setProductData] = useState([]);
-
   const token = localStorage.getItem("token");
 
   const getProductList = async () => {

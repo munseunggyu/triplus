@@ -18,7 +18,7 @@ import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/splash" element={<SplashScreen />} />
         <Route path="/multilogin" element={<MultiLogin />} />
@@ -38,7 +38,7 @@ function App() {
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/404" element={<ErrorPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

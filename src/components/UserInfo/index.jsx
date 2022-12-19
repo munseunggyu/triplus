@@ -12,7 +12,7 @@ const UserInfoImg = styled.img`
   width: 50px;
   height: 50px;
   object-fit: cover;
-
+  font-size: 10px;
   border-radius: 50%;
 `;
 const UserInfoNameIdCon = styled.div`
@@ -23,14 +23,22 @@ const UserInfoNameIdCon = styled.div`
 const UserInfoId = styled.span`
   font-size: 12px;
   color: ${(props) => props.theme.grayColor};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 120px;
 `;
 const UserInfoName = styled.strong`
   font-size: 14px;
 `;
 export default function UserInfo({ children, accountname, username, image }) {
+  console.log(image.includes("Ellipse"));
   return (
     <UserInfoContanier>
-      <UserInfoImg src={user_img_small} />
+      <UserInfoImg
+        src={image.includes("Ellipse") ? user_img_small : image}
+        alt="프로필 이미지"
+      />
       <UserInfoNameIdCon>
         <UserInfoName>{username}</UserInfoName>
         <UserInfoId>@{accountname}</UserInfoId>
