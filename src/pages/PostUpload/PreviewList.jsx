@@ -19,15 +19,19 @@ const DeleteBtn = styled.button`
   height: 22px;
 `;
 
-export default function PreviewList({ mapData }) {
+export default function PreviewList({ mapData, onClick }) {
   return (
     <>
-      {!!mapData.length && (
+      {mapData !== null && !!mapData.length && (
         <ul>
           {mapData.map((image, index) => (
             <li key={index}>
-              <PreviewImg src={image} alt={`${index + 1}번째 업로드 이미지`} />
-              <DeleteBtn />
+              <PreviewImg
+                // id={index}
+                src={image}
+                alt={`${index + 1}번째 업로드 이미지`}
+              />
+              <DeleteBtn id={index} onClick={onClick} type="button" />
             </li>
           ))}
         </ul>

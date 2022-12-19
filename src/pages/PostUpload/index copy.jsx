@@ -9,28 +9,28 @@ import PreviewList from "./PreviewList";
 export const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOWE4MzBkMTdhZTY2NjU4MWM2MDY3OSIsImV4cCI6MTY3NjI1NDU5MSwiaWF0IjoxNjcxMDcwNTkxfQ.gNfhq23b6vEXTbhi4AOOkVN6yAErJBvyUtcX1URypNE";
 
-const PostUpload = () => {
+export default function PostUpload() {
   const [fileName, setFileName] = useState([]);
   const [previewImgUrl, setPreviewImgUrl] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const textRef = useRef();
   const fileRef = useRef();
 
-  const handleResizeHeight = () => {
+  function handleResizeHeight() {
     textRef.current.style.height = "auto";
     textRef.current.style.height = textRef.current.scrollHeight + "px";
-  };
+  }
 
-  const handleText = (e) => {
+  function handleText(e) {
     e.target.value ? setIsActive(true) : setIsActive(false);
-  };
+  }
 
-  const handleFile = () => {
+  function handleFile() {
     fileRef.current.click();
-  };
+  }
 
   // 업로드 버튼 클릭 시 게시글 POST
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
 
     async function sendPost() {
@@ -56,30 +56,30 @@ const PostUpload = () => {
       }
     }
     sendPost();
-  };
+  }
 
   // 이미지 파일 업로드
-  const handleImgInput = (e) => {
+  function handleImgInput(e) {
     const loadImg = e.target.files;
     const formData = new FormData();
     formData.append("image", loadImg[0]);
     fileName.length === 0
       ? getImgUrl(formData, loadImg)
-      : alert("이미지는 1장만 업로드 가능합니다.");
-  };
+      : alert("이미지는 1장만 업로드 가능합니다. ");
+  }
 
   // 이미지 파일 미리보기
-  const preview = (loadImg) => {
+  function preview(loadImg) {
     const reader = new FileReader();
     reader.readAsDataURL(loadImg[0]);
     reader.onload = () => {
       setPreviewImgUrl([...previewImgUrl, reader.result]);
     };
     setIsActive(true);
-  };
+  }
 
   // 이미지 파일 스트링 데이터 얻기
-  const getImgUrl = async (formData, loadImg) => {
+  async function getImgUrl(formData, loadImg) {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/image/uploadfiles`,
@@ -93,7 +93,7 @@ const PostUpload = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  }
 
   // 프리뷰 및 데이터 삭제
   const handleDeletePreview = (e) => {
@@ -151,6 +151,4 @@ const PostUpload = () => {
       </MainContainer>
     </div>
   );
-};
-
-export default PostUpload;
+}

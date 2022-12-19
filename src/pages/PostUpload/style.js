@@ -25,7 +25,6 @@ export const UploadProfileImg = styled.div`
 
 export const UploadText = styled.textarea`
   width: 100%;
-  height: 20vh;
   border: 0;
   resize: none;
   &:focus {
