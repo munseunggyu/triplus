@@ -1,17 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import axios from "axios";
 import * as S from "./style";
-// import UploadFileBtn from "./UploadFileBtn";
-import upload_file from "../../assets/images/upload_file.png";
 
 export default function PostUpload() {
   const [uploadImg, setUploadImg] = useState(true);
   const [fileName, setFileName] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const textRef = useRef();
+  const fileRef = useRef();
 
   function handleResizeHeight() {
     textRef.current.style.height = "auto";
@@ -20,6 +19,10 @@ export default function PostUpload() {
 
   function handleText(e) {
     e.target.value ? setIsActive(true) : setIsActive(false);
+  }
+
+  function handleFile() {
+    fileRef.current.click();
   }
 
   // 업로드 버튼 클릭 시 게시글 POST
@@ -83,18 +86,13 @@ export default function PostUpload() {
             />
           </S.UploadContentForm>
           <S.UploadFileForm>
-            <label htmlFor="post-upload-file">
-              <img
-                src={upload_file}
-                alt="이미지 파일 업로드"
-                style={{ width: "50px", height: "50px" }}
-              />
-            </label>
+            <S.UploadFileImg onClick={handleFile} />
             <input
               type="file"
               className="ir"
               id="post-upload-file"
               accept=".jpg, .gif, .png, .jpeg, .bmp, .tif, .heic"
+              ref={fileRef}
               // multiple // 이미지 3개 이상
             />
           </S.UploadFileForm>

@@ -48,13 +48,18 @@ export const UploadContentImg = styled.div`
   margin-top: 16px;
 `;
 
-// button
+export const UploadFileImg = styled.div`
+  width: 50px;
+  height: 50px;
+  background-image: url(${upload_file}) no-repeat;
+  background-size: 50px;
+`;
+
 export const UploadBtn = styled.button`
   background-color: ${(props) =>
     props.isActive ? props.theme.mainColor : "#90bcff"};
   border-radius: 32px;
   color: #fff;
-  background-size: 90px;
   margin-left: auto;
   width: 90px;
   height: 32px;
