@@ -77,13 +77,17 @@ export default function ProfileTopSection() {
           },
         }
       );
-      console.log(res.data.profile);
-      setProfileData(res.data.profile);
-    } catch (error) {}
+      return res.data.profile;
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  const setProfile = async () => {
+    const res = await getProfileData();
+    setProfileData(res);
+  };
   useEffect(() => {
-    getProfileData();
+    setProfile();
   }, []);
   return (
     <ProfileTopSec>
@@ -93,13 +97,16 @@ export default function ProfileTopSection() {
         <ProfileUserName>{profileData.username}</ProfileUserName>
         <PofileUserId>@{profileData.accountname} </PofileUserId>
         <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
-
+        {/* /profile/:accountname/following */}
         <TopSectionMy />
-        <ProfileFollowers to="/follow">
+        <ProfileFollowers to={`/profile/${profileData.accountname}/follower`}>
           <ProfileFollowCount> {profileData.followerCount} </ProfileFollowCount>
           <ProfileFollowTxt>followers</ProfileFollowTxt>
         </ProfileFollowers>
-        <ProfileFollowers to="/follow" isfollowing="1">
+        <ProfileFollowers
+          to={`/profile/${profileData.accountname}/following`}
+          isfollowing="1"
+        >
           <ProfileFollowCount isfollowing="1">
             {profileData.followingCount}
           </ProfileFollowCount>
