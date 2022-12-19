@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function EmailLogin() {
-  return <></>;
+  return <div></div>;
 }
