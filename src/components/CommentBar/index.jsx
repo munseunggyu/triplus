@@ -20,7 +20,7 @@ const CommentProfileImg = styled.img`
 `;
 
 const CommentInput = styled.input`
-  border: none;
+  border: 0;
   &:focus {
     outline: none;
   }
