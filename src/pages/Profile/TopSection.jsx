@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import user_img_big from "../../assets/images/user_img_big.png";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
+import axios from "axios";
 
 const ProfileTopSec = styled.section`
   width: 100%;
@@ -61,24 +62,54 @@ const ProfileFollowTxt = styled.span`
 `;
 
 export default function ProfileTopSection() {
+  const [profileData, setProfileData] = useState({});
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTMzNWY1MTdhZTY2NjU4MWMxZTIwYiIsImV4cCI6MTY3NjI2MzM5MywiaWF0IjoxNjcxMDc5MzkzfQ.xsbzJ5VLoY6BdOS0dccJLUDTfzdg5p0dfE0J0Kmrez0"; // 임시 토큰
+
+  const getProfileData = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_KEY}/profile/sfne.sae`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      return res.data.profile;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const setProfile = async () => {
+    const res = await getProfileData();
+    setProfileData(res);
+  };
+  useEffect(() => {
+    setProfile();
+  }, []);
   return (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
       <ProfileTopContainer>
         <ProfileUserImg src={user_img_big} alt="프로필 이미지" />
-        <ProfileUserName>애월읍 위니브 감귤농장</ProfileUserName>
-        <PofileUserId>@sadf</PofileUserId>
-        <ProfileIntroduce>
-          애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장
-        </ProfileIntroduce>
-
-        <TopSectionYour />
-        <ProfileFollowers to="/follow">
-          <ProfileFollowCount>2950</ProfileFollowCount>
+        <ProfileUserName>{profileData.username}</ProfileUserName>
+        <PofileUserId>@{profileData.accountname} </PofileUserId>
+        <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
+        {/* /profile/:accountname/following */}
+        <TopSectionMy />
+        <ProfileFollowers to={`/profile/${profileData.accountname}/follower`}>
+          <ProfileFollowCount> {profileData.followerCount} </ProfileFollowCount>
           <ProfileFollowTxt>followers</ProfileFollowTxt>
         </ProfileFollowers>
-        <ProfileFollowers to="/" isfollowing="1">
-          <ProfileFollowCount isfollowing="1">128</ProfileFollowCount>
+        <ProfileFollowers
+          to={`/profile/${profileData.accountname}/following`}
+          isfollowing="1"
+        >
+          <ProfileFollowCount isfollowing="1">
+            {profileData.followingCount}
+          </ProfileFollowCount>
           <ProfileFollowTxt>following</ProfileFollowTxt>
         </ProfileFollowers>
       </ProfileTopContainer>
