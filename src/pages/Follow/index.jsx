@@ -8,6 +8,7 @@ import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
+import IsFollowButton from "./IsFollowButton";
 
 const FollowContainer = styled.ul`
   max-width: 358px;
@@ -31,7 +32,7 @@ export default function Follow() {
   const [followList, setFollowList] = useState([]);
   const token = localStorage.getItem("token");
   const path = useLocation();
-  console.log(path.pathname.includes("follower"));
+
   const getFollowingList = async () => {
     try {
       const res = await axios.get(
@@ -71,7 +72,6 @@ export default function Follow() {
       getFollowingList();
     }
   }, []);
-
   return (
     <>
       <Header>
@@ -83,9 +83,10 @@ export default function Follow() {
           {followList.map((follow) => {
             return (
               <UserInfo {...follow}>
-                <IsFollowBtn isFollow={follow.isfollow}>
-                  {follow.isfollow ? "취소" : "팔로우"}
-                </IsFollowBtn>
+                <IsFollowButton
+                  isfollow={follow.isfollow}
+                  userAccountName={follow.accountname}
+                />
               </UserInfo>
             );
           })}
