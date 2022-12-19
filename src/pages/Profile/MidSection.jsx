@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const ProfileMidSec = styled.section`
@@ -47,11 +48,12 @@ const ProfileMidSectionPrice = styled.span`
 export default function ProfileMidSection() {
   const [productData, setProductData] = useState([]);
   const token = localStorage.getItem("token");
+  const { accountname } = useParams();
 
   const getProductList = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/product/sfne.sae`,
+        `${process.env.REACT_APP_API_KEY}/product/${accountname}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,14 +66,15 @@ export default function ProfileMidSection() {
       console.log(error);
     }
   };
-  const setData = async () => {
+  const setProductDataList = async () => {
     const res = await getProductList();
     setProductData(res);
   };
+  console.log(productData);
   useEffect(() => {
-    setData();
+    setProductDataList();
   }, []);
-  return (
+  return productData.length > 0 ? (
     <ProfileMidSec>
       <ProfileMidSectionCon>
         <ProfileMidSectionH2>판매중인 상품</ProfileMidSectionH2>
@@ -91,5 +94,7 @@ export default function ProfileMidSection() {
         </ProfileMidSectionUl>
       </ProfileMidSectionCon>
     </ProfileMidSec>
+  ) : (
+    <></>
   );
 }

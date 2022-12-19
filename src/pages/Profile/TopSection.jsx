@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 // import user_img_big from "../../assets/images/user_img_big.png";
 import user_img_big from "../../assets/images/user_img_big.png";
@@ -11,8 +11,8 @@ const ProfileTopSec = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 26px;
   border-bottom: 8px solid #f2f2f2;
+  padding: 37px 0 26px;
 `;
 const ProfileTopContainer = styled.div`
   max-width: 390px;
@@ -46,7 +46,7 @@ const ProfileIntroduce = styled.p`
 `;
 const ProfileFollowers = styled(Link)`
   position: absolute;
-  top: 85px;
+  top: 75px;
   left: ${(props) => (props.isfollowing ? "220px" : "-20px")};
   display: flex;
   flex-direction: column;
@@ -65,11 +65,12 @@ const ProfileFollowTxt = styled.span`
 export default function ProfileTopSection() {
   const [profileData, setProfileData] = useState({});
   const token = localStorage.getItem("token");
+  const { accountname } = useParams();
 
   const getProfileData = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/profile/sfne.sae`,
+        `${process.env.REACT_APP_API_KEY}/profile/${accountname}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,7 +98,6 @@ export default function ProfileTopSection() {
         <ProfileUserName>{profileData.username}</ProfileUserName>
         <PofileUserId>@{profileData.accountname} </PofileUserId>
         <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
-        {/* /profile/:accountname/following */}
         <TopSectionMy />
         <ProfileFollowers to={`/profile/${profileData.accountname}/follower`}>
           <ProfileFollowCount> {profileData.followerCount} </ProfileFollowCount>
