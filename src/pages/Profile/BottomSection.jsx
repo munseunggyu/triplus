@@ -3,6 +3,7 @@ import css_sprite from "../../assets/images/css_sprites.png";
 import styled from "styled-components";
 import PostCard from "../../components/PostCard";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ProfileBottomSectionBtns = styled.div`
   width: 390px;
@@ -30,11 +31,12 @@ const CardContainer = styled.div`
 export default function ProfileBottomSection() {
   const [myPostData, setMyPostData] = useState([]);
   const token = localStorage.getItem("token");
+  const { accountname } = useParams();
 
   const getPostData = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/post/sfne.sae/userpost`,
+        `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +56,7 @@ export default function ProfileBottomSection() {
   };
   useEffect(() => {
     setPostData();
-  }, []);
+  }, [accountname]);
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>

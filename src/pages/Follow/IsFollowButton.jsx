@@ -1,23 +1,36 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const IsFollowBtn = styled.button`
-  margin-left: auto;
-  width: 56px;
-  height: 28px;
+  ${(props) =>
+    props.isProfile
+      ? `
+      width:120px;
+  `
+      : `
+    margin-left: auto; 
+    margin-top:12px;
+    width: 56px;
+    height: 28px; 
+    font-size: 12px; 
+  `}
   border-radius: 26px;
   background-color: ${(props) =>
     props.isFollow ? "white" : props.theme.mainColor};
   color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
   border: ${(props) => `1px solid ${props.theme.borderColor}`};
-  font-size: 12px;
 `;
 
-export default function IsFollowButton({ isfollow, userAccountName }) {
+export default function IsFollowButton({
+  isfollow,
+  userAccountName,
+  isProfile,
+}) {
   const [isFollow, setIsFollow] = useState(isfollow);
   const token = localStorage.getItem("token");
+
   const handleFollow = async () => {
     try {
       if (isFollow === true) {
@@ -48,8 +61,15 @@ export default function IsFollowButton({ isfollow, userAccountName }) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    setIsFollow(isfollow);
+  }, [isfollow]);
   return (
-    <IsFollowBtn onClick={handleFollow} isFollow={isFollow}>
+    <IsFollowBtn
+      onClick={handleFollow}
+      isFollow={isFollow}
+      isProfile={isProfile}
+    >
       {isFollow ? "취소" : "팔로우"}
     </IsFollowBtn>
   );

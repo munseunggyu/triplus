@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
@@ -14,19 +14,10 @@ const FollowContainer = styled.ul`
   max-width: 358px;
   margin: 0 auto;
 `;
-
-const IsFollowBtn = styled.button`
-  margin-left: auto;
-  width: 56px;
-  height: 28px;
-  border-radius: 26px;
-  background-color: ${(props) =>
-    props.isFollow ? "white" : props.theme.mainColor};
-  color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
-  border: ${(props) => `1px solid ${props.theme.borderColor}`};
-  font-size: 12px;
+const ProfileLink = styled.div`
+  display: flex;
+  align-items: center;
 `;
-
 export default function Follow() {
   const { accountname } = useParams();
   const [followList, setFollowList] = useState([]);
@@ -82,12 +73,15 @@ export default function Follow() {
         <FollowContainer>
           {followList.map((follow) => {
             return (
-              <UserInfo {...follow}>
+              <ProfileLink>
+                <Link to={`/profile/${follow.accountname}`}>
+                  <UserInfo {...follow}></UserInfo>
+                </Link>
                 <IsFollowButton
                   isfollow={follow.isfollow}
                   userAccountName={follow.accountname}
                 />
-              </UserInfo>
+              </ProfileLink>
             );
           })}
         </FollowContainer>

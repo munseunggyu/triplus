@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
@@ -58,7 +59,11 @@ export default function Search() {
       <MainContainer>
         <UserInfoContainer>
           {searchList.map((search) => {
-            return <UserInfo {...search} />;
+            return (
+              <Link to={`/profile/${search.accountname}`}>
+                <UserInfo {...search} />
+              </Link>
+            );
           })}
         </UserInfoContainer>
       </MainContainer>

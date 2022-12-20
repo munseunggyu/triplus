@@ -1,7 +1,9 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
+import IsFollowButton from "../Follow/IsFollowButton";
 
 const YourProfileBtnCon = styled.div`
   display: flex;
@@ -11,8 +13,11 @@ const YourProfileBtnCon = styled.div`
 
 const YourProfileFollowBtn = styled.button`
   border: ${(props) => `1px solid ${props.theme.borderColor}`};
-  border-radius: 30px;
-  padding: 8px 26px;
+  /* border-radius: 26px; */
+  width: 120px;
+  background-color: ${(props) =>
+    props.isFollow ? "white" : props.theme.mainColor};
+  color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
 `;
 
 const YourProfileBtn = styled(Link)`
@@ -34,14 +39,23 @@ const YourProfileBtn = styled(Link)`
   }
 `;
 
-export default function TopSectionYour() {
+export default function TopSectionYour({
+  isfollow,
+  userAccountName,
+  isActiveFollowBtn,
+}) {
   return (
     <YourProfileBtnCon>
       <YourProfileBtn>
         <span className="ir">채팅하기</span>
         <span />
       </YourProfileBtn>
-      <YourProfileFollowBtn>팔로우</YourProfileFollowBtn>
+      <IsFollowButton
+        isfollow={isfollow}
+        userAccountName={userAccountName}
+        isProfile="1"
+        isActiveFollowBtn={isActiveFollowBtn}
+      />
       <YourProfileBtn isfollowicon="1">
         <span className="ir">채팅하기</span>
         <span />
