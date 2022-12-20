@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainAlertModal = styled.section`
-  display: ${(props) => (props.showAlert ? "flex" : "none")};
+const DeleteAlertModal = styled.section`
+  display: flex;
   position: fixed;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
@@ -15,7 +15,7 @@ const MainAlertModal = styled.section`
   z-index: 20;
 `;
 
-const MainAlertArticle = styled.div`
+const DeleteAlertArticle = styled.div`
   width: 252px;
   background-color: #fff;
   border-radius: 10px;
@@ -42,7 +42,7 @@ const CancelBtn = styled.button`
   font-size: 14px;
   cursor: pointer;
 `;
-const MainBtn = styled.button`
+const DeleteBtn = styled.button`
   width: 126px;
   height: 46px;
   background-color: white;
@@ -56,25 +56,14 @@ const MainBtn = styled.button`
   cursor: pointer;
 `;
 
-export default function MainAlert({
-  showAlert,
-  setShowAlert,
-  txt,
-  handleClick,
-}) {
+export default function DeleteAlert() {
   return (
-    <MainAlertModal showAlert={showAlert}>
-      <MainAlertArticle>
-        <AlertMsg>{txt}</AlertMsg>
-        <CancelBtn
-          onClick={() => {
-            setShowAlert(false);
-          }}
-        >
-          취소
-        </CancelBtn>
-        <MainBtn onClick={handleClick}>확인</MainBtn>
-      </MainAlertArticle>
-    </MainAlertModal>
+    <DeleteAlertModal>
+      <DeleteAlertArticle>
+        <AlertMsg>상품을 삭제할까요?</AlertMsg>
+        <CancelBtn>취소</CancelBtn>
+        <DeleteBtn>삭제</DeleteBtn>
+      </DeleteAlertArticle>
+    </DeleteAlertModal>
   );
 }

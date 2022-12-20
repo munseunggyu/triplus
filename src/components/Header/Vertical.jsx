@@ -10,8 +10,10 @@ const VerticalBtn = styled.button`
 `;
 export default function Vertical() {
   return (
-    <VerticalBtn>
-      <span className="ir">버티컬 버튼</span>
-    </VerticalBtn>
+    <>
+      <VerticalBtn>
+        <span className="ir">버티컬 버튼</span>
+      </VerticalBtn>
+    </>
   );
 }

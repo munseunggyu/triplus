@@ -3,9 +3,7 @@ import styled from "styled-components";
 import PostCardBtns from "./PostCardBtns";
 import user_img_small from "../../assets/images/user_img_small.svg";
 import css_sprites from "../../assets/images/css_sprites.png";
-import MainAlert from "../../components/MainAlert";
-import MainModal from "../../components/MainModal";
-import DeclarationModal from "../../components/MainModal/DeclarationModal";
+
 const PostCardList = styled.li`
   list-style: none;
   max-width: 358px;
@@ -75,13 +73,6 @@ export default function PostCard({
   hearted,
   comments,
 }) {
-  const [showModal, setShowModal] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const handleDeclaration = () => {
-    alert("신고 되었습니다.");
-    setShowAlert(false);
-  };
-
   const date = new Date(createdAt);
   const dateOptions = {
     day: "numeric",
@@ -109,19 +100,10 @@ export default function PostCard({
           />
           <PostCardTime>{createAtFormat} </PostCardTime>
         </div>
-        <PostCardVertical onClick={() => setShowModal(true)}>
+        <PostCardVertical>
           <span className="ir">더보기 버튼</span>
         </PostCardVertical>
       </PostCardList>
-      <MainModal showModal={showModal} setShowModal={setShowModal}>
-        <DeclarationModal
-          showAlert={showAlert}
-          setShowAlert={setShowAlert}
-          handleClick={handleDeclaration}
-        >
-          신고
-        </DeclarationModal>
-      </MainModal>
     </>
   );
 }
