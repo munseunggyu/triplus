@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
@@ -12,20 +12,17 @@ const SaveBtn = styled.button`
 	width: 90px;
 	height: 32px;
 `;
-
 const MainUploadSection = styled.section`
 	margin: 48px auto 0;
 	padding: 34px 34px 0 34px;
 	width: 322px;
 `;
-
 const ImageSave = styled.p`
 	font-size: 12px;
 	line-height: 14px;
 	margin-bottom: 18px;
 	color: #767676;
 `;
-
 const ImgPreview = styled.div`
 	position: relative;
 	width: 100%;
@@ -44,7 +41,6 @@ const ImgPreview = styled.div`
 		bottom: 12px;
 	}
 `;
-
 const ProductName = styled.strong`
 	display: block;
 	width: 100%;
@@ -58,7 +54,6 @@ const ProductPrice = styled.span`
 const SaleLink = styled.span`
 	width: 100%;
 `;
-
 const ProductNameLabel = styled.label`
 	display: block;
 	color: #767676;
@@ -101,7 +96,6 @@ const SalelinkInput = styled.input`
 	font-size: 14px;
 	color: #dbdbdb;
 `;
-
 export default function ProductUpload() {
 	return (
 		<div>
