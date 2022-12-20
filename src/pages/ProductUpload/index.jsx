@@ -25,7 +25,8 @@ const ImageSave = styled.p`
 	margin-bottom: 18px;
 	color: #767676;
 `;
-const ImgPreview = styled.div`
+const ImgPreview = styled.input`
+	color: transparent;
 	position: relative;
 	width: 100%;
 	height: 204px;
@@ -33,6 +34,18 @@ const ImgPreview = styled.div`
 	border: 0.5px solid #dbdbdb;
 	border-radius: 10px;
 	margin-bottom: 30px;
+	cursor: pointer;
+
+	${(props) =>
+		props.imageSrc
+			? `
+					background-image: url(${props.imageSrc});
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center;`
+			: `
+					background-color: #f2f2f2;`}
+
 	&::after {
 		content: "";
 		background-image: url(${imgFile});
@@ -41,6 +54,9 @@ const ImgPreview = styled.div`
 		height: 36px;
 		right: 12px;
 		bottom: 12px;
+	}
+	&::-webkit-file-upload-button {
+		display: none;
 	}
 `;
 const ProductName = styled.strong`
@@ -98,7 +114,18 @@ const SalelinkInput = styled.input`
 	font-size: 14px;
 	color: #dbdbdb;
 `;
-export default function ProductUpload() {
+
+export default function ProductUpload({ setImageData, useRef, ...props }) {
+	const [imageSrc, setImageSrc] = useState("");
+
+	const UploadFile = (e) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(e.target.files[0]);
+		reader.onload = () => {
+			setImageSrc(reader.result);
+		};
+	};
+
 	return (
 		<div>
 			<Header>
@@ -108,7 +135,15 @@ export default function ProductUpload() {
 			<MainUploadSection>
 				<h2 className="ir">상품 등록 페이지</h2>
 				<ImageSave>이미지 등록</ImageSave>
-				<ImgPreview></ImgPreview>
+				<ImgPreview
+					type="file"
+					{...props}
+					onChange={UploadFile}
+					setImageData={setImageData}
+					ref={useRef}
+					accept="*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic"
+					imageSrc={imageSrc}
+				></ImgPreview>
 				<ProductName>
 					<ProductNameLabel>상품명</ProductNameLabel>
 					<ProdutNameInput placeholder="2~15자 이내여야 합니다."></ProdutNameInput>
