@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import more_vertical from "../../assets/images/more_vertical.png";
 
@@ -7,13 +6,12 @@ const CommentList = styled.li`
   max-width: 390px;
   display: flex;
   gap: 12px;
-  margin: 0 auto 24px;
+  margin: 0 auto;
   position: relative;
   &:first-child {
-    padding-top: 20px;
+    padding: 20px 16px;
   }
-  border-top: 1px solid #dbdbdb;
-  padding-top: 20px;
+  padding: 16px 16px 0;
 `;
 
 const CommentImg = styled.img`
@@ -39,6 +37,7 @@ const CommentTxt = styled.pre`
   white-space: pre-wrap;
   word-wrap: break-word;
   margin-top: 16px;
+  color: #333;
 `;
 
 const CommentTime = styled.time`
@@ -58,19 +57,18 @@ const CommentVertical = styled.button`
 
 export default function Comment() {
   return (
-    <CommentList>
-      <CommentImg src="https://cdn.pixabay.com/photo/2020/12/16/10/44/cat-5836297_1280.jpg" />
-      <div>
-        <CommentUserName>서귀포시 무슨 무슨 농장</CommentUserName>
-        <CommentTxt>
-          옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
-        </CommentTxt>
-
-        <CommentTime></CommentTime>
-      </div>
-      <CommentVertical>
-        <span className="ir">더보기 버튼</span>
-      </CommentVertical>
-    </CommentList>
+    <>
+      <CommentList>
+        <CommentImg src="https://cdn.pixabay.com/photo/2020/12/16/10/44/cat-5836297_1280.jpg" />
+        <div>
+          <CommentUserName>서귀포시 무슨 무슨 농장</CommentUserName>
+          <CommentTxt />
+          <CommentTime></CommentTime>
+          <CommentVertical>
+            <span className="ir">더보기 버튼</span>
+          </CommentVertical>
+        </div>
+      </CommentList>
+    </>
   );
 }
