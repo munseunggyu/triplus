@@ -27,7 +27,6 @@ export default function IsFollowButton({
   isfollow,
   userAccountName,
   isProfile,
-  isActiveFollowBtn,
 }) {
   const [isFollow, setIsFollow] = useState(isfollow);
   const token = localStorage.getItem("token");
@@ -45,7 +44,6 @@ export default function IsFollowButton({
           }
         );
         setIsFollow(false);
-        isActiveFollowBtn((prev) => !prev);
       } else {
         const res = await axios.post(
           `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/follow`,
@@ -58,7 +56,6 @@ export default function IsFollowButton({
           }
         );
         setIsFollow(true);
-        isActiveFollowBtn((prev) => !prev);
       }
     } catch (error) {
       console.log(error);

@@ -67,7 +67,6 @@ export default function ProfileTopSection() {
   const [profileData, setProfileData] = useState({});
   const token = localStorage.getItem("token");
   const { accountname } = useParams();
-  const [activeFollowBtn, isActiveFollowBtn] = useState(false);
 
   const getProfileData = async () => {
     try {
@@ -91,7 +90,7 @@ export default function ProfileTopSection() {
   };
   useEffect(() => {
     setProfile();
-  }, [accountname, activeFollowBtn]);
+  }, [accountname]);
   return (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
@@ -121,7 +120,6 @@ export default function ProfileTopSection() {
           <TopSectionYour
             isfollow={profileData.isfollow}
             userAccountName={profileData.accountname}
-            isActiveFollowBtn={isActiveFollowBtn}
           />
         )}
       </ProfileTopContainer>
