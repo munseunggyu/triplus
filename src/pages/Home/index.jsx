@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar";
@@ -7,8 +7,26 @@ import PostCard from "../../components/PostCard";
 
 import SearchButton from "../../components/Header/SearchButton";
 import HomeNoFollow from "./HomeNoFollow";
+import axios from "axios";
 
 export default function Home() {
+  const [postList, setPostList] = useState([]);
+  const token = localStorage.getItem("token");
+  const getFollowerPost = async () => {
+    const res = await axios.get(`${process.env.REACT_APP_API_KEY}/post/feed`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    });
+
+    setPostList(res.data.posts);
+  };
+
+  useEffect(() => {
+    getFollowerPost();
+  }, []);
+
   return (
     <>
       <Header>
@@ -16,11 +34,13 @@ export default function Home() {
         <SearchButton />
       </Header>
       <MainContainer>
-        {/* <PostCard />
-				<PostCard />
-				<PostCard />
-				<PostCard /> */}
-        <HomeNoFollow />
+        {postList.length > 0 ? (
+          postList.map((post) => {
+            return <PostCard {...post} />;
+          })
+        ) : (
+          <HomeNoFollow />
+        )}
       </MainContainer>
       <Navbar />
     </>
