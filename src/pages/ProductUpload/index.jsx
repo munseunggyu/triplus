@@ -98,21 +98,33 @@ const ProdutNameInput = styled.input`
 	border: 0;
 	border-bottom: 1px solid ${(props) => props.theme.borderColor};
 	font-size: 14px;
-	color: ${(props) => props.theme.borderColor};
+	color: ${(props) => props.theme.mainColor};
+	&:focus {
+		outline: 0;
+		border-bottom: 1px solid ${(props) => props.theme.mainColor};
+	}
 `;
 const ProdutPriceInput = styled.input`
 	width: 100%;
 	border: 0;
 	border-bottom: 1px solid ${(props) => props.theme.borderColor};
 	font-size: 14px;
-	color: ${(props) => props.theme.borderColor};
+	color: ${(props) => props.theme.mainColor};
+	&:focus {
+		outline: 0;
+		border-bottom: 1px solid ${(props) => props.theme.mainColor};
+	}
 `;
 const SalelinkInput = styled.input`
 	width: 100%;
 	border: 0;
 	border-bottom: 1px solid ${(props) => props.theme.borderColor};
 	font-size: 14px;
-	color: ${(props) => props.theme.borderColor};
+	color: ${(props) => props.theme.mainColor};
+	&:focus {
+		outline: 0;
+		border-bottom: 1px solid ${(props) => props.theme.mainColor};
+	}
 `;
 
 export default function ProductUpload({ setImageData, useRef, ...props }) {
@@ -146,15 +158,24 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 				></ImgPreview>
 				<ProductName>
 					<ProductNameLabel>상품명</ProductNameLabel>
-					<ProdutNameInput placeholder="2~15자 이내여야 합니다."></ProdutNameInput>
+					<ProdutNameInput
+						placeholder="2~15자 이내여야 합니다."
+						type="text"
+					></ProdutNameInput>
 				</ProductName>
 				<ProductPrice>
 					<ProductPriceLabel>가격</ProductPriceLabel>
-					<ProdutPriceInput placeholder="숫자만 입력 가능합니다."></ProdutPriceInput>
+					<ProdutPriceInput
+						placeholder="숫자만 입력 가능합니다."
+						type="number"
+					></ProdutPriceInput>
 				</ProductPrice>
 				<SaleLink>
 					<SaleLinkLabel>판매 링크</SaleLinkLabel>
-					<SalelinkInput placeholder="URL을 입력해 주세요"></SalelinkInput>
+					<SalelinkInput
+						placeholder="URL을 입력해 주세요"
+						type="text"
+					></SalelinkInput>
 				</SaleLink>
 			</MainUploadSection>
 		</div>
