@@ -5,7 +5,7 @@ import { MainContainer } from "../../components/MainContainer";
 import axios from "axios";
 import * as S from "./style";
 import PreviewList from "./PreviewList";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const PostUpload = () => {
   const token = localStorage.getItem("token");
@@ -51,13 +51,13 @@ const PostUpload = () => {
             },
           }
         );
-        // console.log(res.data);
+        console.log(res.data);
       } catch (err) {
         console.error(err);
       }
     }
     sendPost();
-    navigate(`/profile/${accountname}`);
+    // navigate(`/profile/${accountname}`);
   };
 
   // 이미지 파일 업로드

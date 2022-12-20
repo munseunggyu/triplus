@@ -45,6 +45,7 @@ export const CommentTxt = styled.pre`
 export const CommentTime = styled.time`
   font-size: 10px;
   color: #767676;
+  padding-left: 6px;
 `;
 
 export const CommentVertical = styled.button`

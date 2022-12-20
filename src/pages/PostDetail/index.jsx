@@ -8,16 +8,17 @@ import UserPostDetail from "./UserPostDetail";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRef } from "react";
-import * as S from "./style";
+import PostModal from "../../components/PostModal";
 
 export default function PostDetail() {
   const { postkey } = useParams();
   const [comment, setComment] = useState([]);
+  const [commentId, setCommentId] = useState("");
   const [myPostData, setMyPostData] = useState();
+  const [commentModal, setCommentModal] = useState(false);
   const token = localStorage.getItem("token");
 
-  // UserPostDetail
+  // 게시글 불러오기
   const getPostData = async () => {
     try {
       const res = await axios.get(
@@ -43,7 +44,8 @@ export default function PostDetail() {
     setPostData();
   }, []);
 
-  // Comment
+  // 댓글 리스트 불러오기
+
   const setCommentList = async () => {
     try {
       const res = await axios.get(
@@ -66,28 +68,22 @@ export default function PostDetail() {
     setCommentList();
   }, []);
 
-  // comment 렌더링
-  const [dropUpShow, setDropUpShow] = useState(false);
-  // const [modalShow, setModalShow] = useState(false);
-  const [isMy, setIsMy] = useState(false);
-  const [commentId, setCommentId] = useState("");
+  // 댓글 삭제하기
 
-  const clickedComment = useRef();
-
-  // const removeComment = async () => {
+  // const deleteComment = async (commentId) => {
   //   try {
-  //     await axios.delete(
+  //     const res = await axios.delete(
   //       `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}`,
   //       {
-  //         headers: {
+  //         header: {
   //           Authorization: `Bearer ${token}`,
   //           "Content-type": "application/json",
   //         },
   //       }
   //     );
-  //     setCommentList();
-  //   } catch (error) {
-  //     console.log(error);
+  //     // setCommentList();
+  //   } catch (err) {
+  //     console.error(err);
   //   }
   // };
 
@@ -101,17 +97,14 @@ export default function PostDetail() {
         <UserPostDetail myPostData={myPostData} />
         {comment.map((data) => (
           <Comment
-            key={data.id}
-            // ref={clickedComment}
             data={data}
-            // commentId={data.id}
-            // setDropUpShow={setDropUpShow}
-            // setIsMy={setIsMy}
-            // setCommentId={setCommentId}
+            setCommentModal={setCommentModal}
+            commentModal={commentModal}
           />
         ))}
       </MainContainer>
       <CommentBar postkey={postkey} setCommentList={setCommentList} />
+      {commentModal && <PostModal />}
     </>
   );
 }
