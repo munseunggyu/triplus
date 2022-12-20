@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import file_gray from "../../assets/images/file_gray.png";
+import file_gray from "../../assets/images/file_gray.svg";
 
 const ChatContainer = styled.div`
   /* box-sizing: border-box; */
