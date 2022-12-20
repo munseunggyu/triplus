@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import small_profile from "../../assets/images/user_img_small.png";
-import upload_file from "../../assets/images/upload_file.png";
+import small_profile from "../../assets/images/user_img_small.svg";
+import upload_file from "../../assets/images/upload_file.svg";
 
 export const UploadContainer = styled.div`
   display: flex;

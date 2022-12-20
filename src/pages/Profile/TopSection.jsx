@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import user_img_big from "../../assets/images/user_img_big.png";
+import user_img_big from "../../assets/images/user_img_big.svg";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
 import axios from "axios";

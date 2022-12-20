@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PlaneEvent } from "./splashEvent";
-import LogoSrc from "../../assets/images/plain_blue.png";
+import LogoSrc from "../../assets/images/plain_blue.svg";
 import Wave from "react-wavify";
 
 const Logo = styled.img`
