@@ -5,15 +5,17 @@ import { MainContainer } from "../../components/MainContainer";
 import axios from "axios";
 import * as S from "./style";
 import PreviewList from "./PreviewList";
-
-const token = localStorage.getItem("token");
+import { useNavigate, useParams } from "react-router-dom";
 
 const PostUpload = () => {
+  const token = localStorage.getItem("token");
   const [fileName, setFileName] = useState([]);
   const [previewImgUrl, setPreviewImgUrl] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const textRef = useRef();
   const fileRef = useRef();
+  const navigate = useNavigate();
+  const { accountname } = useParams();
 
   const handleResizeHeight = () => {
     textRef.current.style.height = "auto";
@@ -49,12 +51,13 @@ const PostUpload = () => {
             },
           }
         );
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.error(err);
       }
     }
     sendPost();
+    navigate(`/profile/${accountname}`);
   };
 
   // 이미지 파일 업로드
