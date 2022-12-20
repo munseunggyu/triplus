@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import error_404 from "../../assets/images/error_404.png";
+import error_404 from "../../assets/images/error_404.svg";
 const ErrorPageContainer = styled.div`
   width: 358px;
   margin: 0 auto;

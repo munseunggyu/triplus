@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import symbolImg from "../../assets/images/plain_blue.png";
+import symbolImg from "../../assets/images/plain_blue.svg";
 const HomeNoFollowing = styled.div`
   width: 358px;
   margin: 0 auto;

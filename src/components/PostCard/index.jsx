@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostCardBtns from "./PostCardBtns";
-import user_img_small from "../../assets/images/user_img_small.png";
+import user_img_small from "../../assets/images/user_img_small.svg";
 import css_sprites from "../../assets/images/css_sprites.png";
 
 const PostCardList = styled.li`

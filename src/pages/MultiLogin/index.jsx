@@ -1,6 +1,6 @@
 import LoginModal from "./LoginModal";
 import styled, { keyframes } from "styled-components";
-import LogoSrc from "../../assets/images/plain_white.png";
+import LogoSrc from "../../assets/images/plain_white.svg";
 
 const logoAnimation = keyframes`
     0%{
