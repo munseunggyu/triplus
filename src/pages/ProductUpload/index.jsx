@@ -23,7 +23,7 @@ const ImageSave = styled.p`
 	font-size: 12px;
 	line-height: 14px;
 	margin-bottom: 18px;
-	color: #767676;
+	color: ${(props) => props.theme.grayColor};
 `;
 const ImgPreview = styled.input`
 	color: transparent;
@@ -31,7 +31,7 @@ const ImgPreview = styled.input`
 	width: 100%;
 	height: 204px;
 	background: #f2f2f2;
-	border: 0.5px solid #dbdbdb;
+	border: 0.5px solid ${(props) => props.theme.borderColor};
 	border-radius: 10px;
 	margin-bottom: 30px;
 	cursor: pointer;
@@ -74,21 +74,21 @@ const SaleLink = styled.span`
 `;
 const ProductNameLabel = styled.label`
 	display: block;
-	color: #767676;
+	color: ${(props) => props.theme.grayColor};
 	font-size: 12px;
 	line-height: 15px;
 	margin-bottom: 10px;
 `;
 const ProductPriceLabel = styled.label`
 	display: block;
-	color: #767676;
+	color: ${(props) => props.theme.grayColor};
 	font-size: 12px;
 	line-height: 15px;
 	margin-bottom: 10px;
 `;
 const SaleLinkLabel = styled.label`
 	display: block;
-	color: #767676;
+	color: ${(props) => props.theme.grayColor};
 	font-size: 12px;
 	line-height: 15px;
 	margin-bottom: 10px;
@@ -96,23 +96,23 @@ const SaleLinkLabel = styled.label`
 const ProdutNameInput = styled.input`
 	width: 100%;
 	border: 0;
-	border-bottom: 1px solid #dbdbdb;
+	border-bottom: 1px solid ${(props) => props.theme.borderColor};
 	font-size: 14px;
-	color: #dbdbdb;
+	color: ${(props) => props.theme.borderColor};
 `;
 const ProdutPriceInput = styled.input`
 	width: 100%;
 	border: 0;
-	border-bottom: 1px solid #dbdbdb;
+	border-bottom: 1px solid ${(props) => props.theme.borderColor};
 	font-size: 14px;
-	color: #dbdbdb;
+	color: ${(props) => props.theme.borderColor};
 `;
 const SalelinkInput = styled.input`
 	width: 100%;
 	border: 0;
-	border-bottom: 1px solid #dbdbdb;
+	border-bottom: 1px solid ${(props) => props.theme.borderColor};
 	font-size: 14px;
-	color: #dbdbdb;
+	color: ${(props) => props.theme.borderColor};
 `;
 
 export default function ProductUpload({ setImageData, useRef, ...props }) {
