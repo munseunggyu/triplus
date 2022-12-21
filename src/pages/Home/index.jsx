@@ -10,12 +10,12 @@ import axios from "axios";
 
 export default function Home() {
   const [postList, setPostList] = useState([]);
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
   const getFollowerPost = async () => {
     const res = await axios.get(`${process.env.REACT_APP_API_KEY}/post/feed`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${userInfo.token}`,
         "Content-type": "application/json",
       },
     });

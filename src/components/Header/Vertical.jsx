@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
+import { useModal } from "../../hooks/useModal";
 import AlertModal from "../Modal/AlertModal";
 import ModalContainer from "../Modal/ModalContainer";
 import ModalList from "../Modal/ModalList";
@@ -12,21 +13,9 @@ const VerticalBtn = styled.button`
   background: url(${css_sprite}) -102px -54px;
 `;
 export default function Vertical() {
-  const [isModal, setIsModal] = useState(false);
-  const [isModalAlert, setIsModalAlert] = useState(false);
-  const handleModal = (e) => {
-    setIsModal(!isModal);
-  };
+  const { isModal, isModalAlert, handleModal, handleAlert, handlCloseClick } =
+    useModal();
 
-  const handleAlert = (e) => {
-    e.stopPropagation();
-    setIsModalAlert(true);
-  };
-
-  const handlCloseClick = () => {
-    setIsModalAlert(false);
-    setIsModal(false);
-  };
   return (
     <>
       <VerticalBtn onClick={handleModal}>

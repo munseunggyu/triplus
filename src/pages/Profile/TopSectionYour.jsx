@@ -42,7 +42,7 @@ const YourProfileBtn = styled(Link)`
 export default function TopSectionYour({
   isfollow,
   userAccountName,
-  isActiveFollowBtn,
+  setTriggerFollow,
 }) {
   return (
     <YourProfileBtnCon>
@@ -54,7 +54,7 @@ export default function TopSectionYour({
         isfollow={isfollow}
         userAccountName={userAccountName}
         isProfile="1"
-        isActiveFollowBtn={isActiveFollowBtn}
+        setTriggerFollow={setTriggerFollow}
       />
       <YourProfileBtn isfollowicon="1">
         <span className="ir">채팅하기</span>

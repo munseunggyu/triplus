@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { handleFollow } from "../../utils/handleFollow";
 
 const IsFollowBtn = styled.button`
   ${(props) =>
@@ -18,8 +19,8 @@ const IsFollowBtn = styled.button`
   `}
   border-radius: 26px;
   background-color: ${(props) =>
-    props.isFollow ? "white" : props.theme.mainColor};
-  color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
+    props.isfollow ? "white" : props.theme.mainColor};
+  color: ${(props) => (props.isfollow ? props.theme.grayColor : "white")};
   border: ${(props) => `1px solid ${props.theme.borderColor}`};
 `;
 
@@ -27,50 +28,24 @@ export default function IsFollowButton({
   isfollow,
   userAccountName,
   isProfile,
+  setTriggerFollow,
 }) {
-  const [isFollow, setIsFollow] = useState(isfollow);
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
-  const handleFollow = async () => {
-    try {
-      if (isFollow === true) {
-        const res = await axios.delete(
-          `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/unfollow`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        setIsFollow(false);
-      } else {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/follow`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        setIsFollow(true);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    setIsFollow(isfollow);
-  }, [isfollow]);
   return (
     <IsFollowBtn
-      onClick={handleFollow}
-      isFollow={isFollow}
+      onClick={() =>
+        handleFollow(
+          userInfo.token,
+          isfollow,
+          setTriggerFollow,
+          userAccountName
+        )
+      }
+      isfollow={isfollow}
       isProfile={isProfile}
     >
-      {isFollow ? "취소" : "팔로우"}
+      {isfollow ? "취소" : "팔로우"}
     </IsFollowBtn>
   );
 }

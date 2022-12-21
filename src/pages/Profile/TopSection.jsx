@@ -65,8 +65,10 @@ const ProfileFollowTxt = styled.span`
 
 export default function ProfileTopSection() {
   const [profileData, setProfileData] = useState({});
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
+  const [triggerFollow, setTriggerFollow] = useState(false);
+  const isMyProfile = accountname === userInfo.accountname;
 
   const getProfileData = async () => {
     try {
@@ -74,7 +76,7 @@ export default function ProfileTopSection() {
         `${process.env.REACT_APP_API_KEY}/profile/${accountname}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }
@@ -90,7 +92,7 @@ export default function ProfileTopSection() {
   };
   useEffect(() => {
     setProfile();
-  }, [accountname]);
+  }, [accountname, triggerFollow]);
   return (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
@@ -114,10 +116,11 @@ export default function ProfileTopSection() {
         <ProfileUserName>{profileData.username}</ProfileUserName>
         <PofileUserId>@{profileData.accountname} </PofileUserId>
         <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
-        {accountname === "sfne.sae" ? (
+        {isMyProfile ? (
           <TopSectionMy />
         ) : (
           <TopSectionYour
+            setTriggerFollow={setTriggerFollow}
             isfollow={profileData.isfollow}
             userAccountName={profileData.accountname}
           />

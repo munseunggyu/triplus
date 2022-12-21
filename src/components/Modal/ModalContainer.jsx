@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useModal } from "../../hooks/useModal";
 
 const ModalBackground = styled.article`
   position: fixed;
@@ -52,12 +53,7 @@ const ModalWrap = styled.ul`
   }
 `;
 
-export default function ModalContainer({
-  children,
-  onClick,
-  showModal,
-  setShowModal,
-}) {
+export default function ModalContainer({ children, onClick }) {
   return (
     <ModalBackground onClick={onClick}>
       <ModalWrap>{children}</ModalWrap>;
