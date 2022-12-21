@@ -14,20 +14,4 @@ export const useGetPreview = (loadFile) => {
   };
 
   return { isActive, setIsActive, previewImgUrl, setPreviewImgUrl, getPreview };
-
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(loadFile[0]);
-  //   reader.onload = () => {
-  //     setPreviewImgUrl(reader.result);
-  //   };
-
-  //   const uploadFile = (e) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(e.target.files[0]);
-  //     reader.onload = () => {
-  //       setImageSrc(reader.result);
-  //     };
-  //   };
-
-  //   return {};
 };
