@@ -34,8 +34,13 @@ export default function Comment({ data, commentId, setCommentList }) {
 
   const nowDate = detailDate(new Date(data.createdAt));
 
+  const accountName = "zesfnkse.fe";
+
   const handleModal = (e) => {
     setIsModal(!isModal);
+    if (accountName !== data.author.accountname) {
+      setIsMyComment(false);
+    }
   };
 
   const handleAlert = (e, txt) => {
@@ -63,13 +68,38 @@ export default function Comment({ data, commentId, setCommentList }) {
       setCommentList();
       setIsModal(false);
       setIsModalAlert(false);
+      alert("삭제되었습니다.");
     } catch (error) {
       console.log(error);
     }
   };
 
-  // 삭제 기능 함수 만드시고 91라인에 // onSubmitClick={삭제 기능} 넣으시면됩니다
-  // 신고 기능도 마찬가지입니다
+  const handleDeclaration = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}/report`,
+        {
+          report: {
+            comment: `${commentId}`,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(res);
+      setCommentList();
+      setIsModal(false);
+      setIsModalAlert(false);
+      alert("신고가 완료되었습니다.");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -116,7 +146,7 @@ export default function Comment({ data, commentId, setCommentList }) {
             title="게시글을 신고하시겠어요?"
             submitText="신고"
             onCloseClick={handlCloseClick}
-            // onSubmitClick={신고 기능}
+            onSubmitClick={handleDeclaration}
           />
         )
       ) : null}
