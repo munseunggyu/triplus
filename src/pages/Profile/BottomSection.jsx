@@ -30,7 +30,7 @@ const CardContainer = styled.div`
 `;
 export default function ProfileBottomSection() {
   const [myPostData, setMyPostData] = useState([]);
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
 
   const getPostData = async () => {
@@ -39,7 +39,7 @@ export default function ProfileBottomSection() {
         `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }

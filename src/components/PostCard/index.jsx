@@ -8,6 +8,7 @@ import ModalList from "../Modal/ModalList";
 import AlertModal from "../Modal/AlertModal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useModal } from "../../hooks/useModal";
 
 const PostCardList = styled.li`
   list-style: none;
@@ -76,7 +77,6 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
-  accountname,
   comments,
 }) {
   const date = new Date(createdAt);
@@ -88,38 +88,30 @@ export default function PostCard({
   const createAtFormat = new Intl.DateTimeFormat("ko-KR", dateOptions).format(
     date
   );
-
   const navigate = useNavigate();
-  const [isModal, setIsModal] = useState(false);
-  const [isMyPost, setIsMyPost] = useState(false);
-  const [isModalAlert, setIsModalAlert] = useState(false);
-
-  const handleModal = (e) => {
-    setIsModal(!isModal);
-  };
-
-  const handleAlert = (e, txt) => {
-    e.stopPropagation();
-    setIsModalAlert(txt);
-  };
-
-  const handlCloseClick = () => {
-    setIsModalAlert(false);
-    setIsModal(false);
-  };
-  const token = localStorage.getItem("token");
+  const {
+    isModal,
+    isMyContent,
+    isModalAlert,
+    handleModal,
+    handleAlert,
+    handlCloseClick,
+  } = useModal(author.accountname);
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const handleDeclaration = async () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/${id}/report`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }
       );
-      alert("신고 되었습니다.");
+      if (res.status === 200) {
+        alert("신고 되었습니다.");
+      }
       handlCloseClick();
     } catch (error) {
       console.log(error);
@@ -148,7 +140,7 @@ export default function PostCard({
       </PostCardList>
       {isModal && (
         <ModalContainer onClick={handleModal}>
-          {isMyPost ? (
+          {isMyContent ? (
             <>
               <ModalList onClick={(e) => handleAlert(e, "삭제모달")}>
                 삭제

@@ -3,13 +3,13 @@ import { useState } from "react";
 
 export const useGetFollowList = () => {
   const [followList, setFollowList] = useState([]);
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
   const getFollowList = async (url) => {
     try {
       const res = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${userInfo.token}`,
           "Content-type": "application/json",
         },
       });

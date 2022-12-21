@@ -47,6 +47,8 @@ const ProfileMidSectionPrice = styled.span`
 `;
 export default function ProfileMidSection() {
   const [productData, setProductData] = useState([]);
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+
   const token = localStorage.getItem("token");
   const { accountname } = useParams();
 
@@ -56,7 +58,7 @@ export default function ProfileMidSection() {
         `${process.env.REACT_APP_API_KEY}/product/${accountname}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }
