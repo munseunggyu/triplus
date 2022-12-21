@@ -90,7 +90,7 @@ export default function PostCard({
 
   const navigate = useNavigate();
   const [isModal, setIsModal] = useState(false);
-  const [isMyPost, setIsMyPost] = useState(false);
+  const [isMyPost, setIsMyPost] = useState(true);
   const [isModalAlert, setIsModalAlert] = useState(false);
 
   const handleModal = (e) => {
@@ -106,7 +106,7 @@ export default function PostCard({
     setIsModalAlert(false);
     setIsModal(false);
   };
-
+  console.log(id);
   return (
     <>
       <PostCardList>
