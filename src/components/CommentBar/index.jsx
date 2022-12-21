@@ -1,6 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import user_img_small from "../../assets/images/user_img_small.svg";
+import axios from "axios";
+import { useState } from "react";
 
 const CommentContainer = styled.div`
   position: fixed;
@@ -35,17 +36,55 @@ const CommentInput = styled.input`
 const CommentBtn = styled.button`
   box-sizing: border-box;
   font-size: 14px;
-  color: #c4c4c4;
+  color: ${(props) => (props.txt ? props.theme.mainColor : "#c4c4c4")};
   width: 5em;
   text-align: center;
 `;
 
-export default function CommentBar() {
+export default function CommentBar({ postkey, setCommentList }) {
+  const token = localStorage.getItem("token");
+  const [txt, setTxt] = useState("");
+
+  const handlePostComment = (e) => {
+    setTxt(e.target.value);
+  };
+
+  const postComment = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`,
+        {
+          comment: {
+            content: txt,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(res.data);
+      setCommentList();
+      setTxt("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <CommentContainer>
       <CommentProfileImg src={user_img_small} alt="사용자 이름" />
-      <CommentInput placeholder="댓글 입력하기..." />
-      <CommentBtn>게시</CommentBtn>
+      <CommentInput
+        type="text"
+        placeholder="댓글 입력하기..."
+        onChange={handlePostComment}
+        value={txt}
+      />
+      <CommentBtn onClick={postComment} txt={txt}>
+        게시
+      </CommentBtn>
     </CommentContainer>
   );
 }

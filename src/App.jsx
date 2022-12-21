@@ -31,7 +31,7 @@ function App() {
         <Route path="/profile/:accountname/following" element={<Follow />} />
         <Route path="/profile/:accountname/follower" element={<Follow />} />
         <Route path="/editprofile" element={<SetProfile />} />
-        <Route path="/postdetail" element={<PostDetail />} />
+        <Route path="/postdetail/:postkey" element={<PostDetail />} />
         <Route path="/postupload" element={<PostUpload />} />
         <Route path="/productupload" element={<ProductUpload />} />
         <Route path="/chatlist" element={<ChatList />} />
