@@ -29,7 +29,7 @@ export default function IsFollowButton({
   isProfile,
 }) {
   const [isFollow, setIsFollow] = useState(isfollow);
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
   const handleFollow = async () => {
     try {
@@ -38,7 +38,7 @@ export default function IsFollowButton({
           `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/unfollow`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userInfo.token}`,
               "Content-type": "application/json",
             },
           }
@@ -50,7 +50,7 @@ export default function IsFollowButton({
           {},
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userInfo.token}`,
               "Content-type": "application/json",
             },
           }

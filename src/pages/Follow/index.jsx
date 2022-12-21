@@ -26,7 +26,6 @@ export default function Follow() {
 
   const followingUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`;
   const followerUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower`;
-
   useEffect(() => {
     if (path.pathname.includes("follower")) {
       getFollowList(followerUrl);

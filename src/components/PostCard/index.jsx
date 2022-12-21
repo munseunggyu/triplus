@@ -77,7 +77,7 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
-  accountname,
+
   comments,
 }) {
   const date = new Date(createdAt);
@@ -97,7 +97,7 @@ export default function PostCard({
     handleModal,
     handleAlert,
     handlCloseClick,
-  } = useModal();
+  } = useModal(author.accountname);
 
   const token = localStorage.getItem("token");
   const handleDeclaration = async () => {

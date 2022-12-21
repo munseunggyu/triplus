@@ -16,7 +16,7 @@ const UserInfoContainer = styled.ul`
 
 export default function Search() {
   const [searchList, setSearchList] = useState([]);
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
   const [searchInputVal, setSearchInputVal] = useState("");
   const getSearchList = async () => {
@@ -25,7 +25,7 @@ export default function Search() {
         `${process.env.REACT_APP_API_KEY}/user/searchuser/?keyword=${searchInputVal}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }
@@ -60,7 +60,7 @@ export default function Search() {
         <UserInfoContainer>
           {searchList.map((search) => {
             return (
-              <Link to={`/profile/${search.accountname}`}>
+              <Link key={search._id} to={`/profile/${search.accountname}`}>
                 <UserInfo {...search} />
               </Link>
             );

@@ -65,8 +65,9 @@ const ProfileFollowTxt = styled.span`
 
 export default function ProfileTopSection() {
   const [profileData, setProfileData] = useState({});
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
+  const isMyProfile = accountname === userInfo.accountname;
 
   const getProfileData = async () => {
     try {
@@ -74,7 +75,7 @@ export default function ProfileTopSection() {
         `${process.env.REACT_APP_API_KEY}/profile/${accountname}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }
@@ -114,7 +115,7 @@ export default function ProfileTopSection() {
         <ProfileUserName>{profileData.username}</ProfileUserName>
         <PofileUserId>@{profileData.accountname} </PofileUserId>
         <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
-        {accountname === "sfne.sae" ? (
+        {isMyProfile ? (
           <TopSectionMy />
         ) : (
           <TopSectionYour
