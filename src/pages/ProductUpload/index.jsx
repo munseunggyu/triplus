@@ -129,6 +129,23 @@ const SalelinkInput = styled.input`
 
 export default function ProductUpload({ setImageData, useRef, ...props }) {
 	const [imageSrc, setImageSrc] = useState("");
+	const [price, setPrice] = useState("");
+
+	const inputPriceFormat = (str) => {
+		const comma = (str) => {
+			str = String(str);
+			return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+		};
+		const uncomma = (str) => {
+			str = String(str);
+			return str.replace(/[^\d]+/g, "");
+		};
+		return comma(uncomma(str));
+	};
+	function handleChange(e) {
+		const inputType = e.target.id.slice(6);
+		inputType === "price" && setPrice(inputPriceFormat(e.target.value));
+	}
 
 	const UploadFile = (e) => {
 		const reader = new FileReader();
@@ -166,8 +183,12 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 				<ProductPrice>
 					<ProductPriceLabel>가격</ProductPriceLabel>
 					<ProdutPriceInput
+						id="input-price"
+						type="text"
 						placeholder="숫자만 입력 가능합니다."
-						type="number"
+						onChange={handleChange}
+						value={price}
+						maxLength="12"
 					></ProdutPriceInput>
 				</ProductPrice>
 				<SaleLink>
