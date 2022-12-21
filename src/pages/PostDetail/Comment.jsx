@@ -68,7 +68,7 @@ export default function Comment({ data, commentId, setCommentList }) {
       setCommentList();
       setIsModal(false);
       setIsModalAlert(false);
-      alert("삭제되었습니다.");
+      alert("댓글이 삭제되었습니다.");
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +95,7 @@ export default function Comment({ data, commentId, setCommentList }) {
       setCommentList();
       setIsModal(false);
       setIsModalAlert(false);
-      alert("신고가 완료되었습니다.");
+      alert("댓글 신고가 완료되었습니다.");
     } catch (error) {
       console.log(error);
     }
@@ -128,7 +128,7 @@ export default function Comment({ data, commentId, setCommentList }) {
             </>
           ) : (
             <ModalList onClick={(e) => handleAlert(e, "신고모달")}>
-              신고하기
+              신고
             </ModalList>
           )}
         </ModalContainer>
