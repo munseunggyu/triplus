@@ -27,7 +27,7 @@ export default function IsFollowButton({
   isfollow,
   userAccountName,
   isProfile,
-  setFollowData,
+  setTriggerFollow,
 }) {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const handleFollow = async () => {
@@ -42,7 +42,7 @@ export default function IsFollowButton({
             },
           }
         );
-        setFollowData(res.data.profile);
+        setTriggerFollow((prev) => !prev);
       } else {
         const res = await axios.post(
           `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/follow`,
@@ -54,7 +54,7 @@ export default function IsFollowButton({
             },
           }
         );
-        setFollowData(res.data.profile);
+        setTriggerFollow((prev) => !prev);
       }
     } catch (error) {
       console.log(error);

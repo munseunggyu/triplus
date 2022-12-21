@@ -20,6 +20,7 @@ const ProfileLink = styled.div`
   align-items: center;
 `;
 export default function Follow() {
+  const [triggerFollow, setTriggerFollow] = useState(false);
   const { followList, getFollowList } = useGetFollowList();
   const { accountname } = useParams();
   const path = useLocation();
@@ -33,7 +34,7 @@ export default function Follow() {
     } else {
       getFollowList(followingUrl);
     }
-  }, []);
+  }, [triggerFollow]);
   return (
     <>
       <Header>
@@ -51,6 +52,7 @@ export default function Follow() {
                 <IsFollowButton
                   isfollow={follow.isfollow}
                   userAccountName={follow.accountname}
+                  setTriggerFollow={setTriggerFollow}
                 />
               </ProfileLink>
             );

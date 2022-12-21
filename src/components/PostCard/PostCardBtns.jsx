@@ -53,7 +53,6 @@ export default function PostCardBtns({
   postkey,
 }) {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
   const [heartTotal, setHeartTotal] = useState(heartCount);
   const [heartBool, setHeartBool] = useState(hearted);
 
@@ -71,9 +70,6 @@ export default function PostCardBtns({
         );
         setHeartBool(res.data.post.hearted);
         setHeartTotal(res.data.post.heartCount);
-        // setChangeHeart((prev) => !prev);
-        // setIsFollow(false);
-        // isActiveFollowBtn((prev) => !prev);
       } else {
         const res = await axios.post(
           `${process.env.REACT_APP_API_KEY}/post/${postkey}/heart`,
@@ -87,9 +83,6 @@ export default function PostCardBtns({
         );
         setHeartBool(res.data.post.hearted);
         setHeartTotal(res.data.post.heartCount);
-        // setChangeHeart((prev) => !prev);
-        // setIsFollow(true);
-        // isActiveFollowBtn((prev) => !prev);
       }
     } catch (error) {
       console.log(error);

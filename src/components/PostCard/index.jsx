@@ -98,7 +98,6 @@ export default function PostCard({
     handlCloseClick,
   } = useModal(author.accountname);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
   const handleDeclaration = async () => {
     try {
       const res = await axios.post(
