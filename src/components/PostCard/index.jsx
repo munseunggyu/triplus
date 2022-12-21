@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PostCardBtns from "./PostCardBtns";
 import user_img_small from "../../assets/images/user_img_small.svg";
@@ -7,6 +7,7 @@ import ModalContainer from "../Modal/ModalContainer";
 import ModalList from "../Modal/ModalList";
 import AlertModal from "../Modal/AlertModal";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PostCardList = styled.li`
   list-style: none;
@@ -90,7 +91,7 @@ export default function PostCard({
 
   const navigate = useNavigate();
   const [isModal, setIsModal] = useState(false);
-  const [isMyPost, setIsMyPost] = useState(true);
+  const [isMyPost, setIsMyPost] = useState(false);
   const [isModalAlert, setIsModalAlert] = useState(false);
 
   const handleModal = (e) => {
@@ -106,7 +107,24 @@ export default function PostCard({
     setIsModalAlert(false);
     setIsModal(false);
   };
-  console.log(id);
+  const token = localStorage.getItem("token");
+  const handleDeclaration = async () => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/${id}/report`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      alert("신고 되었습니다.");
+      handlCloseClick();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <PostCardList>
@@ -163,7 +181,7 @@ export default function PostCard({
             title="게시글을 신고하시겠어요?"
             submitText="신고"
             onCloseClick={handlCloseClick}
-            // onSubmitClick={신고 기능}
+            onSubmitClick={handleDeclaration}
           />
         )
       ) : null}
