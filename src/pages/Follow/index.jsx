@@ -8,6 +8,7 @@ import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
+import { useGetFollowList } from "../../hooks/useGetFollowList";
 import IsFollowButton from "./IsFollowButton";
 
 const FollowContainer = styled.ul`
@@ -19,48 +20,18 @@ const ProfileLink = styled.div`
   align-items: center;
 `;
 export default function Follow() {
+  const { followList, getFollowList } = useGetFollowList();
   const { accountname } = useParams();
-  const [followList, setFollowList] = useState([]);
-  const token = localStorage.getItem("token");
   const path = useLocation();
 
-  const getFollowingList = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      setFollowList(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const getFollowerList = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      setFollowList(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const followingUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`;
+  const followerUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower`;
+
   useEffect(() => {
     if (path.pathname.includes("follower")) {
-      getFollowerList();
+      getFollowList(followerUrl);
     } else {
-      getFollowingList();
+      getFollowList(followingUrl);
     }
   }, []);
   return (

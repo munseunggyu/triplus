@@ -36,7 +36,7 @@ export default function Home() {
       <MainContainer>
         {postList.length > 0 ? (
           postList.map((post) => {
-            return <PostCard {...post} />;
+            return <PostCard key={post.id} {...post} />;
           })
         ) : (
           <HomeNoFollow />
