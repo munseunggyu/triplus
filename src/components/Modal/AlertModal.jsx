@@ -1,0 +1,69 @@
+import React from "react";
+import styled from "styled-components";
+
+const ModalBackground = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+`;
+
+const ModalWrap = styled.div`
+  margin: auto;
+  position: absolute;
+  width: 252px;
+  height: 110px;
+  inset: 0;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+`;
+
+const Message = styled.p`
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  line-height: 64px;
+`;
+
+const ButtonWrap = styled.div`
+  position: relative;
+  border-top: 1px solid ${(props) => props.theme.borderColor};
+
+  button {
+    width: 50%;
+    height: 46px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-right: 1px solid ${(props) => props.theme.borderColor};
+    margin: 0 auto;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    height: 44px;
+  }
+`;
+
+export default function AlertModal({
+  title,
+  submitText,
+  onCloseClick,
+  onSubmitClick,
+}) {
+  return (
+    <ModalBackground>
+      <ModalWrap>
+        <Message>{title}</Message>
+        <ButtonWrap>
+          <button onClick={onCloseClick}>취소</button>
+          <button onClick={onSubmitClick}>{submitText}</button>
+        </ButtonWrap>
+      </ModalWrap>
+    </ModalBackground>
+  );
+}

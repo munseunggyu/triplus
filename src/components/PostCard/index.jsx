@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import PostCardBtns from "./PostCardBtns";
 import user_img_small from "../../assets/images/user_img_small.svg";
 import css_sprites from "../../assets/images/css_sprites.png";
+import ModalContainer from "../Modal/ModalContainer";
+import ModalList from "../Modal/ModalList";
+import AlertModal from "../Modal/AlertModal";
+import { useNavigate } from "react-router-dom";
 
 const PostCardList = styled.li`
   list-style: none;
@@ -71,6 +75,7 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
+  accountname,
   comments,
 }) {
   const date = new Date(createdAt);
@@ -82,25 +87,86 @@ export default function PostCard({
   const createAtFormat = new Intl.DateTimeFormat("ko-KR", dateOptions).format(
     date
   );
+
+  const navigate = useNavigate();
+  const [isModal, setIsModal] = useState(false);
+  const [isMyPost, setIsMyPost] = useState(false);
+  const [isModalAlert, setIsModalAlert] = useState(false);
+
+  const handleModal = (e) => {
+    setIsModal(!isModal);
+  };
+
+  const handleAlert = (e, txt) => {
+    e.stopPropagation();
+    setIsModalAlert(txt);
+  };
+
+  const handlCloseClick = () => {
+    setIsModalAlert(false);
+    setIsModal(false);
+  };
+
   return (
-    <PostCardList>
-      <PostCardUserImg src={user_img_small} />
-      <div>
-        <PostCardUserName>{author.username}</PostCardUserName>
-        <PostCardUserId>@{author.accountname}</PostCardUserId>
-        <PostCardContentTxt>{content}</PostCardContentTxt>
-        {image && <PostCardContentImg src={image} alt="게시물 이미지" />}
-        <PostCardBtns
-          postkey={id}
-          commentCount={commentCount}
-          heartCount={heartCount}
-          hearted={hearted}
-        />
-        <PostCardTime>{createAtFormat} </PostCardTime>
-      </div>
-      <PostCardVertical>
-        <span className="ir">더보기 버튼</span>
-      </PostCardVertical>
-    </PostCardList>
+    <>
+      <PostCardList>
+        <PostCardUserImg src={user_img_small} />
+        <div>
+          <PostCardUserName>{author.username}</PostCardUserName>
+          <PostCardUserId>@{author.accountname}</PostCardUserId>
+          <PostCardContentTxt>{content}</PostCardContentTxt>
+          {image && <PostCardContentImg src={image} alt="게시물 이미지" />}
+          <PostCardBtns
+            postkey={id}
+            commentCount={commentCount}
+            heartCount={heartCount}
+            hearted={hearted}
+          />
+          <PostCardTime>{createAtFormat} </PostCardTime>
+        </div>
+        <PostCardVertical onClick={handleModal}>
+          <span className="ir">더보기 버튼</span>
+        </PostCardVertical>
+      </PostCardList>
+      {isModal && (
+        <ModalContainer onClick={handleModal}>
+          {isMyPost ? (
+            <>
+              <ModalList onClick={(e) => handleAlert(e, "삭제모달")}>
+                삭제
+              </ModalList>
+              <ModalList
+                onClick={() => {
+                  // navigate.push(`/post/edit`, { post });
+                }}
+              >
+                수정
+              </ModalList>
+            </>
+          ) : (
+            <ModalList onClick={(e) => handleAlert(e, "신고모달")}>
+              신고하기
+            </ModalList>
+          )}
+        </ModalContainer>
+      )}
+      {isModalAlert !== false ? (
+        isModalAlert === "삭제모달" ? (
+          <AlertModal
+            title="게시글을 삭제할까요?"
+            submitText="삭제"
+            onCloseClick={handlCloseClick}
+            // onSubmitClick={삭제 기능}
+          />
+        ) : (
+          <AlertModal
+            title="게시글을 신고하시겠어요?"
+            submitText="신고"
+            onCloseClick={handlCloseClick}
+            // onSubmitClick={신고 기능}
+          />
+        )
+      ) : null}
+    </>
   );
 }

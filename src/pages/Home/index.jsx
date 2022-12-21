@@ -4,7 +4,6 @@ import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar";
 import { MainContainer } from "../../components/MainContainer";
 import PostCard from "../../components/PostCard";
-
 import SearchButton from "../../components/Header/SearchButton";
 import HomeNoFollow from "./HomeNoFollow";
 import axios from "axios";
@@ -12,6 +11,7 @@ import axios from "axios";
 export default function Home() {
   const [postList, setPostList] = useState([]);
   const token = localStorage.getItem("token");
+
   const getFollowerPost = async () => {
     const res = await axios.get(`${process.env.REACT_APP_API_KEY}/post/feed`, {
       headers: {
