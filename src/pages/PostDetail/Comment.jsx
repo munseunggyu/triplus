@@ -4,11 +4,15 @@ import { useState } from "react";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import ModalList from "../../components/Modal/ModalList";
 import AlertModal from "../../components/Modal/AlertModal";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function Comment({ data, setCommentModal }) {
-  // const handleCommentModal = () => {
-  //   setCommentModal(true);
-  // };
+export default function Comment({ data, commentId, setCommentList }) {
+  const { postkey } = useParams();
+  const token = localStorage.getItem("token");
+  const [isModal, setIsModal] = useState(false);
+  const [isMyComment, setIsMyComment] = useState(true);
+  const [isModalAlert, setIsModalAlert] = useState(false);
 
   const detailDate = (time) => {
     const milliSeconds = new Date() - time;
@@ -30,10 +34,6 @@ export default function Comment({ data, setCommentModal }) {
 
   const nowDate = detailDate(new Date(data.createdAt));
 
-  const [isModal, setIsModal] = useState(false);
-  const [isMyComment, setIsMyComment] = useState(true);
-  const [isModalAlert, setIsModalAlert] = useState(false);
-
   const handleModal = (e) => {
     setIsModal(!isModal);
   };
@@ -46,6 +46,26 @@ export default function Comment({ data, setCommentModal }) {
   const handlCloseClick = () => {
     setIsModalAlert(false);
     setIsModal(false);
+  };
+
+  const handleDeleteComment = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      setCommentList();
+      setIsModal(false);
+      setIsModalAlert(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // 삭제 기능 함수 만드시고 91라인에 // onSubmitClick={삭제 기능} 넣으시면됩니다
@@ -89,7 +109,7 @@ export default function Comment({ data, setCommentModal }) {
             title="게시글을 삭제할까요?"
             submitText="삭제"
             onCloseClick={handlCloseClick}
-            // onSubmitClick={삭제 기능}
+            onSubmitClick={handleDeleteComment}
           />
         ) : (
           <AlertModal
