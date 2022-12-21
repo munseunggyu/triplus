@@ -127,9 +127,31 @@ const SalelinkInput = styled.input`
 	}
 `;
 
-export default function ProductUpload({ setImageData, useRef, ...props }) {
+export default function ProductUpload({ useRef, ...props }) {
 	const [imageSrc, setImageSrc] = useState("");
 	const [price, setPrice] = useState("");
+	const [itemName, setItemName] = useState("");
+	const [link, setLink] = useState("");
+	const [imageData, setImageData] = useState("");
+	const [isActive, setIsActive] = useState(false);
+	const [isDisabled, setIsDisabled] = useState(true);
+
+	useEffect(() => {
+		//상품 판매 링크 유효성 검사
+		const checkLink =
+			/^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+
+		if (
+			itemName.length > 1 &&
+			price.length !== 0 &&
+			checkLink.test(link) &&
+			imageSrc.length !== 0
+		) {
+			setIsActive(true);
+		} else {
+			setIsActive(false);
+		}
+	});
 
 	const inputPriceFormat = (str) => {
 		const comma = (str) => {
@@ -145,9 +167,11 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 	function handleChange(e) {
 		const inputType = e.target.id.slice(6);
 		inputType === "price" && setPrice(inputPriceFormat(e.target.value));
+		inputType === "product" && setItemName(e.target.value);
+		inputType === "salelink" && setLink(e.target.value);
 	}
 
-	const UploadFile = (e) => {
+	const uploadFile = (e) => {
 		const reader = new FileReader();
 		reader.readAsDataURL(e.target.files[0]);
 		reader.onload = () => {
@@ -159,7 +183,7 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 		<div>
 			<Header>
 				<Prev />
-				<SaveBtn>저장</SaveBtn>
+				<SaveBtn isActive={isActive}>저장</SaveBtn>
 			</Header>
 			<MainUploadSection>
 				<h2 className="ir">상품 등록 페이지</h2>
@@ -167,10 +191,11 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 				<ImgPreview
 					type="file"
 					{...props}
-					onChange={UploadFile}
+					onChange={uploadFile}
+					imageData={imageData}
 					setImageData={setImageData}
 					ref={useRef}
-					accept="*.jpg, *.gif, *.png, *.jpeg, *.bmp, *.tif, *.heic"
+					accept="image/*"
 					imageSrc={imageSrc}
 				></ImgPreview>
 				<ProductName>
@@ -178,6 +203,11 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 					<ProdutNameInput
 						placeholder="2~15자 이내여야 합니다."
 						type="text"
+						id="input-product"
+						maxLength="15"
+						minLength="2"
+						onChange={handleChange}
+						value={itemName}
 					></ProdutNameInput>
 				</ProductName>
 				<ProductPrice>
@@ -196,6 +226,9 @@ export default function ProductUpload({ setImageData, useRef, ...props }) {
 					<SalelinkInput
 						placeholder="URL을 입력해 주세요"
 						type="text"
+						id="input-salelink"
+						onChange={handleChange}
+						value={link}
 					></SalelinkInput>
 				</SaleLink>
 			</MainUploadSection>
