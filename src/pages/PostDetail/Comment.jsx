@@ -4,11 +4,15 @@ import { useState } from "react";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import ModalList from "../../components/Modal/ModalList";
 import AlertModal from "../../components/Modal/AlertModal";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function Comment({ data, setCommentModal }) {
-  // const handleCommentModal = () => {
-  //   setCommentModal(true);
-  // };
+export default function Comment({ data, commentId, setCommentList }) {
+  const { postkey } = useParams();
+  const token = localStorage.getItem("token");
+  const [isModal, setIsModal] = useState(false);
+  const [isMyComment, setIsMyComment] = useState(true);
+  const [isModalAlert, setIsModalAlert] = useState(false);
 
   const detailDate = (time) => {
     const milliSeconds = new Date() - time;
@@ -30,12 +34,13 @@ export default function Comment({ data, setCommentModal }) {
 
   const nowDate = detailDate(new Date(data.createdAt));
 
-  const [isModal, setIsModal] = useState(false);
-  const [isMyComment, setIsMyComment] = useState(true);
-  const [isModalAlert, setIsModalAlert] = useState(false);
+  const accountName = "zesfnkse.fe";
 
   const handleModal = (e) => {
     setIsModal(!isModal);
+    if (accountName !== data.author.accountname) {
+      setIsMyComment(false);
+    }
   };
 
   const handleAlert = (e, txt) => {
@@ -48,8 +53,53 @@ export default function Comment({ data, setCommentModal }) {
     setIsModal(false);
   };
 
-  // 삭제 기능 함수 만드시고 91라인에 // onSubmitClick={삭제 기능} 넣으시면됩니다
-  // 신고 기능도 마찬가지입니다
+  const handleDeleteComment = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      setCommentList();
+      setIsModal(false);
+      setIsModalAlert(false);
+      alert("댓글이 삭제되었습니다.");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeclaration = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}/report`,
+        {
+          report: {
+            comment: `${commentId}`,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(res);
+      setCommentList();
+      setIsModal(false);
+      setIsModalAlert(false);
+      alert("댓글 신고가 완료되었습니다.");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -78,7 +128,7 @@ export default function Comment({ data, setCommentModal }) {
             </>
           ) : (
             <ModalList onClick={(e) => handleAlert(e, "신고모달")}>
-              신고하기
+              신고
             </ModalList>
           )}
         </ModalContainer>
@@ -86,17 +136,17 @@ export default function Comment({ data, setCommentModal }) {
       {isModalAlert !== false ? (
         isModalAlert === "삭제모달" ? (
           <AlertModal
-            title="게시글을 삭제할까요?"
-            submitText="삭제"
+            title="댓글을 삭제할까요?"
+            submitText="댓글 삭제"
             onCloseClick={handlCloseClick}
-            // onSubmitClick={삭제 기능}
+            onSubmitClick={handleDeleteComment}
           />
         ) : (
           <AlertModal
-            title="게시글을 신고하시겠어요?"
-            submitText="신고"
+            title="댓글을 신고하시겠어요?"
+            submitText="댓글 신고"
             onCloseClick={handlCloseClick}
-            // onSubmitClick={신고 기능}
+            onSubmitClick={handleDeclaration}
           />
         )
       ) : null}
