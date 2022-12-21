@@ -119,6 +119,7 @@ export default function ProfileTopSection() {
           <TopSectionMy />
         ) : (
           <TopSectionYour
+            setProfileData={setProfileData}
             isfollow={profileData.isfollow}
             userAccountName={profileData.accountname}
           />

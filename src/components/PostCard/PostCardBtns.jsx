@@ -52,7 +52,8 @@ export default function PostCardBtns({
   heartCount,
   postkey,
 }) {
-  const token = localStorage.getItem("token");
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+
   const [heartTotal, setHeartTotal] = useState(heartCount);
   const [heartBool, setHeartBool] = useState(hearted);
 
@@ -63,15 +64,13 @@ export default function PostCardBtns({
           `${process.env.REACT_APP_API_KEY}/post/${postkey}/unheart`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userInfo.token}`,
               "Content-type": "application/json",
             },
           }
         );
-        console.log(res.data.post);
         setHeartBool(res.data.post.hearted);
         setHeartTotal(res.data.post.heartCount);
-        console.log("완");
         // setChangeHeart((prev) => !prev);
         // setIsFollow(false);
         // isActiveFollowBtn((prev) => !prev);
@@ -81,16 +80,14 @@ export default function PostCardBtns({
           {},
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userInfo.token}`,
               "Content-type": "application/json",
             },
           }
         );
-        console.log("완1");
         setHeartBool(res.data.post.hearted);
         setHeartTotal(res.data.post.heartCount);
         // setChangeHeart((prev) => !prev);
-
         // setIsFollow(true);
         // isActiveFollowBtn((prev) => !prev);
       }
@@ -105,7 +102,7 @@ export default function PostCardBtns({
         <span> {heartTotal} </span>
       </PostCardLikeBtn>
 
-      <PostCardChatLink to="/">
+      <PostCardChatLink to={`/postdetail/${postkey}`}>
         <span className="ir">댓글창으로 이동</span>
         <span> {commentCount} </span>
       </PostCardChatLink>

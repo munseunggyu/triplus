@@ -18,8 +18,8 @@ const IsFollowBtn = styled.button`
   `}
   border-radius: 26px;
   background-color: ${(props) =>
-    props.isFollow ? "white" : props.theme.mainColor};
-  color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
+    props.isfollow ? "white" : props.theme.mainColor};
+  color: ${(props) => (props.isfollow ? props.theme.grayColor : "white")};
   border: ${(props) => `1px solid ${props.theme.borderColor}`};
 `;
 
@@ -27,13 +27,12 @@ export default function IsFollowButton({
   isfollow,
   userAccountName,
   isProfile,
+  setFollowData,
 }) {
-  const [isFollow, setIsFollow] = useState(isfollow);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
   const handleFollow = async () => {
     try {
-      if (isFollow === true) {
+      if (isfollow === true) {
         const res = await axios.delete(
           `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/unfollow`,
           {
@@ -43,7 +42,7 @@ export default function IsFollowButton({
             },
           }
         );
-        setIsFollow(false);
+        setFollowData(res.data.profile);
       } else {
         const res = await axios.post(
           `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/follow`,
@@ -55,22 +54,20 @@ export default function IsFollowButton({
             },
           }
         );
-        setIsFollow(true);
+        setFollowData(res.data.profile);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    setIsFollow(isfollow);
-  }, [isfollow]);
+
   return (
     <IsFollowBtn
       onClick={handleFollow}
-      isFollow={isFollow}
+      isfollow={isfollow}
       isProfile={isProfile}
     >
-      {isFollow ? "취소" : "팔로우"}
+      {isfollow ? "취소" : "팔로우"}
     </IsFollowBtn>
   );
 }

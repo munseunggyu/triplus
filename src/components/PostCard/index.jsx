@@ -77,7 +77,6 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
-
   comments,
 }) {
   const date = new Date(createdAt);
@@ -98,20 +97,22 @@ export default function PostCard({
     handleAlert,
     handlCloseClick,
   } = useModal(author.accountname);
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
-  const token = localStorage.getItem("token");
   const handleDeclaration = async () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/${id}/report`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userInfo.token}`,
             "Content-type": "application/json",
           },
         }
       );
-      alert("신고 되었습니다.");
+      if (res.status === 200) {
+        alert("신고 되었습니다.");
+      }
       handlCloseClick();
     } catch (error) {
       console.log(error);
