@@ -1,76 +1,46 @@
-import React from "react";
-import styled from "styled-components";
-import more_vertical from "../../assets/images/more_vertical.png";
+import * as S from "./style";
+import { Link } from "react-router-dom";
 
-const CommentList = styled.li`
-  list-style: none;
-  max-width: 390px;
-  display: flex;
-  gap: 12px;
-  margin: 0 auto 24px;
-  position: relative;
-  &:first-child {
-    padding-top: 20px;
-  }
-  border-top: 1px solid #dbdbdb;
-  padding-top: 20px;
-`;
+export default function Comment({ data, setCommentModal }) {
+  const handleCommentModal = () => {
+    setCommentModal(true);
+  };
 
-const CommentImg = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-`;
-const CommentUserName = styled.strong`
-  margin-top: 4px;
-  font-size: 14px;
-  display: block;
-  font-weight: 500;
-`;
+  const detailDate = (time) => {
+    const milliSeconds = new Date() - time;
+    const seconds = milliSeconds / 1000;
+    if (seconds < 60) return `방금 전`;
+    const minutes = seconds / 60;
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+    const hours = minutes / 60;
+    if (hours < 24) return `${Math.floor(hours)}시간 전`;
+    const days = hours / 24;
+    if (days < 7) return `${Math.floor(days)}일 전`;
+    const weeks = days / 7;
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`;
+    const months = days / 30;
+    if (months < 12) return `${Math.floor(months)}개월 전`;
+    const years = days / 365;
+    return `${Math.floor(years)}년 전`;
+  };
 
-const CommentTxt = styled.pre`
-  font-size: 14px;
-  margin-bottom: 16px;
-  line-height: 1.4;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  margin-top: 16px;
-`;
+  const nowDate = detailDate(new Date(data.createdAt));
 
-const CommentTime = styled.time`
-  font-size: 10px;
-  color: #767676;
-`;
-
-const CommentVertical = styled.button`
-  position: absolute;
-  top: 12px;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  background-size: 20px;
-  background: center / contain url(${more_vertical}) no-repeat;
-`;
-
-export default function Comment() {
   return (
-    <CommentList>
-      <CommentImg src="https://cdn.pixabay.com/photo/2020/12/16/10/44/cat-5836297_1280.jpg" />
+    <S.CommentList>
+      <Link to={`/profile/${data.author.accountname}`}>
+        <S.CommentImg src={data.author.image} />
+      </Link>
       <div>
-        <CommentUserName>서귀포시 무슨 무슨 농장</CommentUserName>
-        <CommentTxt>
-          옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다.
-        </CommentTxt>
-
-        <CommentTime></CommentTime>
+        <S.CommentUserName>
+          {data.author.username}
+          <S.CommentTime>· {nowDate}</S.CommentTime>
+        </S.CommentUserName>
+        <S.CommentTxt>{data.content}</S.CommentTxt>
+        <S.CommentVertical onClick={handleCommentModal}>
+          <span className="ir">더보기 버튼</span>
+        </S.CommentVertical>
       </div>
-      <CommentVertical>
-        <span className="ir">더보기 버튼</span>
-      </CommentVertical>
-    </CommentList>
+    </S.CommentList>
   );
 }
