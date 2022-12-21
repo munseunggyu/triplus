@@ -78,8 +78,6 @@ export default function PostDetail() {
           <Comment
             data={data}
             commentId={data.id}
-            setComment={setComment}
-            comment={comment}
             setCommentList={setCommentList}
           />
         ))}

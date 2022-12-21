@@ -136,15 +136,15 @@ export default function Comment({ data, commentId, setCommentList }) {
       {isModalAlert !== false ? (
         isModalAlert === "삭제모달" ? (
           <AlertModal
-            title="게시글을 삭제할까요?"
-            submitText="삭제"
+            title="댓글을 삭제할까요?"
+            submitText="댓글 삭제"
             onCloseClick={handlCloseClick}
             onSubmitClick={handleDeleteComment}
           />
         ) : (
           <AlertModal
-            title="게시글을 신고하시겠어요?"
-            submitText="신고"
+            title="댓글을 신고하시겠어요?"
+            submitText="댓글 신고"
             onCloseClick={handlCloseClick}
             onSubmitClick={handleDeclaration}
           />
