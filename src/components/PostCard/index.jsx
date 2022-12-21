@@ -8,6 +8,7 @@ import ModalList from "../Modal/ModalList";
 import AlertModal from "../Modal/AlertModal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useModal } from "../../hooks/useModal";
 
 const PostCardList = styled.li`
   list-style: none;
@@ -88,25 +89,16 @@ export default function PostCard({
   const createAtFormat = new Intl.DateTimeFormat("ko-KR", dateOptions).format(
     date
   );
-
   const navigate = useNavigate();
-  const [isModal, setIsModal] = useState(false);
-  const [isMyPost, setIsMyPost] = useState(false);
-  const [isModalAlert, setIsModalAlert] = useState(false);
+  const {
+    isModal,
+    isMyContent,
+    isModalAlert,
+    handleModal,
+    handleAlert,
+    handlCloseClick,
+  } = useModal();
 
-  const handleModal = (e) => {
-    setIsModal(!isModal);
-  };
-
-  const handleAlert = (e, txt) => {
-    e.stopPropagation();
-    setIsModalAlert(txt);
-  };
-
-  const handlCloseClick = () => {
-    setIsModalAlert(false);
-    setIsModal(false);
-  };
   const token = localStorage.getItem("token");
   const handleDeclaration = async () => {
     try {
@@ -148,7 +140,7 @@ export default function PostCard({
       </PostCardList>
       {isModal && (
         <ModalContainer onClick={handleModal}>
-          {isMyPost ? (
+          {isMyContent ? (
             <>
               <ModalList onClick={(e) => handleAlert(e, "삭제모달")}>
                 삭제
