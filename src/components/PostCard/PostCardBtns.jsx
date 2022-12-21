@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
+import { useHeartBtn } from "../../hooks/useHeartBtn";
 
 const PostCardHeartChatCon = styled.div`
   margin-top: 14px;
@@ -52,45 +53,14 @@ export default function PostCardBtns({
   heartCount,
   postkey,
 }) {
-  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-  const [heartTotal, setHeartTotal] = useState(heartCount);
-  const [heartBool, setHeartBool] = useState(hearted);
+  const { heartTotal, heartBool, handleHeart } = useHeartBtn(
+    hearted,
+    heartCount
+  );
 
-  const handleHeart = async () => {
-    try {
-      if (heartBool === true) {
-        const res = await axios.delete(
-          `${process.env.REACT_APP_API_KEY}/post/${postkey}/unheart`,
-          {
-            headers: {
-              Authorization: `Bearer ${userInfo.token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        setHeartBool(res.data.post.hearted);
-        setHeartTotal(res.data.post.heartCount);
-      } else {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_KEY}/post/${postkey}/heart`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${userInfo.token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        setHeartBool(res.data.post.hearted);
-        setHeartTotal(res.data.post.heartCount);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <PostCardHeartChatCon>
-      <PostCardLikeBtn onClick={handleHeart} hearted={heartBool}>
+      <PostCardLikeBtn onClick={() => handleHeart(postkey)} hearted={heartBool}>
         <span className="ir">좋아요 버튼</span>
         <span> {heartTotal} </span>
       </PostCardLikeBtn>

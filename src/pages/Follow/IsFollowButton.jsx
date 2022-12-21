@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { handleFollow } from "../../utils/handleFollow";
 
 const IsFollowBtn = styled.button`
   ${(props) =>
@@ -30,40 +31,17 @@ export default function IsFollowButton({
   setTriggerFollow,
 }) {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-  const handleFollow = async () => {
-    try {
-      if (isfollow === true) {
-        const res = await axios.delete(
-          `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/unfollow`,
-          {
-            headers: {
-              Authorization: `Bearer ${userInfo.token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        setTriggerFollow((prev) => !prev);
-      } else {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_KEY}/profile/${userAccountName}/follow`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${userInfo.token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        setTriggerFollow((prev) => !prev);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <IsFollowBtn
-      onClick={handleFollow}
+      onClick={() =>
+        handleFollow(
+          userInfo.token,
+          isfollow,
+          setTriggerFollow,
+          userAccountName
+        )
+      }
       isfollow={isfollow}
       isProfile={isProfile}
     >
