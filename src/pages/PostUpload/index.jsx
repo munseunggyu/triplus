@@ -6,16 +6,19 @@ import axios from "axios";
 import * as S from "./style";
 import PreviewList from "./PreviewList";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useGetPreview } from "../../hooks/useGetPreview";
 
 const PostUpload = () => {
   const token = localStorage.getItem("token");
   const [fileName, setFileName] = useState([]);
-  const [previewImgUrl, setPreviewImgUrl] = useState([]);
-  const [isActive, setIsActive] = useState(false);
+  // const [previewImgUrl, setPreviewImgUrl] = useState([]);
+  // const [isActive, setIsActive] = useState(false);
   const textRef = useRef();
   const fileRef = useRef();
   const navigate = useNavigate();
   const { accountname } = useParams();
+  const { isActive, setIsActive, previewImgUrl, setPreviewImgUrl, getPreview } =
+    useGetPreview();
 
   const handleResizeHeight = () => {
     textRef.current.style.height = "auto";
@@ -58,6 +61,7 @@ const PostUpload = () => {
     }
     sendPost();
     // navigate(`/profile/${accountname}`);
+    navigate(`/`);
   };
 
   // 이미지 파일 업로드
@@ -71,14 +75,14 @@ const PostUpload = () => {
   };
 
   // 이미지 파일 미리보기
-  const preview = (loadImg) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(loadImg[0]);
-    reader.onload = () => {
-      setPreviewImgUrl([...previewImgUrl, reader.result]);
-    };
-    setIsActive(true);
-  };
+  // const preview = (loadImg) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(loadImg[0]);
+  //   reader.onload = () => {
+  //     setPreviewImgUrl([...previewImgUrl, reader.result]);
+  //   };
+  //   setIsActive(true);
+  // };
 
   // 이미지 파일 스트링 데이터 얻기
   const getImgUrl = async (formData, loadImg) => {
@@ -91,7 +95,8 @@ const PostUpload = () => {
         ...fileName,
         `${process.env.REACT_APP_API_KEY}/${res.data[0].filename}`,
       ]);
-      preview(loadImg);
+      // preview(loadImg);
+      getPreview(loadImg);
     } catch (err) {
       console.error(err);
     }
