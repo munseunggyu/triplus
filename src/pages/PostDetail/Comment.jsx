@@ -66,8 +66,7 @@ export default function Comment({ data, commentId, setCommentList }) {
         }
       );
       setCommentList();
-      setIsModal(false);
-      setIsModalAlert(false);
+      handlCloseClick();
       alert("댓글이 삭제되었습니다.");
     } catch (error) {
       console.log(error);
@@ -93,8 +92,7 @@ export default function Comment({ data, commentId, setCommentList }) {
       );
       console.log(res);
       setCommentList();
-      setIsModal(false);
-      setIsModalAlert(false);
+      handlCloseClick();
       alert("댓글 신고가 완료되었습니다.");
     } catch (error) {
       console.log(error);
