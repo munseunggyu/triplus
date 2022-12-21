@@ -15,7 +15,6 @@ export default function PostDetail() {
   const [comment, setComment] = useState([]);
   const [commentId, setCommentId] = useState("");
   const [myPostData, setMyPostData] = useState();
-  const [commentModal, setCommentModal] = useState(false);
   const token = localStorage.getItem("token");
 
   // 게시글 불러오기
@@ -45,7 +44,6 @@ export default function PostDetail() {
   }, []);
 
   // 댓글 리스트 불러오기
-
   const setCommentList = async () => {
     try {
       const res = await axios.get(
@@ -68,25 +66,6 @@ export default function PostDetail() {
     setCommentList();
   }, []);
 
-  // 댓글 삭제하기
-
-  // const deleteComment = async (commentId) => {
-  //   try {
-  //     const res = await axios.delete(
-  //       `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}`,
-  //       {
-  //         header: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     // setCommentList();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   return (
     <>
       <Header>
@@ -98,13 +77,12 @@ export default function PostDetail() {
         {comment.map((data) => (
           <Comment
             data={data}
-            setCommentModal={setCommentModal}
-            commentModal={commentModal}
+            commentId={data.id}
+            setCommentList={setCommentList}
           />
         ))}
       </MainContainer>
       <CommentBar postkey={postkey} setCommentList={setCommentList} />
-      {commentModal && <PostModal />}
     </>
   );
 }
