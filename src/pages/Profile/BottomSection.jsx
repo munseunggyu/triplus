@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PostCard from "../../components/PostCard";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useGetData } from "../../hooks/useGetData";
 
 const ProfileBottomSectionBtns = styled.div`
   width: 390px;
@@ -29,35 +30,14 @@ const CardContainer = styled.div`
   padding: 0 21px;
 `;
 export default function ProfileBottomSection() {
-  const [myPostData, setMyPostData] = useState([]);
-  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
+  const { data, isLoding, getData } = useGetData();
+  const url = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost`;
 
-  const getPostData = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost`,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      return res.data.post;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const setPostData = async () => {
-    const res = await getPostData();
-    setMyPostData(res);
-  };
   useEffect(() => {
-    setPostData();
+    getData(url);
   }, [accountname]);
-  return (
+  return isLoding ? null : (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
       <ProfileBottomSectionBtns>
@@ -66,7 +46,7 @@ export default function ProfileBottomSection() {
       </ProfileBottomSectionBtns>
       <Line />
       <CardContainer>
-        {myPostData.map((post) => {
+        {data.post.map((post) => {
           return <PostCard key={post.id} {...post} />;
         })}
       </CardContainer>

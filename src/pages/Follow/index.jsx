@@ -8,6 +8,7 @@ import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
+import { useGetData } from "../../hooks/useGetData";
 import { useGetFollowList } from "../../hooks/useGetFollowList";
 import IsFollowButton from "./IsFollowButton";
 
@@ -21,7 +22,7 @@ const ProfileLink = styled.div`
 `;
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
-  const { followList, getFollowList } = useGetFollowList();
+  const { data, isLoding, getData } = useGetData();
   const { accountname } = useParams();
   const path = useLocation();
 
@@ -30,12 +31,12 @@ export default function Follow() {
 
   useEffect(() => {
     if (path.pathname.includes("follower")) {
-      getFollowList(followerUrl);
+      getData(followerUrl);
     } else {
-      getFollowList(followingUrl);
+      getData(followingUrl);
     }
   }, [triggerFollow]);
-  return (
+  return isLoding ? null : (
     <>
       <Header>
         <Prev />
@@ -43,7 +44,7 @@ export default function Follow() {
       </Header>
       <MainContainer>
         <FollowContainer>
-          {followList.map((follow) => {
+          {data.map((follow) => {
             return (
               <ProfileLink>
                 <Link to={`/profile/${follow.accountname}`}>

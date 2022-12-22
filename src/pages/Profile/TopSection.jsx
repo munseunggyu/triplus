@@ -5,6 +5,7 @@ import user_img_big from "../../assets/images/user_img_big.svg";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
 import axios from "axios";
+import { useGetData } from "../../hooks/useGetData";
 
 const ProfileTopSec = styled.section`
   width: 100%;
@@ -64,65 +65,50 @@ const ProfileFollowTxt = styled.span`
 `;
 
 export default function ProfileTopSection() {
-  const [profileData, setProfileData] = useState({});
+  const { data, isLoding, getData } = useGetData();
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
   const [triggerFollow, setTriggerFollow] = useState(false);
   const isMyProfile = accountname === userInfo.accountname;
+  const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
 
-  const getProfileData = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/profile/${accountname}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      return res.data.profile;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const setProfile = async () => {
-    const res = await getProfileData();
-    setProfileData(res);
-  };
   useEffect(() => {
-    setProfile();
+    getData(url);
   }, [accountname, triggerFollow]);
-  return (
+  return isLoding ? null : (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
       <ProfileTopContainer>
         <ProfileImgFollowBtnsCon>
-          <ProfileFollowers to={`/profile/${profileData.accountname}/follower`}>
-            <ProfileFollowCount>{profileData.followerCount}</ProfileFollowCount>
+          <ProfileFollowers
+            to={`/profile/${data.profile.accountname}/follower`}
+          >
+            <ProfileFollowCount>
+              {data.profile.followerCount}
+            </ProfileFollowCount>
             <ProfileFollowTxt>followers</ProfileFollowTxt>
           </ProfileFollowers>
           <ProfileUserImg src={user_img_big} alt="프로필 이미지" />
 
           <ProfileFollowers
-            to={`/profile/${profileData.accountname}/following`}
+            to={`/profile/${data.profile.accountname}/following`}
           >
             <ProfileFollowCount isfollowing="1">
-              {profileData.followingCount}
+              {data.profile.followingCount}
             </ProfileFollowCount>
             <ProfileFollowTxt>following</ProfileFollowTxt>
           </ProfileFollowers>
         </ProfileImgFollowBtnsCon>
-        <ProfileUserName>{profileData.username}</ProfileUserName>
-        <PofileUserId>@{profileData.accountname} </PofileUserId>
-        <ProfileIntroduce>{profileData.intro}</ProfileIntroduce>
+        <ProfileUserName>{data.profile.username}</ProfileUserName>
+        <PofileUserId>@{data.profile.accountname} </PofileUserId>
+        <ProfileIntroduce>{data.profile.intro}</ProfileIntroduce>
         {isMyProfile ? (
           <TopSectionMy />
         ) : (
           <TopSectionYour
             setTriggerFollow={setTriggerFollow}
-            isfollow={profileData.isfollow}
-            userAccountName={profileData.accountname}
+            isfollow={data.profile.isfollow}
+            userAccountName={data.profile.accountname}
           />
         )}
       </ProfileTopContainer>
