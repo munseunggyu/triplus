@@ -15,6 +15,7 @@ import ProductUpload from "./pages/ProductUpload";
 import ChatList from "./pages/ChatList";
 import ChatRoom from "./pages/ChatRoom";
 import ErrorPage from "./pages/ErrorPage";
+import PostEdit from "./pages/PostEdit";
 
 function App() {
   return (
@@ -32,11 +33,12 @@ function App() {
         <Route path="/profile/:accountname/follower" element={<Follow />} />
         <Route path="/editprofile" element={<SetProfile />} />
         <Route path="/postdetail/:postkey" element={<PostDetail />} />
-        <Route path="/postupload" element={<PostUpload />} />
+        <Route path="/postupload" element={<PostEdit />} />
         <Route path="/productupload" element={<ProductUpload />} />
         <Route path="/chatlist" element={<ChatList />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/404" element={<ErrorPage />} />
+        <Route path="/postedit/:postid" element={<PostEdit />} />
       </Routes>
     </>
   );
