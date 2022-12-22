@@ -136,7 +136,7 @@ export default function ProductUpload({ useRef, ...props }) {
 	const [itemName, setItemName] = useState("");
 	const [link, setLink] = useState("");
 	const [isActive, setIsActive] = useState(false);
-	const [isDisabled, setIsDisabled] = useState(true);
+	const [disabled, setDisabled] = useState(true);
 	const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
 	const navigate = useNavigate();
@@ -153,8 +153,10 @@ export default function ProductUpload({ useRef, ...props }) {
 			imageSrc.length !== 0
 		) {
 			setIsActive(true);
+			setDisabled(false);
 		} else {
 			setIsActive(false);
+			setDisabled(true);
 		}
 	});
 
@@ -219,7 +221,7 @@ export default function ProductUpload({ useRef, ...props }) {
 		<div>
 			<Header>
 				<Prev />
-				<SaveBtn isActive={isActive} onClick={handleSubmit}>
+				<SaveBtn isActive={isActive} disabled={disabled} onClick={handleSubmit}>
 					저장
 				</SaveBtn>
 			</Header>
