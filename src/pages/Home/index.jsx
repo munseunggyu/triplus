@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar";
@@ -10,9 +10,30 @@ import axios from "axios";
 import { useGetData } from "../../hooks/useGetData";
 
 export default function Home() {
-  // const [postList,isLoding setPostList] = useState([]);
-  const url = `${process.env.REACT_APP_API_KEY}/post/feed`;
-  const { data, isLoding, getData } = useGetData();
+  const [] = useState(10);
+  // const { data, isLoding, getData } = useGetData();
+  const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10`;
+  const [data, setData] = useState(null);
+  const [isLoding, setIsLoding] = useState(true);
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+  const [add, setAdd] = useState(10);
+  const bottomRef = useRef(null);
+  // setAdd(prev => prev + 10)
+  const getData = async (url) => {
+    try {
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+          "Content-type": "application/json",
+        },
+      });
+      setData(res.data);
+
+      setIsLoding(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getData(url);
@@ -32,6 +53,7 @@ export default function Home() {
             return <PostCard key={post.id} {...post} />;
           })
         )}
+        <div ref={bottomRef} />
       </MainContainer>
       <Navbar />
     </>
