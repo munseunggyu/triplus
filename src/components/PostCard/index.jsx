@@ -9,6 +9,7 @@ import AlertModal from "../Modal/AlertModal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useModal } from "../../hooks/useModal";
+import { handleDelete } from "../../utils/handleDelete";
 
 const PostCardList = styled.li`
   list-style: none;
@@ -77,6 +78,7 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
+  setTrigger,
 }) {
   const date = new Date(createdAt);
   const dateOptions = {
@@ -96,6 +98,8 @@ export default function PostCard({
     handleAlert,
     handlCloseClick,
   } = useModal(author.accountname);
+  const url = `${process.env.REACT_APP_API_KEY}/post/${id}`;
+  // handleDelete(e, handlCloseClick, setTrigger, url)
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const handleDeclaration = async () => {
     try {
@@ -172,7 +176,9 @@ export default function PostCard({
             title="게시글을 삭제할까요?"
             submitText="삭제"
             onCloseClick={handlCloseClick}
-            // onSubmitClick={삭제 기능}
+            onSubmitClick={(e) =>
+              handleDelete(e, handlCloseClick, setTrigger, url)
+            }
           />
         ) : (
           <AlertModal
