@@ -32,6 +32,8 @@ const Input = styled.input`
   }
 
   &::placeholder {
+    position: absolute;
+    bottom: 8px;
     color: #dbdbdb;
   }
 `;
