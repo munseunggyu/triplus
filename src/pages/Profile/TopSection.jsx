@@ -69,7 +69,6 @@ export default function ProfileTopSection() {
   const { accountname } = useParams();
   const isMyProfile = accountname === userInfo.accountname;
   const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
-
   useEffect(() => {
     getData(url);
   }, [accountname]);
@@ -101,7 +100,7 @@ export default function ProfileTopSection() {
         <PofileUserId>@{data.profile.accountname} </PofileUserId>
         <ProfileIntroduce>{data.profile.intro}</ProfileIntroduce>
         {isMyProfile ? (
-          <TopSectionMy />
+          <TopSectionMy {...data.profile} />
         ) : (
           <TopSectionYour
             isfollow={data.profile.isfollow}
