@@ -4,7 +4,6 @@ import styled from "styled-components";
 import user_img_big from "../../assets/images/user_img_big.svg";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
-import axios from "axios";
 import { useGetData } from "../../hooks/useGetData";
 
 const ProfileTopSec = styled.section`
@@ -68,13 +67,11 @@ export default function ProfileTopSection() {
   const { data, setData, isLoding, getData } = useGetData();
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
-  const [triggerFollow, setTriggerFollow] = useState(false);
   const isMyProfile = accountname === userInfo.accountname;
   const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
-
   useEffect(() => {
     getData(url);
-  }, [accountname, triggerFollow]);
+  }, [accountname]);
   return isLoding ? null : (
     <ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
@@ -103,10 +100,9 @@ export default function ProfileTopSection() {
         <PofileUserId>@{data.profile.accountname} </PofileUserId>
         <ProfileIntroduce>{data.profile.intro}</ProfileIntroduce>
         {isMyProfile ? (
-          <TopSectionMy />
+          <TopSectionMy {...data.profile} />
         ) : (
           <TopSectionYour
-            setTriggerFollow={setTriggerFollow}
             isfollow={data.profile.isfollow}
             userAccountName={data.profile.accountname}
             setProfile={setData}

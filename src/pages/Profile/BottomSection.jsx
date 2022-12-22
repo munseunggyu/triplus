@@ -32,11 +32,12 @@ const CardContainer = styled.div`
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
   const { data, isLoding, getData } = useGetData();
+  const [trigger, setTrigger] = useState(false);
   const url = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost`;
 
   useEffect(() => {
     getData(url);
-  }, [accountname]);
+  }, [accountname, trigger]);
   return isLoding ? null : (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
@@ -47,7 +48,7 @@ export default function ProfileBottomSection() {
       <Line />
       <CardContainer>
         {data.post.map((post) => {
-          return <PostCard key={post.id} {...post} />;
+          return <PostCard key={post.id} setTrigger={setTrigger} {...post} />;
         })}
       </CardContainer>
     </section>
