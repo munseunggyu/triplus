@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useGetData } from "../../hooks/useGetData";
 
 const ProfileMidSec = styled.section`
   border-bottom: 8px solid #f2f2f2;
@@ -46,41 +47,19 @@ const ProfileMidSectionPrice = styled.span`
   color: ${(props) => props.theme.mainColor};
 `;
 export default function ProfileMidSection() {
-  const [productData, setProductData] = useState([]);
-  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
-  const token = localStorage.getItem("token");
+  const { data, isLoding, getData } = useGetData();
   const { accountname } = useParams();
-
-  const getProductList = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/product/${accountname}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      return res.data.product;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const setProductDataList = async () => {
-    const res = await getProductList();
-    setProductData(res);
-  };
+  const url = `${process.env.REACT_APP_API_KEY}/product/${accountname}`;
   useEffect(() => {
-    setProductDataList();
+    getData(url);
   }, [accountname]);
-  return productData.length > 0 ? (
+
+  return isLoding ? null : data.data > 0 ? (
     <ProfileMidSec>
       <ProfileMidSectionCon>
         <ProfileMidSectionH2>판매중인 상품</ProfileMidSectionH2>
         <ProfileMidSectionUl>
-          {productData.map((product) => {
+          {data.product.map((product) => {
             return (
               <li key={product.id}>
                 <ProfileMidSectionImg
@@ -95,7 +74,5 @@ export default function ProfileMidSection() {
         </ProfileMidSectionUl>
       </ProfileMidSectionCon>
     </ProfileMidSec>
-  ) : (
-    <></>
-  );
+  ) : null;
 }

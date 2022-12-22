@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 
-export const useGetFollowList = () => {
-  const [followList, setFollowList] = useState([]);
+export const useGetData = () => {
+  const [data, setData] = useState(null);
+  const [isLoding, setIsLoding] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
-  const getFollowList = async (url) => {
+  const getData = async (url) => {
     try {
       const res = await axios.get(url, {
         headers: {
@@ -13,11 +14,12 @@ export const useGetFollowList = () => {
           "Content-type": "application/json",
         },
       });
-      setFollowList(res.data);
+      setData(res.data);
+      setIsLoding(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { followList, getFollowList };
+  return { data, isLoding, setData, getData };
 };
