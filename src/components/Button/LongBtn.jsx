@@ -25,7 +25,6 @@ const AbledBtn = styled(DisabledBtn)`
 `;
 
 export default function LongBtn({ disabled = true, message, onClick }) {
-  console.log(disabled, message, onClick);
   return (
     <>
       {disabled ? (
