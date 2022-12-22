@@ -1,24 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import axios from "axios";
 import * as S from "./style";
 import PreviewList from "./PreviewList";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useGetPreview } from "../../hooks/useGetPreview";
+import { usePostUpload } from "../../hooks/usePostUpload";
 
 const PostUpload = () => {
-  const token = localStorage.getItem("token");
-  const [fileName, setFileName] = useState([]);
-  // const [previewImgUrl, setPreviewImgUrl] = useState([]);
-  // const [isActive, setIsActive] = useState(false);
+  const location = useLocation();
   const textRef = useRef();
   const fileRef = useRef();
-  const navigate = useNavigate();
-  const { accountname } = useParams();
   const { isActive, setIsActive, previewImgUrl, setPreviewImgUrl, getPreview } =
     useGetPreview();
+  const { fileName, setFileName, txt, setTxt, handlePostUpload } =
+    usePostUpload();
 
   const handleResizeHeight = () => {
     textRef.current.style.height = "auto";
@@ -26,42 +24,12 @@ const PostUpload = () => {
   };
 
   const handleText = (e) => {
-    e.target.value ? setIsActive(true) : setIsActive(false);
+    setTxt(e.target.value);
+    txt !== "" ? setIsActive(true) : setIsActive(false);
   };
 
   const handleFile = () => {
     fileRef.current.click();
-  };
-
-  // 업로드 버튼 클릭 시 게시글 POST
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    async function sendPost() {
-      try {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_KEY}/post`,
-          {
-            post: {
-              content: textRef.current.value,
-              image: fileName.join(","),
-            },
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        console.log(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    sendPost();
-    // navigate(`/profile/${accountname}`);
-    navigate(`/`);
   };
 
   // 이미지 파일 업로드
@@ -73,16 +41,6 @@ const PostUpload = () => {
       ? getImgUrl(formData, loadImg)
       : alert("이미지는 1장만 업로드 가능합니다.");
   };
-
-  // 이미지 파일 미리보기
-  // const preview = (loadImg) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(loadImg[0]);
-  //   reader.onload = () => {
-  //     setPreviewImgUrl([...previewImgUrl, reader.result]);
-  //   };
-  //   setIsActive(true);
-  // };
 
   // 이미지 파일 스트링 데이터 얻기
   const getImgUrl = async (formData, loadImg) => {
@@ -115,12 +73,20 @@ const PostUpload = () => {
 
     fileRef.current.value = "";
   };
-
+  useEffect(() => {
+    if (location.state) {
+      location.state.content && setTxt(location.state.content);
+      if (location.state.image) {
+        setFileName([location.state.image]);
+        setPreviewImgUrl([location.state.image]);
+      }
+    }
+  }, []);
   return (
     <div>
       <Header>
         <Prev />
-        <S.UploadBtn onClick={handleSubmit} isActive={isActive}>
+        <S.UploadBtn onClick={handlePostUpload} isActive={isActive}>
           업로드
         </S.UploadBtn>
       </Header>
@@ -128,12 +94,13 @@ const PostUpload = () => {
       <MainContainer>
         <S.UploadContainer>
           <S.UploadProfileImg />
-          <S.UploadContentForm onSubmit={handleSubmit}>
+          <S.UploadContentForm onSubmit={handlePostUpload}>
             <S.UploadText
               name="textarea-uploadpost"
               placeholder="게시글 입력하기..."
               onChange={handleText}
               onInput={handleResizeHeight}
+              value={txt}
               ref={textRef}
               maxLength="2000"
             />
