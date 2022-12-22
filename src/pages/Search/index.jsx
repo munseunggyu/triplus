@@ -8,6 +8,7 @@ import SearchInput from "../../components/Header/SearchInput";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
+import { useGetData } from "../../hooks/useGetData";
 
 const UserInfoContainer = styled.ul`
   width: 358px;
@@ -15,33 +16,15 @@ const UserInfoContainer = styled.ul`
 `;
 
 export default function Search() {
-  const [searchList, setSearchList] = useState([]);
-  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
+  const { data, isLoding, getData } = useGetData();
   const [searchInputVal, setSearchInputVal] = useState("");
-  const getSearchList = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/user/searchuser/?keyword=${searchInputVal}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      setSearchList(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const url = `${process.env.REACT_APP_API_KEY}/user/searchuser/?keyword=${searchInputVal}`;
 
-  // 작성자가 입력이 완료한 후 1초 뒤에 실행하고 싶다. 한번만 데이터 요청
   useEffect(() => {
     if (searchInputVal !== "") {
       const timeId = setTimeout(() => {
-        getSearchList();
-      }, 500);
+        getData(url);
+      }, 300);
       return () => {
         clearTimeout(timeId);
       };
@@ -58,13 +41,14 @@ export default function Search() {
       </Header>
       <MainContainer>
         <UserInfoContainer>
-          {searchList.map((search) => {
-            return (
-              <Link key={search._id} to={`/profile/${search.accountname}`}>
-                <UserInfo {...search} />
-              </Link>
-            );
-          })}
+          {isLoding !== true &&
+            data.map((search) => {
+              return (
+                <Link key={search._id} to={`/profile/${search.accountname}`}>
+                  <UserInfo {...search} />
+                </Link>
+              );
+            })}
         </UserInfoContainer>
       </MainContainer>
       <Navbar />
