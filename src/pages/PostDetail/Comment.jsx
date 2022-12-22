@@ -1,15 +1,15 @@
 import * as S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import ModalList from "../../components/Modal/ModalList";
 import AlertModal from "../../components/Modal/AlertModal";
 import { useModal } from "../../hooks/useModal";
 import { handleCommentTime } from "../../utils/handleCommentTime";
-import { useDelete } from "../../hooks/useDelete";
-import { useDeclaration } from "../../hooks/useDeclaration";
-import { useState } from "react";
+import { handleDelete } from "../../utils/handleDelete";
+import { handleDeclaration } from "../../utils/handleDeclaration";
 
-export default function Comment({ data, commentId, setCommentList }) {
+export default function Comment({ data, commentId, setTrigger }) {
+  const { postkey } = useParams();
   const nowDate = handleCommentTime(new Date(data.createdAt));
   const {
     isModal,
@@ -20,12 +20,8 @@ export default function Comment({ data, commentId, setCommentList }) {
     handlCloseClick,
   } = useModal(data.author.accountname);
 
-  const { handleDeleteComment } = useDelete(
-    commentId,
-    handlCloseClick,
-    setCommentList
-  );
-  const { handleDeclaration } = useDeclaration(commentId, handlCloseClick);
+  const deleteUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}`;
+  const declarationUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}/report`;
 
   return (
     <>
@@ -65,14 +61,18 @@ export default function Comment({ data, commentId, setCommentList }) {
             title="댓글을 삭제할까요?"
             submitText="댓글 삭제"
             onCloseClick={handlCloseClick}
-            onSubmitClick={handleDeleteComment}
+            onSubmitClick={(e) => {
+              handleDelete(e, handlCloseClick, setTrigger, deleteUrl);
+            }}
           />
         ) : (
           <AlertModal
             title="댓글을 신고하시겠어요?"
             submitText="댓글 신고"
             onCloseClick={handlCloseClick}
-            onSubmitClick={handleDeclaration}
+            onSubmitClick={(e) => {
+              handleDeclaration(e, handlCloseClick, declarationUrl, commentId);
+            }}
           />
         )
       ) : null}
