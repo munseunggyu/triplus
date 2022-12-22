@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PostCardBtns from "./PostCardBtns";
 import user_img_small from "../../assets/images/user_img_small.svg";
@@ -77,7 +77,6 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
-  comments,
 }) {
   const date = new Date(createdAt);
   const dateOptions = {
@@ -120,7 +119,9 @@ export default function PostCard({
   return (
     <>
       <PostCardList>
-        <PostCardUserImg src={user_img_small} />
+        <PostCardUserImg
+          src={author.image.includes("Ellipse") ? user_img_small : author.image}
+        />
         <div>
           <PostCardUserName>{author.username}</PostCardUserName>
           <PostCardUserId>@{author.accountname}</PostCardUserId>

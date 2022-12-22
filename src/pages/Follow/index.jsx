@@ -34,6 +34,7 @@ export default function Follow() {
       getData(followingUrl);
     }
   }, [triggerFollow]);
+
   return isLoding ? null : (
     <>
       <Header>
