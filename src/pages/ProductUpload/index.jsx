@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import imgFile from "../../assets/images/file_gray.svg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SaveBtn = styled.button`
 	background-color: ${(props) =>
@@ -14,6 +16,7 @@ const SaveBtn = styled.button`
 	width: 90px;
 	height: 32px;
 `;
+const ProductUploadForm = styled.form``;
 const MainUploadSection = styled.section`
 	margin: 48px auto 0;
 	padding: 34px 34px 0 34px;
@@ -132,9 +135,11 @@ export default function ProductUpload({ useRef, ...props }) {
 	const [price, setPrice] = useState("");
 	const [itemName, setItemName] = useState("");
 	const [link, setLink] = useState("");
-	const [imageData, setImageData] = useState("");
 	const [isActive, setIsActive] = useState(false);
 	const [isDisabled, setIsDisabled] = useState(true);
+	const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		//상품 판매 링크 유효성 검사
@@ -179,58 +184,91 @@ export default function ProductUpload({ useRef, ...props }) {
 		};
 	};
 
+	function handleSubmit(e) {
+		e.preventDefault();
+
+		async function sendProduct() {
+			try {
+				const res = await axios.post(
+					`${process.env.REACT_APP_API_KEY}/product`,
+					{
+						product: {
+							itemName: itemName,
+							price: parseInt(price.replace(/[^0-9]/g, ""), 10),
+							link: link,
+							itemImage: imageSrc,
+						},
+					},
+					{
+						headers: {
+							Authorization: `Bearer ${userInfo.token}`,
+							"Content-type": "application/json",
+						},
+					}
+				);
+				console.log(res.data);
+			} catch (err) {
+				console.error(err);
+			}
+		}
+		sendProduct();
+		navigate(`/`);
+	}
+
 	return (
 		<div>
 			<Header>
 				<Prev />
-				<SaveBtn isActive={isActive}>저장</SaveBtn>
+				<SaveBtn isActive={isActive} onClick={handleSubmit}>
+					저장
+				</SaveBtn>
 			</Header>
 			<MainUploadSection>
-				<h2 className="ir">상품 등록 페이지</h2>
-				<ImageSave>이미지 등록</ImageSave>
-				<ImgPreview
-					type="file"
-					{...props}
-					onChange={uploadFile}
-					imageData={imageData}
-					setImageData={setImageData}
-					ref={useRef}
-					accept="image/*"
-					imageSrc={imageSrc}
-				></ImgPreview>
-				<ProductName>
-					<ProductNameLabel>상품명</ProductNameLabel>
-					<ProdutNameInput
-						placeholder="2~15자 이내여야 합니다."
-						type="text"
-						id="input-product"
-						maxLength="15"
-						minLength="2"
-						onChange={handleChange}
-						value={itemName}
-					></ProdutNameInput>
-				</ProductName>
-				<ProductPrice>
-					<ProductPriceLabel>가격</ProductPriceLabel>
-					<ProdutPriceInput
-						id="input-price"
-						type="text"
-						placeholder="숫자만 입력 가능합니다."
-						onChange={handleChange}
-						value={price}
-						maxLength="12"
-					></ProdutPriceInput>
-				</ProductPrice>
-				<SaleLink>
-					<SaleLinkLabel>판매 링크</SaleLinkLabel>
-					<SalelinkInput
-						placeholder="URL을 입력해 주세요"
-						type="text"
-						id="input-salelink"
-						onChange={handleChange}
-						value={link}
-					></SalelinkInput>
-				</SaleLink>
+				<ProductUploadForm onSubmit={handleSubmit}>
+					<h2 className="ir">상품 등록 페이지</h2>
+					<ImageSave>이미지 등록</ImageSave>
+					<ImgPreview
+						type="file"
+						{...props}
+						onChange={uploadFile}
+						ref={useRef}
+						accept="image/*"
+						imageSrc={imageSrc}
+					></ImgPreview>
+					<ProductName>
+						<ProductNameLabel>상품명</ProductNameLabel>
+						<ProdutNameInput
+							placeholder="2~15자 이내여야 합니다."
+							type="text"
+							id="input-product"
+							maxLength="15"
+							minLength="2"
+							onChange={handleChange}
+							value={itemName}
+						></ProdutNameInput>
+					</ProductName>
+					<ProductPrice>
+						<ProductPriceLabel>가격</ProductPriceLabel>
+						<ProdutPriceInput
+							id="input-price"
+							type="text"
+							placeholder="숫자만 입력 가능합니다."
+							onChange={handleChange}
+							value={price}
+							maxLength="12"
+						></ProdutPriceInput>
+					</ProductPrice>
+					<SaleLink>
+						<SaleLinkLabel>판매 링크</SaleLinkLabel>
+						<SalelinkInput
+							placeholder="URL을 입력해 주세요"
+							type="text"
+							id="input-salelink"
+							onChange={handleChange}
+							value={link}
+						></SalelinkInput>
+					</SaleLink>
+				</ProductUploadForm>
 			</MainUploadSection>
 		</div>
 	);
