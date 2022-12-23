@@ -14,7 +14,6 @@ export const handleDelete = async (e, handlCloseClick, setTrigger, url) => {
     if (res.status === 200) {
       setTrigger((prev) => !prev);
       handlCloseClick();
-      alert("삭제되었습니다.");
     }
   } catch (error) {
     console.log(error);
