@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 
 const IconsUl = styled.ul`
   background-color: white;
@@ -30,6 +30,9 @@ const Iconli = styled.div`
 const HomeIcon = styled.button`
   width: 24px;
   height: 24px;
+  &.active {
+    background: url(${css_sprite}) -146px -10px;
+  }
   background: url(${css_sprite}) -98px -102px;
   border: 0px;
   margin: 0 auto;
@@ -39,6 +42,9 @@ const MessageIcon = styled.button`
   width: 24px;
   height: 24px;
   background: url(${css_sprite}) -146px -54px;
+  &.active {
+    background: url(${css_sprite}) -146px -98px;
+  }
   border: 0px;
 `;
 
@@ -53,6 +59,9 @@ const UserIcon = styled.button`
   width: 24px;
   height: 24px;
   background: url(${css_sprite}) -54px -146px;
+  &.active {
+    background: url(${css_sprite}) -98px -146px;
+  }
   border: 0px;
 `;
 
@@ -60,29 +69,39 @@ const NavSpan = styled.span`
   display: block;
   font-size: 10px;
   color: #767676;
+  &.active {
+    color: ${(props) => props.theme.mainColor};
+  }
 `;
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const matchHome = useMatch("/");
+  const matchChatList = useMatch("/chatlist");
+  const matchProfile = useMatch("/profile/sfne.sae");
 
   return (
     <IconsUl>
       <Iconli>
         <HomeIcon
+          className={matchHome !== null ? "active" : ""}
           onClick={() => {
             navigate("/");
           }}
         />
-        <NavSpan>홈</NavSpan>
+        <NavSpan className={matchHome !== null ? "active" : ""}>홈</NavSpan>
       </Iconli>
 
       <Iconli>
         <MessageIcon
+          className={matchChatList !== null ? "active" : ""}
           onClick={() => {
             navigate("/chatlist");
           }}
         />
-        <NavSpan>채팅</NavSpan>
+        <NavSpan className={matchChatList !== null ? "active" : ""}>
+          채팅
+        </NavSpan>
       </Iconli>
 
       <Iconli>
@@ -96,11 +115,14 @@ export default function Navbar() {
 
       <Iconli>
         <UserIcon
+          className={matchProfile !== null ? "active" : ""}
           onClick={() => {
             navigate("/profile/sfne.sae");
           }}
         />
-        <NavSpan>프로필</NavSpan>
+        <NavSpan className={matchProfile !== null ? "active" : ""}>
+          프로필
+        </NavSpan>
       </Iconli>
     </IconsUl>
   );
