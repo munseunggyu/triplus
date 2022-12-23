@@ -33,7 +33,9 @@ export default function TopSectionMy({ accountname, image, intro, username }) {
       >
         프로필 수정
       </MyProfileBtn>
-      <MyProfileBtn to="/productupload">상품 등록</MyProfileBtn>
+      <MyProfileBtn onClick={() => navigate("/productupload")}>
+        상품 등록
+      </MyProfileBtn>
     </MyProfileBtnCon>
   );
 }
