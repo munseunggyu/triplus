@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
-import { useNavigate, useMatch } from "react-router-dom";
+import { useNavigate, useMatch, useParams } from "react-router-dom";
 
 const IconsUl = styled.ul`
   background-color: white;
@@ -75,10 +75,11 @@ const NavSpan = styled.span`
 `;
 
 export default function Navbar() {
+  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const navigate = useNavigate();
   const matchHome = useMatch("/");
   const matchChatList = useMatch("/chatlist");
-  const matchProfile = useMatch("/profile/sfne.sae");
+  const matchProfile = useMatch(`/profile/${userInfo.accountname}`);
 
   return (
     <IconsUl>
@@ -117,7 +118,7 @@ export default function Navbar() {
         <UserIcon
           className={matchProfile !== null ? "active" : ""}
           onClick={() => {
-            navigate("/profile/sfne.sae");
+            navigate(`/profile/${userInfo.accountname}`);
           }}
         />
         <NavSpan className={matchProfile !== null ? "active" : ""}>
