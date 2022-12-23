@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
-import { useNavigate, useMatch, useParams } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 
 const IconsUl = styled.ul`
   background-color: white;
@@ -31,38 +30,11 @@ const HomeIcon = styled.button`
   width: 24px;
   height: 24px;
   &.active {
-    background: url(${css_sprite}) -146px -10px;
+    background: ${(props) => props.tabActiveImg};
   }
-  background: url(${css_sprite}) -98px -102px;
+  background: ${(props) => props.tabImg};
   border: 0px;
   margin: 0 auto;
-`;
-
-const MessageIcon = styled.button`
-  width: 24px;
-  height: 24px;
-  background: url(${css_sprite}) -146px -54px;
-  &.active {
-    background: url(${css_sprite}) -146px -98px;
-  }
-  border: 0px;
-`;
-
-const UploadIcon = styled.button`
-  width: 24px;
-  height: 24px;
-  background: url(${css_sprite}) -10px -102px;
-  border: 0px;
-`;
-
-const UserIcon = styled.button`
-  width: 24px;
-  height: 24px;
-  background: url(${css_sprite}) -54px -146px;
-  &.active {
-    background: url(${css_sprite}) -98px -146px;
-  }
-  border: 0px;
 `;
 
 const NavSpan = styled.span`
@@ -81,50 +53,60 @@ export default function Navbar() {
   const matchChatList = useMatch("/chatlist");
   const matchProfile = useMatch(`/profile/${userInfo.accountname}`);
 
+  const navbarData = [
+    {
+      id: 1,
+      url: "/",
+      name: "홈",
+      match: matchHome,
+      tabImg: `url(${css_sprite}) -98px -102px`,
+      tabActiveImg: `url(${css_sprite}) -146px -10px`,
+    },
+    {
+      id: 2,
+      url: "/chatlist",
+      name: "채팅",
+      match: matchChatList,
+      tabImg: `url(${css_sprite}) -146px -54px`,
+      tabActiveImg: `url(${css_sprite}) -146px -98px`,
+    },
+    {
+      id: 3,
+      url: "/postupload",
+      name: "게시물 작성",
+      match: null,
+      tabImg: `url(${css_sprite}) -10px -102px`,
+      tabActiveImg: null,
+    },
+    {
+      id: 4,
+      url: `/profile/${userInfo.accountname}`,
+      name: "프로필",
+      match: matchProfile,
+      tabImg: `url(${css_sprite}) -54px -146px`,
+      tabActiveImg: `url(${css_sprite}) -98px -146px`,
+    },
+  ];
+
   return (
     <IconsUl>
-      <Iconli>
-        <HomeIcon
-          className={matchHome !== null ? "active" : ""}
-          onClick={() => {
-            navigate("/");
-          }}
-        />
-        <NavSpan className={matchHome !== null ? "active" : ""}>홈</NavSpan>
-      </Iconli>
-
-      <Iconli>
-        <MessageIcon
-          className={matchChatList !== null ? "active" : ""}
-          onClick={() => {
-            navigate("/chatlist");
-          }}
-        />
-        <NavSpan className={matchChatList !== null ? "active" : ""}>
-          채팅
-        </NavSpan>
-      </Iconli>
-
-      <Iconli>
-        <UploadIcon
-          onClick={() => {
-            navigate("/postupload");
-          }}
-        />
-        <NavSpan>게시물 작성</NavSpan>
-      </Iconli>
-
-      <Iconli>
-        <UserIcon
-          className={matchProfile !== null ? "active" : ""}
-          onClick={() => {
-            navigate(`/profile/${userInfo.accountname}`);
-          }}
-        />
-        <NavSpan className={matchProfile !== null ? "active" : ""}>
-          프로필
-        </NavSpan>
-      </Iconli>
+      {navbarData.map((navData) => {
+        return (
+          <Iconli key={navData.id}>
+            <HomeIcon
+              tabImg={navData.tabImg}
+              tabActiveImg={navData.tabActiveImg}
+              className={navData.match !== null ? "active" : ""}
+              onClick={() => {
+                navigate(navData.url);
+              }}
+            />
+            <NavSpan className={navData.match !== null ? "active" : ""}>
+              {navData.name}
+            </NavSpan>
+          </Iconli>
+        );
+      })}
     </IconsUl>
   );
 }
