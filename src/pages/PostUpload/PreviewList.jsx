@@ -1,36 +1,23 @@
-import styled from "styled-components";
-import x from "../../assets/images/x.png";
-
-const PreviewImg = styled.img`
-  position: relative;
-  width: 304px;
-  height: 228px;
-  object-fit: cover;
-  border-radius: 10px;
-`;
-
-const DeleteBtn = styled.button`
-  background: ${`url(${x})`} no-repeat;
-  background-size: 22px;
-  position: relative;
-  bottom: 200px;
-  left: -25px;
-  width: 22px;
-  height: 22px;
-`;
+import * as S from "./style";
 
 export default function PreviewList({ mapData, onClick }) {
+  const length = mapData.length;
   return (
     <>
       {mapData !== null && !!mapData.length && (
-        <ul>
+        <S.PreviewImgList>
           {mapData.map((image, index) => (
-            <li key={index}>
-              <PreviewImg src={image} alt={`${index + 1}번째 업로드 이미지`} />
-              <DeleteBtn id={index} onClick={onClick} type="button" />
-            </li>
+            <S.PreviewImgItem key={index}>
+              <S.PreviewImg
+                src={image}
+                alt={`${index + 1}번째 업로드 이미지`}
+                length={length}
+                // index={index}
+              />
+              <S.DeleteBtn id={index} onClick={onClick} type="button" />
+            </S.PreviewImgItem>
           ))}
-        </ul>
+        </S.PreviewImgList>
       )}
     </>
   );

@@ -1,7 +1,39 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import small_profile from "../../assets/images/user_img_small.svg";
 import upload_file from "../../assets/images/upload_file.svg";
+import x from "../../assets/images/x.png";
 
+// PreviewList
+export const PreviewImgList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+`;
+
+export const PreviewImgItem = styled.li`
+  position: relative;
+`;
+
+export const PreviewImg = styled.img`
+  width: 304px;
+  height: 228px;
+  position: relative;
+  object-fit: cover;
+  border-radius: 10px;
+  ${(props) => props.length > 1 && `width: 168px; height: 126px;`}
+`;
+
+export const DeleteBtn = styled.button`
+  background: ${`url(${x})`} no-repeat;
+  background-size: 22px;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+`;
+
+// index.js
 export const UploadContainer = styled.div`
   display: flex;
   padding: 16px;

@@ -39,9 +39,9 @@ const PostUpload = () => {
     const loadImg = e.target.files;
     const formData = new FormData();
     formData.append("image", loadImg[0]);
-    fileName.length === 0
+    fileName.length < 3
       ? getImgUrl(formData, loadImg)
-      : alert("이미지는 1장만 업로드 가능합니다.");
+      : alert("이미지는 3장만 업로드 가능합니다.");
   };
 
   // 이미지 파일 스트링 데이터 얻기
@@ -124,7 +124,7 @@ const PostUpload = () => {
               accept="image/*"
               ref={fileRef}
               onChange={handleImgInput}
-              // multiple // 이미지 3개 이상
+              multiple
             />
           </S.UploadFileForm>
         </S.UploadContainer>
