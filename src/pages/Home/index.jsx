@@ -7,6 +7,8 @@ import PostCard from "../../components/PostCard";
 import SearchButton from "../../components/Header/SearchButton";
 import HomeNoFollow from "./HomeNoFollow";
 import { useReloadData } from "../../hooks/useReloadData";
+import symbolImg from "../../assets/images/plain_blue.svg";
+import { HomeNoFollowing } from "./style";
 
 export default function Home() {
   const bottomRef = useRef(null);
