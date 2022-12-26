@@ -40,7 +40,7 @@ export default function UserInfo({ children, accountname, username, image }) {
       />
       <UserInfoNameIdCon>
         <UserInfoName>{username}</UserInfoName>
-        <UserInfoId>@{accountname}</UserInfoId>
+        <UserInfoId>&#64;{accountname}</UserInfoId>
       </UserInfoNameIdCon>
       {children}
     </UserInfoContanier>

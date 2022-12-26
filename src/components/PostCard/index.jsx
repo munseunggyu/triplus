@@ -7,9 +7,9 @@ import ModalContainer from "../Modal/ModalContainer";
 import ModalList from "../Modal/ModalList";
 import AlertModal from "../Modal/AlertModal";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useModal } from "../../hooks/useModal";
 import { handleDelete } from "../../utils/handleDelete";
+import { handleDeclaration } from "../../utils/handleDeclaration";
 
 const PostCardList = styled.li`
   list-style: none;
@@ -99,27 +99,8 @@ export default function PostCard({
     handlCloseClick,
   } = useModal(author.accountname);
   const url = `${process.env.REACT_APP_API_KEY}/post/${id}`;
-  // handleDelete(e, handlCloseClick, setTrigger, url)
-  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-  const handleDeclaration = async () => {
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_KEY}/${id}/report`,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      if (res.status === 200) {
-        alert("신고 되었습니다.");
-      }
-      handlCloseClick();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const declarationUrl = `${process.env.REACT_APP_API_KEY}/${id}/report`;
+
   return (
     <>
       <PostCardList>
@@ -128,7 +109,7 @@ export default function PostCard({
         />
         <div>
           <PostCardUserName>{author.username}</PostCardUserName>
-          <PostCardUserId>@{author.accountname}</PostCardUserId>
+          <PostCardUserId>&#64;{author.accountname}</PostCardUserId>
           <PostCardContentTxt>{content}</PostCardContentTxt>
           {image && <PostCardContentImg src={image} alt="게시물 이미지" />}
           <PostCardBtns
@@ -185,7 +166,9 @@ export default function PostCard({
             title="게시글을 신고하시겠어요?"
             submitText="신고"
             onCloseClick={handlCloseClick}
-            onSubmitClick={handleDeclaration}
+            onSubmitClick={(e) => {
+              handleDeclaration(e, handlCloseClick, declarationUrl, id);
+            }}
           />
         )
       ) : null}

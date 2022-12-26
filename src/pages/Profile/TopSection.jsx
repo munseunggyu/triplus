@@ -97,7 +97,7 @@ export default function ProfileTopSection() {
           </ProfileFollowers>
         </ProfileImgFollowBtnsCon>
         <ProfileUserName>{data.profile.username}</ProfileUserName>
-        <PofileUserId>@{data.profile.accountname} </PofileUserId>
+        <PofileUserId>&#64;{data.profile.accountname} </PofileUserId>
         <ProfileIntroduce>{data.profile.intro}</ProfileIntroduce>
         {isMyProfile ? (
           <TopSectionMy {...data.profile} />
