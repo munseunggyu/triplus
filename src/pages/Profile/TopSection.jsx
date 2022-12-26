@@ -5,63 +5,7 @@ import user_img_big from "../../assets/images/user_img_big.svg";
 import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
 import { useGetData } from "../../hooks/useGetData";
-
-const ProfileTopSec = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  border-bottom: 8px solid #f2f2f2;
-  padding: 37px 0 26px;
-`;
-const ProfileTopContainer = styled.div`
-  max-width: 390px;
-  padding-top: 30px;
-  text-align: center;
-  position: relative;
-`;
-
-const ProfileUserImg = styled.img`
-  width: 110px;
-  height: 110px;
-  margin: 0 auto;
-  display: block;
-`;
-const ProfileUserName = styled.strong`
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  display: block;
-  padding: 16px 0 6px;
-`;
-const PofileUserId = styled.span`
-  display: block;
-  font-size: 12px;
-  line-height: 15px;
-`;
-const ProfileIntroduce = styled.p`
-  padding: 16px 0 24px;
-  font-size: 14px;
-  line-height: 18px;
-`;
-const ProfileFollowers = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-`;
-const ProfileImgFollowBtnsCon = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 46px;
-`;
-const ProfileFollowCount = styled.span`
-  font-size: 18px;
-  font-weight: 700;
-  color: ${(props) => (props.isfollowing ? props.theme.grayColor : "black")};
-`;
-const ProfileFollowTxt = styled.span`
-  font-size: 10px;
-  color: ${(props) => props.theme.grayColor};
-`;
+import * as S from "./style";
 
 export default function ProfileTopSection() {
   const { data, setData, isLoding, getData } = useGetData();
@@ -73,32 +17,32 @@ export default function ProfileTopSection() {
     getData(url);
   }, [accountname]);
   return isLoding ? null : (
-    <ProfileTopSec>
+    <S.ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
-      <ProfileTopContainer>
-        <ProfileImgFollowBtnsCon>
-          <ProfileFollowers
+      <S.ProfileTopContainer>
+        <S.ProfileImgFollowBtnsCon>
+          <S.ProfileFollowers
             to={`/profile/${data.profile.accountname}/follower`}
           >
-            <ProfileFollowCount>
+            <S.ProfileFollowCount>
               {data.profile.followerCount}
-            </ProfileFollowCount>
-            <ProfileFollowTxt>followers</ProfileFollowTxt>
-          </ProfileFollowers>
-          <ProfileUserImg src={user_img_big} alt="프로필 이미지" />
+            </S.ProfileFollowCount>
+            <S.ProfileFollowTxt>followers</S.ProfileFollowTxt>
+          </S.ProfileFollowers>
+          <S.ProfileUserImg src={user_img_big} alt="프로필 이미지" />
 
-          <ProfileFollowers
+          <S.ProfileFollowers
             to={`/profile/${data.profile.accountname}/following`}
           >
-            <ProfileFollowCount isfollowing="1">
+            <S.ProfileFollowCount isfollowing="1">
               {data.profile.followingCount}
-            </ProfileFollowCount>
-            <ProfileFollowTxt>following</ProfileFollowTxt>
-          </ProfileFollowers>
-        </ProfileImgFollowBtnsCon>
-        <ProfileUserName>{data.profile.username}</ProfileUserName>
-        <PofileUserId>&#64;{data.profile.accountname} </PofileUserId>
-        <ProfileIntroduce>{data.profile.intro}</ProfileIntroduce>
+            </S.ProfileFollowCount>
+            <S.ProfileFollowTxt>following</S.ProfileFollowTxt>
+          </S.ProfileFollowers>
+        </S.ProfileImgFollowBtnsCon>
+        <S.ProfileUserName>{data.profile.username}</S.ProfileUserName>
+        <S.PofileUserId>&#64;{data.profile.accountname} </S.PofileUserId>
+        <S.ProfileIntroduce>{data.profile.intro}</S.ProfileIntroduce>
         {isMyProfile ? (
           <TopSectionMy {...data.profile} />
         ) : (
@@ -108,7 +52,7 @@ export default function ProfileTopSection() {
             setProfile={setData}
           />
         )}
-      </ProfileTopContainer>
-    </ProfileTopSec>
+      </S.ProfileTopContainer>
+    </S.ProfileTopSec>
   );
 }

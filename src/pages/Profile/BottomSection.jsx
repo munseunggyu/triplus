@@ -31,11 +31,12 @@ const CardContainer = styled.ul`
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
   const bottomRef = useRef(null);
+  const [isAlbum, setIsAlbum] = useState(false);
   const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
     useReloadData(bottomRef, 800);
   const [trigger, setTrigger] = useState(false);
   const url = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${skip}`;
-
+  console.log(isAlbum);
   useEffect(() => {
     if (bottomBoolean) {
       getData(url, true);
@@ -51,8 +52,8 @@ export default function ProfileBottomSection() {
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
       <ProfileBottomSectionBtns>
-        <PostListIcon />
-        <PostAlbumtIcon />
+        <PostListIcon onClick={() => setIsAlbum(false)} />
+        <PostAlbumtIcon onClick={() => setIsAlbum(true)} />
       </ProfileBottomSectionBtns>
       <Line />
       <CardContainer ref={bottomRef}>
