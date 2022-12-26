@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-export const HomeNoFollowing = styled.div`
+
+export const ErrorPageContainer = styled.div`
   width: 358px;
   margin: 0 auto;
   height: calc(100vh - 108px);
@@ -8,13 +9,13 @@ export const HomeNoFollowing = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 14px;
   gap: 25px;
+  font-size: 14px;
 `;
-export const HomeNoFollowingP = styled.p`
+export const ErrorMessage = styled.p`
   color: ${(props) => props.theme.grayColor};
 `;
-export const HomeNoFollowingLink = styled(Link)`
+export const ErrorPageBtn = styled(Link)`
   width: 120px;
   height: 44px;
   color: white;

@@ -1,56 +1,40 @@
-import React, { useEffect, useState } from "react";
-import css_sprite from "../../assets/images/css_sprites.png";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
 import PostCard from "../../components/PostCard";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useGetData } from "../../hooks/useGetData";
+import { useReloadData } from "../../hooks/useReloadData";
+import * as S from "./style";
 
-const ProfileBottomSectionBtns = styled.div`
-  width: 390px;
-  padding: 12px 0;
-  margin: 0 auto;
-  text-align: end;
-`;
-const PostAlbumtIcon = styled.button`
-  width: 26px;
-  height: 26px;
-  background: url(${css_sprite}) -10px -10px;
-`;
-const PostListIcon = styled.button`
-  width: 26px;
-  height: 26px;
-  background: url(${css_sprite}) -56px -56px;
-`;
-const Line = styled.div`
-  margin-bottom: 16px;
-  border-bottom: 2px solid #f2f2f2;
-`;
-const CardContainer = styled.div`
-  padding: 0 21px;
-`;
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
-  const { data, isLoding, getData } = useGetData();
+  const bottomRef = useRef(null);
+  const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
+    useReloadData(bottomRef, 800);
   const [trigger, setTrigger] = useState(false);
-  const url = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost`;
-
+  const url = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${skip}`;
   useEffect(() => {
-    getData(url);
-  }, [accountname, trigger]);
+    if (bottomBoolean) {
+      getData(url, true);
+    }
+    if (!bottomRef.current) return;
+    window.addEventListener("scroll", bottomScroll);
+    return () => {
+      window.removeEventListener("scroll", bottomScroll);
+    };
+  }, [accountname, trigger, bottomBoolean]);
+
   return isLoding ? null : (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
-      <ProfileBottomSectionBtns>
-        <PostListIcon />
-        <PostAlbumtIcon />
-      </ProfileBottomSectionBtns>
-      <Line />
-      <CardContainer>
+      <S.ProfileBottomSectionBtns>
+        <S.PostListIcon />
+        <S.PostAlbumtIcon />
+      </S.ProfileBottomSectionBtns>
+      <S.Line />
+      <S.CardContainer ref={bottomRef}>
         {data.post.map((post) => {
           return <PostCard key={post.id} setTrigger={setTrigger} {...post} />;
         })}
-      </CardContainer>
+      </S.CardContainer>
     </section>
   );
 }

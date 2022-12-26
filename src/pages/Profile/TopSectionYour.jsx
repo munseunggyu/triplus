@@ -1,43 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import css_sprite from "../../assets/images/css_sprites.png";
+import React from "react";
 import IsFollowButton from "../Follow/IsFollowButton";
-
-const YourProfileBtnCon = styled.div`
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-`;
-
-const YourProfileFollowBtn = styled.button`
-  border: ${(props) => `1px solid ${props.theme.borderColor}`};
-  /* border-radius: 26px; */
-  width: 120px;
-  background-color: ${(props) =>
-    props.isFollow ? "white" : props.theme.mainColor};
-  color: ${(props) => (props.isFollow ? props.theme.grayColor : "white")};
-`;
-
-const YourProfileBtn = styled(Link)`
-  width: 34px;
-  height: 34px;
-  box-sizing: border-box;
-  border: ${(props) => `1px solid ${props.theme.borderColor}`};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  span {
-    width: 20px;
-    height: 20px;
-    background: ${(props) =>
-      props.isfollowicon
-        ? `url(${css_sprite}) -130px -190px`
-        : `url(${css_sprite}) -90px -190px`};
-  }
-`;
+import * as S from "./style";
 
 export default function TopSectionYour({
   isfollow,
@@ -45,21 +8,21 @@ export default function TopSectionYour({
   setProfile,
 }) {
   return (
-    <YourProfileBtnCon>
-      <YourProfileBtn>
+    <S.YourProfileBtnCon>
+      <S.YourProfileBtn>
         <span className="ir">채팅하기</span>
         <span />
-      </YourProfileBtn>
+      </S.YourProfileBtn>
       <IsFollowButton
         isfollow={isfollow}
         userAccountName={userAccountName}
         isProfile="1"
         setProfile={setProfile}
       />
-      <YourProfileBtn isfollowicon="1">
+      <S.YourProfileBtn isfollowicon="1">
         <span className="ir">채팅하기</span>
         <span />
-      </YourProfileBtn>
-    </YourProfileBtnCon>
+      </S.YourProfileBtn>
+    </S.YourProfileBtnCon>
   );
 }

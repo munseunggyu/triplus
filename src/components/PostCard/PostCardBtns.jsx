@@ -1,51 +1,6 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import css_sprite from "../../assets/images/css_sprites.png";
+import React from "react";
 import { useHeartBtn } from "../../hooks/useHeartBtn";
-
-const PostCardHeartChatCon = styled.div`
-  margin-top: 14px;
-  display: flex;
-  margin-bottom: 18px;
-`;
-
-const PostCardLikeBtn = styled.button`
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  span {
-    color: ${(props) => props.theme.grayColor};
-  }
-  &::before {
-    content: "";
-    display: block;
-    margin-right: 5px;
-    width: 20px;
-    height: 20px;
-    background: ${(props) =>
-      props.hearted
-        ? `url(${css_sprite}) -234px -10px`
-        : `url(${css_sprite}) -50px -190px`};
-  }
-`;
-const PostCardChatLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  &::before {
-    content: "";
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    background: url(${css_sprite}) -90px -190px;
-  }
-  span {
-    color: ${(props) => props.theme.grayColor};
-    margin-top: 3px;
-  }
-`;
+import * as S from "./style";
 
 export default function PostCardBtns({
   commentCount,
@@ -59,16 +14,19 @@ export default function PostCardBtns({
   );
 
   return (
-    <PostCardHeartChatCon>
-      <PostCardLikeBtn onClick={() => handleHeart(postkey)} hearted={heartBool}>
+    <S.PostCardHeartChatCon>
+      <S.PostCardLikeBtn
+        onClick={() => handleHeart(postkey)}
+        hearted={heartBool}
+      >
         <span className="ir">좋아요 버튼</span>
         <span> {heartTotal} </span>
-      </PostCardLikeBtn>
+      </S.PostCardLikeBtn>
 
-      <PostCardChatLink to={`/postdetail/${postkey}`}>
+      <S.PostCardChatLink to={`/postdetail/${postkey}`}>
         <span className="ir">댓글창으로 이동</span>
         <span> {commentCount} </span>
-      </PostCardChatLink>
-    </PostCardHeartChatCon>
+      </S.PostCardChatLink>
+    </S.PostCardHeartChatCon>
   );
 }

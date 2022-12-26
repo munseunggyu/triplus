@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Prev from "../../components/Header/Prev";
@@ -9,15 +8,8 @@ import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
 import IsFollowButton from "./IsFollowButton";
+import * as S from "./style";
 
-const FollowContainer = styled.ul`
-  max-width: 358px;
-  margin: 0 auto;
-`;
-const ProfileLink = styled.div`
-  display: flex;
-  align-items: center;
-`;
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
   const { data, isLoding, getData } = useGetData();
@@ -42,22 +34,22 @@ export default function Follow() {
         <HeaderTitle>follow</HeaderTitle>
       </Header>
       <MainContainer>
-        <FollowContainer>
+        <S.FollowContainer>
           {data.map((follow) => {
             return (
-              <ProfileLink>
+              <S.ProfileLink key={follow._id}>
                 <Link to={`/profile/${follow.accountname}`}>
-                  <UserInfo {...follow}></UserInfo>
+                  <UserInfo {...follow} />
                 </Link>
                 <IsFollowButton
                   isfollow={follow.isfollow}
                   userAccountName={follow.accountname}
                   setTriggerFollow={setTriggerFollow}
                 />
-              </ProfileLink>
+              </S.ProfileLink>
             );
           })}
-        </FollowContainer>
+        </S.FollowContainer>
       </MainContainer>
       <Navbar />
     </>
