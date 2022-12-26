@@ -53,7 +53,6 @@ const PostUpload = () => {
         ...fileName,
         `${process.env.REACT_APP_API_KEY}/${res.data[0].filename}`,
       ]);
-      // preview(loadImg);
       getPreview(loadImg);
     } catch (err) {
       console.error(err);

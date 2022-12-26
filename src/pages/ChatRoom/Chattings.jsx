@@ -4,7 +4,7 @@ import ChatReceive from "./ChatReceive";
 import ChatSend from "./ChatSend";
 
 const ChatMain = styled.main`
-  height: calc(100% - 124px);
+  height: calc(100% - 109px);
   position: fixed;
   width: 100%;
   margin-top: 48px;

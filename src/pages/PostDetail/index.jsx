@@ -24,7 +24,7 @@ export default function PostDetail() {
   useEffect(() => {
     postGetData(postUrl);
     commentGetData(commentUrl);
-    console.log(commentData);
+    // console.log(commentData);
   }, [trigger]);
 
   return (
@@ -38,6 +38,7 @@ export default function PostDetail() {
         {commentData?.comments &&
           commentData?.comments?.map((mapData) => (
             <Comment
+              key={mapData.id}
               data={mapData}
               commentId={mapData.id}
               setTrigger={setTrigger}

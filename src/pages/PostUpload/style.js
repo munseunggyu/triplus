@@ -49,8 +49,6 @@ export const UploadContentImg = styled.div`
 export const UploadFileImg = styled.div`
   width: 50px;
   height: 50px;
-  background-image: url(${upload_file}) no-repeat;
-  background-size: 50px;
 `;
 
 export const UploadBtn = styled.button`

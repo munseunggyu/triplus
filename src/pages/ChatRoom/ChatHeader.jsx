@@ -13,7 +13,7 @@ export default function ChatHeader() {
   return (
     <Header>
       <Prev />
-      <ChatUserName>파주 불주먹</ChatUserName>
+      <ChatUserName>애월읍 위니브 감귤농장</ChatUserName>
       <Vertical />
     </Header>
   );
