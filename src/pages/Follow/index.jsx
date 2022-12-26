@@ -9,15 +9,8 @@ import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
 import IsFollowButton from "./IsFollowButton";
+import * as S from "./style";
 
-const FollowContainer = styled.ul`
-  max-width: 358px;
-  margin: 0 auto;
-`;
-const ProfileLink = styled.div`
-  display: flex;
-  align-items: center;
-`;
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
   const { data, isLoding, getData } = useGetData();
@@ -42,10 +35,10 @@ export default function Follow() {
         <HeaderTitle>follow</HeaderTitle>
       </Header>
       <MainContainer>
-        <FollowContainer>
+        <S.FollowContainer>
           {data.map((follow) => {
             return (
-              <ProfileLink>
+              <S.ProfileLink>
                 <Link to={`/profile/${follow.accountname}`}>
                   <UserInfo {...follow}></UserInfo>
                 </Link>
@@ -54,10 +47,10 @@ export default function Follow() {
                   userAccountName={follow.accountname}
                   setTriggerFollow={setTriggerFollow}
                 />
-              </ProfileLink>
+              </S.ProfileLink>
             );
           })}
-        </FollowContainer>
+        </S.FollowContainer>
       </MainContainer>
       <Navbar />
     </>
