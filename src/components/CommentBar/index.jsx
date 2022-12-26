@@ -6,18 +6,18 @@ import { useState } from "react";
 const CommentContainer = styled.div`
   position: fixed;
   bottom: 0;
-  background-color: white;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 50px;
+  height: 36px;
   padding: 13px 0;
-  border-top: 0.5px solid rgb(219, 219, 219);
+  border-top: 0.5px solid ${(props) => props.theme.borderColor};
 `;
 
 const CommentProfileImg = styled.img`
-  width: 50px;
-  padding: 0 18px;
+  width: 36px;
+  padding: 0 18px 0 16px;
 `;
 
 const CommentInput = styled.input`
