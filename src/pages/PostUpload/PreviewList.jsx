@@ -12,7 +12,6 @@ export default function PreviewList({ mapData, onClick }) {
                 src={image}
                 alt={`${index + 1}번째 업로드 이미지`}
                 length={length}
-                // index={index}
               />
               <S.DeleteBtn id={index} onClick={onClick} type="button" />
             </S.PreviewImgItem>
