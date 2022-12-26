@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar";
@@ -6,38 +6,24 @@ import { MainContainer } from "../../components/MainContainer";
 import PostCard from "../../components/PostCard";
 import SearchButton from "../../components/Header/SearchButton";
 import HomeNoFollow from "./HomeNoFollow";
-import axios from "axios";
-import { useGetData } from "../../hooks/useGetData";
+import { useReloadData } from "../../hooks/useReloadData";
 
 export default function Home() {
-  const [] = useState(10);
-  // const { data, isLoding, getData } = useGetData();
-  const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10`;
-  const [data, setData] = useState(null);
-  const [isLoding, setIsLoding] = useState(true);
-  const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-  const [add, setAdd] = useState(10);
   const bottomRef = useRef(null);
-  // setAdd(prev => prev + 10)
-  const getData = async (url) => {
-    try {
-      const res = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-          "Content-type": "application/json",
-        },
-      });
-      setData(res.data);
-
-      setIsLoding(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
+    useReloadData(bottomRef, 132);
+  const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10&skip=${skip}`;
 
   useEffect(() => {
-    getData(url);
-  }, []);
+    if (bottomBoolean) {
+      getData(url);
+    }
+    if (!bottomRef.current) return;
+    window.addEventListener("scroll", bottomScroll);
+    return () => {
+      window.removeEventListener("scroll", bottomScroll);
+    };
+  }, [bottomBoolean]);
 
   return (
     <>
@@ -46,14 +32,15 @@ export default function Home() {
         <SearchButton />
       </Header>
       <MainContainer>
-        {isLoding ? (
-          <HomeNoFollow />
-        ) : (
-          data.posts.map((post) => {
-            return <PostCard key={post.id} {...post} />;
-          })
-        )}
-        <div ref={bottomRef} />
+        <ul ref={bottomRef}>
+          {isLoding ? (
+            <HomeNoFollow />
+          ) : (
+            data.posts.map((post) => {
+              return <PostCard key={post.id} {...post} />;
+            })
+          )}
+        </ul>
       </MainContainer>
       <Navbar />
     </>
