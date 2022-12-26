@@ -15,6 +15,11 @@ const CommentContainer = styled.div`
   border-top: 0.5px solid ${(props) => props.theme.borderColor};
 `;
 
+const CommentForm = styled.form`
+  display: flex;
+  width: 100%;
+`;
+
 const CommentProfileImg = styled.img`
   width: 36px;
   padding: 0 18px 0 16px;
@@ -50,7 +55,8 @@ export default function CommentBar({ postkey, setCommentList }) {
     setTxt(e.target.value);
   };
 
-  const postComment = async () => {
+  const postComment = async (e) => {
+    e.preventDefault();
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`,
@@ -76,16 +82,16 @@ export default function CommentBar({ postkey, setCommentList }) {
 
   return (
     <CommentContainer>
-      <CommentProfileImg src={user_img_small} alt="사용자 이름" />
-      <CommentInput
-        type="text"
-        placeholder="댓글 입력하기..."
-        onChange={handlePostComment}
-        value={txt}
-      />
-      <CommentBtn onClick={postComment} txt={txt}>
-        게시
-      </CommentBtn>
+      <CommentForm onSubmit={postComment}>
+        <CommentProfileImg src={user_img_small} alt="사용자 이름" />
+        <CommentInput
+          type="text"
+          placeholder="댓글 입력하기..."
+          onChange={handlePostComment}
+          value={txt}
+        />
+        <CommentBtn txt={txt}>게시</CommentBtn>
+      </CommentForm>
     </CommentContainer>
   );
 }
