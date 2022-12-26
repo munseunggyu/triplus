@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Prev from "../../components/Header/Prev";
@@ -38,9 +37,9 @@ export default function Follow() {
         <S.FollowContainer>
           {data.map((follow) => {
             return (
-              <S.ProfileLink>
+              <S.ProfileLink key={follow._id}>
                 <Link to={`/profile/${follow.accountname}`}>
-                  <UserInfo {...follow}></UserInfo>
+                  <UserInfo {...follow} />
                 </Link>
                 <IsFollowButton
                   isfollow={follow.isfollow}
