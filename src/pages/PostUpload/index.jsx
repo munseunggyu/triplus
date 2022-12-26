@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
@@ -10,6 +10,7 @@ import { useGetPreview } from "../../hooks/useGetPreview";
 import { usePostUpload } from "../../hooks/usePostUpload";
 
 const PostUpload = () => {
+  const [disabled, setDisabled] = useState(true);
   const location = useLocation();
   const textRef = useRef();
   const fileRef = useRef();
@@ -25,7 +26,8 @@ const PostUpload = () => {
 
   const handleText = (e) => {
     setTxt(e.target.value);
-    txt !== "" ? setIsActive(true) : setIsActive(false);
+    txt !== "" ? setIsActive(e.target.value) : setIsActive("");
+    e.target.value !== "" ? setDisabled(false) : setDisabled(true);
   };
 
   const handleFile = () => {
@@ -81,11 +83,16 @@ const PostUpload = () => {
       }
     }
   }, []);
+
   return (
     <div>
       <Header>
         <Prev />
-        <S.UploadBtn onClick={handlePostUpload} isActive={isActive}>
+        <S.UploadBtn
+          onClick={handlePostUpload}
+          isActive={isActive}
+          disabled={disabled}
+        >
           업로드
         </S.UploadBtn>
       </Header>

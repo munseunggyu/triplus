@@ -59,6 +59,9 @@ export const UploadBtn = styled.button`
   margin-left: auto;
   width: 90px;
   height: 32px;
+  :disabled {
+    cursor: default;
+  }
 `;
 
 export const UploadFileForm = styled.form`

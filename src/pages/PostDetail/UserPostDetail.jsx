@@ -6,10 +6,10 @@ export default function UserPostDetail({ myPostData }) {
     return (
       <section>
         <h2 className="ir">사용자가 작성한 게시글</h2>
-        <S.CardContainer>
+        <div>
           <PostCard {...myPostData} />
           <S.Line />
-        </S.CardContainer>
+        </div>
       </section>
     );
   }

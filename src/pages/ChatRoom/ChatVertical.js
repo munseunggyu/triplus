@@ -1,16 +1,8 @@
-import styled from "styled-components";
-import css_sprite from "../../assets/images/css_sprites.png";
 import { useModal } from "../../hooks/useModal";
 import ModalContainer from "../../components/Modal/ModalContainer";
 import ModalList from "../../components/Modal/ModalList";
 import { useNavigate } from "react-router-dom";
-
-const VerticalBtn = styled.button`
-  margin-left: auto;
-  width: 24px;
-  height: 24px;
-  background: url(${css_sprite}) -102px -54px;
-`;
+import * as S from "./style";
 
 export default function Vertical() {
   const { isModal, handleModal } = useModal();
@@ -18,9 +10,9 @@ export default function Vertical() {
 
   return (
     <>
-      <VerticalBtn onClick={handleModal}>
+      <S.VerticalBtn onClick={handleModal}>
         <span className="ir">버티컬 버튼</span>
-      </VerticalBtn>
+      </S.VerticalBtn>
       {isModal && (
         <ModalContainer onClick={handleModal}>
           <ModalList onClick={() => navigate("/chatlist")}>

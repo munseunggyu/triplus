@@ -59,12 +59,7 @@ export const CommentVertical = styled.button`
 `;
 
 // UserPostDetail
-export const CardContainer = styled.div`
-  /* padding: 0 21px; */
-`;
-
 export const Line = styled.div`
   margin-bottom: 20px;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
-  /* width: 200vw; */
 `;

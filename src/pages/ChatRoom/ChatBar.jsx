@@ -1,51 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import file_gray from "../../assets/images/file_gray.svg";
-import { useRef } from "react";
-
-const ChatContainer = styled.div`
-  display: flex;
-  vertical-align: center;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  background-color: #fff;
-  width: 100%;
-  height: 36px;
-  padding: 13px 0;
-  border-top: 0.5px solid ${(props) => props.theme.borderColor};
-`;
-
-const ChatUploadFileBtn = styled.button`
-  background: center / contain url(${file_gray}) no-repeat;
-  background-size: 36px;
-  width: 36px;
-  height: 36px;
-  padding: 0 18px;
-  margin: 0 18px 0 16px;
-`;
-
-const ChatTextInput = styled.input`
-  border: none;
-  &:focus {
-    outline: none;
-  }
-  width: 100%;
-  &::placeholder {
-    font-size: 14px;
-    color: #c4c4c4;
-  }
-`;
-
-const ChatSendBtn = styled.button`
-  box-sizing: border-box;
-  font-size: 14px;
-  color: ${(props) =>
-    props.isActive || props.isImgActive ? props.theme.mainColor : "#c4c4c4"};
-  width: 5em;
-  text-align: center;
-  line-height: 36px;
-`;
+import { useRef, useState } from "react";
+import * as S from "./style";
 
 export default function CommentBar() {
   const [isActive, setIsActive] = useState("");
@@ -61,8 +15,8 @@ export default function CommentBar() {
   };
 
   return (
-    <ChatContainer>
-      <ChatUploadFileBtn onClick={handleClick} />
+    <S.ChatContainer>
+      <S.ChatUploadFileBtn onClick={handleClick} />
       <input
         type="file"
         className="ir"
@@ -72,15 +26,15 @@ export default function CommentBar() {
         onChange={handleImgInput}
       />
 
-      <ChatTextInput
+      <S.ChatTextInput
         placeholder="메세지 입력하기..."
         onChange={(e) => {
           setIsActive(e.target.value);
         }}
       />
-      <ChatSendBtn isActive={isActive} isImgActive={isImgActive}>
+      <S.ChatSendBtn isActive={isActive} isImgActive={isImgActive}>
         전송
-      </ChatSendBtn>
-    </ChatContainer>
+      </S.ChatSendBtn>
+    </S.ChatContainer>
   );
 }
