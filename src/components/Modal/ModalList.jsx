@@ -1,6 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import AlertModal from "./AlertModal";
 import * as S from "./style";
 
 export default function ModalList({ children, onClick, useRef }) {

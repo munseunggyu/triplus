@@ -1,7 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
 

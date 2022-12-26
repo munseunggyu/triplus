@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import css_sprite from "../../assets/images/css_sprites.png";
-import styled from "styled-components";
 import PostCard from "../../components/PostCard";
 import { useParams } from "react-router-dom";
 import { useReloadData } from "../../hooks/useReloadData";

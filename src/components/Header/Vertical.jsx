@@ -1,26 +1,19 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import css_sprite from "../../assets/images/css_sprites.png";
+import React from "react";
 import { useModal } from "../../hooks/useModal";
 import AlertModal from "../Modal/AlertModal";
 import ModalContainer from "../Modal/ModalContainer";
 import ModalList from "../Modal/ModalList";
+import * as S from "./style";
 
-const VerticalBtn = styled.button`
-  margin-left: auto;
-  width: 24px;
-  height: 24px;
-  background: url(${css_sprite}) -102px -54px;
-`;
 export default function Vertical() {
   const { isModal, isModalAlert, handleModal, handleAlert, handlCloseClick } =
     useModal();
 
   return (
     <>
-      <VerticalBtn onClick={handleModal}>
+      <S.VerticalBtn onClick={handleModal}>
         <span className="ir">버티컬 버튼</span>
-      </VerticalBtn>
+      </S.VerticalBtn>
       {isModal && (
         <ModalContainer onClick={handleModal}>
           <ModalList onClick={() => console.log("hi")}>

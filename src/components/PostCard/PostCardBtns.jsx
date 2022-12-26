@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHeartBtn } from "../../hooks/useHeartBtn";
 import * as S from "./style";
 
