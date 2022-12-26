@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import Vertical from "../../components/Header/Vertical";
+import ChatVertical from "./ChatVertical";
 import Prev from "../../components/Header/Prev";
 
 const ChatUserName = styled.p`
@@ -14,7 +14,7 @@ export default function ChatHeader() {
     <Header>
       <Prev />
       <ChatUserName>애월읍 위니브 감귤농장</ChatUserName>
-      <Vertical />
+      <ChatVertical />
     </Header>
   );
 }
