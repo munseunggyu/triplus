@@ -26,7 +26,7 @@ const Iconli = styled.div`
   gap: 4px;
 `;
 
-const HomeIcon = styled.button`
+const NavIcon = styled.button`
   width: 24px;
   height: 24px;
   &.active {
@@ -93,7 +93,7 @@ export default function Navbar() {
       {navbarData.map((navData) => {
         return (
           <Iconli key={navData.id}>
-            <HomeIcon
+            <NavIcon
               tabImg={navData.tabImg}
               tabActiveImg={navData.tabActiveImg}
               className={navData.match !== null ? "active" : ""}

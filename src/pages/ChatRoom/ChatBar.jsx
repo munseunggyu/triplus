@@ -1,54 +1,40 @@
-import React from "react";
-import styled from "styled-components";
-import file_gray from "../../assets/images/file_gray.svg";
-
-const ChatContainer = styled.div`
-  /* box-sizing: border-box; */
-  position: fixed;
-  bottom: 0;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 50px;
-  padding: 13px 0;
-  border-top: 0.5px solid rgb(219, 219, 219);
-`;
-
-const ChatUploadFile = styled.div`
-  background: center / contain url(${file_gray}) no-repeat;
-  background-size: 36px;
-  width: 50px;
-  padding: 0 18px;
-`;
-
-const ChatInput = styled.input`
-  border: none;
-  &:focus {
-    outline: none;
-  }
-  width: 100%;
-
-  &::placeholder {
-    font-size: 14px;
-    color: #c4c4c4;
-  }
-`;
-
-const ChattBtn = styled.button`
-  box-sizing: border-box;
-  font-size: 14px;
-  color: #c4c4c4;
-  width: 5em;
-  text-align: center;
-`;
+import { useRef, useState } from "react";
+import * as S from "./style";
 
 export default function CommentBar() {
+  const [isActive, setIsActive] = useState("");
+  const [isImgActive, setIsImgActive] = useState("");
+  const fileRef = useRef();
+
+  const handleClick = () => {
+    fileRef.current.click();
+  };
+
+  const handleImgInput = (e) => {
+    setIsImgActive(e.target.files[0]);
+  };
+
   return (
-    <ChatContainer>
-      <ChatUploadFile />
-      <ChatInput placeholder="메세지 입력하기..." />
-      <ChattBtn>전송</ChattBtn>
-    </ChatContainer>
+    <S.ChatContainer>
+      <S.ChatUploadFileBtn onClick={handleClick} />
+      <input
+        type="file"
+        className="ir"
+        id="post-upload-file"
+        accept="image/*"
+        ref={fileRef}
+        onChange={handleImgInput}
+      />
+
+      <S.ChatTextInput
+        placeholder="메세지 입력하기..."
+        onChange={(e) => {
+          setIsActive(e.target.value);
+        }}
+      />
+      <S.ChatSendBtn isActive={isActive} isImgActive={isImgActive}>
+        전송
+      </S.ChatSendBtn>
+    </S.ChatContainer>
   );
 }
