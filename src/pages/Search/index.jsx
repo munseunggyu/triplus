@@ -1,18 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import SearchInput from "../../components/Header/SearchInput";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
-
-const UserInfoContainer = styled.ul`
-  width: 358px;
-  margin: 0 auto;
-`;
+import * as S from "./style";
 
 export default function Search() {
   const [searchList, setSearchList] = useState([]);
@@ -57,7 +52,7 @@ export default function Search() {
         />
       </Header>
       <MainContainer>
-        <UserInfoContainer>
+        <S.UserInfoContainer>
           {searchList.map((search) => {
             return (
               <Link key={search._id} to={`/profile/${search.accountname}`}>
@@ -65,7 +60,7 @@ export default function Search() {
               </Link>
             );
           })}
-        </UserInfoContainer>
+        </S.UserInfoContainer>
       </MainContainer>
       <Navbar />
     </>
