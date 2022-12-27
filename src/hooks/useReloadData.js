@@ -19,7 +19,7 @@ export const useReloadData = (bottomRef, height) => {
       setBoottomBoolean(false);
     } else {
       setBoottomBoolean(true);
-      setSkip((prev) => prev + 5);
+      setSkip((prev) => prev + 10);
     }
   };
 
