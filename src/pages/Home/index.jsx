@@ -15,7 +15,7 @@ export default function Home() {
   const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
     useReloadData(bottomRef, 132);
   const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10&skip=${skip}`;
-
+  console.log(skip);
   useEffect(() => {
     if (bottomBoolean) {
       getData(url);

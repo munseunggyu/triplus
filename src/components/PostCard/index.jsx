@@ -41,7 +41,6 @@ export default function PostCard({
   } = useModal(author.accountname);
   const url = `${process.env.REACT_APP_API_KEY}/post/${id}`;
   const declarationUrl = `${process.env.REACT_APP_API_KEY}/${id}/report`;
-
   return (
     <>
       <S.PostCardList>
@@ -52,7 +51,12 @@ export default function PostCard({
           <S.PostCardUserName>{author.username}</S.PostCardUserName>
           <S.PostCardUserId>&#64;{author.accountname}</S.PostCardUserId>
           <S.PostCardContentTxt>{content}</S.PostCardContentTxt>
-          {image && <S.PostCardContentImg src={image} alt="게시물 이미지" />}
+          {image &&
+            image
+              .split(",")
+              .map((img) => (
+                <S.PostCardContentImg src={img} alt="게시물 이미지" />
+              ))}
           <PostCardBtns
             postkey={id}
             commentCount={commentCount}
