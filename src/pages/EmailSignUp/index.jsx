@@ -3,7 +3,7 @@ import styled from "styled-components";
 import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
 import axios from "axios";
-import { BaseURL } from "../../components/BaseURL/index";
+import { BaseURL } from "../../components/BaseURL/Index";
 import { useNavigate } from "react-router-dom";
 
 const FormContainer = styled.section`
