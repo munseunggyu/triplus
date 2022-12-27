@@ -5,14 +5,13 @@ import Prev from "../../components/Header/Prev";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function ProductUpload({ useRef, ...props }) {
+const ProductUpload = () => {
 	const [imageSrc, setImageSrc] = useState("");
 	const [price, setPrice] = useState("");
 	const [itemName, setItemName] = useState("");
 	const [link, setLink] = useState("");
 	const [isActive, setIsActive] = useState(false);
 	const [disabled, setDisabled] = useState(true);
-
 	const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
 	const navigate = useNavigate();
@@ -111,9 +110,7 @@ export default function ProductUpload({ useRef, ...props }) {
 					<S.ImageSave>이미지 등록</S.ImageSave>
 					<S.ImgPreview
 						type="file"
-						{...props}
 						onChange={uploadFile}
-						ref={useRef}
 						accept="image/*"
 						imageSrc={imageSrc}
 					></S.ImgPreview>
@@ -154,4 +151,5 @@ export default function ProductUpload({ useRef, ...props }) {
 			</S.MainUploadSection>
 		</div>
 	);
-}
+};
+export default ProductUpload;
