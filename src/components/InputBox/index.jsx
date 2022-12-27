@@ -20,20 +20,21 @@ const Label = styled.label`
 
 const Input = styled.input`
   width: inherit;
-  padding-top: 10px;
+  padding-top: 16px;
   margin-bottom: 16px;
   height: 48px;
   border: 0;
   border-bottom: 1px solid #dbdbdb;
+  font-size: 14px;
 
   &:focus {
     outline: 0;
-    border-bottom: 1px solid #4d82d4;
+    border-bottom: 2px solid #4d82d4;
   }
 
   &::placeholder {
     position: absolute;
-    bottom: 8px;
+    bottom: 14px;
     color: #dbdbdb;
   }
 `;
