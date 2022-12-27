@@ -19,6 +19,8 @@ const PostUpload = () => {
     useGetPreview();
   const { fileName, setFileName, txt, setTxt, handlePostUpload } =
     usePostUpload();
+  const { data: profileData, getData: profileGetData } = useGetData();
+  const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
 
   const handleResizeHeight = () => {
     textRef.current.style.height = "auto";
@@ -86,9 +88,7 @@ const PostUpload = () => {
     }
   }, []);
 
-  const { data: profileData, getData: profileGetData } = useGetData();
-  const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
-
+  // 프로필 이미지 불러오기
   useEffect(() => {
     profileGetData(url);
   }, []);

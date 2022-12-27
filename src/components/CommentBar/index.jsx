@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import user_img_small from "../../assets/images/user_img_small.svg";
+import { useGetData } from "../../hooks/useGetData";
 
 export default function CommentBar({ postkey, setCommentList }) {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
+  const { data, getData } = useGetData();
+  const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
   const [txt, setTxt] = useState("");
 
   const handlePostComment = (e) => {
@@ -37,10 +39,16 @@ export default function CommentBar({ postkey, setCommentList }) {
     }
   };
 
+  useEffect(() => {
+    getData(url);
+  }, []);
+
   return (
     <S.CommentContainer>
       <S.CommentForm onSubmit={postComment}>
-        <S.CommentProfileImg src={user_img_small} alt="사용자 이름" />
+        {data && (
+          <S.CommentProfileImg src={data.user.image} alt="사용자 이름" />
+        )}
         <S.CommentInput
           type="text"
           placeholder="댓글 입력하기..."
