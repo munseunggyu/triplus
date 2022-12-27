@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import { useGetPreview } from "../../hooks/useGetPreview";
 import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetData } from "../../hooks/useGetData";
+import user_img_small from "../../assets/images/user_img_small.svg";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
@@ -110,8 +111,10 @@ const PostUpload = () => {
 
       <MainContainer>
         <S.UploadContainer>
-          {profileData && (
+          {profileData ? (
             <S.UploadProfileImg userProfileImg={profileData.user.image} />
+          ) : (
+            <S.UploadProfileImg userProfileImg={user_img_small} />
           )}
           <S.UploadContentForm onSubmit={handlePostUpload}>
             <S.UploadText
@@ -137,7 +140,6 @@ const PostUpload = () => {
               accept="image/*"
               ref={fileRef}
               onChange={handleImgInput}
-              multiple
             />
           </S.UploadFileForm>
         </S.UploadContainer>

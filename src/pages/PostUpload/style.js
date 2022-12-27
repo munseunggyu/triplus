@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import small_profile from "../../assets/images/user_img_small.svg";
+import styled from "styled-components";
 import upload_file from "../../assets/images/upload_file.svg";
 import x from "../../assets/images/x.png";
 
