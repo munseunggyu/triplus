@@ -45,7 +45,7 @@ const PostUpload = () => {
     formData.append("image", loadImg[0]);
     fileName.length < 3
       ? getImgUrl(formData, loadImg)
-      : alert("이미지는 3장만 업로드 가능합니다.");
+      : alert("3개 이하의 파일을 업로드 하세요.");
   };
 
   // 이미지 파일 스트링 데이터 얻기
@@ -75,15 +75,17 @@ const PostUpload = () => {
     if (textRef.current.value.length === 0 && fileName.length <= 1) {
       setIsActive(false);
     }
-
     fileRef.current.value = "";
   };
+
   useEffect(() => {
     if (location.state) {
       location.state.content && setTxt(location.state.content);
       if (location.state.image) {
-        setFileName([location.state.image]);
-        setPreviewImgUrl([location.state.image]);
+        setFileName(location.state.image.split(","));
+        setPreviewImgUrl(location.state.image.split(","));
+        setIsActive(true);
+        setDisabled(false);
       }
     }
   }, []);

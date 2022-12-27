@@ -50,7 +50,6 @@ export const UploadContentForm = styled.form`
 export const UploadProfileImg = styled.div`
   background: ${(props) => `url(${props.userProfileImg})`} no-repeat;
   background-size: 42px;
-  border-radius: 50%;
   padding-right: 13px;
   display: block;
   width: 42px;
