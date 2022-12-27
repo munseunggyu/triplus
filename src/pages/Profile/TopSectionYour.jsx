@@ -1,5 +1,5 @@
 import React from "react";
-import IsFollowButton from "../Follow/IsFollowButton";
+import IsFollowButton from "../../components/Button/FollowBtn/IsFollowButton";
 import * as S from "./style";
 
 export default function TopSectionYour({
