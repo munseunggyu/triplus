@@ -5,7 +5,6 @@ import uploadIcon from "../../assets/images/upload_file.svg";
 import userImg from "../../assets/images/user_img_big.svg";
 import { BaseURL } from "../BaseURL/Index";
 import axios from "axios";
-import { render } from "@testing-library/react";
 
 const ProfileImgContainer = styled.section`
   position: relative;
