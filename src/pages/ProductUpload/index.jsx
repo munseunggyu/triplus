@@ -1,12 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
-import * as S from "./style";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { usePostUpload } from "../../hooks/usePostUpload";
+import { useGetPreview } from "../../hooks/useGetPreview";
+import * as S from "./style";
 
-const ProductUpload = () => {
-	const [imageSrc, setImageSrc] = useState("");
+export default function ProductUpload({ ...props }) {
+	// const [imageSrc, setImageSrc] = useState("");
 	const [price, setPrice] = useState("");
 	const [itemName, setItemName] = useState("");
 	const [link, setLink] = useState("");
@@ -25,7 +27,7 @@ const ProductUpload = () => {
 			itemName.length > 1 &&
 			price.length !== 0 &&
 			checkLink.test(link) &&
-			imageSrc.length !== 0
+			previewImgUrl.length !== 0
 		) {
 			setIsActive(true);
 			setDisabled(false);
@@ -53,12 +55,34 @@ const ProductUpload = () => {
 		inputType === "salelink" && setLink(e.target.value);
 	}
 
-	const uploadFile = (e) => {
-		const reader = new FileReader();
-		reader.readAsDataURL(e.target.files[0]);
-		reader.onload = () => {
-			setImageSrc(reader.result);
-		};
+	const { fileName, setFileName } = usePostUpload();
+	const { previewImgUrl, getPreview } = useGetPreview();
+
+	// 이미지 스트링 데이터 얻기
+	const getImgUrl = async (formData, loadImg) => {
+		try {
+			const res = await axios.post(
+				`${process.env.REACT_APP_API_KEY}/image/uploadfiles`,
+				formData
+			);
+			setFileName([
+				...fileName,
+				`${process.env.REACT_APP_API_KEY}/${res.data[0].filename}`,
+			]);
+			getPreview(loadImg);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	// 이미지 파일 업로드
+	const handleImgInput = (e) => {
+		const loadImg = e.target.files;
+		const formData = new FormData();
+		formData.append("image", loadImg[0]);
+		fileName.length < 3
+			? getImgUrl(formData, loadImg)
+			: alert("이미지는 3장만 업로드 가능합니다.");
 	};
 
 	function handleSubmit(e) {
@@ -73,7 +97,7 @@ const ProductUpload = () => {
 							itemName: itemName,
 							price: parseInt(price.replace(/[^0-9]/g, ""), 10),
 							link: link,
-							itemImage: imageSrc,
+							itemImage: fileName.join(","),
 						},
 					},
 					{
@@ -110,9 +134,9 @@ const ProductUpload = () => {
 					<S.ImageSave>이미지 등록</S.ImageSave>
 					<S.ImgPreview
 						type="file"
-						onChange={uploadFile}
+						onChange={handleImgInput}
 						accept="image/*"
-						imageSrc={imageSrc}
+						imageSrc={previewImgUrl}
 					></S.ImgPreview>
 					<S.ProductName>
 						<S.ProductNameLabel>상품명</S.ProductNameLabel>
@@ -151,5 +175,4 @@ const ProductUpload = () => {
 			</S.MainUploadSection>
 		</div>
 	);
-};
-export default ProductUpload;
+}
