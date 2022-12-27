@@ -7,7 +7,7 @@ import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
-import IsFollowButton from "./IsFollowButton";
+import IsFollowButton from "../../components/Button/FollowBtn/IsFollowButton";
 import * as S from "./style";
 
 export default function Follow() {

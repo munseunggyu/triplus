@@ -25,7 +25,6 @@ export const handleDeclaration = async (
       }
     );
     handlCloseClick();
-    alert("신고가 완료되었습니다.");
   } catch (error) {
     console.log(error);
   }

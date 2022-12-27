@@ -1,56 +1,21 @@
-import styled from "styled-components";
-import user_img_small from "../../assets/images/user_img_small.svg";
 import axios from "axios";
-import { useState } from "react";
-
-const CommentContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  background-color: #fff;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 36px;
-  padding: 13px 0;
-  border-top: 0.5px solid ${(props) => props.theme.borderColor};
-`;
-
-const CommentProfileImg = styled.img`
-  width: 36px;
-  padding: 0 18px 0 16px;
-`;
-
-const CommentInput = styled.input`
-  border: 0;
-  &:focus {
-    outline: none;
-  }
-  width: 100%;
-
-  &::placeholder {
-    font-size: 14px;
-    color: #c4c4c4;
-  }
-`;
-
-const CommentBtn = styled.button`
-  box-sizing: border-box;
-  font-size: 14px;
-  color: ${(props) => (props.txt ? props.theme.mainColor : "#c4c4c4")};
-  width: 5em;
-  text-align: center;
-`;
+import { useState, useEffect } from "react";
+import * as S from "./style";
+import user_img_small from "../../assets/images/user_img_small.svg";
+import { useGetData } from "../../hooks/useGetData";
 
 export default function CommentBar({ postkey, setCommentList }) {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
+  const { data, getData } = useGetData();
+  const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
   const [txt, setTxt] = useState("");
 
   const handlePostComment = (e) => {
     setTxt(e.target.value);
   };
 
-  const postComment = async () => {
+  const postComment = async (e) => {
+    e.preventDefault();
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`,
@@ -74,18 +39,24 @@ export default function CommentBar({ postkey, setCommentList }) {
     }
   };
 
+  useEffect(() => {
+    getData(url);
+  }, []);
+
   return (
-    <CommentContainer>
-      <CommentProfileImg src={user_img_small} alt="사용자 이름" />
-      <CommentInput
-        type="text"
-        placeholder="댓글 입력하기..."
-        onChange={handlePostComment}
-        value={txt}
-      />
-      <CommentBtn onClick={postComment} txt={txt}>
-        게시
-      </CommentBtn>
-    </CommentContainer>
+    <S.CommentContainer>
+      <S.CommentForm onSubmit={postComment}>
+        {data && (
+          <S.CommentProfileImg src={data.user.image} alt="사용자 이름" />
+        )}
+        <S.CommentInput
+          type="text"
+          placeholder="댓글 입력하기..."
+          onChange={handlePostComment}
+          value={txt}
+        />
+        <S.CommentBtn txt={txt}>게시</S.CommentBtn>
+      </S.CommentForm>
+    </S.CommentContainer>
   );
 }
