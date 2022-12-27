@@ -8,6 +8,7 @@ import PreviewList from "./PreviewList";
 import { useLocation } from "react-router-dom";
 import { useGetPreview } from "../../hooks/useGetPreview";
 import { usePostUpload } from "../../hooks/usePostUpload";
+import { useGetData } from "../../hooks/useGetData";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
@@ -30,7 +31,8 @@ const PostUpload = () => {
     e.target.value !== "" ? setDisabled(false) : setDisabled(true);
   };
 
-  const handleFile = () => {
+  const handleFile = (e) => {
+    e.target.file !== "" ? setDisabled(false) : setDisabled(true);
     fileRef.current.click();
   };
 
@@ -84,6 +86,13 @@ const PostUpload = () => {
     }
   }, []);
 
+  const { data: profileData, getData: profileGetData } = useGetData();
+  const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
+
+  useEffect(() => {
+    profileGetData(url);
+  }, []);
+
   return (
     <div>
       <Header>
@@ -99,7 +108,9 @@ const PostUpload = () => {
 
       <MainContainer>
         <S.UploadContainer>
-          <S.UploadProfileImg />
+          {profileData && (
+            <S.UploadProfileImg userProfileImg={profileData.user.image} />
+          )}
           <S.UploadContentForm onSubmit={handlePostUpload}>
             <S.UploadText
               name="textarea-uploadpost"

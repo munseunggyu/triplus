@@ -37,7 +37,6 @@ export const DeleteBtn = styled.button`
 export const UploadContainer = styled.div`
   display: flex;
   padding: 16px;
-  gap: 13px;
   min-height: 100px;
 `;
 
@@ -49,13 +48,17 @@ export const UploadContentForm = styled.form`
 `;
 
 export const UploadProfileImg = styled.div`
-  background: url(${small_profile}) no-repeat;
+  background: ${(props) => `url(${props.userProfileImg})`} no-repeat;
+  background-size: 42px;
+  border-radius: 50%;
+  padding-right: 13px;
   display: block;
   width: 42px;
   height: 42px;
 `;
 
 export const UploadText = styled.textarea`
+  background: none;
   width: 100%;
   border: 0;
   resize: none;
@@ -91,7 +94,7 @@ export const UploadBtn = styled.button`
   margin-left: auto;
   width: 90px;
   height: 32px;
-  :disabled {
+  &:disabled {
     cursor: default;
   }
 `;
