@@ -46,6 +46,7 @@ export const PostCardContentTxt = styled.pre`
 export const PostCardContentImg = styled.img`
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 15px;
 `;
 
 export const PostCardTime = styled.time`
@@ -63,7 +64,6 @@ export const PostCardVertical = styled.button`
 
 // PostCardBtns
 export const PostCardHeartChatCon = styled.div`
-  margin-top: 14px;
   display: flex;
   margin-bottom: 18px;
 `;
