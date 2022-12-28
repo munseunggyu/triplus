@@ -52,7 +52,7 @@ export default function Home() {
             })
           )}
         </ul>
-        {!reloadLoding && <S.ReLoading>Loading...</S.ReLoading>}
+        {!reloadLoding && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
       </MainContainer>
       <Navbar />
     </>
