@@ -19,7 +19,7 @@ export default function ProfileBottomSection() {
   const [isAlbum, setIsAlbum] = useState(false);
   const {
     data: albumData,
-    isLoding: albumLoading,
+    isLoading: albumLoading,
     getData: albumGetData,
   } = useGetData();
   const [trigger, setTrigger] = useState(false);
@@ -43,7 +43,7 @@ export default function ProfileBottomSection() {
       };
     }
   }, [accountname, trigger, bottomBoolean, isAlbum]);
-
+  console.log(albumLoading);
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
