@@ -3,10 +3,12 @@ import { useState } from "react";
 
 export const useReloadData = (bottomRef, height) => {
   const [data, setData] = useState(null);
-  const [isLoding, setIsLoding] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [skip, setSkip] = useState(0);
-  const [bottomBoolean, setBoottomBoolean] = useState(true);
+  const [bottomBoolean, setBoottomBoolean] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+  const [reloadLoding, setReLoadLoading] = useState(false);
+  const [finishReload, setFinishReload] = useState(false);
 
   const bottomScroll = () => {
     const targetHeight = Math.floor(
@@ -24,6 +26,13 @@ export const useReloadData = (bottomRef, height) => {
   };
 
   const getData = async (url, isMy) => {
+    if (finishReload) {
+      setReLoadLoading(true);
+      return;
+    }
+    if (!isLoading) {
+      setReLoadLoading(true);
+    }
     try {
       const res = await axios.get(url, {
         headers: {
@@ -44,12 +53,32 @@ export const useReloadData = (bottomRef, height) => {
               return { posts: [...prev.posts, ...res.data.posts] };
             });
       }
-      setIsLoding(false);
+      if (isMy) {
+        if (res.data.post.length === 0) {
+          setFinishReload(true);
+        }
+      } else {
+        if (res.data.posts.length === 0) {
+          setFinishReload(true);
+        }
+      }
+      setIsLoading(false);
+      if (!isLoading) {
+        setReLoadLoading(false);
+      }
       setBoottomBoolean(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { skip, bottomBoolean, data, isLoding, bottomScroll, getData };
+  return {
+    skip,
+    bottomBoolean,
+    data,
+    isLoading,
+    bottomScroll,
+    getData,
+    reloadLoding,
+  };
 };
