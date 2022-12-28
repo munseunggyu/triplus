@@ -7,7 +7,7 @@ export const useReloadData = (bottomRef, height) => {
   const [skip, setSkip] = useState(0);
   const [bottomBoolean, setBoottomBoolean] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-  const [reloadLoding, setReLoadLoading] = useState(false);
+  const [reloadLoding, setReLoadLoading] = useState(true);
   const [finishReload, setFinishReload] = useState(false);
 
   const bottomScroll = () => {
@@ -17,6 +17,7 @@ export const useReloadData = (bottomRef, height) => {
     const currentScrollY = Math.floor(
       window.scrollY + window.innerHeight - height
     );
+
     if (targetHeight - currentScrollY !== 0) {
       setBoottomBoolean(false);
     } else {
@@ -24,10 +25,9 @@ export const useReloadData = (bottomRef, height) => {
       setSkip((prev) => prev + 10);
     }
   };
-
   const getData = async (url, isMy) => {
     if (finishReload) {
-      setReLoadLoading(true);
+      setReLoadLoading(false);
       return;
     }
     if (!isLoading) {
@@ -63,15 +63,12 @@ export const useReloadData = (bottomRef, height) => {
         }
       }
       setIsLoading(false);
-      if (!isLoading) {
-        setReLoadLoading(false);
-      }
+      setReLoadLoading(false);
       setBoottomBoolean(false);
     } catch (error) {
       console.log(error);
     }
   };
-
   return {
     skip,
     bottomBoolean,

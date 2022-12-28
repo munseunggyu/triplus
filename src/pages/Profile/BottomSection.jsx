@@ -16,7 +16,7 @@ export default function ProfileBottomSection() {
     bottomScroll,
     getData,
     reloadLoding,
-  } = useReloadData(bottomRef, 776);
+  } = useReloadData(bottomRef, 800);
   const [isAlbum, setIsAlbum] = useState(false);
   const {
     data: albumData,
@@ -29,7 +29,7 @@ export default function ProfileBottomSection() {
 
   useLayoutEffect(() => {
     getData(listUrl, true);
-  }, [trigger]);
+  }, [trigger, accountname]);
 
   useEffect(() => {
     if (isAlbum) {
@@ -74,7 +74,7 @@ export default function ProfileBottomSection() {
                 <PostCard key={post.id} setTrigger={setTrigger} {...post} />
               );
             })}
-        {!reloadLoding && <S.ReLoading>Loading...</S.ReLoading>}
+        {reloadLoding && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
       </S.CardContainer>
     </section>
   );
