@@ -9,10 +9,11 @@ import UserInfo from "../../components/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
 import IsFollowButton from "../../components/Button/FollowBtn/IsFollowButton";
 import * as S from "./style";
+import LoadingPage from "../LoadingPage";
 
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
-  const { data, isLoding, getData } = useGetData();
+  const { data, isLoading, getData } = useGetData();
   const { accountname } = useParams();
   const path = useLocation();
 
@@ -27,7 +28,9 @@ export default function Follow() {
     }
   }, [triggerFollow]);
 
-  return isLoding ? null : (
+  return isLoading ? (
+    <LoadingPage />
+  ) : (
     <>
       <Header>
         <Prev />

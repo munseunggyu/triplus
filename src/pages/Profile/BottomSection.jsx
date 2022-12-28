@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import PostCard from "../../components/PostCard";
 import { Link, useParams } from "react-router-dom";
 import { useReloadData } from "../../hooks/useReloadData";
@@ -7,13 +7,19 @@ import { useGetData } from "../../hooks/useGetData";
 
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
-  const bottomRef = useRef(null);
-  const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
-    useReloadData(bottomRef, 800);
+  const {
+    skip,
+    bottomBoolean,
+    data,
+    isLoading,
+    bottomScroll,
+    getData,
+    reloadLoding,
+  } = useReloadData();
   const [isAlbum, setIsAlbum] = useState(false);
   const {
     data: albumData,
-    isLoding: albumLoding,
+    isLoding: albumLoading,
     getData: albumGetData,
   } = useGetData();
   const [trigger, setTrigger] = useState(false);
@@ -21,23 +27,23 @@ export default function ProfileBottomSection() {
   const albumUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=50`;
 
   useLayoutEffect(() => {
-    getData(listUrl, true);
-  }, [trigger]);
+    getData(listUrl, "프로필");
+  }, [trigger, accountname]);
 
   useEffect(() => {
     if (isAlbum) {
       albumGetData(albumUrl);
     } else {
       if (bottomBoolean) {
-        getData(listUrl, true);
+        getData(listUrl, "프로필");
       }
-      if (!bottomRef.current) return;
       window.addEventListener("scroll", bottomScroll);
       return () => {
         window.removeEventListener("scroll", bottomScroll);
       };
     }
   }, [accountname, trigger, bottomBoolean, isAlbum]);
+
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
@@ -46,11 +52,11 @@ export default function ProfileBottomSection() {
         <S.PostAlbumtIcon isAlbum={isAlbum} onClick={() => setIsAlbum(true)} />
       </S.ProfileBottomSectionBtns>
       <S.Line />
-      <S.CardContainer isAlbum={isAlbum} ref={bottomRef}>
-        {isLoding
+      <S.CardContainer isAlbum={isAlbum}>
+        {isLoading
           ? null
           : isAlbum
-          ? albumLoding !== true &&
+          ? albumLoading !== true &&
             albumData.post
               .filter((post) => post.image)
               .map((post) => {
@@ -67,6 +73,7 @@ export default function ProfileBottomSection() {
                 <PostCard key={post.id} setTrigger={setTrigger} {...post} />
               );
             })}
+        {reloadLoding && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
       </S.CardContainer>
     </section>
   );

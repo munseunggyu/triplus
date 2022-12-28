@@ -185,7 +185,12 @@ export const AlbumLi = styled.li`
   width: calc(33.33333% - 5.33333px);
 `;
 export const AlbumImage = styled.img`
-  /* width: calc(33.33333% - 5.33333px); */
   width: 100%;
   object-fit: cover;
+  height: 114px;
+`;
+
+export const ReLoading = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.mainColor};
 `;
