@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useState, useRef } from "react";
 import uploadIcon from "../../assets/images/upload_file.svg";
 import userImg from "../../assets/images/user_img_big.svg";
-import { BaseURL } from "../BaseURL/index.jsx";
 import axios from "axios";
 
 const ProfileImgContainer = styled.section`
@@ -70,12 +69,15 @@ export default function Index() {
         },
       };
       const response = await axios.post(
-        `${BaseURL}/image/uploadfile`,
+        `${process.env.REACT_APP_API_KEY}/image/uploadfile`,
         formData,
         config
       );
+
       if (response?.data?.filename) {
-        setImage(`${BaseURL}/` + response?.data?.filename);
+        setImage(
+          `${process.env.REACT_APP_API_KEY}/` + response?.data?.filename
+        );
         preview(loadImage);
       } else {
         alert(
