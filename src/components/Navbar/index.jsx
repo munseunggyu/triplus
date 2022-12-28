@@ -1,50 +1,6 @@
-import styled from "styled-components";
 import css_sprite from "../../assets/images/css_sprites.png";
 import { useNavigate, useMatch } from "react-router-dom";
-
-const IconsUl = styled.ul`
-  background-color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 14px;
-  border-top: 0.5px solid #dbdbdb;
-`;
-
-const Iconli = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 84px;
-  height: 60px;
-  gap: 4px;
-`;
-
-const NavIcon = styled.button`
-  width: 24px;
-  height: 24px;
-  &.active {
-    background: ${(props) => props.tabActiveImg};
-  }
-  background: ${(props) => props.tabImg};
-  border: 0px;
-  margin: 0 auto;
-`;
-
-const NavSpan = styled.span`
-  display: block;
-  font-size: 10px;
-  color: #767676;
-  &.active {
-    color: ${(props) => props.theme.mainColor};
-  }
-`;
+import * as S from "./style";
 
 export default function Navbar() {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
@@ -89,11 +45,11 @@ export default function Navbar() {
   ];
 
   return (
-    <IconsUl>
+    <S.IconsUl>
       {navbarData.map((navData) => {
         return (
-          <Iconli key={navData.id}>
-            <NavIcon
+          <S.Iconli key={navData.id}>
+            <S.NavIcon
               tabImg={navData.tabImg}
               tabActiveImg={navData.tabActiveImg}
               className={navData.match !== null ? "active" : ""}
@@ -101,12 +57,12 @@ export default function Navbar() {
                 navigate(navData.url);
               }}
             />
-            <NavSpan className={navData.match !== null ? "active" : ""}>
+            <S.NavSpan className={navData.match !== null ? "active" : ""}>
               {navData.name}
-            </NavSpan>
-          </Iconli>
+            </S.NavSpan>
+          </S.Iconli>
         );
       })}
-    </IconsUl>
+    </S.IconsUl>
   );
 }
