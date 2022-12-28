@@ -17,7 +17,7 @@ export default function IsFollowButton({
       isfollow={isFollowing}
       isProfile={isProfile}
     >
-      {isFollowing ? "취소" : "팔로우"}
+      {isFollowing ? "언팔로우" : "팔로우"}
     </S.IsFollowBtn>
   );
 }
