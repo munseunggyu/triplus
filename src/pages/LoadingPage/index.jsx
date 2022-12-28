@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 
-export default function index() {
+export default function LoadingPage() {
   return (
     <S.LoadingPageContainer>
       <S.LoadingImg />
