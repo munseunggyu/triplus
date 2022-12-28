@@ -21,7 +21,7 @@ export const LoadingMessage = styled.p`
 
 export const LoadingImg = styled.div`
   background: url(${loading}) no-repeat;
-  background-size: 300px;
-  width: 315px;
-  height: 134px;
+  background-size: 288px;
+  width: 288px;
+  height: 108px;
 `;
