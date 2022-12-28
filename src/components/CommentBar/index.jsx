@@ -46,8 +46,10 @@ export default function CommentBar({ postkey, setCommentList }) {
   return (
     <S.CommentContainer>
       <S.CommentForm onSubmit={postComment}>
-        {data && (
-          <S.CommentProfileImg src={data.user.image} alt="사용자 이름" />
+        {data ? (
+          <S.CommentProfileImg src={data.user.image} alt={data.user.username} />
+        ) : (
+          <S.CommentProfileImg src={user_img_small} alt="" />
         )}
         <S.CommentInput
           type="text"

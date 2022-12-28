@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import small_profile from "../../assets/images/user_img_small.svg";
+import styled from "styled-components";
 import upload_file from "../../assets/images/upload_file.svg";
 import x from "../../assets/images/x.png";
 
@@ -50,7 +49,6 @@ export const UploadContentForm = styled.form`
 export const UploadProfileImg = styled.div`
   background: ${(props) => `url(${props.userProfileImg})`} no-repeat;
   background-size: 42px;
-  border-radius: 50%;
   padding-right: 13px;
   display: block;
   width: 42px;
