@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import PostCard from "../../components/PostCard";
 import { Link, useParams } from "react-router-dom";
 import { useReloadData } from "../../hooks/useReloadData";

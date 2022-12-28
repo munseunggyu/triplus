@@ -9,6 +9,7 @@ import UserInfo from "../../components/UserInfo";
 import { useGetData } from "../../hooks/useGetData";
 import IsFollowButton from "../../components/Button/FollowBtn/IsFollowButton";
 import * as S from "./style";
+import LoadingPage from "../LoadingPage";
 
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
@@ -27,7 +28,9 @@ export default function Follow() {
     }
   }, [triggerFollow]);
 
-  return isLoding ? null : (
+  return isLoding ? (
+    <LoadingPage />
+  ) : (
     <>
       <Header>
         <Prev />

@@ -5,6 +5,7 @@ import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
 import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
+import LoadingPage from "../LoadingPage";
 
 export default function ProfileTopSection() {
   const { data, setData, isLoding, getData } = useGetData();
@@ -16,7 +17,9 @@ export default function ProfileTopSection() {
     getData(url);
   }, [accountname]);
 
-  return isLoding ? null : (
+  return isLoding ? (
+    <LoadingPage />
+  ) : (
     <S.ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
       <S.ProfileTopContainer>
