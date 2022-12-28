@@ -154,12 +154,14 @@ export const ProfileBottomSectionBtns = styled.div`
 export const PostAlbumtIcon = styled.button`
   width: 26px;
   height: 26px;
-  background: url(${css_sprite}) -10px -10px;
+  background: url(${css_sprite})
+    ${(props) => (props.isAlbum ? "-56px -10px" : "-10px -10px")};
 `;
 export const PostListIcon = styled.button`
   width: 26px;
   height: 26px;
-  background: url(${css_sprite}) -56px -56px;
+  background: url(${css_sprite})
+    ${(props) => (props.isAlbum ? "-10px -56px" : "-56px -56px")};
 `;
 export const Line = styled.div`
   margin-bottom: 16px;
@@ -167,4 +169,23 @@ export const Line = styled.div`
 `;
 export const CardContainer = styled.ul`
   padding: 0 21px;
+  ${(props) =>
+    props.isAlbum
+      ? `
+      width: 390px;
+      display:flex;
+      flex-wrap:wrap;
+      margin:0 auto;
+      gap:5px;
+  `
+      : `
+`}
+`;
+export const AlbumLi = styled.li`
+  width: calc(33.33333% - 5.33333px);
+`;
+export const AlbumImage = styled.img`
+  /* width: calc(33.33333% - 5.33333px); */
+  width: 100%;
+  object-fit: cover;
 `;

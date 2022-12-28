@@ -46,7 +46,7 @@ export const PostCardContentTxt = styled.pre`
 export const PostCardContentImg = styled.img`
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 `;
 
 export const PostCardTime = styled.time`
