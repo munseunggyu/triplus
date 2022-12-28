@@ -15,6 +15,7 @@ import ProductUpload from "./pages/ProductUpload";
 import ChatList from "./pages/ChatList";
 import ChatRoom from "./pages/ChatRoom";
 import ErrorPage from "./pages/ErrorPage";
+import LoadingPage from "./pages/LoadingPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/postedit/:postid" element={<PostUpload />} />
+        <Route path="/loading" element={<LoadingPage />} />
       </Routes>
     </>
   );

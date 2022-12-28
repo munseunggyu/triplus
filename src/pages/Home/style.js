@@ -24,3 +24,8 @@ export const HomeNoFollowingLink = styled(Link)`
   align-items: center;
   justify-content: center;
 `;
+
+export const ReLoading = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.mainColor};
+`;
