@@ -8,11 +8,20 @@ import UserPostDetail from "./UserPostDetail";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGetData } from "../../hooks/useGetData";
+import LoadingPage from "../LoadingPage";
 
 export default function PostDetail() {
   const { postkey } = useParams();
-  const { data: postData, getData: postGetData } = useGetData();
-  const { data: commentData, getData: commentGetData } = useGetData();
+  const {
+    data: postData,
+    getData: postGetData,
+    isLoading: postIsLoading,
+  } = useGetData();
+  const {
+    data: commentData,
+    getData: commentGetData,
+    isLoading: commentIsLoading,
+  } = useGetData();
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
   const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`;
   const [trigger, setTrigger] = useState(false);
@@ -33,18 +42,26 @@ export default function PostDetail() {
         <Prev />
         <Vertical />
       </Header>
-      <MainContainer>
-        {postData && <UserPostDetail myPostData={postData.post} />}
-        {commentData?.comments &&
-          commentData?.comments?.map((mapData) => (
-            <Comment
-              key={mapData.id}
-              data={mapData}
-              commentId={mapData.id}
-              setTrigger={setTrigger}
-            />
-          ))}
-      </MainContainer>
+      {commentIsLoading || postIsLoading ? (
+        <LoadingPage />
+      ) : (
+        <MainContainer>
+          {postData && <UserPostDetail myPostData={postData.post} />}
+          {commentIsLoading ? (
+            <LoadingPage />
+          ) : (
+            commentData?.comments &&
+            commentData?.comments?.map((mapData) => (
+              <Comment
+                key={mapData.id}
+                data={mapData}
+                commentId={mapData.id}
+                setTrigger={setTrigger}
+              />
+            ))
+          )}
+        </MainContainer>
+      )}
       <CommentBar postkey={postkey} setCommentList={setCommentList} />
     </>
   );
