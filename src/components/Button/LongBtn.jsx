@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const DisabledBtn = styled.button`
-  background-color: #90bcff;
+  background-color: ${(props) => props.theme.disabledColor};
   color: #fff;
   cursor: not-allowed;
   display: block;
@@ -19,7 +19,7 @@ const DisabledBtn = styled.button`
 `;
 
 const AbledBtn = styled(DisabledBtn)`
-  background-color: #4d82d4;
+  background-color: ${(props) => props.theme.mainColor};
   color: white;
   cursor: pointer;
 `;
