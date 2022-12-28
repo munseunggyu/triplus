@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import PostCard from "../../components/PostCard";
 import { Link, useParams } from "react-router-dom";
 import { useReloadData } from "../../hooks/useReloadData";
@@ -20,6 +20,10 @@ export default function ProfileBottomSection() {
   const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${skip}`;
   const albumUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=50`;
 
+  useLayoutEffect(() => {
+    getData(listUrl, true);
+  }, [trigger]);
+
   useEffect(() => {
     if (isAlbum) {
       albumGetData(albumUrl);
@@ -34,7 +38,6 @@ export default function ProfileBottomSection() {
       };
     }
   }, [accountname, trigger, bottomBoolean, isAlbum]);
-
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
@@ -51,7 +54,6 @@ export default function ProfileBottomSection() {
             albumData.post
               .filter((post) => post.image)
               .map((post) => {
-                console.log(post);
                 return (
                   <S.AlbumLi key={post.id}>
                     <Link to={`/postdetail/${post.id}`}>
