@@ -13,7 +13,7 @@ import LoadingPage from "../LoadingPage";
 
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
-  const { data, isLoding, getData } = useGetData();
+  const { data, isLoading, getData } = useGetData();
   const { accountname } = useParams();
   const path = useLocation();
 
@@ -28,7 +28,7 @@ export default function Follow() {
     }
   }, [triggerFollow]);
 
-  return isLoding ? (
+  return isLoading ? (
     <LoadingPage />
   ) : (
     <>

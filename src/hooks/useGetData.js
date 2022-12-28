@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const useGetData = () => {
   const [data, setData] = useState(null);
-  const [isLoding, setIsLoding] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
   const getData = async (url) => {
@@ -15,11 +15,11 @@ export const useGetData = () => {
         },
       });
       setData(res.data);
-      setIsLoding(false);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { data, isLoding, setData, getData };
+  return { data, isLoading, setData, getData };
 };

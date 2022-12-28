@@ -8,7 +8,7 @@ import * as S from "./style";
 import LoadingPage from "../LoadingPage";
 
 export default function ProfileTopSection() {
-  const { data, setData, isLoding, getData } = useGetData();
+  const { data, setData, isLoading, getData } = useGetData();
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
   const isMyProfile = accountname === userInfo.accountname;
@@ -17,7 +17,7 @@ export default function ProfileTopSection() {
     getData(url);
   }, [accountname]);
 
-  return isLoding ? (
+  return isLoading ? (
     <LoadingPage />
   ) : (
     <S.ProfileTopSec>
