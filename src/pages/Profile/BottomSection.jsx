@@ -8,12 +8,19 @@ import { useGetData } from "../../hooks/useGetData";
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
   const bottomRef = useRef(null);
-  const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
-    useReloadData(bottomRef, 800);
+  const {
+    skip,
+    bottomBoolean,
+    data,
+    isLoading,
+    bottomScroll,
+    getData,
+    reloadLoding,
+  } = useReloadData(bottomRef, 776);
   const [isAlbum, setIsAlbum] = useState(false);
   const {
     data: albumData,
-    isLoding: albumLoding,
+    isLoding: albumLoading,
     getData: albumGetData,
   } = useGetData();
   const [trigger, setTrigger] = useState(false);
@@ -47,10 +54,10 @@ export default function ProfileBottomSection() {
       </S.ProfileBottomSectionBtns>
       <S.Line />
       <S.CardContainer isAlbum={isAlbum} ref={bottomRef}>
-        {isLoding
+        {isLoading
           ? null
           : isAlbum
-          ? albumLoding !== true &&
+          ? albumLoading !== true &&
             albumData.post
               .filter((post) => post.image)
               .map((post) => {
@@ -67,6 +74,7 @@ export default function ProfileBottomSection() {
                 <PostCard key={post.id} setTrigger={setTrigger} {...post} />
               );
             })}
+        {!reloadLoding && <S.ReLoading>Loading...</S.ReLoading>}
       </S.CardContainer>
     </section>
   );

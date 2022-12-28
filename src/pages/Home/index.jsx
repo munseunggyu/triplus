@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar";
@@ -7,14 +7,25 @@ import PostCard from "../../components/PostCard";
 import SearchButton from "../../components/Header/SearchButton";
 import HomeNoFollow from "./HomeNoFollow";
 import { useReloadData } from "../../hooks/useReloadData";
-import symbolImg from "../../assets/images/plain_blue.svg";
-import { HomeNoFollowing } from "./style";
+import * as S from "./style";
 
 export default function Home() {
   const bottomRef = useRef(null);
-  const { skip, bottomBoolean, data, isLoding, bottomScroll, getData } =
-    useReloadData(bottomRef, 132);
+  const {
+    skip,
+    bottomBoolean,
+    data,
+    isLoading,
+    bottomScroll,
+    getData,
+    reloadLoding,
+  } = useReloadData(bottomRef, 148);
   const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10&skip=${skip}`;
+
+  useLayoutEffect(() => {
+    getData(url);
+  }, []);
+
   useEffect(() => {
     if (bottomBoolean) {
       getData(url);
@@ -25,7 +36,6 @@ export default function Home() {
       window.removeEventListener("scroll", bottomScroll);
     };
   }, [bottomBoolean]);
-
   return (
     <>
       <Header>
@@ -34,7 +44,7 @@ export default function Home() {
       </Header>
       <MainContainer>
         <ul ref={bottomRef}>
-          {isLoding ? (
+          {isLoading ? (
             <HomeNoFollow />
           ) : (
             data.posts.map((post) => {
@@ -42,6 +52,7 @@ export default function Home() {
             })
           )}
         </ul>
+        {!reloadLoding && <S.ReLoading>Loading...</S.ReLoading>}
       </MainContainer>
       <Navbar />
     </>
