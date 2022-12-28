@@ -53,10 +53,11 @@ const MyProfileEdit = () => {
   const [accountnameValid, setAccountnameValid] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  console.log(location);
   const email = location.state.email;
   const password = location.state.password;
   const passed = username && accountname;
+  console.log(email, "비번: ", password);
 
   /* 사용자이름이 바뀔때마다 유효성검사 진행 */
   useEffect(() => {
@@ -87,7 +88,7 @@ const MyProfileEdit = () => {
 
   const signInHandler = async () => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_KEY}/user`, {
+      const res = await axios.post(`${process.env.REACT_APP_API_KEY}/user`, {
         headers: {
           "Content-type": "application/json",
         },
@@ -100,7 +101,8 @@ const MyProfileEdit = () => {
           image: ProfileImg ? ProfileImg : userImg,
         },
       });
-      navigate("/emaillogin");
+      localStorage.setItem("userinfo", JSON.stringify(res.data.user));
+      navigate("/");
     } catch (error) {
       if (error.response.data.message === "이미 사용중인 계정 ID입니다.") {
         setAccountnameError("이미 사용중인 계정 ID입니다.");
