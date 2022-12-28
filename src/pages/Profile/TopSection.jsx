@@ -5,9 +5,10 @@ import TopSectionMy from "./TopSectionMy";
 import TopSectionYour from "./TopSectionYour";
 import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
+import LoadingPage from "../LoadingPage";
 
 export default function ProfileTopSection() {
-  const { data, setData, isLoding, getData } = useGetData();
+  const { data, setData, isLoading, getData } = useGetData();
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
   const isMyProfile = accountname === userInfo.accountname;
@@ -15,7 +16,10 @@ export default function ProfileTopSection() {
   useEffect(() => {
     getData(url);
   }, [accountname]);
-  return isLoding ? null : (
+
+  return isLoading ? (
+    <LoadingPage />
+  ) : (
     <S.ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
       <S.ProfileTopContainer>

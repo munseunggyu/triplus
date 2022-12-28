@@ -4,14 +4,14 @@ import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
 
 export default function ProfileMidSection() {
-  const { data, isLoding, getData } = useGetData();
+  const { data, isLoading, getData } = useGetData();
   const { accountname } = useParams();
   const url = `${process.env.REACT_APP_API_KEY}/product/${accountname}`;
   useEffect(() => {
     getData(url);
   }, [accountname]);
 
-  return isLoding ? null : data.data > 0 ? (
+  return isLoading ? null : data.data > 0 ? (
     <S.ProfileMidSec>
       <S.ProfileMidSectionCon>
         <S.ProfileMidSectionH2>판매중인 상품</S.ProfileMidSectionH2>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export const useReloadData = (bottomRef, height) => {
+export const useReloadData = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [skip, setSkip] = useState(0);
@@ -11,18 +11,14 @@ export const useReloadData = (bottomRef, height) => {
   const [finishReload, setFinishReload] = useState(false);
 
   const bottomScroll = () => {
-    const targetHeight = Math.floor(
-      bottomRef.current.getBoundingClientRect().height
-    );
-    const currentScrollY = Math.floor(
-      window.scrollY + window.innerHeight - height
-    );
-
-    if (targetHeight - currentScrollY !== 0) {
-      setBoottomBoolean(false);
-    } else {
+    const { scrollHeight } = document.documentElement;
+    const { scrollTop } = document.documentElement;
+    const { clientHeight } = document.documentElement;
+    if (scrollTop >= scrollHeight - clientHeight) {
       setBoottomBoolean(true);
       setSkip((prev) => prev + 10);
+    } else {
+      setBoottomBoolean(false);
     }
   };
   const getData = async (url, isMy) => {
@@ -45,19 +41,21 @@ export const useReloadData = (bottomRef, height) => {
           return res.data;
         });
       } else {
-        isMy
-          ? setData((prev) => {
-              return { post: [...prev.post, ...res.data.post] };
-            })
-          : setData((prev) => {
-              return { posts: [...prev.posts, ...res.data.posts] };
-            });
+        if (isMy === "프로필") {
+          setData((prev) => {
+            return { post: [...prev.post, ...res.data.post] };
+          });
+        } else if (isMy === "홈") {
+          setData((prev) => {
+            return { posts: [...prev.posts, ...res.data.posts] };
+          });
+        }
       }
-      if (isMy) {
+      if (isMy === "프로필") {
         if (res.data.post.length === 0) {
           setFinishReload(true);
         }
-      } else {
+      } else if (isMy === "홈") {
         if (res.data.posts.length === 0) {
           setFinishReload(true);
         }

@@ -187,6 +187,7 @@ export const AlbumLi = styled.li`
 export const AlbumImage = styled.img`
   width: 100%;
   object-fit: cover;
+  height: 114px;
 `;
 
 export const ReLoading = styled.div`
