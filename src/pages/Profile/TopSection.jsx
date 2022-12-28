@@ -15,6 +15,7 @@ export default function ProfileTopSection() {
   useEffect(() => {
     getData(url);
   }, [accountname]);
+
   return isLoding ? null : (
     <S.ProfileTopSec>
       <h2 className="ir">프로필 수정 및 상품등록</h2>
