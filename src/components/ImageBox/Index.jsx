@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState, useRef } from "react";
 import uploadIcon from "../../assets/images/upload_file.svg";
 import userImg from "../../assets/images/user_img_big.svg";
-import { BaseURL } from "../BaseURL/Index";
+import { BaseURL } from "../BaseURL/index.jsx";
 import axios from "axios";
 
 const ProfileImgContainer = styled.section`

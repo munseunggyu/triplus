@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
-import ProfileImg from "../../components/ImageBox/Index";
+import ProfileImg from "../../components/ImageBox";
 import { useNavigate, useLocation } from "react-router-dom";
-import { BaseURL } from "../../components/BaseURL/Index";
+import { BaseURL } from "../../components/BaseURL";
 import userImg from "../../assets/images/user_img_big.svg";
 import axios from "axios";
 
