@@ -8,3 +8,7 @@ export const ProfileLink = styled.div`
   display: flex;
   align-items: center;
 `;
+export const ReLoading = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.mainColor};
+`;
