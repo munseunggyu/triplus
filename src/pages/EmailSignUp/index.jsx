@@ -3,7 +3,6 @@ import styled from "styled-components";
 import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
 import axios from "axios";
-import { BaseURL } from "../../components/BaseURL";
 import { useNavigate } from "react-router-dom";
 
 const FormContainer = styled.section`
@@ -70,11 +69,14 @@ export default function EmailSignUp(props) {
 
   /* 다음버튼을 누를 경우에 서버에 post */
   const sendData = async () => {
-    const res = await axios.post(BaseURL + "/user/emailvalid", {
-      user: {
-        email: email,
-      },
-    });
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_KEY}/user/emailvalid`,
+      {
+        user: {
+          email: email,
+        },
+      }
+    );
 
     if (res.data.message === "사용 가능한 이메일 입니다.") {
       setEmailValid(true);

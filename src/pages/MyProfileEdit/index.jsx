@@ -4,7 +4,6 @@ import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
 import ProfileImg from "../../components/ImageBox";
 import { useNavigate, useLocation } from "react-router-dom";
-import { BaseURL } from "../../components/BaseURL";
 import userImg from "../../assets/images/user_img_big.svg";
 import axios from "axios";
 
@@ -88,7 +87,7 @@ const MyProfileEdit = () => {
 
   const signInHandler = async () => {
     try {
-      await axios.post(BaseURL + "/user", {
+      await axios.post(`${process.env.REACT_APP_API_KEY}/user`, {
         headers: {
           "Content-type": "application/json",
         },
