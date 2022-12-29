@@ -66,6 +66,7 @@ export const PostCardVertical = styled.button`
 export const PostCardHeartChatCon = styled.div`
   display: flex;
   margin-bottom: 18px;
+  align-items: center;
 `;
 
 export const PostCardLikeBtn = styled.button`
@@ -74,17 +75,25 @@ export const PostCardLikeBtn = styled.button`
   align-items: center;
   span {
     color: ${(props) => props.theme.grayColor};
+    font-size: 12px;
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
   }
   &::before {
     content: "";
     display: block;
     margin-right: 5px;
-    width: 20px;
-    height: 20px;
-    background: ${(props) =>
+    ${(props) =>
       props.hearted
-        ? `url(${css_sprite}) -234px -10px`
-        : `url(${css_sprite}) -50px -190px`};
+        ? `
+    background: url(${css_sprite}) -234px -10px;
+    width:19px;
+    height:17px;
+    `
+        : `
+        background: url(${css_sprite}) -50px -190px;
+  width:20px;
+  height:20px;
+  `}
   }
 `;
 export const PostCardChatLink = styled(Link)`
@@ -100,6 +109,7 @@ export const PostCardChatLink = styled(Link)`
   }
   span {
     color: ${(props) => props.theme.grayColor};
-    margin-top: 3px;
+    font-size: 12px;
+    font-family: "Spoqa Han Sans Neo", "sans-serif";
   }
 `;

@@ -44,21 +44,26 @@ export default function CommentBar({ postkey, setCommentList }) {
   }, []);
 
   return (
-    <S.CommentContainer>
-      <S.CommentForm onSubmit={postComment}>
-        {data ? (
-          <S.CommentProfileImg src={data.user.image} alt={data.user.username} />
-        ) : (
-          <S.CommentProfileImg src={user_img_small} alt="" />
-        )}
-        <S.CommentInput
-          type="text"
-          placeholder="댓글 입력하기..."
-          onChange={handlePostComment}
-          value={txt}
+    <S.CommentForm onSubmit={postComment}>
+      {data ? (
+        <S.CommentProfileImg
+          src={
+            data.user.image.includes("Ellipse")
+              ? user_img_small
+              : data.user.image
+          }
+          alt={data.user.username}
         />
-        <S.CommentBtn txt={txt}>게시</S.CommentBtn>
-      </S.CommentForm>
-    </S.CommentContainer>
+      ) : (
+        <S.CommentProfileImg src={user_img_small} alt="" />
+      )}
+      <S.CommentInput
+        type="text"
+        placeholder="댓글 입력하기..."
+        onChange={handlePostComment}
+        value={txt}
+      />
+      <S.CommentBtn txt={txt}>게시</S.CommentBtn>
+    </S.CommentForm>
   );
 }

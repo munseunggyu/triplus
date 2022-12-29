@@ -24,7 +24,6 @@ export default function Home() {
   useLayoutEffect(() => {
     getData(url, "홈");
   }, []);
-
   useEffect(() => {
     if (bottomBoolean) {
       getData(url, "홈");

@@ -6,7 +6,7 @@ export const useGetData = () => {
   const [isLoading, setIsLoading] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
-  const getData = async (url) => {
+  const getData = async (url, name) => {
     try {
       const res = await axios.get(url, {
         headers: {
@@ -14,7 +14,7 @@ export const useGetData = () => {
           "Content-type": "application/json",
         },
       });
-      setData(res.data);
+      name ? setData(res.data[name]) : setData(res.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);

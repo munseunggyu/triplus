@@ -98,7 +98,7 @@ const PostUpload = () => {
 
   // 프로필 이미지 불러오기
   useEffect(() => {
-    profileGetData(url);
+    profileGetData(url, "user");
   }, []);
 
   return isLoading ? (
@@ -119,7 +119,9 @@ const PostUpload = () => {
         <S.UploadContainer>
           <S.UploadProfileImg
             userProfileImg={
-              profileData ? profileData.user.image : user_img_small
+              profileData.image.includes("Ellipse")
+                ? user_img_small
+                : profileData.image
             }
           />
           <S.UploadContentForm onSubmit={handlePostUpload}>
