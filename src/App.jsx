@@ -19,10 +19,14 @@ import LoadingPage from "./pages/LoadingPage";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState(false);
 
   useEffect(() => {
-    setUserInfo(JSON.parse(localStorage.getItem("userinfo")));
+    setUserInfo((prev) => {
+      if (JSON.parse(localStorage.getItem("userinfo"))) {
+        return true;
+      }
+    });
   }, [userInfo]);
 
   return (
