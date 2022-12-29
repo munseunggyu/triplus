@@ -39,8 +39,8 @@ export default function Home() {
   return (
     <>
       <Header>
-        <S.MainLogo src={symbolImg} alt="" />
-        피드
+        <S.MainLogo src={symbolImg} alt="triplus logo" />
+        Triplus
         <SearchButton />
       </Header>
       <MainContainer>
