@@ -18,7 +18,7 @@ const SplashBody = styled.div`
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  display: ${(props) => props.isLoad};
+  /* display: ${(props) => (props.isLoad ? "none" : "flex")}; */
   z-index: 50;
 `;
 const WaveWrapper = styled.div`
@@ -32,17 +32,9 @@ const WaveWrapper = styled.div`
 `;
 
 export default function SplashScreen() {
-  const [isLoad, setIsLoad] = useState("flex");
-
-  const splashStart = () => {
-    setTimeout(() => {
-      setIsLoad("none");
-    }, 1500);
-  };
-  splashStart();
   return (
     <>
-      <SplashBody isLoad={isLoad}>
+      <SplashBody>
         <Logo src={LogoSrc} />
         <WaveWrapper>
           <Wave
