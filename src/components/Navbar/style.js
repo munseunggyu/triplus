@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const IconsUl = styled.ul`
-  background-color: white;
+  background-color: #fff;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -10,7 +10,7 @@ export const IconsUl = styled.ul`
   flex-direction: row;
   justify-content: space-between;
   gap: 14px;
-  border-top: 0.5px solid #dbdbdb;
+  border-top: 0.5px solid ${(props) => props.theme.borderColor};
 `;
 
 export const Iconli = styled.div`
@@ -38,7 +38,7 @@ export const NavIcon = styled.button`
 export const NavSpan = styled.span`
   display: block;
   font-size: 10px;
-  color: #767676;
+  color: ${(props) => props.theme.grayColor};
   &.active {
     color: ${(props) => props.theme.mainColor};
   }
