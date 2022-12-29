@@ -8,14 +8,16 @@ import * as S from "./style";
 import LoadingPage from "../LoadingPage";
 
 export default function ProfileTopSection() {
-  const { data, setData, isLoading, getData } = useGetData();
+  const { data, setData, isLoading, getData, isError } = useGetData();
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { accountname } = useParams();
   const isMyProfile = accountname === userInfo.accountname;
   const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
+
   useEffect(() => {
     getData(url);
   }, [accountname]);
+
   return isLoading ? (
     <LoadingPage />
   ) : (
