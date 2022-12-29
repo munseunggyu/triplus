@@ -107,6 +107,7 @@ function EmailLogin(props) {
       if (res.data.user?.token) {
         // localStorage.setItem("token", JSON.stringify(res.data.user.token));
         localStorage.setItem("userinfo", JSON.stringify(res.data.user));
+        props.setUserInfo(localStorage.getItem("userinfo"));
         setLoginConfirm(true);
         setLoginMessage(""); // 경고문구 삭제
         navigate("/"); // 로그인 성공 후 홈 화면으로 이동
