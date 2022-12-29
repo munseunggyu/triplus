@@ -25,14 +25,13 @@ export default function PostDetail() {
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
   const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`;
   const [trigger, setTrigger] = useState(false);
-
   const setCommentList = async () => {
     const res = await commentGetData(commentUrl);
   };
 
   useEffect(() => {
-    postGetData(postUrl);
-    commentGetData(commentUrl);
+    postGetData(postUrl, "post");
+    commentGetData(commentUrl, "comments");
     // console.log(commentData);
   }, [trigger]);
 
@@ -46,12 +45,12 @@ export default function PostDetail() {
         <LoadingPage />
       ) : (
         <MainContainer>
-          {postData && <UserPostDetail myPostData={postData.post} />}
+          {postData && <UserPostDetail myPostData={postData} />}
           {commentIsLoading ? (
             <LoadingPage />
           ) : (
-            commentData?.comments &&
-            commentData?.comments?.map((mapData) => (
+            commentData &&
+            commentData.map((mapData) => (
               <Comment
                 key={mapData.id}
                 data={mapData}

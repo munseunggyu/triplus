@@ -15,9 +15,8 @@ export default function ProfileTopSection() {
   const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
 
   useEffect(() => {
-    getData(url);
+    getData(url, "profile");
   }, [accountname]);
-
   return isLoading ? (
     <LoadingPage />
   ) : (
@@ -25,40 +24,30 @@ export default function ProfileTopSection() {
       <h2 className="ir">프로필 수정 및 상품등록</h2>
       <S.ProfileTopContainer>
         <S.ProfileImgFollowBtnsCon>
-          <S.ProfileFollowers
-            to={`/profile/${data.profile.accountname}/follower`}
-          >
-            <S.ProfileFollowCount>
-              {data.profile.followerCount}
-            </S.ProfileFollowCount>
+          <S.ProfileFollowers to={`/profile/${data.accountname}/follower`}>
+            <S.ProfileFollowCount>{data.followerCount}</S.ProfileFollowCount>
             <S.ProfileFollowTxt>followers</S.ProfileFollowTxt>
           </S.ProfileFollowers>
           <S.ProfileUserImg
-            src={
-              data.profile.image.includes("Ellipse")
-                ? user_img_big
-                : data.profile.image
-            }
+            src={data.image.includes("Ellipse") ? user_img_big : data.image}
             alt="프로필 이미지"
           />
-          <S.ProfileFollowers
-            to={`/profile/${data.profile.accountname}/following`}
-          >
+          <S.ProfileFollowers to={`/profile/${data.accountname}/following`}>
             <S.ProfileFollowCount isfollowing="1">
-              {data.profile.followingCount}
+              {data.followingCount}
             </S.ProfileFollowCount>
             <S.ProfileFollowTxt>following</S.ProfileFollowTxt>
           </S.ProfileFollowers>
         </S.ProfileImgFollowBtnsCon>
-        <S.ProfileUserName>{data.profile.username}</S.ProfileUserName>
-        <S.PofileUserId>&#64;{data.profile.accountname} </S.PofileUserId>
-        <S.ProfileIntroduce>{data.profile.intro}</S.ProfileIntroduce>
+        <S.ProfileUserName>{data.username}</S.ProfileUserName>
+        <S.PofileUserId>&#64;{data.accountname} </S.PofileUserId>
+        <S.ProfileIntroduce>{data.intro}</S.ProfileIntroduce>
         {isMyProfile ? (
-          <TopSectionMy {...data.profile} />
+          <TopSectionMy {...data} />
         ) : (
           <TopSectionYour
-            isfollow={data.profile.isfollow}
-            userAccountName={data.profile.accountname}
+            isfollow={data.isfollow}
+            userAccountName={data.accountname}
             setProfile={setData}
           />
         )}
