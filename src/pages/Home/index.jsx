@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Header>
-        <HeaderTitle>메인 홈페이지입니다.</HeaderTitle>
+        <HeaderTitle>트리플러스 피드</HeaderTitle>
         <SearchButton />
       </Header>
       <MainContainer>

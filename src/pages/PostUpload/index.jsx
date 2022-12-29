@@ -10,6 +10,7 @@ import { useGetPreview } from "../../hooks/useGetPreview";
 import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetData } from "../../hooks/useGetData";
 import user_img_small from "../../assets/images/user_img_small.svg";
+import LoadingPage from "../LoadingPage";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
@@ -20,7 +21,11 @@ const PostUpload = () => {
     useGetPreview();
   const { fileName, setFileName, txt, setTxt, handlePostUpload } =
     usePostUpload();
-  const { data: profileData, getData: profileGetData } = useGetData();
+  const {
+    data: profileData,
+    getData: profileGetData,
+    isLoading,
+  } = useGetData();
   const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
 
   const handleResizeHeight = () => {
@@ -96,7 +101,9 @@ const PostUpload = () => {
     profileGetData(url);
   }, []);
 
-  return (
+  return isLoading ? (
+    <LoadingPage />
+  ) : (
     <div>
       <Header>
         <Prev />
@@ -108,14 +115,13 @@ const PostUpload = () => {
           업로드
         </S.UploadBtn>
       </Header>
-
       <MainContainer>
         <S.UploadContainer>
-          {profileData ? (
-            <S.UploadProfileImg userProfileImg={profileData.user.image} />
-          ) : (
-            <S.UploadProfileImg userProfileImg={user_img_small} />
-          )}
+          <S.UploadProfileImg
+            userProfileImg={
+              profileData ? profileData.user.image : user_img_small
+            }
+          />
           <S.UploadContentForm onSubmit={handlePostUpload}>
             <S.UploadText
               name="textarea-uploadpost"
