@@ -16,7 +16,6 @@ export default function ProfileTopSection() {
   useEffect(() => {
     getData(url);
   }, [accountname]);
-
   return isLoading ? (
     <LoadingPage />
   ) : (
@@ -32,8 +31,14 @@ export default function ProfileTopSection() {
             </S.ProfileFollowCount>
             <S.ProfileFollowTxt>followers</S.ProfileFollowTxt>
           </S.ProfileFollowers>
-          <S.ProfileUserImg src={user_img_big} alt="프로필 이미지" />
-
+          <S.ProfileUserImg
+            src={
+              data.profile.image.includes("Ellipse")
+                ? user_img_big
+                : data.profile.image
+            }
+            alt="프로필 이미지"
+          />
           <S.ProfileFollowers
             to={`/profile/${data.profile.accountname}/following`}
           >
