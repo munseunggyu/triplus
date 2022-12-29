@@ -29,3 +29,8 @@ export const ReLoading = styled.div`
   text-align: center;
   color: ${(props) => props.theme.mainColor};
 `;
+
+export const MainLogo = styled.img`
+  width: 30px;
+  margin-right: 5px;
+`;
