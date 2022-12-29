@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { PlaneEvent } from "./splashEvent";
 import LogoSrc from "../../assets/images/plain_blue.svg";
@@ -18,6 +18,8 @@ const SplashBody = styled.div`
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+  /* display: ${(props) => (props.isLoad ? "none" : "flex")}; */
+  z-index: 50;
 `;
 const WaveWrapper = styled.div`
   bottom: 0px;

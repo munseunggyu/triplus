@@ -16,30 +16,57 @@ import ChatList from "./pages/ChatList";
 import ChatRoom from "./pages/ChatRoom";
 import ErrorPage from "./pages/ErrorPage";
 import LoadingPage from "./pages/LoadingPage";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [userInfo, setUserInfo] = useState(false);
+
+  useEffect(() => {
+    setUserInfo((prev) => {
+      if (JSON.parse(localStorage.getItem("userinfo"))) {
+        return true;
+      }
+    });
+  }, [userInfo]);
+
   return (
     <>
       <Routes>
-        <Route path="/splash" element={<SplashScreen />} />
-        <Route path="/multilogin" element={<MultiLogin />} />
-        <Route path="/emaillogin" element={<EmailLogin />} />
-        <Route path="/emailsignup" element={<EmailSignUp />} />
-        <Route path="/myprofileedit" element={<MyProfileEdit />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/profile/:accountname" element={<Profile />} />
-        <Route path="/profile/:accountname/following" element={<Follow />} />
-        <Route path="/profile/:accountname/follower" element={<Follow />} />
-        <Route path="/editprofile" element={<SetProfile />} />
-        <Route path="/postdetail/:postkey" element={<PostDetail />} />
-        <Route path="/postupload" element={<PostUpload />} />
-        <Route path="/productupload" element={<ProductUpload />} />
-        <Route path="/chatlist" element={<ChatList />} />
-        <Route path="/chatroom" element={<ChatRoom />} />
-        <Route path="/404" element={<ErrorPage />} />
-        <Route path="/postedit/:postid" element={<PostUpload />} />
-        <Route path="/loading" element={<LoadingPage />} />
+        {userInfo ? (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route
+              path="/profile/:accountname"
+              element={<Profile setUserInfo={setUserInfo} />}
+            />
+            <Route
+              path="/profile/:accountname/following"
+              element={<Follow />}
+            />
+            <Route path="/profile/:accountname/follower" element={<Follow />} />
+            <Route path="/editprofile" element={<SetProfile />} />
+            <Route path="/postdetail/:postkey" element={<PostDetail />} />
+            <Route path="/postupload" element={<PostUpload />} />
+            <Route path="/productupload" element={<ProductUpload />} />
+            <Route path="/chatlist" element={<ChatList />} />
+            <Route path="/chatroom" element={<ChatRoom />} />
+            <Route path="/404" element={<ErrorPage />} />
+            <Route path="/postedit/:postid" element={<PostUpload />} />
+            <Route path="/loading" element={<LoadingPage />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<MultiLogin />} />
+            <Route
+              path="/emaillogin"
+              element={<EmailLogin setUserInfo={setUserInfo} />}
+            />
+            <Route path="/emailsignup" element={<EmailSignUp />} />
+            <Route path="/myprofileedit" element={<MyProfileEdit />} />
+          </>
+        )}
+        {/* <Route path="/splash" element={<SplashScreen />} /> */}
       </Routes>
     </>
   );

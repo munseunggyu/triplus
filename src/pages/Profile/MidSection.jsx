@@ -10,13 +10,12 @@ export default function ProfileMidSection() {
   useEffect(() => {
     getData(url);
   }, [accountname]);
-
-  return isLoading ? null : data.data > 0 ? (
+  return isLoading ? null : data > 0 ? (
     <S.ProfileMidSec>
       <S.ProfileMidSectionCon>
         <S.ProfileMidSectionH2>판매중인 상품</S.ProfileMidSectionH2>
         <S.ProfileMidSectionUl>
-          {data.product.map((product) => {
+          {data.map((product) => {
             return (
               <li key={product.id}>
                 <S.ProfileMidSectionImg
@@ -27,7 +26,7 @@ export default function ProfileMidSection() {
                   {product.itemName}{" "}
                 </S.ProfileMidSectionTxt>
                 <S.ProfileMidSectionPrice>
-                  {product.price}
+                  {product.price.toLocaleString("ko-KR")}원
                 </S.ProfileMidSectionPrice>
               </li>
             );

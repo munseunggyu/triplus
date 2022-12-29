@@ -1,6 +1,8 @@
 import LoginModal from "./LoginModal";
 import styled, { keyframes } from "styled-components";
 import LogoSrc from "../../assets/images/plain_white.svg";
+import SplashScreen from "../SplashScreen";
+import { useState } from "react";
 
 const logoAnimation = keyframes`
     0%{
@@ -28,10 +30,23 @@ const Logo = styled.img`
 `;
 
 export default function MultiLogin() {
+  const [isLoad, setIsLoad] = useState(true);
+  const splashStart = () => {
+    setTimeout(() => {
+      setIsLoad(false);
+    }, 1500);
+  };
+  splashStart();
   return (
-    <MainDiv>
-      <Logo src={LogoSrc} alt="triPlus" />
-      <LoginModal />
-    </MainDiv>
+    <>
+      {isLoad ? (
+        <SplashScreen isLoad={isLoad} setIsLoad={setIsLoad} />
+      ) : (
+        <MainDiv>
+          <Logo src={LogoSrc} alt="triPlus" />
+          <LoginModal />
+        </MainDiv>
+      )}
+    </>
   );
 }
