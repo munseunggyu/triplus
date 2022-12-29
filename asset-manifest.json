@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/triplus/static/js/main.9a337fdd.js",
+    "static/media/loading.png": "/triplus/static/media/loading.628b3a5a54d5c43f92d8.png",
+    "static/media/user_img_big.svg": "/triplus/static/media/user_img_big.e49288b03aadac912a77622c51c1013e.svg",
+    "static/media/user_img_small.svg": "/triplus/static/media/user_img_small.cec8644ab3ea8a8ba18f2d6f52684b0f.svg",
+    "static/media/css_sprites.png": "/triplus/static/media/css_sprites.f1a75ce6e118bd9a479d.png",
+    "static/media/plain_blue.svg": "/triplus/static/media/plain_blue.2d390d879ac501660ae02808e1d80649.svg",
+    "static/media/plain_white.svg": "/triplus/static/media/plain_white.894e63cf9116e025fb14e5356e137005.svg",
+    "static/media/error_404.svg": "/triplus/static/media/error_404.ed40174aa44e5114a36b95a0991b32b2.svg",
+    "static/media/file_gray.svg": "/triplus/static/media/file_gray.74f0dbb656fd36ef63cdf9a288dd68ab.svg",
+    "static/media/upload_file.svg": "/triplus/static/media/upload_file.e645107ffe40193a038b9b97d283e1c3.svg",
+    "index.html": "/triplus/index.html",
+    "static/media/circle.svg": "/triplus/static/media/circle.c74a6bbe713851850de4654e9309b53e.svg",
+    "main.9a337fdd.js.map": "/triplus/static/js/main.9a337fdd.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.9a337fdd.js"
+  ]
+}
