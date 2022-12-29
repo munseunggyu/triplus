@@ -1,14 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
 import AlertModal from "../Modal/AlertModal";
 import ModalContainer from "../Modal/ModalContainer";
 import ModalList from "../Modal/ModalList";
 import * as S from "./style";
 
-export default function Vertical() {
+export default function Vertical({ setUserInfo }) {
   const { isModal, isModalAlert, handleModal, handleAlert, handlCloseClick } =
     useModal();
-
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.removeItem("userinfo");
+    setUserInfo(null);
+    navigate("/");
+  };
   return (
     <>
       <S.VerticalBtn onClick={handleModal}>
@@ -27,7 +33,7 @@ export default function Vertical() {
           title="로그아웃 하시겠어요?"
           submitText="로그아웃"
           onCloseClick={handlCloseClick}
-          // onSubmitClick={로그아웃 기능}
+          onSubmitClick={logOut}
         />
       ) : null}
     </>

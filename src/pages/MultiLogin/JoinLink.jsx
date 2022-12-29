@@ -23,10 +23,10 @@ const SubAreaLink = styled(Link)`
 const JoinLink = () => {
   return (
     <SubAreaContainer>
-      <SubAreaLink to="/loginpage">
+      <SubAreaLink to="/emaillogin">
         <strong>이메일로 로그인</strong>
       </SubAreaLink>
-      <SubAreaLink to="/joinpage">
+      <SubAreaLink to="/emailsignup">
         <strong>회원가입</strong>
       </SubAreaLink>
     </SubAreaContainer>

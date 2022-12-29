@@ -22,6 +22,7 @@ export const ProfileUserImg = styled.img`
   height: 110px;
   margin: 0 auto;
   display: block;
+  border-radius: 50%;
 `;
 export const ProfileUserName = styled.strong`
   font-weight: 700;

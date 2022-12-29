@@ -1,6 +1,7 @@
 import LoginModal from "./LoginModal";
 import styled, { keyframes } from "styled-components";
 import LogoSrc from "../../assets/images/plain_white.svg";
+import SplashScreen from "../SplashScreen";
 
 const logoAnimation = keyframes`
     0%{
@@ -32,6 +33,7 @@ export default function MultiLogin() {
     <MainDiv>
       <Logo src={LogoSrc} alt="triPlus" />
       <LoginModal />
+      {/* <SplashScreen /> */}
     </MainDiv>
   );
 }
