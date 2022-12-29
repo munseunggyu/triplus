@@ -4,7 +4,7 @@ import user_img_small from "../../assets/images/user_img_small.svg";
 import ModalContainer from "../Modal/ModalContainer";
 import ModalList from "../Modal/ModalList";
 import AlertModal from "../Modal/AlertModal";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
 import { handleDelete } from "../../utils/handleDelete";
 import { handleDeclaration } from "../../utils/handleDeclaration";
@@ -44,9 +44,13 @@ export default function PostCard({
   return (
     <>
       <S.PostCardList>
-        <S.PostCardUserImg
-          src={author.image.includes("Ellipse") ? user_img_small : author.image}
-        />
+        <Link to={`/profile/${author.accountname}`}>
+          <S.PostCardUserImg
+            src={
+              author.image.includes("Ellipse") ? user_img_small : author.image
+            }
+          />
+        </Link>
         <div>
           <S.PostCardUserName>{author.username}</S.PostCardUserName>
           <S.PostCardUserId>&#64;{author.accountname}</S.PostCardUserId>
