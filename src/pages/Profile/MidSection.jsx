@@ -10,7 +10,6 @@ export default function ProfileMidSection() {
   useEffect(() => {
     getData(url);
   }, [accountname]);
-
   return isLoading ? null : data.data > 0 ? (
     <S.ProfileMidSec>
       <S.ProfileMidSectionCon>
@@ -27,7 +26,7 @@ export default function ProfileMidSection() {
                   {product.itemName}{" "}
                 </S.ProfileMidSectionTxt>
                 <S.ProfileMidSectionPrice>
-                  {product.price}
+                  {product.price.toLocaleString("ko-KR")}원
                 </S.ProfileMidSectionPrice>
               </li>
             );
