@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import styled from "styled-components";
-import ProfileImg from "../../components/ImageBox/index";
+import ProfileImg from "../../components/ImageBox";
 import InputBox from "../../components/InputBox/index";
 import axios from "axios";
 import userImg from "../../assets/images/user_img_big.svg";
@@ -17,7 +17,7 @@ const FormContainer = styled.section`
   flex-direction: column;
   /* height: 90vh; */
   width: 100vw;
-s  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 `;
 
 const PageTitle = styled.h1``;
