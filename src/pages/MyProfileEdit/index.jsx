@@ -101,8 +101,7 @@ const MyProfileEdit = () => {
           image: ProfileImg ? ProfileImg : userImg,
         },
       });
-      localStorage.setItem("userinfo", JSON.stringify(res.data.user));
-      navigate("/");
+      navigate("/emaillogin");
     } catch (error) {
       if (error.response.data.message === "이미 사용중인 계정 ID입니다.") {
         setAccountnameError("이미 사용중인 계정 ID입니다.");
