@@ -7,7 +7,6 @@ export default function ProfileMidSection() {
   const { data, isLoading, getData } = useGetData();
   const { accountname } = useParams();
   const url = `${process.env.REACT_APP_API_KEY}/product/${accountname}`;
-  console.log(data, isLoading);
   useEffect(() => {
     getData(url, "product");
   }, [accountname]);

@@ -9,6 +9,8 @@ import HomeNoFollow from "./HomeNoFollow";
 import { useReloadData } from "../../hooks/useReloadData";
 import * as S from "./style";
 import LoadingPage from "../LoadingPage";
+import symbolImg from "../../assets/images/main_logo.svg";
+import styled from "styled-components";
 
 export default function Home() {
   const {
@@ -36,11 +38,13 @@ export default function Home() {
   return (
     <>
       <Header>
-        <HeaderTitle>트리플러스 피드</HeaderTitle>
+        <S.HomeLogoTitle>
+          <S.HomeTitleImg src={symbolImg} alt="triplus 메인로고" />
+          <S.HomeTitleSpan>triPlus</S.HomeTitleSpan>
+        </S.HomeLogoTitle>
         <SearchButton />
       </Header>
       <MainContainer>
-        <HomeNoFollow />
         {isLoading ? (
           <LoadingPage />
         ) : data.posts.length > 0 ? (
