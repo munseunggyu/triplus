@@ -8,7 +8,7 @@ export default function TopSectionMy({ accountname, image, intro, username }) {
     <S.MyProfileBtnCon>
       <S.MyProfileBtn
         onClick={() => {
-          navigate(`/editprofile`, {
+          navigate(`/myprofileedit`, {
             state: {
               accountname,
               image,
