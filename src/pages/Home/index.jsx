@@ -40,6 +40,7 @@ export default function Home() {
         <SearchButton />
       </Header>
       <MainContainer>
+        <HomeNoFollow />
         {isLoading ? (
           <LoadingPage />
         ) : data.posts.length > 0 ? (

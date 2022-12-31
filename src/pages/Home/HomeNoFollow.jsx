@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import symbolImg from "../../assets/images/plain_blue.svg";
+import symbolImg from "../../assets/images/plain_gray.svg";
 
 export default function HomeNoFollow() {
   return (

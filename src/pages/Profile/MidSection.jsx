@@ -7,10 +7,11 @@ export default function ProfileMidSection() {
   const { data, isLoading, getData } = useGetData();
   const { accountname } = useParams();
   const url = `${process.env.REACT_APP_API_KEY}/product/${accountname}`;
+  console.log(data, isLoading);
   useEffect(() => {
-    getData(url);
+    getData(url, "product");
   }, [accountname]);
-  return isLoading ? null : data > 0 ? (
+  return isLoading ? null : data.length > 0 ? (
     <S.ProfileMidSec>
       <S.ProfileMidSectionCon>
         <S.ProfileMidSectionH2>판매중인 상품</S.ProfileMidSectionH2>
