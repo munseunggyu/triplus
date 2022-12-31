@@ -18,7 +18,7 @@ export const useFollowBtn = (isfollow) => {
           }
         );
         setIsFollowing((prev) => !prev);
-        setProfile && setProfile(res.data);
+        setProfile && setProfile(res.data.profile);
       } else {
         const res = await axios.post(
           `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follow`,
@@ -31,7 +31,7 @@ export const useFollowBtn = (isfollow) => {
           }
         );
         setIsFollowing((prev) => !prev);
-        setProfile && setProfile(res.data);
+        setProfile && setProfile(res.data.profile);
       }
     } catch (error) {
       console.log(error);

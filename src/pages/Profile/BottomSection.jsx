@@ -4,6 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { useReloadData } from "../../hooks/useReloadData";
 import * as S from "./style";
 import { useGetData } from "../../hooks/useGetData";
+import icon_img_layers from "../../assets/images/icon_img_layers.svg";
+import styled from "styled-components";
+// icon_img_layers.svg
 
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
@@ -59,11 +62,18 @@ export default function ProfileBottomSection() {
             albumData.post
               .filter((post) => post.image)
               .map((post) => {
+                console.log(post.image.split(",").length);
                 return (
                   <S.AlbumLi key={post.id}>
                     <Link to={`/postdetail/${post.id}`}>
-                      <S.AlbumImage src={post.image} alt={post.content} />
+                      <S.AlbumImage
+                        src={post.image.split(",")[0]}
+                        alt={post.content}
+                      />
                     </Link>
+                    {post.image.split(",").length > 1 && (
+                      <S.AlbumLayers src={icon_img_layers} />
+                    )}
                   </S.AlbumLi>
                 );
               })
