@@ -1,33 +1,31 @@
 import styled from "styled-components";
 
-export const CommentContainer = styled.div`
+export const CommentForm = styled.form`
+  padding: 13px 0px;
   position: fixed;
   bottom: 0;
   background-color: #fff;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  height: 36px;
-  padding: 13px 0;
   border-top: 0.5px solid ${(props) => props.theme.borderColor};
 `;
 
-export const CommentForm = styled.form`
-  display: flex;
-  width: 100%;
-`;
-
 export const CommentProfileImg = styled.img`
+  margin-left: 12px;
   width: 36px;
-  padding: 0 18px 0 16px;
+  height: 36px;
+  border-radius: 50%;
 `;
 
 export const CommentInput = styled.input`
+  flex-grow: 1;
+  margin: 0 18px;
+  height: 36px;
   border: 0;
   &:focus {
     outline: none;
   }
-  width: 100%;
   &::placeholder {
     font-size: 14px;
     color: #c4c4c4;
@@ -35,9 +33,7 @@ export const CommentInput = styled.input`
 `;
 
 export const CommentBtn = styled.button`
-  box-sizing: border-box;
+  margin-right: 20px;
   font-size: 14px;
   color: ${(props) => (props.txt ? props.theme.mainColor : "#c4c4c4")};
-  width: 5em;
-  text-align: center;
 `;
