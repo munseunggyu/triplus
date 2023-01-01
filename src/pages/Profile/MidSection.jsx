@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
 
@@ -18,16 +18,18 @@ export default function ProfileMidSection() {
           {data.map((product) => {
             return (
               <li key={product.id}>
-                <S.ProfileMidSectionImg
-                  src={product.itemImage}
-                  alt="상품 이미지"
-                />
-                <S.ProfileMidSectionTxt>
-                  {product.itemName}{" "}
-                </S.ProfileMidSectionTxt>
-                <S.ProfileMidSectionPrice>
-                  {product.price.toLocaleString("ko-KR")}원
-                </S.ProfileMidSectionPrice>
+                <a href={product.link}>
+                  <S.ProfileMidSectionImg
+                    src={product.itemImage}
+                    alt="상품 이미지"
+                  />
+                  <S.ProfileMidSectionTxt>
+                    {product.itemName}{" "}
+                  </S.ProfileMidSectionTxt>
+                  <S.ProfileMidSectionPrice>
+                    {product.price.toLocaleString("ko-KR")}원
+                  </S.ProfileMidSectionPrice>
+                </a>
               </li>
             );
           })}
