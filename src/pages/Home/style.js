@@ -34,3 +34,19 @@ export const MainLogo = styled.img`
   width: 30px;
   margin-right: 5px;
 `;
+
+export const HomeLogoTitle = styled.h1`
+  display: flex;
+  align-items: center;
+  gap: 7px;
+`;
+export const HomeTitleSpan = styled.strong`
+  font-size: 28px;
+  font-weight: 800;
+  color: ${(props) => props.theme.mainColor};
+  margin-top: 5px;
+`;
+
+export const HomeTitleImg = styled.img`
+  width: 38px;
+`;

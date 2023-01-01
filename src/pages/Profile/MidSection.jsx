@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
 
@@ -8,9 +8,9 @@ export default function ProfileMidSection() {
   const { accountname } = useParams();
   const url = `${process.env.REACT_APP_API_KEY}/product/${accountname}`;
   useEffect(() => {
-    getData(url);
+    getData(url, "product");
   }, [accountname]);
-  return isLoading ? null : data > 0 ? (
+  return isLoading ? null : data.length > 0 ? (
     <S.ProfileMidSec>
       <S.ProfileMidSectionCon>
         <S.ProfileMidSectionH2>판매중인 상품</S.ProfileMidSectionH2>
@@ -18,16 +18,18 @@ export default function ProfileMidSection() {
           {data.map((product) => {
             return (
               <li key={product.id}>
-                <S.ProfileMidSectionImg
-                  src={product.itemImage}
-                  alt="상품 이미지"
-                />
-                <S.ProfileMidSectionTxt>
-                  {product.itemName}{" "}
-                </S.ProfileMidSectionTxt>
-                <S.ProfileMidSectionPrice>
-                  {product.price.toLocaleString("ko-KR")}원
-                </S.ProfileMidSectionPrice>
+                <a href={product.link}>
+                  <S.ProfileMidSectionImg
+                    src={product.itemImage}
+                    alt="상품 이미지"
+                  />
+                  <S.ProfileMidSectionTxt>
+                    {product.itemName}{" "}
+                  </S.ProfileMidSectionTxt>
+                  <S.ProfileMidSectionPrice>
+                    {product.price.toLocaleString("ko-KR")}원
+                  </S.ProfileMidSectionPrice>
+                </a>
               </li>
             );
           })}
