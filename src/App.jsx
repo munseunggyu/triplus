@@ -3,12 +3,12 @@ import SplashScreen from "./pages/SplashScreen";
 import MultiLogin from "./pages/MultiLogin";
 import EmailLogin from "./pages/EmailLogin";
 import EmailSignUp from "./pages/EmailSignUp";
-import MyProfileEdit from "./pages/MyProfileEdit";
+import SetProfile from "./pages/SetProfile";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Follow from "./pages/Follow";
-import SetProfile from "./pages/SetProfile";
+import MyProfileEdit from "./pages/MyProfileEdit";
 import PostDetail from "./pages/PostDetail";
 import PostUpload from "./pages/PostUpload";
 import ProductUpload from "./pages/ProductUpload";
@@ -45,7 +45,7 @@ function App() {
               element={<Follow />}
             />
             <Route path="/profile/:accountname/follower" element={<Follow />} />
-            <Route path="/editprofile" element={<SetProfile />} />
+            <Route path="/myprofileedit" element={<MyProfileEdit />} />
             <Route path="/postdetail/:postkey" element={<PostDetail />} />
             <Route path="/postupload" element={<PostUpload />} />
             <Route path="/productupload" element={<ProductUpload />} />
@@ -63,7 +63,7 @@ function App() {
               element={<EmailLogin setUserInfo={setUserInfo} />}
             />
             <Route path="/emailsignup" element={<EmailSignUp />} />
-            <Route path="/myprofileedit" element={<MyProfileEdit />} />
+            <Route path="/setprofile" element={<SetProfile />} />
           </>
         )}
         {/* <Route path="/splash" element={<SplashScreen />} /> */}

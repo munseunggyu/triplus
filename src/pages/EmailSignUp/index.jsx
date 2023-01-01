@@ -80,7 +80,7 @@ export default function EmailSignUp(props) {
 
     if (res.data.message === "사용 가능한 이메일 입니다.") {
       setEmailValid(true);
-      navigate("/myprofileedit", {
+      navigate("/setprofile", {
         state: {
           email: email,
           password: password,

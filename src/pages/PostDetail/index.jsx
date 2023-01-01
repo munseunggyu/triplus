@@ -26,7 +26,7 @@ export default function PostDetail() {
   const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`;
   const [trigger, setTrigger] = useState(false);
   const setCommentList = async () => {
-    const res = await commentGetData(commentUrl);
+    const res = await commentGetData(commentUrl, "comments");
   };
 
   useEffect(() => {

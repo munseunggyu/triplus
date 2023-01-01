@@ -155,6 +155,7 @@ export const ProfileBottomSectionBtns = styled.div`
 export const PostAlbumtIcon = styled.button`
   width: 26px;
   height: 26px;
+  margin-left: 10px;
   background: url(${css_sprite})
     ${(props) => (props.isAlbum ? "-56px -10px" : "-10px -10px")};
 `;
@@ -169,7 +170,6 @@ export const Line = styled.div`
   border-bottom: 2px solid #f2f2f2;
 `;
 export const CardContainer = styled.ul`
-  padding: 0 21px;
   ${(props) =>
     props.isAlbum
       ? `
@@ -180,10 +180,12 @@ export const CardContainer = styled.ul`
       gap:5px;
   `
       : `
+      padding: 0 21px;
 `}
 `;
 export const AlbumLi = styled.li`
   width: calc(33.33333% - 5.33333px);
+  position: relative;
 `;
 export const AlbumImage = styled.img`
   width: 100%;
@@ -194,4 +196,10 @@ export const AlbumImage = styled.img`
 export const ReLoading = styled.div`
   text-align: center;
   color: ${(props) => props.theme.mainColor};
+`;
+
+export const AlbumLayers = styled.img`
+  position: absolute;
+  top: 6px;
+  right: 6px;
 `;
