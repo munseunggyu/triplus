@@ -1,24 +1,13 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PostCard from "../../components/PostCard";
 import { Link, useParams } from "react-router-dom";
-import { useReloadData } from "../../hooks/useReloadData";
 import * as S from "./style";
 import { useGetData } from "../../hooks/useGetData";
 import icon_img_layers from "../../assets/images/icon_img_layers.svg";
-import styled from "styled-components";
-// icon_img_layers.svg
+import { useObserver } from "../../hooks/useObserver";
 
 export default function ProfileBottomSection() {
   const { accountname } = useParams();
-  const {
-    skip,
-    bottomBoolean,
-    data,
-    isLoading,
-    bottomScroll,
-    getData,
-    reloadLoding,
-  } = useReloadData();
   const [isAlbum, setIsAlbum] = useState(false);
   const {
     data: albumData,
@@ -26,63 +15,79 @@ export default function ProfileBottomSection() {
     getData: albumGetData,
   } = useGetData();
   const [trigger, setTrigger] = useState(false);
-  const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${skip}`;
+
+  const curRef = useRef(null);
+  const {
+    data,
+    isLoading,
+    getData,
+    page,
+    reloading,
+    finishReload,
+    setPage,
+    setFinishReload,
+  } = useObserver(curRef, 10);
+
+  const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${page}`;
   const albumUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=50`;
 
-  useLayoutEffect(() => {
-    getData(listUrl, "프로필");
-  }, [trigger, accountname]);
+  const handleAlbum = () => {
+    albumGetData(albumUrl, "post");
+    setIsAlbum(true);
+  };
 
   useEffect(() => {
-    if (isAlbum) {
-      albumGetData(albumUrl);
-    } else {
-      if (bottomBoolean) {
-        getData(listUrl, "프로필");
-      }
-      window.addEventListener("scroll", bottomScroll);
-      return () => {
-        window.removeEventListener("scroll", bottomScroll);
-      };
+    setPage(0);
+    setFinishReload(false);
+  }, [accountname, trigger]);
+
+  useEffect(() => {
+    if (!finishReload) {
+      getData(listUrl, "post");
     }
-  }, [accountname, trigger, bottomBoolean, isAlbum]);
+  }, [page, accountname, trigger]);
+
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
       <S.ProfileBottomSectionBtns>
         <S.PostListIcon isAlbum={isAlbum} onClick={() => setIsAlbum(false)} />
-        <S.PostAlbumtIcon isAlbum={isAlbum} onClick={() => setIsAlbum(true)} />
+        <S.PostAlbumtIcon isAlbum={isAlbum} onClick={handleAlbum} />
       </S.ProfileBottomSectionBtns>
       <S.Line />
       <S.CardContainer isAlbum={isAlbum}>
-        {isLoading
-          ? null
-          : isAlbum
-          ? albumLoading !== true &&
-            albumData.post
-              .filter((post) => post.image)
-              .map((post) => {
-                console.log(post.image.split(",").length);
-                return (
-                  <S.AlbumLi key={post.id}>
-                    <Link to={`/postdetail/${post.id}`}>
-                      <S.AlbumImage
-                        src={post.image.split(",")[0]}
-                        alt={post.content}
-                      />
-                    </Link>
-                    {post.image.split(",").length > 1 && (
-                      <S.AlbumLayers src={icon_img_layers} />
-                    )}
-                  </S.AlbumLi>
-                );
-              })
-          : data.post.map((post) => {
+        {isLoading ? null : isAlbum ? (
+          albumLoading !== true &&
+          albumData
+            .filter((post) => post.image)
+            .map((post) => {
+              console.log(post.image.split(",").length);
+              return (
+                <S.AlbumLi key={post.id}>
+                  <Link to={`/postdetail/${post.id}`}>
+                    <S.AlbumImage
+                      src={post.image.split(",")[0]}
+                      alt={post.content}
+                    />
+                  </Link>
+                  {post.image.split(",").length > 1 && (
+                    <S.AlbumLayers src={icon_img_layers} />
+                  )}
+                </S.AlbumLi>
+              );
+            })
+        ) : (
+          <>
+            {data.map((post) => {
               return (
                 <PostCard key={post.id} setTrigger={setTrigger} {...post} />
               );
             })}
-        {reloadLoding && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
+            <div ref={curRef}></div>
+          </>
+        )}
+
+        {reloading && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
       </S.CardContainer>
     </section>
   );
