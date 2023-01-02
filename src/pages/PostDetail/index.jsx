@@ -11,9 +11,11 @@ import { useGetData } from "../../hooks/useGetData";
 import LoadingPage from "../LoadingPage";
 import * as S from "./style";
 import { useCommentReloadGetData } from "../../hooks/useCommentReloadGetData";
+import { useObserver } from "../../hooks/useObserver";
 
 export default function PostDetail() {
   const { postkey } = useParams();
+  const reloadRef = useRef(null);
   const {
     data: postData,
     getData: postGetData,
@@ -27,35 +29,38 @@ export default function PostDetail() {
     reloading,
     loadMore,
     setReloading,
-  } = useCommentReloadGetData();
+    finishReload,
+  } = useObserver(reloadRef, 5);
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
-  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=${page}`;
+  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=5&skip=${page}`;
   const [trigger, setTrigger] = useState(false);
   const setCommentList = async () => {
     const res = await commentGetData(commentUrl, "comments");
   };
-  const reloadRef = useRef();
 
   useEffect(() => {
     postGetData(postUrl, "post");
-    commentGetData(commentUrl, "comments");
-    console.log(commentData);
-  }, [trigger, page]);
-
+  }, [trigger]);
   useEffect(() => {
-    let observer;
-    if (reloading) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            loadMore();
-          }
-        },
-        { threshold: 1 }
-      );
-      observer.observe(reloadRef.current);
+    if (!finishReload) {
+      commentGetData(commentUrl, "comments");
     }
-  }, [reloading]);
+  }, [page, trigger]);
+
+  // useEffect(() => {
+  //   let observer;
+  //   if (reloading) {
+  //     observer = new IntersectionObserver(
+  //       (entries) => {
+  //         if (entries[0].isIntersecting) {
+  //           loadMore();
+  //         }
+  //       },
+  //       { threshold: 1 }
+  //     );
+  //     observer.observe(reloadRef.current);
+  //   }
+  // }, [reloading]);
 
   return (
     <>
@@ -71,18 +76,22 @@ export default function PostDetail() {
           {commentIsLoading ? (
             <LoadingPage />
           ) : (
-            commentData &&
-            commentData.map((mapData) => (
-              <Comment
-                key={mapData.id}
-                data={mapData}
-                commentId={mapData.id}
-                setTrigger={setTrigger}
-              />
-            ))
+            commentData && (
+              <>
+                {commentData.map((mapData) => (
+                  <Comment
+                    key={mapData.id}
+                    data={mapData}
+                    commentId={mapData.id}
+                    setTrigger={setTrigger}
+                  />
+                ))}
+                <div ref={reloadRef} />
+              </>
+            )
           )}
 
-          {reloading && <S.ReLoading ref={reloadRef}>Loading</S.ReLoading>}
+          {/* {reloading && <S.ReLoading ref={reloadRef}>Loading</S.ReLoading>} */}
         </MainContainer>
       )}
       <CommentBar postkey={postkey} setCommentList={setCommentList} />
