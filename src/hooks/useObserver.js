@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useObserver = (reloadRef) => {
+export const useObserver = (reloadRef, pageNum) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
@@ -9,7 +9,7 @@ export const useObserver = (reloadRef) => {
   const [reloading, setReloading] = useState(false);
   const [finishReload, setFinishReload] = useState(false);
 
-  const loadMore = () => setPage((prev) => prev + 10);
+  const loadMore = () => setPage((prev) => prev + pageNum);
 
   const getData = async (url, name) => {
     setReloading(true);

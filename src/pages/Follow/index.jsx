@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import HeaderTitle from "../../components/Header/HeaderTitle";
@@ -6,19 +6,21 @@ import Prev from "../../components/Header/Prev";
 import { MainContainer } from "../../components/MainContainer";
 import Navbar from "../../components/Navbar";
 import UserInfo from "../../components/UserInfo";
-import { useGetData } from "../../hooks/useGetData";
 import IsFollowButton from "../../components/Button/FollowBtn/IsFollowButton";
 import * as S from "./style";
 import LoadingPage from "../LoadingPage";
+import { useObserver } from "../../hooks/useObserver";
 
 export default function Follow() {
   const [triggerFollow, setTriggerFollow] = useState(false);
-  const { data, isLoading, getData } = useGetData();
+  const curRef = useRef(null);
+  const { data, isLoading, getData, page, reloading, finishReload } =
+    useObserver(curRef, 15);
   const { accountname } = useParams();
   const path = useLocation();
 
-  const followingUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following`;
-  const followerUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower`;
+  const followingUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/following/?limit=15&skip=${page}`;
+  const followerUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower/?limit=15&skip=${page}`;
 
   useEffect(() => {
     if (path.pathname.includes("follower")) {
@@ -26,11 +28,9 @@ export default function Follow() {
     } else {
       getData(followingUrl);
     }
-  }, [triggerFollow]);
+  }, [triggerFollow, page]);
 
-  return isLoading ? (
-    <LoadingPage />
-  ) : (
+  return (
     <>
       <Header>
         <Prev />
@@ -38,21 +38,27 @@ export default function Follow() {
       </Header>
       <MainContainer>
         <S.FollowContainer>
-          {data.map((follow) => {
-            return (
-              <S.ProfileLink key={follow._id}>
-                <Link to={`/profile/${follow.accountname}`}>
-                  <UserInfo {...follow} />
-                </Link>
-                <IsFollowButton
-                  isfollow={follow.isfollow}
-                  userAccountName={follow.accountname}
-                  setTriggerFollow={setTriggerFollow}
-                />
-              </S.ProfileLink>
-            );
-          })}
+          {isLoading ? (
+            <LoadingPage />
+          ) : (
+            <>
+              {data.map((follow) => (
+                <S.ProfileLink key={follow._id}>
+                  <Link to={`/profile/${follow.accountname}`}>
+                    <UserInfo {...follow} />
+                  </Link>
+                  <IsFollowButton
+                    isfollow={follow.isfollow}
+                    userAccountName={follow.accountname}
+                    setTriggerFollow={setTriggerFollow}
+                  />
+                </S.ProfileLink>
+              ))}
+              <div ref={curRef} />
+            </>
+          )}
         </S.FollowContainer>
+        {reloading && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
       </MainContainer>
       <Navbar />
     </>

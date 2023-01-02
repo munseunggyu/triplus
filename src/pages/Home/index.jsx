@@ -14,7 +14,7 @@ import { useObserver } from "../../hooks/useObserver";
 export default function Home() {
   const curRef = useRef(null);
   const { data, isLoading, getData, page, reloading, finishReload } =
-    useObserver(curRef);
+    useObserver(curRef, 10);
   const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10&skip=${page}`;
 
   useEffect(() => {
