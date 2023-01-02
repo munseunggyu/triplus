@@ -30,22 +30,31 @@ export default function PostDetail() {
     loadMore,
     setReloading,
     finishReload,
-  } = useObserver(reloadRef, 5);
+    setFinishReload,
+    setData,
+    setPage,
+  } = useObserver(reloadRef, 8);
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
-  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=5&skip=${page}`;
+  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=8&skip=${page}`;
   const [trigger, setTrigger] = useState(false);
-  const setCommentList = async () => {
-    const res = await commentGetData(commentUrl, "comments");
-  };
+  // const setCommentList = async () => {
 
+  //   const res = await commentGetData(commentUrl, "comments");
+  // };
+  // 댓글을 작성한다
+  // 반환된 값
+  console.log(commentData);
   useEffect(() => {
     postGetData(postUrl, "post");
+    setPage(0);
+    setFinishReload(false);
   }, [trigger]);
   useEffect(() => {
+    console.log(finishReload);
     if (!finishReload) {
       commentGetData(commentUrl, "comments");
     }
-  }, [page, trigger]);
+  }, [page, trigger, finishReload]);
 
   // useEffect(() => {
   //   let observer;
@@ -94,7 +103,11 @@ export default function PostDetail() {
           {/* {reloading && <S.ReLoading ref={reloadRef}>Loading</S.ReLoading>} */}
         </MainContainer>
       )}
-      <CommentBar postkey={postkey} setCommentList={setCommentList} />
+      <CommentBar
+        postkey={postkey}
+        setCommentList={setData}
+        // setFinishReload={setFinishReload}
+      />
     </>
   );
 }
