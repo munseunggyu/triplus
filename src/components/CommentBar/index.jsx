@@ -4,7 +4,11 @@ import * as S from "./style";
 import user_img_small from "../../assets/images/user_img_small.svg";
 import { useGetData } from "../../hooks/useGetData";
 
-export default function CommentBar({ postkey, setCommentList }) {
+export default function CommentBar({
+  postkey,
+  setCommentList,
+  setFinishReload,
+}) {
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
   const { data, getData } = useGetData();
   const url = `${process.env.REACT_APP_API_KEY}/user/myinfo`;
@@ -31,8 +35,13 @@ export default function CommentBar({ postkey, setCommentList }) {
           },
         }
       );
-      console.log(res.data);
-      setCommentList();
+      // console.log(res.data);
+      setCommentList((prev) => {
+        console.log(prev);
+        console.log(res.data.comment);
+        return [...prev, res.data.comment];
+      });
+      setFinishReload(false);
       setTxt("");
     } catch (err) {
       console.error(err);

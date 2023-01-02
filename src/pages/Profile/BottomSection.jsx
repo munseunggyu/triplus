@@ -30,17 +30,16 @@ export default function ProfileBottomSection() {
 
   const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${page}`;
   const albumUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=50`;
-  // const setTrigger = () => {
-  //   setPage(0);
-  // };
+
   const handleAlbum = () => {
     albumGetData(albumUrl, "post");
     setIsAlbum(true);
   };
+
   useEffect(() => {
     setPage(0);
     setFinishReload(false);
-  }, [accountname]);
+  }, [accountname, trigger]);
 
   useEffect(() => {
     if (!finishReload) {

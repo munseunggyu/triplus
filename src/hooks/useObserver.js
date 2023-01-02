@@ -43,6 +43,7 @@ export const useObserver = (reloadRef, pageNum) => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     let observer;
 
@@ -56,6 +57,7 @@ export const useObserver = (reloadRef, pageNum) => {
       observer = new IntersectionObserver(onIntersect, { threshold: 1 }); // 추가된 부분
       observer.observe(reloadRef.current);
     }
+
     return () => observer && observer.disconnect();
   }, [reloadRef.current]);
 
