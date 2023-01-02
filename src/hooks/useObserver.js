@@ -20,6 +20,7 @@ export const useObserver = (reloadRef, pageNum) => {
           "Content-type": "application/json",
         },
       });
+      console.log(res.data);
       if (name) {
         if (res.data[name].length === 0) {
           setFinishReload(true);
@@ -44,6 +45,7 @@ export const useObserver = (reloadRef, pageNum) => {
   };
   useEffect(() => {
     let observer;
+
     if (reloadRef.current && !finishReload) {
       const onIntersect = async ([entry], observer) => {
         if (entry.isIntersecting) {

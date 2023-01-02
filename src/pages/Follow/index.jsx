@@ -23,10 +23,12 @@ export default function Follow() {
   const followerUrl = `${process.env.REACT_APP_API_KEY}/profile/${accountname}/follower/?limit=15&skip=${page}`;
 
   useEffect(() => {
-    if (path.pathname.includes("follower")) {
-      getData(followerUrl);
-    } else {
-      getData(followingUrl);
+    if (!finishReload) {
+      if (path.pathname.includes("follower")) {
+        getData(followerUrl);
+      } else {
+        getData(followingUrl);
+      }
     }
   }, [triggerFollow, page]);
 
