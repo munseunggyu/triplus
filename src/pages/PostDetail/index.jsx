@@ -6,9 +6,11 @@ import CommentBar from "../../components/CommentBar";
 import Comment from "./Comment";
 import UserPostDetail from "./UserPostDetail";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGetData } from "../../hooks/useGetData";
 import LoadingPage from "../LoadingPage";
+import * as S from "./style";
+import { useCommentReloadGetData } from "../../hooks/useCommentReloadGetData";
 
 export default function PostDetail() {
   const { postkey } = useParams();
@@ -21,19 +23,39 @@ export default function PostDetail() {
     data: commentData,
     getData: commentGetData,
     isLoading: commentIsLoading,
-  } = useGetData();
+    page,
+    reloading,
+    loadMore,
+    setReloading,
+  } = useCommentReloadGetData();
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
-  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`;
+  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=${page}`;
   const [trigger, setTrigger] = useState(false);
   const setCommentList = async () => {
     const res = await commentGetData(commentUrl, "comments");
   };
+  const reloadRef = useRef();
 
   useEffect(() => {
     postGetData(postUrl, "post");
     commentGetData(commentUrl, "comments");
-    // console.log(commentData);
-  }, [trigger]);
+    console.log(commentData);
+  }, [trigger, page]);
+
+  useEffect(() => {
+    let observer;
+    if (reloading) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(reloadRef.current);
+    }
+  }, [reloading]);
 
   return (
     <>
@@ -59,6 +81,8 @@ export default function PostDetail() {
               />
             ))
           )}
+
+          {reloading && <S.ReLoading ref={reloadRef}>Loading</S.ReLoading>}
         </MainContainer>
       )}
       <CommentBar postkey={postkey} setCommentList={setCommentList} />
