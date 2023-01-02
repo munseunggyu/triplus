@@ -9,31 +9,52 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGetData } from "../../hooks/useGetData";
 import LoadingPage from "../LoadingPage";
+import { useLayoutEffect } from "react";
+import { useCommentReloadData } from "../../hooks/useCommetReloadData";
+import * as S from "./style";
 
 export default function PostDetail() {
   const { postkey } = useParams();
+  const { data: postData, getData: postGetData } = useGetData();
   const {
-    data: postData,
-    getData: postGetData,
-    isLoading: postIsLoading,
-  } = useGetData();
-  const {
-    data: commentData,
-    getData: commentGetData,
-    isLoading: commentIsLoading,
-  } = useGetData();
+    skip,
+    bottomBoolean,
+    data,
+    isLoading,
+    bottomScroll,
+    getData,
+    reloadLoding,
+  } = useCommentReloadData();
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
-  const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments`;
+  const commentReloadUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=10&skip=${skip}`;
   const [trigger, setTrigger] = useState(false);
+
   const setCommentList = async () => {
-    const res = await commentGetData(commentUrl, "comments");
+    const res = await getData(commentReloadUrl, "댓글");
+    console.log(res);
   };
 
   useEffect(() => {
     postGetData(postUrl, "post");
-    commentGetData(commentUrl, "comments");
-    // console.log(commentData);
+    setCommentList();
+    console.log(data);
   }, [trigger]);
+
+  useLayoutEffect(() => {
+    getData(commentReloadUrl, "댓글");
+    console.log(data);
+  }, []);
+
+  useEffect(() => {
+    if (bottomBoolean) {
+      getData(commentReloadUrl, "댓글");
+      // setCommentList();
+    }
+    window.addEventListener("scroll", bottomScroll);
+    return () => {
+      window.removeEventListener("scroll", bottomScroll);
+    };
+  }, [bottomBoolean]);
 
   return (
     <>
@@ -41,24 +62,22 @@ export default function PostDetail() {
         <Prev />
         <Vertical />
       </Header>
-      {commentIsLoading || postIsLoading ? (
+      {isLoading ? (
         <LoadingPage />
       ) : (
         <MainContainer>
           {postData && <UserPostDetail myPostData={postData} />}
-          {commentIsLoading ? (
-            <LoadingPage />
-          ) : (
-            commentData &&
-            commentData.map((mapData) => (
+          {data &&
+            data?.map((mapData) => (
               <Comment
                 key={mapData.id}
                 data={mapData}
                 commentId={mapData.id}
                 setTrigger={setTrigger}
               />
-            ))
-          )}
+            ))}
+
+          {reloadLoding && !isLoading && <S.ReLoading>Loading...</S.ReLoading>}
         </MainContainer>
       )}
       <CommentBar postkey={postkey} setCommentList={setCommentList} />
