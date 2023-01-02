@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import more_vertical from "../../assets/images/more_vertical.png";
 
-// Comment
+// index.js
+export const ReLoading = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.mainColor};
+`;
 
+// Comment
 export const CommentList = styled.li`
   list-style: none;
   max-width: 358px;
