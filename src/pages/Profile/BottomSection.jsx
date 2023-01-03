@@ -14,7 +14,6 @@ export default function ProfileBottomSection() {
     isLoading: albumLoading,
     getData: albumGetData,
   } = useGetData();
-  const [trigger, setTrigger] = useState(false);
 
   const curRef = useRef(null);
   const {
@@ -26,6 +25,7 @@ export default function ProfileBottomSection() {
     finishReload,
     setPage,
     setFinishReload,
+    setData,
   } = useObserver(curRef, 10);
 
   const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${page}`;
@@ -39,13 +39,13 @@ export default function ProfileBottomSection() {
   useEffect(() => {
     setPage(0);
     setFinishReload(false);
-  }, [accountname, trigger]);
+  }, [accountname]);
 
   useEffect(() => {
     if (!finishReload) {
       getData(listUrl, "post");
     }
-  }, [page, accountname, trigger]);
+  }, [page, accountname]);
 
   return (
     <section>
@@ -61,7 +61,6 @@ export default function ProfileBottomSection() {
           albumData
             .filter((post) => post.image)
             .map((post) => {
-              console.log(post.image.split(",").length);
               return (
                 <S.AlbumLi key={post.id}>
                   <Link to={`/postdetail/${post.id}`}>
@@ -79,9 +78,7 @@ export default function ProfileBottomSection() {
         ) : (
           <>
             {data.map((post) => {
-              return (
-                <PostCard key={post.id} setTrigger={setTrigger} {...post} />
-              );
+              return <PostCard key={post.id} setData={setData} {...post} />;
             })}
             <div ref={curRef}></div>
           </>

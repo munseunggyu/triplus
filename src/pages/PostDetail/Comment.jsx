@@ -8,7 +8,7 @@ import { handleCommentTime } from "../../utils/handleCommentTime";
 import { handleDelete } from "../../utils/handleDelete";
 import { handleDeclaration } from "../../utils/handleDeclaration";
 
-export default function Comment({ data, commentId, setTrigger }) {
+export default function Comment({ data, commentId, setTrigger, setData }) {
   const { postkey } = useParams();
   const nowDate = handleCommentTime(new Date(data.createdAt));
   const {
@@ -22,7 +22,9 @@ export default function Comment({ data, commentId, setTrigger }) {
 
   const deleteUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}`;
   const declarationUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/${commentId}/report`;
-
+  const handleDel = () => {
+    setData((prev) => prev.filter((comment) => comment.id !== commentId));
+  };
   return (
     <>
       <S.CommentList>
@@ -62,7 +64,7 @@ export default function Comment({ data, commentId, setTrigger }) {
             submitText="댓글 삭제"
             onCloseClick={handlCloseClick}
             onSubmitClick={(e) => {
-              handleDelete(e, handlCloseClick, setTrigger, deleteUrl);
+              handleDelete(e, handlCloseClick, deleteUrl, handleDel);
             }}
           />
         ) : (
