@@ -81,7 +81,7 @@ export default function MyProfileEdit(props) {
       console.log(res.data.user);
       setUsername(res.data.user.username);
       setAccountname(res.data.user.accountname);
-      console.log("accountname: ", res.data.user.accoountname);
+      // console.log("accountname: ", res.data.user.accoountname);
       setIntro(res.data.user.intro);
       setImage(res.data.user.image);
     } catch (error) {
@@ -155,12 +155,13 @@ export default function MyProfileEdit(props) {
           },
         }
       );
-      console.log(res.data);
+      // console.log(res.data);
       navigate("/profile/${username}"); // 이 부분 체킹해보기 (내걸로 맞게 바꿔야 함)
     } catch (error) {
       console.log("에러입니다.");
     }
   };
+  console.log("intro: ", intro);
 
   return (
     <>
