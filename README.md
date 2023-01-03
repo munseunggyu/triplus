@@ -1,47 +1,44 @@
 # 여행에 즐거움을 더하다 **triPlus** ✈️
 
-</div>
-
 **[배포 URL]**
 
-- URL: 
+- URL:
 
 **[계정]**
 
-- 🧑🏻‍💻 id: 
-- 🔐 password: 
+- 🧑🏻‍💻 id:
+- 🔐 password:
 
 <!-- 이미지 -->
 
-![금방내방 메인](https://user-images.githubusercontent.com/87015026/182022661-9cc66df3-3f9a-4358-a12b-a887723e47ee.png)
+- 여기에 이미지 삽입
 
 <br>
 
 ## 1. 소개 👥
 
-- ✈️triPlus는 다양한 사용자들의  **폭넓은 여행 후기** 및 **자신의 여행 상품을 홍보**할 수 있는 **SNS서비스**입니다.
+- ✈️triPlus는 다양한 사용자들의 **폭넓은 여행 후기** 및 **자신의 여행 상품을 홍보**할 수 있는 **SNS서비스**입니다.
 
-- 여행의 재미를 더하자는 취지에서 `'trip` 과`'plus'`라는 두 단어의 합성어로 서비스명을 정했습니다.  
+- 여행의 재미를 더하자는 취지에서 `'trip` 과`'plus'`라는 두 단어의 합성어로 서비스명을 정했습니다.
 
 - 사용자는 사진을 통해 여행 후기를 공유할 수 있으며, 다른 사용자와 **좋아요** 및 **댓글**을 주고 받을 수 있습니다.
 
 - 다른 사용자들과의 **팔로우**를 통해 자유로운 댓글 작성 및 홈 피드를 공유할 수 있습니다.
 
-## 🙋‍♀️  triPlus 구성원 🙋‍♂️
+## 🙋‍♀️ triPlus 구성원 🙋‍♂️
 
-|**김대엽**|**문승규**|**방지영**|**서정연**|
-| :------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="180" alt="yeji_kim_profile_img" src="https://avatars.githubusercontent.com/u/68424403?v=4"> | <img width="180" alt="kihoon_bae_profile_img" src="https://avatars.githubusercontent.com/u/84954439?s=400&u=84f4bd857d0e88c159b07f518cfe50f7bf9973e6&v=4"> | <img width="180" alt="seohee_jeon_profile_img" src="https://user-images.githubusercontent.com/97894417/181290539-0a313ca9-d0c4-40f9-be9d-802fef2867cb.jpg"> | <img width="180" alt="hyemyoung_hwang_profile_img" src="https://cdn.discordapp.com/attachments/1045252262164959332/1059780434533294190/07F321EA-E960-4AEB-98E1-5CB59DA571A0_1_105_c.jpeg"> |
-|[**GitHub**](https://github.com/kimdaeyeobbb) <br>[**blog**](https://blog.naver.com/kimdyk1)|[**GitHub**](https://github.com/munseunggyu)|[**GitHub**](https://github.com/marrron/)|[**GitHub**](https://github.com/yeon1128)|
+|                                               **김대엽**                                                |                                                                         **문승규**                                                                         |                                                                   **방지영**                                                                   |                                                                                         **서정연**                                                                                         |
+| :-----------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img width="180" alt="yeji_kim_profile_img" src="https://avatars.githubusercontent.com/u/68424403?v=4"> | <img width="180" alt="kihoon_bae_profile_img" src="https://avatars.githubusercontent.com/u/84954439?s=400&u=84f4bd857d0e88c159b07f518cfe50f7bf9973e6&v=4"> | <img width="180" alt="seohee_jeon_profile_img" src="https://cdn.discordapp.com/attachments/1045252262164959332/1059802793508085802/image.png"> | <img width="180" alt="hyemyoung_hwang_profile_img" src="https://cdn.discordapp.com/attachments/1045252262164959332/1059780434533294190/07F321EA-E960-4AEB-98E1-5CB59DA571A0_1_105_c.jpeg"> |
+|      [**GitHub**](https://github.com/kimdaeyeobbb) <br>[**blog**](https://blog.naver.com/kimdyk1)       |                                                        [**GitHub**](https://github.com/munseunggyu)                                                        |                                                   [**GitHub**](https://github.com/marrron/)                                                    |                                                                         [**GitHub**](https://github.com/yeon1128)                                                                          |
 
 <br>
-
 
 ## 2. 개발 일정 📆
 
 #### 기간 : 2022.12.09(금) ~ 2023.01.04(수)
 
-
+<br>
 
 ## 3. 개발 환경 및 회의록🔗
 
@@ -51,19 +48,25 @@
 - Back-End: 제공된 API 사용
 - 디자인 도구: [🎨Figma](https://www.figma.com/file/Qcxn5LaToq0uhbrvZeHwl8/Untitled?t=254MQgkNmEv6hDyF-0)
 
+### 기술 스택 선정 이유
+
+- ㅁ
 
 <br>
 
-
 **[회의록 및 진행상황 공유]**
 
-- 프로젝트 회의 : 매주 월,목 오전9시 
+- 프로젝트 회의 : 매주 월,목 오전9시
 - 📚 회의록: [GitHub-Wiki](https://github.com/9ivot/triplus/wiki)
-- 🔖 프로젝트 진행상황:  [GitHub-Projects](https://github.com/orgs/9ivot/projects/1)
+- 🔖 프로젝트 진행상황: [GitHub-Projects](https://github.com/orgs/9ivot/projects/1)
 
 <br>
 
 ## 4. 개발 규칙 🤙🏻
+
+### 개발 규칙 선정 이유
+
+- 팀원간의 의사소통 비용을 줄이기 위해서 선정하였습니다
 
 ### ❗ 커밋 컨벤션
 
@@ -136,8 +139,6 @@ gitGraph
 - forked repo > main branch
 - forked repo > feat/func1 : 기능별 구현시 main repo의 develop branch로 PR
 - 기능별 구현을 할때마다 PR (커밋을 모아서 PR하기를 권장)
-
-
 
 <!-- ## 5. 프로젝트 구조 🗂 -->
 
@@ -329,10 +330,10 @@ gitGraph
 
 <br>
 
-
 ## 7. 구현 기능 🛠
 
 ### 7-1. 홈
+
 <table>
     <tbody>
         <tr></tr>
@@ -341,9 +342,30 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206344279-4330a9ed-b3f8-445c-a7f3-0384daa01fc6.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>홈/스플래쉬<ul>
+            <td>스플래쉬<ul>
+                    <li>시작하기 버튼을 통해 서비스에 접속할 수 있습니다.</li>
+                    <li>로그인: 메인 게시판으로 이동</li>
+                    <li>비로그인: 로그인화면으로 이동</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>회원가입<ul>
+                    <li>시작하기 버튼을 통해 서비스에 접속할 수 있습니다.</li>
+                    <li>로그인: 메인 게시판으로 이동</li>
+                    <li>비로그인: 로그인화면으로 이동</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>로그인 (multilogin)
+                <ul>
                     <li>시작하기 버튼을 통해 서비스에 접속할 수 있습니다.</li>
                     <li>로그인: 메인 게시판으로 이동</li>
                     <li>비로그인: 로그인화면으로 이동</li>
@@ -352,9 +374,9 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206368007-9db9431e-b994-4722-b8cd-4c736fbbf838.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>로그인<ul>
+            <td>triPlus 피드<ul>
                     <li>유효성 검사를 진행하고, 오류 메시지를 제공합니다. </li>
                     <li>이메일과 비밀번호가 유효한 경우 게시판 화면으로 이동합니다.</li>
                 </ul>
@@ -362,7 +384,7 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206364349-eee1a076-cad5-4557-a64a-c6849be2b31e.gif"
+            <td><img src=""
                     alt=""></td>
             <td>회원가입<ul>
                     <li>사용자의 정보를 입력받아 회원가입을 진행합니다.</li>
@@ -376,7 +398,7 @@ gitGraph
     
 <br>
     
-### 7-2. 게시판
+### 7-2. 검색 및 프로필
 <table>
     <tbody>
         <tr></tr>
@@ -385,9 +407,39 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206362695-bb6ce29b-e237-4a84-9484-510dccd71902.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>게시판<ul>
+            <td>검색<ul>
+                    <li>인기/최신으로 게시글 정렬 순서를 변경할 수 있습니다.</li>
+                    <li>드롭다운으로 카테고리를 지정할 수 있습니다.</li>
+                    <li>이미지가 업로드 되지 않은 게시글은 카테고리별 기본 이미지를 제공합니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>팔로우 및 팔로잉<ul>
+                    <li>인기/최신으로 게시글 정렬 순서를 변경할 수 있습니다.</li>
+                    <li>드롭다운으로 카테고리를 지정할 수 있습니다.</li>
+                    <li>이미지가 업로드 되지 않은 게시글은 카테고리별 기본 이미지를 제공합니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>상대방 프로필<ul>
+                    <li>인기/최신으로 게시글 정렬 순서를 변경할 수 있습니다.</li>
+                    <li>드롭다운으로 카테고리를 지정할 수 있습니다.</li>
+                    <li>이미지가 업로드 되지 않은 게시글은 카테고리별 기본 이미지를 제공합니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>프로필 수정하기<ul>
                     <li>인기/최신으로 게시글 정렬 순서를 변경할 수 있습니다.</li>
                     <li>드롭다운으로 카테고리를 지정할 수 있습니다.</li>
                     <li>이미지가 업로드 되지 않은 게시글은 카테고리별 기본 이미지를 제공합니다.</li>
@@ -398,7 +450,8 @@ gitGraph
 </table>
 <br>
 
-### 5-3. 게시글
+### 7-3. 게시글
+
 <table>
     <tbody>
         <tr></tr>
@@ -407,9 +460,9 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206362715-29245407-b1b6-498b-96db-adff583e1cde.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>업로드<ul>
+            <td>게시글 작성<ul>
                     <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
                     <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
                 </ul>
@@ -417,11 +470,47 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206362705-c6db6f3f-e2db-4891-af76-e4f6eb4d8f76.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>게시글<ul>
+            <td>게시글 상세<ul>
                     <li>좋아요/스크랩이 가능하며, 댓글을 게시할 수 있습니다.</li>
                     <li>작성한 게시글에만 삭제 버튼이 활성화되어, 작성자만 삭제할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>게시글 수정<ul>
+                    <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
+                    <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>게시글 삭제<ul>
+                    <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
+                    <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+         <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>게시글 신고<ul>
+                    <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
+                    <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>좋아요<ul>
+                    <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
+                    <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
                 </ul>
             </td>
         </tr>
@@ -429,7 +518,8 @@ gitGraph
 </table>
 <br>
 
-### 5-4. 프로필
+### 7-4. 상품
+
 <table>
     <tbody>
         <tr></tr>
@@ -438,9 +528,9 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206362738-6603d18b-5f62-4a34-9f55-6d2c4f7cecbc.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>프로필<ul>
+            <td>상품 등록<ul>
                     <li>사용자의 프로필 정보를 제공합니다.</li>
                     <li>작성한 게시글, 좋아요, 스크랩한 게시글의 목록을 확인할 수 있습니다.</li>
                     <li>로그아웃을 할 수 있으며, 시작 페이지로 돌아갑니다.</li>
@@ -449,22 +539,75 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/96777064/206362728-9f41d01b-eabe-41c6-8507-54f612dc4fdd.gif"
+            <td><img src=""
                     alt=""></td>
-            <td>프로필 편집<ul>
+            <td>상품 수정<ul>
                     <li>프로필 이미지를 변경하거나, 업로드한 이미지를 삭제할 수 있습니다.</li>
                     <li>새로운 닉네임의 중복 여부를 확인한 후 변경합니다.</li>
+                </ul>
+            </td>
+        </tr>
+         <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>상품 삭제<ul>
+                    <li>사용자의 프로필 정보를 제공합니다.</li>
+                    <li>작성한 게시글, 좋아요, 스크랩한 게시글의 목록을 확인할 수 있습니다.</li>
+                    <li>로그아웃을 할 수 있으며, 시작 페이지로 돌아갑니다.</li>
                 </ul>
             </td>
         </tr>
     </tbody>
 </table>
 
+### 7-5. 댓글
+
+<table>
+    <tbody>
+        <tr></tr>
+        <tr>
+            <th>시연</th>
+            <th>설명</th>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>댓글 등록<ul>
+                    <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
+                    <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>댓글 삭제<ul>
+                    <li>좋아요/스크랩이 가능하며, 댓글을 게시할 수 있습니다.</li>
+                    <li>작성한 게시글에만 삭제 버튼이 활성화되어, 작성자만 삭제할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src=""
+                    alt=""></td>
+            <td>댓글 신고<ul>
+                    <li>드롭다운 메뉴를 통해 게시글의 카테고리를 설정합니다.</li>
+                    <li>첨부파일 선택 버튼을 이용하여 이미지를 업로드할 수 있습니다.</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
 <br>
 
-## 7. 핵심 코드
+<br>
 
-### 1) Private Route
+## 8. 핵심 코드
+
+### 커스텀 훅
+
+#### 1) useObserver
 
 기존에 페이지마다 useEffect를 이용해서 유저 정보를 확인했는데 이러한 중복코드가 발생해서 커스텀 라우터를 개발했습니다.
 
@@ -514,133 +657,42 @@ export default function PrivateRoute({ children, ...rest }) {
 </PrivateRoute>
 ```
 
-### 2) API
+#### 2)
 
-기존에 Fetch를 이용해서 API 통신을 했는데, 중복된 코드가 너무 많이 생긴다고 생각했습니다.
+<br>
 
-```js
-async function handlePostDeleteRequest(token) {
-  const url = "https://mandarin.api.weniv.co.kr";
-  const reqPath = `/post/${id}`;
-  try {
-    const res = await fetch(url + reqPath, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      },
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (err) {
-    console.error("error");
-  }
-}
-```
+## 9. 팀원간 의견충돌 상황 및 해결책
 
-그래서 axios를 도입하고, axios instance 만들어서 url과 header를 넣어놓았습니다.
+### 1) 프로젝트 방향성 확립에 있어 어려움을 겪음
 
-```js
-export const axiosInstanceWithToken = axios.create({
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-```
+- 효과적인 의견 수렴을 위해 익명으로 [Google form](https://docs.google.com/forms/d/e/1FAIpQLSfrKCyi2O1YnpiMQO8_BcmLygXV78SG0ymc_cJKD6mtILj7mg/viewform)을 이용함
 
-그리고 axios의 인터셉터를 이용해서 request 보내기 이전에 토큰정보가 있는지 확인하고 토큰정보가 존재하면 요청을 보낼 수 있도록 개발을 했습니다.
+### 2) 기술선정에 있어 충돌 발생
 
-```js
-axiosInstanceWithToken.interceptors.request.use((request) => {
-  // axiosInstanceWithToken에서 토큰이 존재하지 않으면 서버에 request를 보내지 않습니다.
-  const { token } = getUserInfo();
-  if (!token) {
-    throw new Error("토큰이 없습니다. 다시 로그인해주세요.");
-  }
+- pure CSS vs styled-components
 
-  // 토큰이 존재하면 headers에 토큰을 넣어서 서버에 request를 보냅니다.
-  request.headers.Authorization = `Bearer ${token}`;
-  return request;
-});
-```
+  -
 
-axios api는 apis 폴더에 따로 분리해서 작성하고 axios를 사용하는곳에서는 사용할 모듈을 import하여 사용할 수 있도록 만들었습니다.
+- 커스텀 훅을 쓸지 api 를 모아 놓을 지 고민이 되었던 상황발생
 
-```js
-export const axiosGetPostDetail = async (postId) => {
-  try {
-    const { data } = await axiosInstanceWithToken.get(`/post/${postId}`);
-    return data;
-  } catch (error) {
-    console.error("axiosGetPostDetail error", error);
-  }
-};
-```
+  - api 구조가 비슷하기 때문에 useGetData 훅을 만들어서 url만 다르게 넣을 get 요청을 할 수 있도록 처리함
 
-## 8. 레슨런 및 고생담, 스페셜 포인트
+-
 
-### 1) 기술적 측면
+### 3) 의사소통에 있어 어려움을 겪음
 
-- React 사용법
-- fetch와 axios를 이용한 API통신
-- Git flow 브랜치 전략
-- 깃 커밋 메시지 컨벤션
+- 의사소통 비용을 줄이기 위해서 템플릿 제작
+  - git commit 커밋 템플릿
+  - PR 템플릿
+  - gitHub issue 템플릿
+  - discord PR 알림 자동화
 
-### 2) 팀원 간 깃헙으로 커뮤니케이션 하는데에 어려움
+<br>
 
-- 커밋 단위를 작게 가져가기.
-- 이슈와 풀리퀘에 상세한 설명 달기.
-- 필요한 경우 주석 달기.
-- 로켓으로 머지 사인 날리기 🚀
+## 10. 트러블 슈팅
 
-### 3) 기술적인 부분을 더 겪어본 팀원과 덜 겪어본 팀원과 커뮤니케이션이 어려웠던 이유
+<br>
 
-- 고생한 것을 쉽게 끝내버릴까봐 기다려주는 팀원 🤔
-- 단서가 될만한 한마디를 들으려면 어떻게 질문해야하는지부터가 막막한 팀원 😯
-- 데일리스크럼을 통한 상황공유가 첫번째 해결책. 그 외에 코드 설명하는 영상을 찍어서 다시 볼 수 있게끔 해주거나 막연한 질문을 받아적어서 이해해보려는 노력 등이 오갔다.
+## 11. 추가 리팩토링
 
-### 4) 게시글 작성 기능의 수렁
-
-- 약 200번 가량의 업로드 시도.
-- `URL.createObjectURL`로는 프리뷰 이미지 만들고, `readAsDataURL`로는 파일 읽고, `formData`에 읽은 파일들 append하고, `formData`에 들어간 배열 요소들을 연결하여 하나의 문자열로 API에 전송.
-- 가장 어려웠던 점 : 질문 후 힌트 코드를 서너번 받았음에도 내 코드에 적용을 못했고 어디서부터 다시 이해해야할지 막막했다.
-- 레슨런: 번아웃이 가깝게 왔지만 끝까지 붙잡고 완벽하진 않아도 작동하게 만든 것은 성공. 더 끈질기게 질문하진 못해서 시간이 많이 소요된 것은 아쉬운 점. 팀프로젝트인만큼 속도 또한 퀄리티 요소로 생각해야했다.
-<div align='center'>
-<img src='https://user-images.githubusercontent.com/87015026/182064553-b5513531-4cf5-418c-ab83-95d27112d594.png' width='500'/>
-</div>
-
-### 5) 스페셜포인트
-
-- 배터디룸
-
-  - 팀원분 집에서 같이 지내며 프로젝트를 진행, 온전히 프로그래밍에만 집중할 수 있는 뜻깊은 경험.
-  - 언제든지 방문해서 함께 코딩 가능한 공간.  
-  <br/>
-  <div align='center'>
-  <img src='https://user-images.githubusercontent.com/87015026/182065943-268cfa09-2b69-4688-a8c3-aa5667be32e2.png' width='500'/>
-  </div>
-
-- 밤샘 줌
-  - 줌 시간 무제한 결제.
-  - 빠른 의사결정.
-  - 원격 제어를 통한 페어프로그래밍.  
-  <br/>
-  <div align='center'>
-  <img src='https://user-images.githubusercontent.com/87015026/182064854-a436fa05-f2ee-4fbd-88f0-5a23aa2f188f.png' width='500'/>
-  </div>
-- 구글 스프레드 시트와 데일리 스크럼
-  - 아침 9시 30분에 오늘 진행할 일과 도움 청할 일을 간단히 공유.
-  - 구글 스프레드 시트를 이용하여 참여도 활성화.
-  <br/>
-  <div align='center'>
-  <img src='https://user-images.githubusercontent.com/87015026/182064865-e1745d00-a6eb-4669-9fc0-d1ebfae7d6f5.png' width='500'/>
-  <img src='https://user-images.githubusercontent.com/87015026/182064879-fcd2a3f5-2c9c-4cf9-beaa-a5054604e37f.png' width='500'/>
-  </div>
-
-<!-- ## 6. 개발 이슈 💡 -->
-
-<!-- 프로젝트하며 겪었던 이슈중에 남기고싶은 이슈 -->
-<!-- 코드 방향성에 대해 고민했던 이슈 -->
-
-<!-- 프로젝트 회고 -->
+-
