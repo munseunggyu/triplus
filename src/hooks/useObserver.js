@@ -20,7 +20,6 @@ export const useObserver = (reloadRef, pageNum) => {
           "Content-type": "application/json",
         },
       });
-      console.log(res.data);
       if (name) {
         if (res.data[name].length === 0) {
           setFinishReload(true);

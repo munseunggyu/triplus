@@ -9,9 +9,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useGetData } from "../../hooks/useGetData";
 import LoadingPage from "../LoadingPage";
-import * as S from "./style";
-import { useCommentReloadGetData } from "../../hooks/useCommentReloadGetData";
 import { useObserver } from "../../hooks/useObserver";
+import * as S from "./style";
 
 export default function PostDetail() {
   const { postkey } = useParams();
@@ -27,49 +26,20 @@ export default function PostDetail() {
     isLoading: commentIsLoading,
     page,
     reloading,
-    loadMore,
-    setReloading,
     finishReload,
-    setFinishReload,
     setData,
-    setPage,
   } = useObserver(reloadRef, 8);
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
   const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=8&skip=${page}`;
-  const [trigger, setTrigger] = useState(false);
-  // const setCommentList = async () => {
 
-  //   const res = await commentGetData(commentUrl, "comments");
-  // };
-  // 댓글을 작성한다
-  // 반환된 값
-  console.log(commentData);
   useEffect(() => {
     postGetData(postUrl, "post");
-    setPage(0);
-    setFinishReload(false);
-  }, [trigger]);
+  }, []);
   useEffect(() => {
-    console.log(finishReload);
     if (!finishReload) {
       commentGetData(commentUrl, "comments");
     }
-  }, [page, trigger, finishReload]);
-
-  // useEffect(() => {
-  //   let observer;
-  //   if (reloading) {
-  //     observer = new IntersectionObserver(
-  //       (entries) => {
-  //         if (entries[0].isIntersecting) {
-  //           loadMore();
-  //         }
-  //       },
-  //       { threshold: 1 }
-  //     );
-  //     observer.observe(reloadRef.current);
-  //   }
-  // }, [reloading]);
+  }, [page, finishReload]);
 
   return (
     <>
@@ -89,18 +59,18 @@ export default function PostDetail() {
               <>
                 {commentData.map((mapData) => (
                   <Comment
-                    key={mapData.id}
                     data={mapData}
                     commentId={mapData.id}
-                    setTrigger={setTrigger}
+                    setData={setData}
                   />
                 ))}
                 <div ref={reloadRef} />
               </>
             )
           )}
-
-          {/* {reloading && <S.ReLoading ref={reloadRef}>Loading</S.ReLoading>} */}
+          {reloading && !commentIsLoading && (
+            <S.ReLoading>Loading...</S.ReLoading>
+          )}
         </MainContainer>
       )}
       <CommentBar

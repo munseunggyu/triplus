@@ -20,6 +20,7 @@ export default function PostCard({
   heartCount,
   hearted,
   setTrigger,
+  setData,
 }) {
   const date = new Date(createdAt);
   const dateOptions = {
@@ -41,6 +42,10 @@ export default function PostCard({
   } = useModal(author.accountname);
   const url = `${process.env.REACT_APP_API_KEY}/post/${id}`;
   const declarationUrl = `${process.env.REACT_APP_API_KEY}/${id}/report`;
+  const handleDel = () => {
+    setData((prev) => prev.filter((post) => post.id !== id));
+  };
+
   return (
     <>
       <S.PostCardList>
@@ -67,6 +72,7 @@ export default function PostCard({
             heartCount={heartCount}
             hearted={hearted}
           />
+          <button onClick={handleDel}>asd</button>
           <S.PostCardTime>{createAtFormat} </S.PostCardTime>
         </div>
         <S.PostCardVertical onClick={handleModal}>
@@ -107,7 +113,7 @@ export default function PostCard({
             submitText="삭제"
             onCloseClick={handlCloseClick}
             onSubmitClick={(e) =>
-              handleDelete(e, handlCloseClick, setTrigger, url)
+              handleDelete(e, handlCloseClick, url, handleDel)
             }
           />
         ) : (

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const userInfo = JSON.parse(localStorage.getItem("userinfo"));
 
-export const handleDelete = async (e, handlCloseClick, setTrigger, url) => {
+export const handleDelete = async (e, handlCloseClick, url, handleDel) => {
   e.preventDefault();
   try {
     const res = await axios.delete(url, {
@@ -12,7 +12,7 @@ export const handleDelete = async (e, handlCloseClick, setTrigger, url) => {
       },
     });
     if (res.status === 200) {
-      setTrigger((prev) => !prev);
+      handleDel();
       handlCloseClick();
     }
   } catch (error) {

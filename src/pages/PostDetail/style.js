@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import more_vertical from "../../assets/images/more_vertical.png";
 
-// index.js
-export const ReLoading = styled.div`
-  text-align: center;
-  color: ${(props) => props.theme.mainColor};
-`;
-
 // Comment
 export const CommentList = styled.li`
   list-style: none;
@@ -67,4 +61,8 @@ export const CommentVertical = styled.button`
 export const Line = styled.div`
   margin-bottom: 20px;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
+`;
+export const ReLoading = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.mainColor};
 `;
