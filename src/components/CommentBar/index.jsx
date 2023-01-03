@@ -39,9 +39,9 @@ export default function CommentBar({
       setCommentList((prev) => {
         console.log(prev);
         console.log(res.data.comment);
-        return [...prev, res.data.comment];
+        return [res.data.comment, ...prev];
       });
-      setFinishReload(false);
+      // setFinishReload(false);
       setTxt("");
     } catch (err) {
       console.error(err);
