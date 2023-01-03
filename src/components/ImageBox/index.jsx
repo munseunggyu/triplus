@@ -50,15 +50,8 @@ export default function Index() {
 
     reader.onload = () =>
       (previewImage.current.style.backgroundImage = `url(${reader.result})`);
-    reader.readAsDataURL(loadImage);
-  };
-
-  /* 파일 업로드 */
-  const handleImageChange = (e) => {
-    const uploadImg = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", uploadImg);
-    onLoadedImg(formData, uploadImg);
+    // console.log("reader.onload: ", reader.readAsDataURL(loadImage));
+    reader.readAsDataURL(loadImage[0]);
   };
 
   const onLoadedImg = async (formData, loadImage) => {
@@ -73,11 +66,12 @@ export default function Index() {
         formData,
         config
       );
-
+      console.log("응답: ", response);
       if (response?.data?.filename) {
         setImage(
           `${process.env.REACT_APP_API_KEY}/` + response?.data?.filename
         );
+        console.log("로드된 이미지: ", loadImage);
         preview(loadImage);
       } else {
         alert(
@@ -86,8 +80,17 @@ export default function Index() {
       }
     } catch (error) {
       console.error(error);
-      alert("잘못된 접근입니다.");
+      alert("이미지에 대한 잘못된 접근입니다.");
     }
+  };
+
+  /* 파일 업로드 */
+  const handleImageChange = (e) => {
+    const loadImg = e.target.files;
+    console.log("로드된 이미지: ", loadImg);
+    const formData = new FormData();
+    formData.append("image", loadImg[0]);
+    onLoadedImg(formData, loadImg);
   };
 
   return (
