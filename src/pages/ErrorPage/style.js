@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ErrorPageContainer = styled.div`
   width: 358px;
   margin: 0 auto;
-  height: calc(100vh - 108px);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ export const ErrorPageContainer = styled.div`
 export const ErrorMessage = styled.p`
   color: ${(props) => props.theme.grayColor};
 `;
-export const ErrorPageBtn = styled(Link)`
+export const ErrorPageBtn = styled.button`
   width: 120px;
   height: 44px;
   color: white;

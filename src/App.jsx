@@ -51,7 +51,7 @@ function App() {
             <Route path="/productupload" element={<ProductUpload />} />
             <Route path="/chatlist" element={<ChatList />} />
             <Route path="/chatroom" element={<ChatRoom />} />
-            <Route path="/404" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/postedit/:postid" element={<PostUpload />} />
             <Route path="/loading" element={<LoadingPage />} />
           </>
@@ -64,6 +64,7 @@ function App() {
             />
             <Route path="/emailsignup" element={<EmailSignUp />} />
             <Route path="/setprofile" element={<SetProfile />} />
+            <Route path="*" element={<ErrorPage />} />
           </>
         )}
         {/* <Route path="/splash" element={<SplashScreen />} /> */}
