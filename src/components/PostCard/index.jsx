@@ -72,7 +72,6 @@ export default function PostCard({
             heartCount={heartCount}
             hearted={hearted}
           />
-          <button onClick={handleDel}>asd</button>
           <S.PostCardTime>{createAtFormat} </S.PostCardTime>
         </div>
         <S.PostCardVertical onClick={handleModal}>

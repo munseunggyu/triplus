@@ -5,9 +5,15 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
 import App from "./App";
 import { theme } from "./theme";
+import "./font.css";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+
+  body {
+    font-family: "SpoqaHanSansNeo-Regular";
+  }
+
   .ir {
   position: absolute;
   clip-path: inset(50%);
@@ -16,11 +22,13 @@ const GlobalStyle = createGlobalStyle`
   margin: -1px;
   overflow: hidden;
 }
+
   button{
     border:0;
     cursor: pointer;
     background-color:transparent;
   }
+  
   a{
     color:black;
     text-decoration:none;
