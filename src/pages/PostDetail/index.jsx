@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGetData } from "../../hooks/useGetData";
 import LoadingPage from "../LoadingPage";
 import { useObserver } from "../../hooks/useObserver";
+import * as S from "./style";
 
 export default function PostDetail() {
   const { postkey } = useParams();
@@ -25,29 +26,20 @@ export default function PostDetail() {
     isLoading: commentIsLoading,
     page,
     reloading,
-    loadMore,
-    setReloading,
     finishReload,
-    setFinishReload,
     setData,
-    setPage,
   } = useObserver(reloadRef, 8);
   const postUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}`;
   const commentUrl = `${process.env.REACT_APP_API_KEY}/post/${postkey}/comments/?limit=8&skip=${page}`;
-  const [trigger, setTrigger] = useState(false);
 
-  console.log(commentData);
   useEffect(() => {
     postGetData(postUrl, "post");
-    setPage(0);
-    setFinishReload(false);
-  }, [trigger]);
+  }, []);
   useEffect(() => {
-    console.log(finishReload);
     if (!finishReload) {
       commentGetData(commentUrl, "comments");
     }
-  }, [page, trigger, finishReload]);
+  }, [page, finishReload]);
 
   return (
     <>
@@ -69,12 +61,15 @@ export default function PostDetail() {
                   <Comment
                     data={mapData}
                     commentId={mapData.id}
-                    setTrigger={setTrigger}
+                    setData={setData}
                   />
                 ))}
                 <div ref={reloadRef} />
               </>
             )
+          )}
+          {reloading && !commentIsLoading && (
+            <S.ReLoading>Loading...</S.ReLoading>
           )}
         </MainContainer>
       )}

@@ -62,3 +62,7 @@ export const Line = styled.div`
   margin-bottom: 20px;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
 `;
+export const ReLoading = styled.div`
+  text-align: center;
+  color: ${(props) => props.theme.mainColor};
+`;
