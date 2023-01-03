@@ -49,7 +49,6 @@ export const useObserver = (reloadRef, pageNum) => {
     if (reloadRef.current && !finishReload) {
       const onIntersect = async ([entry], observer) => {
         if (entry.isIntersecting) {
-          console.log("hi");
           loadMore();
         }
       };
