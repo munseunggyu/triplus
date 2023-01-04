@@ -26,9 +26,9 @@ export default function ProfileBottomSection() {
     setPage,
     setFinishReload,
     setData,
-  } = useObserver(curRef, 10);
+  } = useObserver(curRef, 5);
 
-  const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=10&skip=${page}`;
+  const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=5&skip=${page}`;
   const albumUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=50`;
 
   const handleAlbum = () => {

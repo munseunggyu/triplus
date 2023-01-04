@@ -1,6 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Header from "../../components/Header";
-import HeaderTitle from "../../components/Header/HeaderTitle";
 import Navbar from "../../components/Navbar";
 import { MainContainer } from "../../components/MainContainer";
 import PostCard from "../../components/PostCard";
