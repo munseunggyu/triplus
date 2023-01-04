@@ -28,6 +28,11 @@ const InputForm = styled.form`
   margin: 70px 0 30px;
 `;
 
+const ErrMsg = styled.p`
+  margin-bottom: 10px;
+  color: red;
+`;
+
 export default function EmailSignUp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,7 +113,7 @@ export default function EmailSignUp(props) {
             setEmail(e.target.value);
           }}
         />
-        <p className="message">{emailError}</p>
+        <ErrMsg className="message">{emailError}</ErrMsg>
         <InputBox
           type="password"
           id="password"
@@ -118,7 +123,7 @@ export default function EmailSignUp(props) {
             setPassword(e.target.value);
           }}
         />
-        <p className="message">{passwordError}</p>
+        <ErrMsg className="message">{passwordError}</ErrMsg>
       </InputForm>
       <LongBtn
         disabled={emailValid && passwordValid ? false : true}
