@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/triplus/static/css/main.78fb4394.css",
-    "main.js": "/triplus/static/js/main.0250a590.js",
+    "main.js": "/triplus/static/js/main.0d052143.js",
     "static/media/loading.png": "/triplus/static/media/loading.628b3a5a54d5c43f92d8.png",
     "static/media/user_img_big.svg": "/triplus/static/media/user_img_big.e49288b03aadac912a77622c51c1013e.svg",
     "static/media/user_img_small.svg": "/triplus/static/media/user_img_small.cec8644ab3ea8a8ba18f2d6f52684b0f.svg",
@@ -17,10 +17,10 @@
     "index.html": "/triplus/index.html",
     "static/media/circle.svg": "/triplus/static/media/circle.c74a6bbe713851850de4654e9309b53e.svg",
     "main.78fb4394.css.map": "/triplus/static/css/main.78fb4394.css.map",
-    "main.0250a590.js.map": "/triplus/static/js/main.0250a590.js.map"
+    "main.0d052143.js.map": "/triplus/static/js/main.0d052143.js.map"
   },
   "entrypoints": [
     "static/css/main.78fb4394.css",
-    "static/js/main.0250a590.js"
+    "static/js/main.0d052143.js"
   ]
 }
