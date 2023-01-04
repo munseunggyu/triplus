@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
 import ProfileImg from "../../components/ImageBox";
 import { useNavigate, useLocation } from "react-router-dom";
-import userImg from "../../assets/images/user_img_big.svg";
+import defaultUserImg from "../../assets/images/user_img_big.svg";
 import axios from "axios";
 
 const FormContainer = styled.section`
@@ -49,6 +49,7 @@ const SetProfile = () => {
   const [itemIntro, setItemIntro] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [accountnameError, setAccountnameError] = useState("");
+
   const [usernameValid, setUsernameValid] = useState(false);
   const [accountnameValid, setAccountnameValid] = useState(false);
   const navigate = useNavigate();
@@ -56,6 +57,8 @@ const SetProfile = () => {
   const email = location.state.email;
   const password = location.state.password;
   const passed = username && accountname;
+
+  // const [image, setImage] = useState(`${userImg}`);
 
   /* 사용자이름이 바뀔때마다 유효성검사 진행 */
   useEffect(() => {
@@ -84,6 +87,10 @@ const SetProfile = () => {
     }
   }, [accountname]);
 
+  /* 프로필 이미지 */
+  const [userImage, setUserImage] = useState("");
+
+  /* 가입 */
   const signInHandler = async () => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_KEY}/user`, {
@@ -96,9 +103,10 @@ const SetProfile = () => {
           intro: itemIntro,
           email: email,
           password: password,
-          image: ProfileImg ? ProfileImg : userImg,
+          image: userImage,
         },
       });
+
       navigate("/emaillogin");
     } catch (error) {
       if (error.response.data.message === "이미 사용중인 계정 ID입니다.") {
@@ -113,7 +121,7 @@ const SetProfile = () => {
       <ProfileEditTitle>프로필 설정</ProfileEditTitle>
       <TitleExplain>나중에 언제든지 변경할 수 있습니다.</TitleExplain>
       <ImgWrapper>
-        <ProfileImg />
+        <ProfileImg setUserImage={setUserImage} />
       </ImgWrapper>
       <InputForm>
         <InputBox
