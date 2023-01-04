@@ -500,18 +500,19 @@ width="430px"                    alt=""></td>
                     하단 메뉴바에서 게시글 작성을 클릭하면 표시됩니다.
                     </li>
                     <li>글이 입력되거나 사진이 업로드 되면 업로드 버튼이 활성화되고 버튼을 누르면 게시글이 업로드됩니다.</li>
-                    <li>최대 3장까지 이미지 업로드 가능합니다.</li>
+                    <li>useGetPreview 커스텀 훅을 만들어서 이미지 프리뷰 기능을 구현했습니다.</li>
+                    <li>usePostUpload 커스텀 훅을 활용하여 서버에 POST 요청을 보내고, 최대 3장까지 이미지 업로드 가능하도록 구현했습니다.</li>
                 </ul>
             </td>
         </tr>
         <tr></tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/108205639/210586736-b1157071-8ec0-40cf-b20d-0af534d0a30b.gif"
+            <td><img src="https://user-images.githubusercontent.com/108205639/210630635-0f39f1bf-b9db-4f93-8f0d-c9fbee0b6095.gif"
                   width="430px"  alt=""></td>
             <td>게시글 상세<ul>
                     <li>게시글 하단  말풍선 아이콘을 클릭하면 게시글 상세 페이지로 이동합니다.</li>
                     <li>게시글 우측 상단 버튼을 클릭하면 자신의 게시글일 경우 삭제, 수정 버튼이 나오고 타인이 작성한 게시글일 경우 신고 버튼이 나타납니다.</li>
-                    <li>댓글 확인 및 작성이 가능합니다.</li>
+                    <li>댓글이 8개 이상이 되면 무한 스크롤 기능으로 인해 새롭게 데이터를 불러옵니다. useObserver 커스텀 훅을 만들어 IntersectionObserver를 사용했습니다. </li>
                 </ul>
             </td>
         </tr>
@@ -530,6 +531,7 @@ width="430px"                    alt=""></td>
                   width="430px"  alt=""></td>
             <td>게시글 삭제<ul>
                     <li>자신이 작성한 게시글인 경우 게시글 우측 버튼을 클릭하면 삭제, 수정 버튼이 나타납니다.</li>
+                    <li>utils 폴더에 handleDelete 함수를 만들어 삭제 기능을 구현했습니다.</li>
                     <li>삭제 모달의 삭제 버튼을 클릭하면 게시글이 삭제됩니다. </li>
                 </ul>
             </td>
@@ -539,6 +541,7 @@ width="430px"                    alt=""></td>
                    width="430px" alt=""></td>
             <td>게시글 신고<ul>
                     <li>타인이 작성한 게시글일 경우 게시글 우측 버튼을 클릭하면 신고 버튼이 나타납니다.</li>
+                    <li>utils 폴더에 handleDeclaration 함수를 만들어 신고 기능을 구현했습니다.</li>
                     <li>신고 모달의 신고 버튼을 클릭하면 게시글이 신고됩니다. </li>
                 </ul>
             </td>
@@ -602,6 +605,7 @@ width="430px"                    alt=""></td>
                    width="430px" alt=""></td>
             <td>댓글 삭제<ul>
                     <li>자신이 작성한 댓글일 경우 댓글 우측 버튼을 클릭하면 삭제 모달이 나타납니다.</li>
+                    <li>utils 폴더에 handleDelete 함수를 만들어 신고 기능을 구현했습니다.</li>
                     <li>삭제 버튼을 클릭하면 댓글이 삭제됩니다. 댓글 작성자만 삭제 가능합니다.</li>
                 </ul>
             </td>
@@ -611,6 +615,7 @@ width="430px"                    alt=""></td>
                    width="430px" alt=""></td>
             <td>댓글 신고<ul>
                   <li>타인이 작성한 댓글일 경우 댓글 우측 버튼을 클릭하면 신고 모달이 나타납니다.</li>
+                  <li>utils 폴더에 handleDeclaration 함수를 만들어 신고 기능을 구현했습니다.</li>
                     <li>신고 버튼을 클릭하면 댓글이 신고됩니다.</li>
                 </ul>
             </td>
@@ -654,15 +659,16 @@ width="430px"                    alt=""></td>
     return { data, isLoading, setData, getData };
   };
   ```
-  ```js
-    //pages/Profile/TopSection
-    const { data, setData, isLoading, getData } = useGetData();
-    const { accountname } = useParams();
-    const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
 
-    useEffect(() => {
-      getData(url, "profile");
-    }, [accountname]);
+  ```js
+  //pages/Profile/TopSection
+  const { data, setData, isLoading, getData } = useGetData();
+  const { accountname } = useParams();
+  const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
+
+  useEffect(() => {
+    getData(url, "profile");
+  }, [accountname]);
   ```
 
 #### 2) useObserver
@@ -835,9 +841,10 @@ width="430px"                    alt=""></td>
 ### 2) 커스텀 훅 안에서 커스텀 훅을 사용하지 못하는 이슈
 
 - 문제상황
-  - useDelete 커스텀 훅 안에 useGetCommentList 커스텀 훅을 넣어 사용했는데 불러온 함수가 정상적으로 작동하지 않음.
+  - useDelete 커스텀 훅 안에 useGetCommentList 커스텀 훅을 넣어 사용했는데 불러온 함수가 정상적으로 작동하지 않는다.
 - 원인추론
-  - 아래 코드를 예시로 각각의 함수가 실행되는 위치에 따라 실행되는 값이 달라지므로 원했던 기능이 제대로 구현되지 않음.
+  - 아래 코드를 보면 useModal과 변수 a, b는 모두 전역에서 정의된 전역함수이다. 함수의 상위 스코프는 함수가 정의된 위치에 따라 결정되므로 useModal과 변수 a, b의 상위 스코프는 전역이다. 따라서 useModal의 return 값을 변수 a와 b는 참조하지 못한다. 함수의 호출 위치는 함수 상위 스코프 결정에 영향을 미치지 않기 때문이다.
+  - 커스텀 훅 안에서 커스텀 훅을 넣어 사용하면 상위 스코프가 달라 참조할 수 있는 값 또한 달라진다. 이로 인해 원하던 기능과는 다르게 구현된다.
 
 ```js
 const useModal = () => {
@@ -849,7 +856,7 @@ console.log(a === b); // false
 ```
 
 - 해결방법
-  - 파라미터로 원하는 함수를 받아옴. 그래서 useDelete 훅의 파라미터로 원하는 함수인 handleCloseClick을 넣어 props로 전달받을 수 있도록 처리함.
+  - 파라미터로 원하는 함수를 받아온다. 그래서 useDelete 훅의 파라미터로 원하는 함수인 handleCloseClick을 넣어 props로 전달받을 수 있도록 처리한다.
 - 적용코드
 
 ```js
@@ -929,4 +936,3 @@ export const useDelete = (commentId, handleCloseClick) => {
 ### 서정연
 
 - 프로젝트 시작하기 전엔 마냥 긴장되고 두려웠지만 막상 진행하고 나니 팀원분들에게 많은 것을 배울 수 있는 시간이었습니다. 또한 하나의 기능을 구현하고 풀리지 않던 에러를 해결하는 즐거움을 느낄 수 있었습니다. 물론 중간 중간 힘들고 지칠 때가 있었지만 충분히 의미있었다고 생각하고 앞으로의 방향성을 찾아간 계기가 된 것 같습니다. 많이 부족하지만 더 열심히 공부해서 지금의 부족함을 채워나갈 수 있었으면 좋겠습니다.
-
