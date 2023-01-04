@@ -11,9 +11,9 @@ const ProfileImgContainer = styled.section`
   height: 110px;
   margin: 0 auto;
   background-image: url(${userImg});
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const ProfileImgLabel = styled.label`
@@ -39,9 +39,9 @@ const ProfileImgInput = styled.input`
   /* text-index: -9999px; */
 `;
 
-export default function Index() {
+export default function Index({ setUserImage }) {
   /* 프로필 이미지 */
-  const [image, setImage] = useState(`${userImg}`);
+  // const [image, setImage] = useState(`${userImg}`);
   const previewImage = useRef();
 
   /* 이미지 미리보기 */
@@ -66,12 +66,12 @@ export default function Index() {
         formData,
         config
       );
-      console.log("응답: ", response);
+      // console.log("응답: ", response);
       if (response?.data?.filename) {
-        setImage(
+        setUserImage(
           `${process.env.REACT_APP_API_KEY}/` + response?.data?.filename
         );
-        console.log("로드된 이미지: ", loadImage);
+        // console.log("로드된 이미지: ", loadImage[0].name);
         preview(loadImage);
       } else {
         alert(
@@ -84,10 +84,11 @@ export default function Index() {
     }
   };
 
+  // console.log("이미지: ", image);
   /* 파일 업로드 */
   const handleImageChange = (e) => {
     const loadImg = e.target.files;
-    console.log("로드된 이미지: ", loadImg);
+    // console.log("로드된 이미지: ", loadImg);
     const formData = new FormData();
     formData.append("image", loadImg[0]);
     onLoadedImg(formData, loadImg);
