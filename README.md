@@ -693,6 +693,7 @@ gitGraph
 - 사용한 곳: 게시글 피드, 나의 게시글, 댓글, 팔로우 리스트
 
   ```js
+  // hooks/useObserver.js
   export const useObserver = (reloadRef, pageNum) => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -762,6 +763,20 @@ gitGraph
       setFinishReload,
     };
   };
+  ```
+
+  ```js
+  // pages/Home/index.jsx
+  const curRef = useRef(null);
+  const { data, isLoading, getData, page, reloading, finishReload } =
+    useObserver(curRef, 10);
+  const url = `${process.env.REACT_APP_API_KEY}/post/feed/?limit=10&skip=${page}`;
+
+  useEffect(() => {
+    if (!finishReload) {
+      getData(url, "posts");
+    }
+  }, [page]);
   ```
 
 <br>
