@@ -56,6 +56,7 @@ export default function Index({ setUserImage, userImage }) {
   };
 
   const onLoadedImg = async (formData, loadImage) => {
+    console.log("form data : ", formData, " loadImage: ", loadImage);
     try {
       const config = {
         headers: {

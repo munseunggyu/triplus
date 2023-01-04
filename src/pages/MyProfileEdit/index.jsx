@@ -200,7 +200,6 @@ export default function MyProfileEdit(props) {
             }}
           />
           <ErrMsg className="message">{userNameMsg}</ErrMsg>
-          {/* <p className="message">{userNameMsg}</p> */}
           <InputBox
             id="accountname"
             labelText="계정 ID"
@@ -211,7 +210,6 @@ export default function MyProfileEdit(props) {
             }}
           />
           <ErrMsg className="message">{accountnameError}</ErrMsg>
-          {/* <p className="message">{accountnameError}</p> */}
           <InputBox
             id="itemIntro"
             labelText="소개"

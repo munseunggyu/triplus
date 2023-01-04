@@ -58,6 +58,8 @@ function EmailLogin(props) {
   const [isEmail, setIsEmail] = useState(false);
   const [loginConfirm, setLoginConfirm] = useState(false);
 
+  const [emailError, setEmailError] = useState("");
+  const [emailValid, setEmailValid] = useState(false);
   const passed = email && password;
   const navigate = useNavigate();
 
@@ -83,12 +85,31 @@ function EmailLogin(props) {
     }
   };
 
+  /* 이메일 인풋값이 바뀔때마다 이메일 유효성검사 진행 */
+  useEffect(() => {
+    const emailRegex =
+      /^([A-Z|a-z|0-9](\-|\_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/;
+
+    if (!emailRegex.test(email) && email !== "") {
+      setEmailError("* 올바른 이메일 형식이 아닙니다.");
+      setEmailValid(false);
+    } else if (email == "") {
+      setEmailError("* 이메일을 입력해주세요");
+      setEmailValid(false);
+    } else {
+      setEmailError("");
+      setEmailValid(true);
+    }
+  }, [email]);
+
   const handleLoginPw = (e) => {
     const password = e.target.value;
     setPassword(password);
 
     if (password == "") {
       setPwMessage("* 비밀번호를 입력해주세요.");
+    } else if (password.length < 6) {
+      setPwMessage("* 비밀번호는 6자 이상이어야 합니다.");
     } else {
       setPwMessage("");
       setLoginMessage("");
@@ -144,8 +165,7 @@ function EmailLogin(props) {
         <LoginTitle>로그인</LoginTitle>
         <InputForm>
           <InputBox id="email" labelText="이메일" onChange={handleLoginId} />
-          <ErrMsg className="message">{emailMessage}</ErrMsg>
-          <div></div>
+          <ErrMsg className="message">{emailError}</ErrMsg>
           <InputBox
             type="password"
             id="password"
@@ -153,7 +173,6 @@ function EmailLogin(props) {
             onChange={handleLoginPw}
           />
           <ErrMsg className="message">{pwMessage}</ErrMsg>
-          <div>{setLoginMessage}</div>
         </InputForm>
         <LongBtn
           message="로그인"

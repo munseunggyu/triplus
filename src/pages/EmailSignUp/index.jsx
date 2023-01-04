@@ -51,7 +51,7 @@ export default function EmailSignUp(props) {
       setEmailError("* 올바른 이메일 형식이 아닙니다.");
       setEmailValid(false);
     } else if (email === "") {
-      setEmailError("");
+      setEmailError("* 이메일을 입력해주세요");
       setEmailValid(false);
     } else {
       setEmailError("");
@@ -64,7 +64,8 @@ export default function EmailSignUp(props) {
     if (password.length < 6 && password !== "") {
       setPasswordError("* 비밀번호는 6자 이상이어야 합니다.");
       setPasswordValid(false);
-    } else if (password === "") {
+    } else if (password == "") {
+      setPasswordError("* 비밀번호를 입력해주세요.");
       setPasswordValid(false);
     } else {
       setPasswordError("");
