@@ -8,7 +8,7 @@ import SearchButton from "../../components/Header/SearchButton";
 import HomeNoFollow from "./HomeNoFollow";
 import * as S from "./style";
 import LoadingPage from "../LoadingPage";
-import symbolImg from "../../assets/images/main_logo.svg";
+import symbolImg from "../../assets/images/main_home_logo.svg";
 import { useObserver } from "../../hooks/useObserver";
 
 export default function Home() {
@@ -26,8 +26,8 @@ export default function Home() {
   return (
     <>
       <Header>
-        <S.MainLogo src={symbolImg} alt="triplus logo" />
-        Triplus
+        <h1 className="ir">triPlus 피드</h1>
+        <img src={symbolImg} alt="triplus logo" />
         <SearchButton />
       </Header>
       <MainContainer>
