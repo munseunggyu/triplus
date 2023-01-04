@@ -43,6 +43,11 @@ const InputForm = styled.form`
   margin-bottom: 30px;
 `;
 
+const ErrMsg = styled.p`
+  margin-bottom: 10px;
+  color: red;
+`;
+
 const SetProfile = () => {
   const [username, setUsername] = useState("");
   const [accountname, setAccountname] = useState("");
@@ -132,7 +137,7 @@ const SetProfile = () => {
             setUsername(e.target.value);
           }}
         />
-        <p className="message">{usernameError}</p>
+        <ErrMsg className="message">{usernameError}</ErrMsg>
         <InputBox
           id="accountname"
           labelText="계정 ID"
@@ -141,7 +146,7 @@ const SetProfile = () => {
             setAccountname(e.target.value);
           }}
         />
-        <p className="message">{accountnameError}</p>
+        <ErrMsg className="message">{accountnameError}</ErrMsg>
         <InputBox
           id="itemIntro"
           labelText="소개"
