@@ -10,7 +10,8 @@ const ProfileImgContainer = styled.section`
   width: 110px;
   height: 110px;
   margin: 0 auto;
-  background-image: url(${userImg});
+  background-image: ${(props) =>
+    props.userImage ? `url(${props.userImage})` : `url(${userImg})`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -39,11 +40,11 @@ const ProfileImgInput = styled.input`
   /* text-index: -9999px; */
 `;
 
-export default function Index({ setUserImage }) {
+export default function Index({ setUserImage, userImage }) {
   /* 프로필 이미지 */
   // const [image, setImage] = useState(`${userImg}`);
   const previewImage = useRef();
-
+  console.log(userImage);
   /* 이미지 미리보기 */
   const preview = (loadImage) => {
     const reader = new FileReader();
@@ -96,7 +97,7 @@ export default function Index({ setUserImage }) {
 
   return (
     <>
-      <ProfileImgContainer ref={previewImage}>
+      <ProfileImgContainer userImage={userImage} ref={previewImage}>
         <ProfileImgLabel htmlFor="profileImg">
           <ProfileImg src={uploadIcon} alt="프로필 이미지 업로드" />
         </ProfileImgLabel>
