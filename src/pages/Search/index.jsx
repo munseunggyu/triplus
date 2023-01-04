@@ -14,7 +14,7 @@ export default function Search() {
 
   const [searchInputVal, setSearchInputVal] = useState("");
   const url = `${process.env.REACT_APP_API_KEY}/user/searchuser/?keyword=${searchInputVal}`;
-  // 작성자가 입력이 완료한 후 0.3초 뒤에 실행하고 싶다. 한번만 데이터 요청
+
   useEffect(() => {
     if (searchInputVal !== "") {
       const timeId = setTimeout(() => {

@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import SplashScreen from "./pages/SplashScreen";
 import MultiLogin from "./pages/MultiLogin";
 import EmailLogin from "./pages/EmailLogin";
 import EmailSignUp from "./pages/EmailSignUp";
@@ -67,7 +66,6 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
           </>
         )}
-        {/* <Route path="/splash" element={<SplashScreen />} /> */}
       </Routes>
     </>
   );
