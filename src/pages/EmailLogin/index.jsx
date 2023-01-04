@@ -39,6 +39,11 @@ const EmailJoinLink = styled(Link)`
   line-height: 15px;
 `;
 
+const ErrMsg = styled.p`
+  margin-bottom: 10px;
+  color: red;
+`;
+
 const EmailJoin = () => {
   return <EmailJoinLink to="/emailsignup">이메일로 회원가입</EmailJoinLink>;
 };
@@ -70,7 +75,7 @@ function EmailLogin(props) {
       setIsEmail(false);
     }
 
-    if (email === "") {
+    if (email == "") {
       setEmailMessage("* 이메일을 입력해주세요.");
     } else {
       setEmailMessage("");
@@ -139,14 +144,15 @@ function EmailLogin(props) {
         <LoginTitle>로그인</LoginTitle>
         <InputForm>
           <InputBox id="email" labelText="이메일" onChange={handleLoginId} />
-          <div>{emailMessage}</div>
+          <ErrMsg className="message">{emailMessage}</ErrMsg>
+          <div></div>
           <InputBox
             type="password"
             id="password"
             labelText="비밀번호"
             onChange={handleLoginPw}
           />
-          <div>{pwMessage}</div>
+          <ErrMsg className="message">{pwMessage}</ErrMsg>
           <div>{setLoginMessage}</div>
         </InputForm>
         <LongBtn
