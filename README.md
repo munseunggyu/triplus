@@ -376,40 +376,38 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src=""
-                    alt=""></td>
+            <td><img src="https://user-images.githubusercontent.com/84954439/210591363-6add918d-a09b-4b4d-a0f9-5168c5bc2cfa.gif"
+                  width="430px"  alt=""></td>
             <td>Splash<ul>
-                    <li>시작하기 버튼을 통해 서비스에 접속할 수 있습니다.</li>
-                    <li>`로그인 상태`: 메인 게시판으로 이동</li>
-                    <li>`비로그인 상태`: 로그인화면으로 이동</li>
+                    <li>triPlus 로고가 뜬 후 로그인 및 회원가입으로 연결됩니다.</li>
                 </ul>
             </td>
         </tr>
         <tr>
-            <td><img src=""
-                    alt=""></td>
+            <td><img src="https://user-images.githubusercontent.com/108205639/210592719-9cb6eaa4-5c53-45c2-86d8-540e0df08fef.gif"
+                  width="430px"  alt=""></td>
             <td>회원가입<ul>
-                    <li>시작하기 버튼을 통해 서비스에 접속할 수 있습니다.</li>
-                    <li>로그인: 메인 게시판으로 이동</li>
-                    <li>비로그인: 로그인화면으로 이동</li>
+                    <li>이메일과 비밀번호를 설정하여 회원가입을 할 수 있습니다.</li>
+                    <li>이미 가입한 이메일 주소이거나 형식에 맞지 않는 이메일 주소, 6자 이하의 비밀번호 입력시 경고메세지가 뜹니다.</li>
+                    <li>이메일과 비밀번호를 입력하면 회원가입 버튼이 활성화 됩니다.</li>
+                    <li>회원가입이 완료되면 프로필 설정화면으로 이동합니다.</li>
                 </ul>
             </td>
         </tr>
         <tr>
-            <td><img src=""
-                    alt=""></td>
+            <td><img src="https://user-images.githubusercontent.com/112460285/210591756-cca559eb-a9a2-49e8-b4eb-944d70457e8e.gif"
+                  width="430px"  alt=""></td>
             <td>로그인 (multilogin)
                 <ul>
-                    <li>시작하기 버튼을 통해 서비스에 접속할 수 있습니다.</li>
-                    <li>로그인: 메인 게시판으로 이동</li>
-                    <li>비로그인: 로그인화면으로 이동</li>
+                    <li>일치하지 않는 이메일와 비밀번호로 로그인 시도시 경고 메세지가 뜹니다.</li>
+                    <li>이메일과 패스워드를 입력하면 로그인버튼이 활성화 됩니다.</li>
                 </ul>
             </td>
         </tr>
         <tr></tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/84954439/210386236-16b67df4-37bd-4aa2-9d4d-fcd3d353e779.gif"
-            width="450px"
+            width="430px"
                     alt=""></td>
             <td>triPlus 피드<ul>
                     <li>팔로우한 유저가 없다면 유저를  검색하는 문구와 검색하기 버튼이 나옵니다.</li>
@@ -420,8 +418,8 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src=""
-                    alt=""></td>
+            <td><img src="https://user-images.githubusercontent.com/108205639/210595887-efb923b4-97b2-42a2-b4d8-23aa7e7c27a5.gif"
+                   width="430px" alt=""></td>
             <td>회원가입<ul>
                     <li>사용자의 정보를 입력받아 회원가입을 진행합니다.</li>
                     <li>유효성 검사를 진행하고, 오류 메시지를 전달합니다.</li>
@@ -444,7 +442,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/84954439/210386641-d80c3619-b6e7-4ac0-8465-cc63a3939ef7.gif"
-                    alt=""></td>
+width="430px"                    alt=""></td>
             <td>검색<ul>
                     <li>검색창에 검색어를 입력하면 0.3초 후 에 해당 유저들의 데이터를 요청한다음 보여줍니다.</li>
                     <li>유저를 클릭하면 해당 유저의 프로필로 이동합니다.</li>
@@ -453,7 +451,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/84954439/210387992-9dace541-95ec-4de2-a222-bf9566bfe46f.gif"
-                    alt=""></td>
+                width="430px"    alt=""></td>
             <td>팔로우 및 팔로잉<ul>
                    <li>팔로우 버튼을 클릭하면 해당 유저를 팔로우합니다.</li>
                     <li>팔로우 한 상태에서 언팔로우 버튼을 클릭하면 해당 유저를 언팔로우 합니다.</li>
@@ -462,7 +460,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/84954439/210387143-1d1919fe-f5a6-4617-881d-fc1c9aadab58.gif"
-                    alt=""></td>
+                 width="430px"   alt=""></td>
             <td>프로필<ul>
                   <li>하단 메뉴바에서 프로필을 클릭하면 자신의 프로필을 보여줍니다.</li>
                     <li>팔로잉,팔로워 수를 표시하고 프로필 수정, 상품 등록을 할 수 있습니다.</li>
@@ -472,8 +470,8 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/112460285/210587668-d56a8139-afbc-4647-a935-a0eecfd0cf66.gif"
-                    alt=""></td>
+            <td><img src=""
+                 width="430px"   alt=""></td>
             <td>프로필 수정하기<ul>
                     <li></li>
                     <li></li>
@@ -496,7 +494,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210586972-d8491efe-2c0b-4246-80e4-96dd36c22937.gif"
-                    alt=""></td>
+                  width="430px"  alt=""></td>
             <td>게시글 작성<ul>
                    <li>
                     하단 메뉴바에서 게시글 작성을 클릭하면 표시됩니다.
@@ -509,7 +507,7 @@ gitGraph
         <tr></tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210586736-b1157071-8ec0-40cf-b20d-0af534d0a30b.gif"
-                    alt=""></td>
+                  width="430px"  alt=""></td>
             <td>게시글 상세<ul>
                     <li>게시글 하단  말풍선 아이콘을 클릭하면 게시글 상세 페이지로 이동합니다.</li>
                     <li>게시글 우측 상단 버튼을 클릭하면 자신의 게시글일 경우 삭제, 수정 버튼이 나오고 타인이 작성한 게시글일 경우 신고 버튼이 나타납니다.</li>
@@ -519,7 +517,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210586888-d2e6894e-92a9-4a7f-b058-fd01fff26b9a.gif"
-                    alt=""></td>
+                  width="430px"  alt=""></td>
             <td>게시글 수정<ul>
                     <li>게시글 우측 상단 버튼을 클릭했을 경우 내가 작성한 게시글이라면 삭제, 수정 버튼이 나타납니다.</li>
                     <li>수정 버튼을 클릭하면 수정 가능합니다. 텍스트, 이미지를 삭제하거나 추가할 수 있습니다. </li>
@@ -529,7 +527,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/84954439/210586556-06555a3b-4874-4297-94e4-b4046845c14e.gif"
-                    alt=""></td>
+                  width="430px"  alt=""></td>
             <td>게시글 삭제<ul>
                     <li>자신이 작성한 게시글인 경우 게시글 우측 버튼을 클릭하면 삭제, 수정 버튼이 나타납니다.</li>
                     <li>삭제 모달의 삭제 버튼을 클릭하면 게시글이 삭제됩니다. </li>
@@ -538,7 +536,7 @@ gitGraph
         </tr>
          <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210586959-436aaae0-6b09-447a-b3e0-95856f163cbb.gif"
-                    alt=""></td>
+                   width="430px" alt=""></td>
             <td>게시글 신고<ul>
                     <li>타인이 작성한 게시글일 경우 게시글 우측 버튼을 클릭하면 신고 버튼이 나타납니다.</li>
                     <li>신고 모달의 신고 버튼을 클릭하면 게시글이 신고됩니다. </li>
@@ -547,7 +545,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/84954439/210387352-eaf0cf2d-e602-46b3-863a-c0f2d204d776.gif"
-                    alt=""></td>
+                   width="430px" alt=""></td>
             <td>좋아요<ul>
                     <li>게시글에 좋아요 버튼을 클릭하면 좋아요 수가 증가합니다.</li>
                     <li>좋아요 된 게시글에 한 번 더 누르면 좋아요가 취소되고 좋아요 수가 감소합니다.</li>
@@ -569,7 +567,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/112460285/210587668-d56a8139-afbc-4647-a935-a0eecfd0cf66.gif"
-                    alt=""></td>
+                   width="430px" alt=""></td>
             <td>상품 등록<ul>
                     <li>상품 이미지와 상품명, 가격, 판매 링크가 입력되면 저장 버튼이 활성화 됩니다.</li>
                     <li>저장 버튼을 클릭하면 상품이 등록됩니다.</li>
@@ -590,7 +588,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210587123-c01ffe83-677d-42e4-b32c-75e8705047e1.gif"
-                    alt=""></td>
+                   width="430px" alt=""></td>
             <td>댓글 등록<ul>
                    <li>게시글 하단 말풍선 아이콘을 클릭하면 댓글을 확인하고 입력할 수 있는 페이지가 나타납니다.</li>
                     <li>댓글 입력창에 글을 입력하게 게시 버튼을 클릭하면 최상단에 댓글이 작성됩니다.</li>
@@ -601,7 +599,7 @@ gitGraph
         <tr></tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210587211-002a0c29-31b9-4431-a81c-46b47730d43f.gif"
-                    alt=""></td>
+                   width="430px" alt=""></td>
             <td>댓글 삭제<ul>
                     <li>자신이 작성한 댓글일 경우 댓글 우측 버튼을 클릭하면 삭제 모달이 나타납니다.</li>
                     <li>삭제 버튼을 클릭하면 댓글이 삭제됩니다. 댓글 작성자만 삭제 가능합니다.</li>
@@ -610,7 +608,7 @@ gitGraph
         </tr>
         <tr>
             <td><img src="https://user-images.githubusercontent.com/108205639/210587277-1ceb5a6b-d524-46bd-9e1b-91799fc686e2.gif"
-                    alt=""></td>
+                   width="430px" alt=""></td>
             <td>댓글 신고<ul>
                   <li>타인이 작성한 댓글일 경우 댓글 우측 버튼을 클릭하면 신고 모달이 나타납니다.</li>
                     <li>신고 버튼을 클릭하면 댓글이 신고됩니다.</li>
@@ -655,6 +653,16 @@ gitGraph
 
     return { data, isLoading, setData, getData };
   };
+  ```
+  ```js
+    //pages/Profile/TopSection
+    const { data, setData, isLoading, getData } = useGetData();
+    const { accountname } = useParams();
+    const url = `${process.env.REACT_APP_API_KEY}/profile/${accountname}`;
+
+    useEffect(() => {
+      getData(url, "profile");
+    }, [accountname]);
   ```
 
 #### 2) useObserver
