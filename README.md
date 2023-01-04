@@ -2,18 +2,15 @@
 
 **[배포 URL]**
 
-- URL:
+- URL: [triPlus](https://munseunggyu.github.io/triplus/)
 
 **[계정]**
 
-- 🧑🏻‍💻 id:
-- 🔐 password:
+- 🧑🏻‍💻 id: triplus1@admin.com
+- 🔐 password: admin123
 
-<!-- 이미지 -->
-
-- 여기에 이미지 삽입
-
-<br>
+<img src="https://user-images.githubusercontent.com/84954439/210585440-5488091a-7238-47c9-98ab-174b8f66ded8.png">
+  <br>
 
 ## 1. 소개 👥
 
@@ -27,10 +24,10 @@
 
 ## 🙋‍♀️ triPlus 구성원 🙋‍♂️
 
-|                                          **김대엽**                                          |                                                                **문승규**                                                                |                                                         **방지영**                                                          |                                                                             **서정연**                                                                              |
-| :------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|   <img width="180" alt="대엽" src="https://avatars.githubusercontent.com/u/68424403?v=4">    | <img width="180" alt="승규" src="https://avatars.githubusercontent.com/u/84954439?s=400&u=84f4bd857d0e88c159b07f518cfe50f7bf9973e6&v=4"> | <img width="180" alt="지영" src="https://cdn.discordapp.com/attachments/1045252262164959332/1060142358697619547/image.png"> | <img width="180" alt="정연" src="https://cdn.discordapp.com/attachments/1045252262164959332/1059780434533294190/07F321EA-E960-4AEB-98E1-5CB59DA571A0_1_105_c.jpeg"> |
-| [**GitHub**](https://github.com/kimdaeyeobbb) <br>[**blog**](https://blog.naver.com/kimdyk1) |                                               [**GitHub**](https://github.com/munseunggyu)                                               |                                          [**GitHub**](https://github.com/marrron/)                                          |                                                              [**GitHub**](https://github.com/yeon1128)                                                              |
+|                                          **김대엽**                                          |                                                                **문승규**                                                                |                                                         **방지영**                                                          |                                                                **서정연**                                                                 |
+| :------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
+|   <img width="180" alt="대엽" src="https://avatars.githubusercontent.com/u/68424403?v=4">    | <img width="180" alt="승규" src="https://avatars.githubusercontent.com/u/84954439?s=400&u=84f4bd857d0e88c159b07f518cfe50f7bf9973e6&v=4"> | <img width="180" alt="지영" src="https://cdn.discordapp.com/attachments/1045252262164959332/1060142358697619547/image.png"> | <img width="180"  alt="정연" src="https://user-images.githubusercontent.com/84954439/210586099-55b09be2-a526-4d8a-87f5-2b5520f2a6f0.png"> |
+| [**GitHub**](https://github.com/kimdaeyeobbb) <br>[**blog**](https://blog.naver.com/kimdyk1) |                                               [**GitHub**](https://github.com/munseunggyu)                                               |                                          [**GitHub**](https://github.com/marrron/)                                          |                                                 [**GitHub**](https://github.com/yeon1128)                                                 |
 
 <br>
 
@@ -60,7 +57,6 @@
   - 코드리뷰
   - 커스텀 훅 강의
   - 스타일드 컴포넌트 강의
-  - 컨벤션 관리
 
 - UI
 
@@ -116,10 +112,6 @@
 - Front-End: React, Styled-components
 - Back-End: 제공된 API 사용
 - 디자인 도구: [🎨Figma](https://www.figma.com/file/Qcxn5LaToq0uhbrvZeHwl8/Untitled?t=254MQgkNmEv6hDyF-0)
-
-### 기술 스택 선정 이유
-
-- ㅁ
 
 <br>
 
@@ -416,7 +408,8 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/84954439/210386236-16b67df4-37bd-4aa2-9d4d-fcd3d353e779.gif"
+            width="450px"
                     alt=""></td>
             <td>triPlus 피드<ul>
                     <li>팔로우한 유저가 없다면 유저를  검색하는 문구와 검색하기 버튼이 나옵니다.</li>
@@ -450,7 +443,7 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/84954439/210386641-d80c3619-b6e7-4ac0-8465-cc63a3939ef7.gif"
                     alt=""></td>
             <td>검색<ul>
                     <li>검색창에 검색어를 입력하면 0.3초 후 에 해당 유저들의 데이터를 요청한다음 보여줍니다.</li>
@@ -459,7 +452,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/84954439/210387992-9dace541-95ec-4de2-a222-bf9566bfe46f.gif"
                     alt=""></td>
             <td>팔로우 및 팔로잉<ul>
                    <li>팔로우 버튼을 클릭하면 해당 유저를 팔로우합니다.</li>
@@ -468,7 +461,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/84954439/210387143-1d1919fe-f5a6-4617-881d-fc1c9aadab58.gif"
                     alt=""></td>
             <td>프로필<ul>
                   <li>하단 메뉴바에서 프로필을 클릭하면 자신의 프로필을 보여줍니다.</li>
@@ -479,7 +472,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/112460285/210587668-d56a8139-afbc-4647-a935-a0eecfd0cf66.gif"
                     alt=""></td>
             <td>프로필 수정하기<ul>
                     <li></li>
@@ -502,7 +495,7 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210586972-d8491efe-2c0b-4246-80e4-96dd36c22937.gif"
                     alt=""></td>
             <td>게시글 작성<ul>
                    <li>
@@ -515,7 +508,7 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210586736-b1157071-8ec0-40cf-b20d-0af534d0a30b.gif"
                     alt=""></td>
             <td>게시글 상세<ul>
                     <li>게시글 하단  말풍선 아이콘을 클릭하면 게시글 상세 페이지로 이동합니다.</li>
@@ -525,7 +518,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210586888-d2e6894e-92a9-4a7f-b058-fd01fff26b9a.gif"
                     alt=""></td>
             <td>게시글 수정<ul>
                     <li>게시글 우측 상단 버튼을 클릭했을 경우 내가 작성한 게시글이라면 삭제, 수정 버튼이 나타납니다.</li>
@@ -535,7 +528,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/84954439/210586556-06555a3b-4874-4297-94e4-b4046845c14e.gif"
                     alt=""></td>
             <td>게시글 삭제<ul>
                     <li>자신이 작성한 게시글인 경우 게시글 우측 버튼을 클릭하면 삭제, 수정 버튼이 나타납니다.</li>
@@ -544,7 +537,7 @@ gitGraph
             </td>
         </tr>
          <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210586959-436aaae0-6b09-447a-b3e0-95856f163cbb.gif"
                     alt=""></td>
             <td>게시글 신고<ul>
                     <li>타인이 작성한 게시글일 경우 게시글 우측 버튼을 클릭하면 신고 버튼이 나타납니다.</li>
@@ -553,7 +546,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/84954439/210387352-eaf0cf2d-e602-46b3-863a-c0f2d204d776.gif"
                     alt=""></td>
             <td>좋아요<ul>
                     <li>게시글에 좋아요 버튼을 클릭하면 좋아요 수가 증가합니다.</li>
@@ -575,36 +568,15 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/112460285/210587668-d56a8139-afbc-4647-a935-a0eecfd0cf66.gif"
                     alt=""></td>
             <td>상품 등록<ul>
-                    <li>사용자의 프로필 정보를 제공합니다.</li>
-                    <li>작성한 게시글, 좋아요, 스크랩한 게시글의 목록을 확인할 수 있습니다.</li>
-                    <li>로그아웃을 할 수 있으며, 시작 페이지로 돌아갑니다.</li>
+                    <li>상품 이미지와 상품명, 가격, 판매 링크가 입력되면 저장 버튼이 활성화 됩니다.</li>
+                    <li>저장 버튼을 클릭하면 상품이 등록됩니다.</li>
                 </ul>
             </td>
         </tr>
-        <tr></tr>
-        <tr>
-            <td><img src=""
-                    alt=""></td>
-            <td>상품 수정<ul>
-                    <li>프로필 이미지를 변경하거나, 업로드한 이미지를 삭제할 수 있습니다.</li>
-                    <li>새로운 닉네임의 중복 여부를 확인한 후 변경합니다.</li>
-                </ul>
-            </td>
-        </tr>
-         <tr>
-            <td><img src=""
-                    alt=""></td>
-            <td>상품 삭제<ul>
-                    <li>사용자의 프로필 정보를 제공합니다.</li>
-                    <li>작성한 게시글, 좋아요, 스크랩한 게시글의 목록을 확인할 수 있습니다.</li>
-                    <li>로그아웃을 할 수 있으며, 시작 페이지로 돌아갑니다.</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+            
 </table>
 
 ### 6-5. 댓글
@@ -617,7 +589,7 @@ gitGraph
             <th>설명</th>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210587123-c01ffe83-677d-42e4-b32c-75e8705047e1.gif"
                     alt=""></td>
             <td>댓글 등록<ul>
                    <li>게시글 하단 말풍선 아이콘을 클릭하면 댓글을 확인하고 입력할 수 있는 페이지가 나타납니다.</li>
@@ -628,7 +600,7 @@ gitGraph
         </tr>
         <tr></tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210587211-002a0c29-31b9-4431-a81c-46b47730d43f.gif"
                     alt=""></td>
             <td>댓글 삭제<ul>
                     <li>자신이 작성한 댓글일 경우 댓글 우측 버튼을 클릭하면 삭제 모달이 나타납니다.</li>
@@ -637,7 +609,7 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src=""
+            <td><img src="https://user-images.githubusercontent.com/108205639/210587277-1ceb5a6b-d524-46bd-9e1b-91799fc686e2.gif"
                     alt=""></td>
             <td>댓글 신고<ul>
                   <li>타인이 작성한 댓글일 경우 댓글 우측 버튼을 클릭하면 신고 모달이 나타납니다.</li>

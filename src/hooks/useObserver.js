@@ -12,8 +12,8 @@ export const useObserver = (reloadRef, pageNum) => {
   const loadMore = () => setPage((prev) => prev + pageNum);
 
   const getData = async (url, name) => {
-    setReloading(true);
     try {
+      setReloading(true);
       const res = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
