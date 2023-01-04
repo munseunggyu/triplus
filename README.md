@@ -395,11 +395,11 @@ gitGraph
             </td>
         </tr>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/112460285/210591756-cca559eb-a9a2-49e8-b4eb-944d70457e8e.gif"
+            <td><img src="https://user-images.githubusercontent.com/112460285/210599000-7fe01295-694f-40a6-ae92-d2f3ed7f7b19.gif"
                   width="430px"  alt=""></td>
             <td>로그인 (multilogin)
                 <ul>
-                    <li>일치하지 않는 이메일와 비밀번호로 로그인 시도시 경고 메세지가 뜹니다.</li>
+                  <li>이메일과 비밀번호에 대한 유효성 검사를 실행합니다.</li>
                     <li>이메일과 패스워드를 입력하면 로그인버튼이 활성화 됩니다.</li>
                 </ul>
             </td>
@@ -667,7 +667,7 @@ width="430px"                    alt=""></td>
 
 #### 2) useObserver
 
-- 무한 스크롤을 이용하여 웹 최적화 및 사용성 개선
+- 무한 스크롤을 통한 웹 최적화로 더 나은 사용자 경험을 제공
 - Intersection Observer API사용
 - 커스텀 훅으로 만들어 재사용
 - 사용한 곳: 게시글 피드, 나의 게시글, 댓글, 팔로우 리스트
@@ -845,7 +845,7 @@ const useModal = () => {
 };
 const a = useModal();
 const b = useModal();
-console.log(a == b); // false
+console.log(a === b); // false
 ```
 
 - 해결방법
@@ -929,3 +929,4 @@ export const useDelete = (commentId, handleCloseClick) => {
 ### 서정연
 
 - 프로젝트 시작하기 전엔 마냥 긴장되고 두려웠지만 막상 진행하고 나니 팀원분들에게 많은 것을 배울 수 있는 시간이었습니다. 또한 하나의 기능을 구현하고 풀리지 않던 에러를 해결하는 즐거움을 느낄 수 있었습니다. 물론 중간 중간 힘들고 지칠 때가 있었지만 충분히 의미있었다고 생각하고 앞으로의 방향성을 찾아간 계기가 된 것 같습니다. 많이 부족하지만 더 열심히 공부해서 지금의 부족함을 채워나갈 수 있었으면 좋겠습니다.
+
