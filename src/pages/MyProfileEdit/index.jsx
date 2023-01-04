@@ -62,33 +62,12 @@ export default function MyProfileEdit(props) {
   const navigate = useNavigate();
   const passed = username && accountname;
 
-  /* 프로필 정보 가져오기 */
-
-  const getProfile = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_KEY}/user/myinfo`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-      setUsername(res.data.user.username);
-      setAccountname(res.data.user.accountname);
-      setIntro(res.data.user.intro);
-      setUserImage(res.data.user.image);
-      console.log("이미지: ", res.data.user.image);
-    } catch (error) {
-      console.log(error);
-      console.log("에러입니다.");
-    }
-  };
-
   useEffect(() => {
     if (location.state) {
       console.log("로케이션 스테이트: ", location.state);
+      setAccountname(location.state.accountname);
+      setUsername(location.state.username);
+
       if (location.state.image) {
         setUserImage(location.state.image);
       }
@@ -134,7 +113,6 @@ export default function MyProfileEdit(props) {
       setIsValidUserName(true);
     }
   };
-
   useEffect(() => {
     validUserName();
   }, [username]);
@@ -205,7 +183,11 @@ export default function MyProfileEdit(props) {
       <FormContainer>
         <PageTitle className="ir">프로필 수정 페이지</PageTitle>
         <ImgWrapper>
-          <ProfileImg setUserImage={setUserImage} onChange={profileChange} />
+          <ProfileImg
+            userImage={userImage}
+            setUserImage={setUserImage}
+            onChange={profileChange}
+          />
         </ImgWrapper>
         <InputForm>
           <InputBox
