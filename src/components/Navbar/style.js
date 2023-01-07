@@ -11,6 +11,7 @@ export const IconsUl = styled.ul`
   justify-content: space-between;
   gap: 14px;
   border-top: 0.5px solid ${(props) => props.theme.borderColor};
+  z-index: 20;
 `;
 
 export const Iconli = styled.div`

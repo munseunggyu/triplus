@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Swiper } from "swiper/react";
 import css_sprite from "../../assets/images/css_sprites.png";
 
 export const PostCardList = styled.li`
@@ -43,10 +44,17 @@ export const PostCardContentTxt = styled.pre`
   word-wrap: break-word;
   margin-top: 16px;
 `;
+
+export const SwiperStyle = styled(Swiper)`
+  width: 304px;
+  height: 228px;
+  border-radius: 10px;
+`;
+
 export const PostCardContentImg = styled.img`
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 14px;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const PostCardTime = styled.time`
@@ -65,8 +73,8 @@ export const PostCardVertical = styled.button`
 // PostCardBtns
 export const PostCardHeartChatCon = styled.div`
   display: flex;
-  margin-bottom: 18px;
   align-items: center;
+  margin: 12px 0 18px;
 `;
 
 export const PostCardLikeBtn = styled.button`

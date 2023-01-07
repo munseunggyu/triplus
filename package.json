@@ -15,6 +15,7 @@
     "react-wavify": "^1.6.3",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.4",
+    "swiper": "^8.4.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
