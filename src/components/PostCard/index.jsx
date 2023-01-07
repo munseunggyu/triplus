@@ -9,6 +9,10 @@ import { useModal } from "../../hooks/useModal";
 import { handleDelete } from "../../utils/handleDelete";
 import { handleDeclaration } from "../../utils/handleDeclaration";
 import * as S from "./style";
+import { SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function PostCard({
   id,
@@ -19,7 +23,6 @@ export default function PostCard({
   commentCount,
   heartCount,
   hearted,
-  setTrigger,
   setData,
 }) {
   const date = new Date(createdAt);
@@ -45,7 +48,6 @@ export default function PostCard({
   const handleDel = () => {
     setData((prev) => prev.filter((post) => post.id !== id));
   };
-
   return (
     <>
       <S.PostCardList>
@@ -60,12 +62,16 @@ export default function PostCard({
           <S.PostCardUserName>{author.username}</S.PostCardUserName>
           <S.PostCardUserId>&#64;{author.accountname}</S.PostCardUserId>
           <S.PostCardContentTxt>{content}</S.PostCardContentTxt>
-          {image &&
-            image
-              .split(",")
-              .map((img) => (
-                <S.PostCardContentImg src={img} alt="게시물 이미지" />
+          {image && (
+            <S.SwiperStyle pagination={true} modules={[Pagination]}>
+              {image.split(",").map((img) => (
+                <SwiperSlide>
+                  <S.PostCardContentImg src={img} alt="게시물 이미지" />
+                </SwiperSlide>
               ))}
+            </S.SwiperStyle>
+          )}
+
           <PostCardBtns
             postkey={id}
             commentCount={commentCount}
