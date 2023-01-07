@@ -8,34 +8,7 @@ import InputBox from "../../components/InputBox/index";
 import axios from "axios";
 import defaultImg from "../../assets/images/user_img_big.svg";
 import MiddleSmallBtn from "../../components/Button/MiddleSmallBtn/MiddleSmallBtn";
-
-const FormContainer = styled.section`
-  position: absolute;
-  top: 49px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* height: 90vh; */
-  width: 100vw;
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-`;
-
-const PageTitle = styled.h1``;
-
-const ImgWrapper = styled.div`
-  width: 110px;
-  height: 110px;
-  margin: 30px auto;
-`;
-
-const InputForm = styled.form`
-  margin-bottom: 30px;
-`;
-
-const ErrMsg = styled.p`
-  margin-bottom: 10px;
-  color: red;
-`;
+import * as S from "./style";
 
 export default function MyProfileEdit(props) {
   const location = useLocation();
@@ -180,16 +153,16 @@ export default function MyProfileEdit(props) {
           disabled={passed ? false : true}
         />
       </Header>
-      <FormContainer>
-        <PageTitle className="ir">프로필 수정 페이지</PageTitle>
-        <ImgWrapper>
+      <S.FormContainer>
+        <S.PageTitle className="ir">프로필 수정 페이지</S.PageTitle>
+        <S.ImgWrapper>
           <ProfileImg
             userImage={userImage}
             setUserImage={setUserImage}
             onChange={profileChange}
           />
-        </ImgWrapper>
-        <InputForm>
+        </S.ImgWrapper>
+        <S.InputForm>
           <InputBox
             id="username"
             labelText="사용자 이름"
@@ -199,7 +172,7 @@ export default function MyProfileEdit(props) {
               setUsername(e.target.value);
             }}
           />
-          <ErrMsg className="message">{userNameMsg}</ErrMsg>
+          <S.ErrMsg className="message">{userNameMsg}</S.ErrMsg>
           <InputBox
             id="accountname"
             labelText="계정 ID"
@@ -209,7 +182,7 @@ export default function MyProfileEdit(props) {
               setAccountname(e.target.value);
             }}
           />
-          <ErrMsg className="message">{accountnameError}</ErrMsg>
+          <S.ErrMsg className="message">{accountnameError}</S.ErrMsg>
           <InputBox
             id="itemIntro"
             labelText="소개"
@@ -219,8 +192,8 @@ export default function MyProfileEdit(props) {
               setIntro(e.target.value);
             }}
           />
-        </InputForm>
-      </FormContainer>
+        </S.InputForm>
+      </S.FormContainer>
     </>
   );
 }

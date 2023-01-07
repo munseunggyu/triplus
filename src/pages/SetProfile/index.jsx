@@ -6,47 +6,7 @@ import ProfileImg from "../../components/ImageBox";
 import { useNavigate, useLocation } from "react-router-dom";
 import defaultUserImg from "../../assets/images/user_img_big.svg";
 import axios from "axios";
-
-const FormContainer = styled.section`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 90vh;
-  width: 100vw;
-  margin-top: 30px;
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-`;
-
-const PageTitle = styled.h1``;
-
-const ProfileEditTitle = styled.h2`
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 1.2rem;
-  color: #000;
-`;
-
-const TitleExplain = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  color: #767676;
-`;
-
-const ImgWrapper = styled.div`
-  width: 110px;
-  height: 110px;
-  margin: 30px auto;
-`;
-
-const InputForm = styled.form`
-  margin-bottom: 30px;
-`;
-
-const ErrMsg = styled.p`
-  margin-bottom: 10px;
-  color: red;
-`;
+import * as S from "./style";
 
 const SetProfile = () => {
   const [username, setUsername] = useState("");
@@ -121,14 +81,14 @@ const SetProfile = () => {
   };
 
   return (
-    <FormContainer>
-      <PageTitle className="ir">프로필 설정화면</PageTitle>
-      <ProfileEditTitle>프로필 설정</ProfileEditTitle>
-      <TitleExplain>나중에 언제든지 변경할 수 있습니다.</TitleExplain>
-      <ImgWrapper>
+    <S.FormContainer>
+      <S.PageTitle className="ir">프로필 설정화면</S.PageTitle>
+      <S.ProfileEditTitle>프로필 설정</S.ProfileEditTitle>
+      <S.TitleExplain>나중에 언제든지 변경할 수 있습니다.</S.TitleExplain>
+      <S.ImgWrapper>
         <ProfileImg setUserImage={setUserImage} />
-      </ImgWrapper>
-      <InputForm>
+      </S.ImgWrapper>
+      <S.InputForm>
         <InputBox
           id="username"
           labelText="사용자 이름"
@@ -137,7 +97,7 @@ const SetProfile = () => {
             setUsername(e.target.value);
           }}
         />
-        <ErrMsg className="message">{usernameError}</ErrMsg>
+        <S.ErrMsg className="message">{usernameError}</S.ErrMsg>
         <InputBox
           id="accountname"
           labelText="계정 ID"
@@ -146,19 +106,19 @@ const SetProfile = () => {
             setAccountname(e.target.value);
           }}
         />
-        <ErrMsg className="message">{accountnameError}</ErrMsg>
+        <S.ErrMsg className="message">{accountnameError}</S.ErrMsg>
         <InputBox
           id="itemIntro"
           labelText="소개"
           placeholder="자신과 판매할 상품에 대해 소개해 주세요!"
         />
-      </InputForm>
+      </S.InputForm>
       <LongBtn
         message="triplus 시작하기"
         onClick={signInHandler}
         disabled={passed ? false : true}
       ></LongBtn>
-    </FormContainer>
+    </S.FormContainer>
   );
 };
 
