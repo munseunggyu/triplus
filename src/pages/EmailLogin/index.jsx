@@ -4,48 +4,10 @@ import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
-/* 스타일 */
-
-const FormContainer = styled.section`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 80vh;
-  width: 100vw;
-  margin-top: 30px;
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-`;
-
-const PageTitle = styled.h1``;
-
-const LoginTitle = styled.h2`
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
-  color: #000000;
-`;
-
-const InputForm = styled.form`
-  margin: 70px 0 30px;
-`;
-
-/* 이메일로 회원가입 */
-const EmailJoinLink = styled(Link)`
-  display: block;
-  color: #767676;
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 15px;
-`;
-
-const ErrMsg = styled.p`
-  margin-bottom: 10px;
-  color: red;
-`;
+import * as S from "./style.js";
 
 const EmailJoin = () => {
-  return <EmailJoinLink to="/emailsignup">이메일로 회원가입</EmailJoinLink>;
+  return <S.EmailJoinLink to="/emailsignup">이메일로 회원가입</S.EmailJoinLink>;
 };
 
 function EmailLogin(props) {
@@ -66,7 +28,6 @@ function EmailLogin(props) {
   const handleLoginId = (e) => {
     const email = e.target.value;
     setEmail(email);
-    // console.log("로그인아이디: ", email);
 
     const emailRegex =
       /^([A-Z|a-z|0-9](\-|\_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/;
@@ -160,27 +121,27 @@ function EmailLogin(props) {
 
   return (
     <>
-      <FormContainer>
-        <PageTitle className="ir">triplus 로그인 화면</PageTitle>
-        <LoginTitle>로그인</LoginTitle>
-        <InputForm>
+      <S.FormContainer>
+        <S.PageTitle className="ir">triplus 로그인 화면</S.PageTitle>
+        <S.LoginTitle>로그인</S.LoginTitle>
+        <S.InputForm>
           <InputBox id="email" labelText="이메일" onChange={handleLoginId} />
-          <ErrMsg className="message">{emailError}</ErrMsg>
+          <S.ErrMsg className="message">{emailError}</S.ErrMsg>
           <InputBox
             type="password"
             id="password"
             labelText="비밀번호"
             onChange={handleLoginPw}
           />
-          <ErrMsg className="message">{pwMessage}</ErrMsg>
-        </InputForm>
+          <S.ErrMsg className="message">{pwMessage}</S.ErrMsg>
+        </S.InputForm>
         <LongBtn
           message="로그인"
           onClick={onClickLogin}
           disabled={passed ? false : true}
         ></LongBtn>
         <EmailJoin />
-      </FormContainer>
+      </S.FormContainer>
     </>
   );
 }

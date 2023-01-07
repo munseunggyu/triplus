@@ -1,37 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import InputBox from "../../components/InputBox/index";
 import LongBtn from "../../components/Button/LongBtn";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const FormContainer = styled.section`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 80vh;
-  width: 100vw;
-  margin-top: 30px;
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-`;
-
-const PageTitle = styled.h1``;
-
-const SignUpTitle = styled.h2`
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
-  color: #000000;
-`;
-
-const InputForm = styled.form`
-  margin: 70px 0 30px;
-`;
-
-const ErrMsg = styled.p`
-  margin-bottom: 10px;
-  color: red;
-`;
+import * as S from "./style";
 
 export default function EmailSignUp(props) {
   const [email, setEmail] = useState("");
@@ -102,10 +74,10 @@ export default function EmailSignUp(props) {
   };
 
   return (
-    <FormContainer>
-      <PageTitle className="ir">triplus 회원가입 화면</PageTitle>
-      <SignUpTitle>이메일로 회원가입</SignUpTitle>
-      <InputForm>
+    <S.FormContainer>
+      <S.PageTitle className="ir">triplus 회원가입 화면</S.PageTitle>
+      <S.SignUpTitle>이메일로 회원가입</S.SignUpTitle>
+      <S.InputForm>
         <InputBox
           id="email"
           labelText="이메일"
@@ -114,7 +86,7 @@ export default function EmailSignUp(props) {
             setEmail(e.target.value);
           }}
         />
-        <ErrMsg className="message">{emailError}</ErrMsg>
+        <S.ErrMsg className="message">{emailError}</S.ErrMsg>
         <InputBox
           type="password"
           id="password"
@@ -124,13 +96,13 @@ export default function EmailSignUp(props) {
             setPassword(e.target.value);
           }}
         />
-        <ErrMsg className="message">{passwordError}</ErrMsg>
-      </InputForm>
+        <S.ErrMsg className="message">{passwordError}</S.ErrMsg>
+      </S.InputForm>
       <LongBtn
         disabled={emailValid && passwordValid ? false : true}
         onClick={sendData}
         message="다음"
       ></LongBtn>
-    </FormContainer>
+    </S.FormContainer>
   );
 }
