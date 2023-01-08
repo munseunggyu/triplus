@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import ProductCard from "../../components/ProductCard";
 import { useGetData } from "../../hooks/useGetData";
 import * as S from "./style";
 
 export default function ProfileMidSection() {
-  const { data, isLoading, getData } = useGetData();
+  const { data, isLoading, getData, setData } = useGetData();
   const { accountname } = useParams();
   const url = `${process.env.REACT_APP_API_KEY}/product/${accountname}`;
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function ProfileMidSection() {
       <S.ProfileMidSectionCon>
         <S.ProfileMidSectionH2>판매중인 상품</S.ProfileMidSectionH2>
         <S.ProfileMidSectionUl>
-          {data.map((product) => {
+          {/* {data.map((product) => {
             return (
               <li key={product.id}>
                 <a href={product.link}>
@@ -31,6 +32,19 @@ export default function ProfileMidSection() {
                   </S.ProfileMidSectionPrice>
                 </a>
               </li>
+            );
+          })} */}
+          {data.map((product) => {
+            return (
+              <ProductCard
+                setData={setData}
+                accountname={accountname}
+                productId={product.id}
+                productLink={product.link}
+                productItemImage={product.itemImage}
+                productItemName={product.itemName}
+                productPrice={product.price}
+              />
             );
           })}
         </S.ProfileMidSectionUl>
