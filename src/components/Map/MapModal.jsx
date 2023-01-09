@@ -71,7 +71,7 @@ export default function MapModal({ setMapSelect, handleModal }) {
                 onClick={() => setInfo(marker)}
               >
                 {info && info.content === marker.content && (
-                  <div>{marker.content}</div>
+                  <S.MapMarkerStrong>{marker.content}</S.MapMarkerStrong>
                 )}
               </MapMarker>
             ))}

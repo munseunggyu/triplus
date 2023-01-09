@@ -112,3 +112,8 @@ export const MapWrap = styled.div`
   z-index: 10;
   border-radius: 10px;
 `;
+
+export const MapMarkerStrong = styled.div`
+  padding: 5px;
+  text-align: center;
+`;
