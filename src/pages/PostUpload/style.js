@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import upload_file from "../../assets/images/upload_file.svg";
+import map_choose from "../../assets/images/map_choose.svg";
 import x from "../../assets/images/x.png";
-
 // PreviewList
 export const PreviewImgList = styled.ul`
   display: flex;
@@ -65,9 +65,11 @@ export const UploadText = styled.textarea`
   }
 `;
 
-export const UploadFileImg = styled.div`
+export const PostUploadBottomBtn = styled.button`
   width: 50px;
   height: 50px;
+  background: url(${(props) => (props.left ? upload_file : map_choose)})
+    no-repeat;
 `;
 
 export const UploadBtn = styled.button`
@@ -83,10 +85,10 @@ export const UploadBtn = styled.button`
   }
 `;
 
-export const UploadFileForm = styled.form`
+export const PostUploadBottomBtns = styled.div`
   position: fixed;
   bottom: 16px;
   right: 16px;
-  background: url(${upload_file}) no-repeat;
-  background-size: 50px;
+  display: flex;
+  gap: 9px;
 `;

@@ -11,12 +11,16 @@ import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetData } from "../../hooks/useGetData";
 import user_img_small from "../../assets/images/user_img_small.svg";
 import LoadingPage from "../LoadingPage";
+import MapModal from "../../components/Map/MapModal";
+import { useModal } from "../../hooks/useModal";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
+  const [mapSelect, setMapSelect] = useState(null);
   const location = useLocation();
   const textRef = useRef();
   const fileRef = useRef();
+  const { isModal, handleModal, handlCloseClick } = useModal();
   const { isActive, setIsActive, previewImgUrl, setPreviewImgUrl, getPreview } =
     useGetPreview();
   const { fileName, setFileName, txt, setTxt, handlePostUpload } =
@@ -139,8 +143,12 @@ const PostUpload = () => {
               onClick={handleDeletePreview}
             />
           </S.UploadContentForm>
-          <S.UploadFileForm>
-            <S.UploadFileImg onClick={handleFile} />
+          <S.PostUploadBottomBtns>
+            <S.PostUploadBottomBtn
+              type="button"
+              left={true}
+              onClick={handleFile}
+            />
             <input
               type="file"
               className="ir"
@@ -149,9 +157,13 @@ const PostUpload = () => {
               ref={fileRef}
               onChange={handleImgInput}
             />
-          </S.UploadFileForm>
+            <S.PostUploadBottomBtn onClick={handleModal} type="button" />
+          </S.PostUploadBottomBtns>
         </S.UploadContainer>
       </MainContainer>
+      {isModal && (
+        <MapModal handleModal={handleModal} setMapSelect={setMapSelect} />
+      )}
     </div>
   );
 };
