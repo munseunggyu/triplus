@@ -11,16 +11,27 @@ import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetData } from "../../hooks/useGetData";
 import user_img_small from "../../assets/images/user_img_small.svg";
 import LoadingPage from "../LoadingPage";
+import MapModal from "../../components/Map/MapModal";
+import { useModal } from "../../hooks/useModal";
+import LocationInfo from "../../components/LocationInfo";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
   const location = useLocation();
   const textRef = useRef();
   const fileRef = useRef();
+  const { isModal, handleModal, handlCloseClick } = useModal();
   const { isActive, setIsActive, previewImgUrl, setPreviewImgUrl, getPreview } =
     useGetPreview();
-  const { fileName, setFileName, txt, setTxt, handlePostUpload } =
-    usePostUpload();
+  const {
+    fileName,
+    setFileName,
+    txt,
+    setTxt,
+    handlePostUpload,
+    mapSelect,
+    setMapSelect,
+  } = usePostUpload();
   const {
     data: profileData,
     getData: profileGetData,
@@ -43,7 +54,6 @@ const PostUpload = () => {
     e.target.file !== "" ? setDisabled(false) : setDisabled(true);
     fileRef.current.click();
   };
-
   // 이미지 파일 업로드
   const handleImgInput = (e) => {
     const loadImg = e.target.files;
@@ -86,7 +96,12 @@ const PostUpload = () => {
 
   useEffect(() => {
     if (location.state) {
-      location.state.content && setTxt(location.state.content);
+      if (location.state.content.includes('"map":{')) {
+        setTxt(JSON.parse(location.state.content).content);
+        setMapSelect(JSON.parse(location.state.content).map);
+      } else {
+        setTxt(location.state.content);
+      }
       if (location.state.image) {
         setFileName(location.state.image.split(","));
         setPreviewImgUrl(location.state.image.split(","));
@@ -138,9 +153,14 @@ const PostUpload = () => {
               mapData={previewImgUrl}
               onClick={handleDeletePreview}
             />
+            {mapSelect && <LocationInfo mapSelect={mapSelect} />}
           </S.UploadContentForm>
-          <S.UploadFileForm>
-            <S.UploadFileImg onClick={handleFile} />
+          <S.PostUploadBottomBtns>
+            <S.PostUploadBottomBtn
+              type="button"
+              left={true}
+              onClick={handleFile}
+            />
             <input
               type="file"
               className="ir"
@@ -149,9 +169,13 @@ const PostUpload = () => {
               ref={fileRef}
               onChange={handleImgInput}
             />
-          </S.UploadFileForm>
+            <S.PostUploadBottomBtn onClick={handleModal} type="button" />
+          </S.PostUploadBottomBtns>
         </S.UploadContainer>
       </MainContainer>
+      {isModal && (
+        <MapModal handleModal={handleModal} setMapSelect={setMapSelect} />
+      )}
     </div>
   );
 };

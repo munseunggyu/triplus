@@ -15,7 +15,9 @@ export const PostCardList = styled.li`
     padding-top: 20px;
   }
 `;
-
+export const PostCardContentContainer = styled.div`
+  width: 100%;
+`;
 export const PostCardUserImg = styled.img`
   width: 42px;
   height: 42px;

@@ -46,7 +46,6 @@ export default function ProfileBottomSection() {
       getData(listUrl, "post");
     }
   }, [page, accountname]);
-
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>
