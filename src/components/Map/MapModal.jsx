@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import x_icon from "../../assets/images/x.png";
 import styled from "styled-components";
 const { kakao } = window;
 
@@ -13,14 +14,47 @@ const MapModalContainer = styled.article`
 const MapSearchContainer = styled.div``;
 
 const MapContainer = styled(Map)`
-  width: 358px;
+  width: 100%;
   height: 300px;
 `;
-const MapSearchSection = styled.div``;
+const MapSearchSection = styled.div`
+  padding: 12px;
+  overflow: hidden;
+  background-color: #bfd8ffee;
+  border-radius: 10px 10px 0 0;
+  h2 {
+    font-size: 20px;
+    color: ${(props) => props.theme.grayColor};
+    margin-bottom: 18px;
+  }
+  input {
+    padding: 8px;
+    border: 0;
+    width: 75%;
+    margin-right: 5px;
+  }
+  button {
+    width: 60px;
+    height: 30px;
+    color: white;
+    font-size: 1em;
+    background-color: ${(props) => props.theme.mainColor};
+    border-radius: 50px;
+  }
+`;
+const MaModalpCloseBtn = styled.button`
+  background: ${`url(${x_icon})`};
+  background-size: 22px;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+`;
 const MapResultList = styled.ul`
   width: 358px;
-  max-height: 80%;
-  height: min(fit-content, 80%);
+  max-height: 60%;
+  height: min(fit-content, 60%);
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -53,32 +87,25 @@ const MapResultList = styled.ul`
 
       button {
         position: relative;
-        width: 65px;
+        width: 60px;
         height: 30px;
         color: white;
         font-size: 1em;
         background-color: ${(props) => props.theme.mainColor};
         border-radius: 50px;
-        border: none;
         margin-left: auto;
       }
     }
   }
 `;
-const SearchLi = styled.li`
-  width: 100%;
-  height: 100px;
-`;
 const MapWrap = styled.div`
+  width: 358px;
   margin: auto;
   position: absolute;
-  width: 300px;
-  height: 300px;
   top: 100px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  background: white;
   border-radius: 10px;
 `;
 export default function MapModal({ setMapSelect, handleModal }) {
@@ -126,10 +153,8 @@ export default function MapModal({ setMapSelect, handleModal }) {
       <MapWrap>
         <MapSearchContainer>
           <MapSearchSection>
-            <label htmlFor="search">검색</label>
-            <button type="button" onClick={handleModal}>
-              x
-            </button>
+            <h2>장소 검색</h2>
+
             <input
               id="search"
               type="text"
@@ -144,7 +169,7 @@ export default function MapModal({ setMapSelect, handleModal }) {
                 handleSearch();
               }}
             >
-              go
+              검색
             </button>
           </MapSearchSection>
           <MapContainer center={centerPosition} level={3} onCreate={setMap}>
@@ -160,6 +185,9 @@ export default function MapModal({ setMapSelect, handleModal }) {
               </MapMarker>
             ))}
           </MapContainer>
+          <MaModalpCloseBtn type="button" onClick={handleModal}>
+            <span className="ir">장소 검색창 닫기</span>
+          </MaModalpCloseBtn>
         </MapSearchContainer>
         <MapResultList>
           {markers &&
@@ -186,13 +214,4 @@ export default function MapModal({ setMapSelect, handleModal }) {
       </MapWrap>
     </MapModalContainer>
   );
-}
-
-{
-  /* <a
-                      href={`https://map.kakao.com/link/to/${marker.content} ,${marker.position.lat},${marker.position.lng}`}
-                      target="_blank"
-                    >
-                      길찾기
-                    </a> */
 }
