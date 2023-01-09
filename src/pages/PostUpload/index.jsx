@@ -13,6 +13,7 @@ import user_img_small from "../../assets/images/user_img_small.svg";
 import LoadingPage from "../LoadingPage";
 import MapModal from "../../components/Map/MapModal";
 import { useModal } from "../../hooks/useModal";
+import LocationInfo from "../../components/LocationInfo";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
@@ -47,7 +48,7 @@ const PostUpload = () => {
     e.target.file !== "" ? setDisabled(false) : setDisabled(true);
     fileRef.current.click();
   };
-
+  console.log(mapSelect);
   // 이미지 파일 업로드
   const handleImgInput = (e) => {
     const loadImg = e.target.files;
@@ -142,6 +143,7 @@ const PostUpload = () => {
               mapData={previewImgUrl}
               onClick={handleDeletePreview}
             />
+            {mapSelect && <LocationInfo mapSelect={mapSelect} />}
           </S.UploadContentForm>
           <S.PostUploadBottomBtns>
             <S.PostUploadBottomBtn

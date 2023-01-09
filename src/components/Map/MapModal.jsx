@@ -16,7 +16,7 @@ const MapContainer = styled(Map)`
   width: 358px;
   height: 300px;
 `;
-
+const MapSearchSection = styled.div``;
 const MapResultList = styled.ul`
   width: 358px;
   max-height: 80%;
@@ -86,7 +86,6 @@ export default function MapModal({ setMapSelect, handleModal }) {
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState();
   const [searchVal, setSearchVal] = useState(null);
-  const [searchTigger, setSearchTrigger] = useState(false);
   const [centerPosition, setCenterPosition] = useState({
     lat: 37.566826,
     lng: 126.9786567,
@@ -96,9 +95,7 @@ export default function MapModal({ setMapSelect, handleModal }) {
     setCenterPosition(marker.position);
     setInfo(marker);
   };
-
-  useEffect(() => {
-    if (!map) return;
+  const handleSearch = () => {
     const ps = new kakao.maps.services.Places();
 
     ps.keywordSearch(searchVal, (data, status, _pagination) => {
@@ -122,24 +119,34 @@ export default function MapModal({ setMapSelect, handleModal }) {
         map.setBounds(bounds);
       }
     });
-  }, [map, searchTigger]);
-  console.log(markers);
+  };
+
   return (
-    <MapModalContainer onClick={handleModal}>
+    <MapModalContainer>
       <MapWrap>
         <MapSearchContainer>
-          <h2>검색</h2>
-          <input
-            type="text"
-            value={searchVal}
-            onChange={(e) => setSearchVal(e.target.value)}
-          />
-          <button
-            type="button"
-            onClick={() => setSearchTrigger((prev) => !prev)}
-          >
-            go
-          </button>
+          <MapSearchSection>
+            <label htmlFor="search">검색</label>
+            <button type="button" onClick={handleModal}>
+              x
+            </button>
+            <input
+              id="search"
+              type="text"
+              value={searchVal}
+              onChange={(e) => {
+                setSearchVal(e.target.value);
+              }}
+            />
+            <button
+              type="button"
+              onClick={(e) => {
+                handleSearch();
+              }}
+            >
+              go
+            </button>
+          </MapSearchSection>
           <MapContainer center={centerPosition} level={3} onCreate={setMap}>
             {markers.map((marker) => (
               <MapMarker
@@ -166,6 +173,7 @@ export default function MapModal({ setMapSelect, handleModal }) {
                     <button
                       onClick={() => {
                         setMapSelect(marker);
+                        handleModal();
                       }}
                     >
                       선택
