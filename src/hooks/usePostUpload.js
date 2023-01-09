@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export const usePostUpload = () => {
   const [txt, setTxt] = useState("");
+  const [mapSelect, setMapSelect] = useState(null);
   const [fileName, setFileName] = useState([]);
   const { postid } = useParams();
   const location = useLocation();
@@ -16,11 +17,12 @@ export const usePostUpload = () => {
     e.preventDefault();
     try {
       if (location.state) {
+        const newContent = JSON.stringify({ content: txt, map: mapSelect });
         const res = await axios.put(
           editUrl,
           {
             post: {
-              content: txt,
+              content: newContent,
               image: fileName.join(","),
             },
           },
@@ -32,11 +34,12 @@ export const usePostUpload = () => {
           }
         );
       } else {
+        const newContent = JSON.stringify({ content: txt, map: mapSelect });
         const res = await axios.post(
           postUrl,
           {
             post: {
-              content: txt,
+              content: newContent,
               image: fileName.join(","),
             },
           },
@@ -54,5 +57,13 @@ export const usePostUpload = () => {
     }
   };
 
-  return { fileName, setFileName, txt, setTxt, handlePostUpload };
+  return {
+    fileName,
+    setFileName,
+    txt,
+    setTxt,
+    handlePostUpload,
+    mapSelect,
+    setMapSelect,
+  };
 };

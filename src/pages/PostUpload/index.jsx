@@ -17,15 +17,21 @@ import LocationInfo from "../../components/LocationInfo";
 
 const PostUpload = () => {
   const [disabled, setDisabled] = useState(true);
-  const [mapSelect, setMapSelect] = useState(null);
   const location = useLocation();
   const textRef = useRef();
   const fileRef = useRef();
   const { isModal, handleModal, handlCloseClick } = useModal();
   const { isActive, setIsActive, previewImgUrl, setPreviewImgUrl, getPreview } =
     useGetPreview();
-  const { fileName, setFileName, txt, setTxt, handlePostUpload } =
-    usePostUpload();
+  const {
+    fileName,
+    setFileName,
+    txt,
+    setTxt,
+    handlePostUpload,
+    mapSelect,
+    setMapSelect,
+  } = usePostUpload();
   const {
     data: profileData,
     getData: profileGetData,
@@ -91,7 +97,12 @@ const PostUpload = () => {
 
   useEffect(() => {
     if (location.state) {
-      location.state.content && setTxt(location.state.content);
+      if (location.state.content.includes('"map":{')) {
+        setTxt(JSON.parse(location.state.content).content);
+        setMapSelect(JSON.parse(location.state.content).map);
+      } else {
+        setTxt(location.state.content);
+      }
       if (location.state.image) {
         setFileName(location.state.image.split(","));
         setPreviewImgUrl(location.state.image.split(","));

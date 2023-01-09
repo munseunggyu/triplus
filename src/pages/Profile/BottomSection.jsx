@@ -26,9 +26,9 @@ export default function ProfileBottomSection() {
     setPage,
     setFinishReload,
     setData,
-  } = useObserver(curRef, 5);
+  } = useObserver(curRef, 1);
 
-  const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=5&skip=${page}`;
+  const listUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=1&skip=${page}`;
   const albumUrl = `${process.env.REACT_APP_API_KEY}/post/${accountname}/userpost/?limit=50`;
 
   const handleAlbum = () => {
@@ -46,7 +46,6 @@ export default function ProfileBottomSection() {
       getData(listUrl, "post");
     }
   }, [page, accountname]);
-
   return (
     <section>
       <h2 className="ir">사용자가 작성한 게시글</h2>

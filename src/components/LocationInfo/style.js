@@ -12,15 +12,15 @@ export const LocationInfoContainer = styled.div`
     flex-direction: column;
     gap: 6px;
     strong {
-      font-size: 16px;
+      font-size: 14px;
     }
     address {
-      font-size: 12px;
+      font-size: 10px;
     }
   }
   a {
     align-self: flex-end;
     margin-left: auto;
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
