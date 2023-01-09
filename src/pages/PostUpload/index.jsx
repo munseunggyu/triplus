@@ -54,7 +54,6 @@ const PostUpload = () => {
     e.target.file !== "" ? setDisabled(false) : setDisabled(true);
     fileRef.current.click();
   };
-  console.log(mapSelect);
   // 이미지 파일 업로드
   const handleImgInput = (e) => {
     const loadImg = e.target.files;
