@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import axios from "axios";
+// import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetPreview } from "../../hooks/useGetPreview";
@@ -59,7 +60,7 @@ export default function ProductUpload({ ...props }) {
   const { previewImgUrl, getPreview } = useGetPreview();
 
   // 이미지 스트링 데이터 얻기
-  const getImgUrl = async (formData, loadImg) => {
+  const getImgUrl = async (formData, loadImg, e) => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/image/uploadfiles`,
@@ -69,7 +70,7 @@ export default function ProductUpload({ ...props }) {
         ...fileName,
         `${process.env.REACT_APP_API_KEY}/${res.data[0].filename}`,
       ]);
-      getPreview(loadImg);
+      getPreview(loadImg, e);
     } catch (err) {
       console.error(err);
     }
@@ -81,9 +82,21 @@ export default function ProductUpload({ ...props }) {
     const formData = new FormData();
     formData.append("image", loadImg[0]);
     fileName.length < 3
-      ? getImgUrl(formData, loadImg)
+      ? getImgUrl(formData, loadImg, e)
       : alert("이미지는 3장만 업로드 가능합니다.");
   };
+
+  // 수정
+  // const location = useLocation();
+  // useEffect(() => {
+  //   if (location.state) {
+  //     location.state.itemName && setItemName(location.state.itemName);
+  //     location.state.price && setPrice(location.state.price);
+  //     location.state.link && setLink(location.state.link);
+  //     setFileName(location.state.itemImage.split(","));
+  //     setPreviewImgUrl(location.state.itemImage.split(","));
+  //   }
+  // }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
