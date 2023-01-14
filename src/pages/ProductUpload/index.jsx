@@ -2,23 +2,21 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import axios from "axios";
-// import { useLocation } from "react-router-dom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetPreview } from "../../hooks/useGetPreview";
 import * as S from "./style";
 
-export default function ProductUpload({ ...props }) {
-  // const [imageSrc, setImageSrc] = useState("");
+export default function ProductUpload() {
   const [price, setPrice] = useState("");
   const [itemName, setItemName] = useState("");
   const [link, setLink] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-  const { fileName, setFileName } = usePostUpload();
-  const { previewImgUrl, getPreview, setPreviewImgUrl } = useGetPreview();
+
   const navigate = useNavigate();
+  const { productid } = useParams();
 
   useEffect(() => {
     //상품 판매 링크 유효성 검사
@@ -53,23 +51,32 @@ export default function ProductUpload({ ...props }) {
 
   function handleChange(e) {
     const inputType = e.target.id.slice(6);
-    inputType === "price" && setPrice(inputPriceFormat(e.target.value));
-    inputType === "product" && setItemName(e.target.value);
+    inputType === "price" &&
+      setPrice(inputPriceFormat(e.target.value).replace(/[^0-9]/g, ""));
+    inputType === "product" && setItemName(String(e.target.value));
     inputType === "salelink" && setLink(e.target.value);
   }
+
+  const { fileName, setFileName } = usePostUpload();
+  const { previewImgUrl, getPreview, setPreviewImgUrl } = useGetPreview();
 
   // 이미지 스트링 데이터 얻기
   const getImgUrl = async (formData, loadImg, e) => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/image/uploadfiles`,
-        formData
+        formData,
+        {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }
       );
       setFileName([
         ...fileName,
         `${process.env.REACT_APP_API_KEY}/${res.data[0].filename}`,
       ]);
-      getPreview(loadImg, e);
+      getPreview(loadImg, e, true);
     } catch (err) {
       console.error(err);
     }
@@ -80,9 +87,7 @@ export default function ProductUpload({ ...props }) {
     const loadImg = e.target.files;
     const formData = new FormData();
     formData.append("image", loadImg[0]);
-    fileName.length < 3
-      ? getImgUrl(formData, loadImg, e)
-      : alert("이미지는 3장만 업로드 가능합니다.");
+    fileName.length < 3 && getImgUrl(formData, loadImg, e);
   };
 
   // 상품 수정 시 기존 데이터 불러오기
@@ -98,34 +103,62 @@ export default function ProductUpload({ ...props }) {
     console.log(itemName);
   }, []);
 
+  // 상품 등록 api
+  async function sendProduct() {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/product`,
+        {
+          product: {
+            itemName: itemName,
+            price: parseInt(price.replace(/[^0-9]/g, ""), 10),
+            link: link,
+            itemImage: fileName.join(","),
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // 상품 수정 api
+  async function updateProduct() {
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_API_KEY}/product/${productid}`,
+        {
+          product: {
+            itemName: itemName,
+            price: parseInt(price),
+            link: link,
+            itemImage: fileName[1],
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      console.log(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-
-    async function sendProduct() {
-      try {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_KEY}/product`,
-          {
-            product: {
-              itemName: itemName,
-              price: parseInt(price.replace(/[^0-9]/g, ""), 10),
-              link: link,
-              itemImage: fileName.join(","),
-            },
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${userInfo.token}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
-        console.log(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    sendProduct();
+    location.state ? updateProduct() : sendProduct();
     navigate(`/profile/${userInfo.accountname}`);
   }
 
