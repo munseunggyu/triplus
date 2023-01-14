@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Prev from "../../components/Header/Prev";
 import axios from "axios";
 // import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { usePostUpload } from "../../hooks/usePostUpload";
 import { useGetPreview } from "../../hooks/useGetPreview";
 import * as S from "./style";
@@ -16,7 +16,8 @@ export default function ProductUpload({ ...props }) {
   const [isActive, setIsActive] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-
+  const { fileName, setFileName } = usePostUpload();
+  const { previewImgUrl, getPreview, setPreviewImgUrl } = useGetPreview();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,15 +50,13 @@ export default function ProductUpload({ ...props }) {
     };
     return comma(uncomma(str));
   };
+
   function handleChange(e) {
     const inputType = e.target.id.slice(6);
     inputType === "price" && setPrice(inputPriceFormat(e.target.value));
     inputType === "product" && setItemName(e.target.value);
     inputType === "salelink" && setLink(e.target.value);
   }
-
-  const { fileName, setFileName } = usePostUpload();
-  const { previewImgUrl, getPreview } = useGetPreview();
 
   // 이미지 스트링 데이터 얻기
   const getImgUrl = async (formData, loadImg, e) => {
@@ -86,17 +85,18 @@ export default function ProductUpload({ ...props }) {
       : alert("이미지는 3장만 업로드 가능합니다.");
   };
 
-  // 수정
-  // const location = useLocation();
-  // useEffect(() => {
-  //   if (location.state) {
-  //     location.state.itemName && setItemName(location.state.itemName);
-  //     location.state.price && setPrice(location.state.price);
-  //     location.state.link && setLink(location.state.link);
-  //     setFileName(location.state.itemImage.split(","));
-  //     setPreviewImgUrl(location.state.itemImage.split(","));
-  //   }
-  // }, []);
+  // 상품 수정 시 기존 데이터 불러오기
+  const location = useLocation();
+  useEffect(() => {
+    if (location.state) {
+      location.state.itemName && setItemName(location.state.itemName);
+      location.state.price && setPrice(location.state.price);
+      location.state.link && setLink(location.state.link);
+      setFileName(location.state.itemImage.split(","));
+      setPreviewImgUrl(location.state.itemImage.split(","));
+    }
+    console.log(itemName);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
