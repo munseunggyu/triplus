@@ -33,13 +33,11 @@ export default function ProductCard({
   return (
     <div>
       <li key={productId} onClick={handleModal}>
-        {/* <a href={productLink}> */}
         <S.ProfileMidSectionImg src={productItemImage} alt="상품 이미지" />
         <S.ProfileMidSectionTxt>{productItemName} </S.ProfileMidSectionTxt>
         <S.ProfileMidSectionPrice>
           {productPrice.toLocaleString("ko-KR")}원
         </S.ProfileMidSectionPrice>
-        {/* </a> */}
       </li>
       {isModal && (
         <ModalContainer onClick={handleModal}>
@@ -48,9 +46,9 @@ export default function ProductCard({
               <ModalList onClick={(e) => handleAlert(e, "삭제모달")}>
                 삭제
               </ModalList>
-              {/* <ModalList
+              <ModalList
                 onClick={() => {
-                  navigate(`/product/${productId}`, {
+                  navigate(`/productedit/${productId}`, {
                     state: {
                       itemName: productItemName,
                       price: productPrice,
@@ -61,7 +59,7 @@ export default function ProductCard({
                 }}
               >
                 수정
-              </ModalList> */}
+              </ModalList>
               <ModalList onClick={() => window.open(productLink)}>
                 웹페이지로 이동
               </ModalList>

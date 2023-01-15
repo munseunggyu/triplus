@@ -54,9 +54,18 @@ const PostUpload = () => {
     e.target.file !== "" ? setDisabled(false) : setDisabled(true);
     fileRef.current.click();
   };
+  // 이미지 파일 업로드
+  const handleImgInput = (e) => {
+    const loadImg = e.target.files;
+    const formData = new FormData();
+    formData.append("image", loadImg[0]);
+    fileName.length < 3
+      ? getImgUrl(formData, loadImg)
+      : alert("3개 이하의 파일을 업로드 하세요.");
+  };
 
   // 이미지 파일 스트링 데이터 얻기
-  const getImgUrl = async (formData, loadImg, e) => {
+  const getImgUrl = async (formData, loadImg) => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_KEY}/image/uploadfiles`,
@@ -66,20 +75,10 @@ const PostUpload = () => {
         ...fileName,
         `${process.env.REACT_APP_API_KEY}/${res.data[0].filename}`,
       ]);
-      getPreview(loadImg, e);
+      getPreview(loadImg);
     } catch (err) {
       console.error(err);
     }
-  };
-
-  // 이미지 파일 업로드
-  const handleImgInput = (e) => {
-    const loadImg = e.target.files;
-    const formData = new FormData();
-    formData.append("image", loadImg[0]);
-    fileName.length < 3
-      ? getImgUrl(formData, loadImg, e)
-      : alert("3개 이하의 파일을 업로드 하세요.");
   };
 
   // 프리뷰 및 데이터 삭제
@@ -95,7 +94,6 @@ const PostUpload = () => {
     fileRef.current.value = "";
   };
 
-  // 게시글 수정
   useEffect(() => {
     if (location.state) {
       if (location.state.content.includes('"map":{')) {
