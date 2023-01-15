@@ -52,6 +52,7 @@ function App() {
             <Route path="/chatroom" element={<ChatRoom />} />
             <Route path="*" element={<ErrorPage />} />
             <Route path="/postedit/:postid" element={<PostUpload />} />
+            <Route path="/productedit/:productid" element={<ProductUpload />} />
             <Route path="/loading" element={<LoadingPage />} />
           </>
         ) : (
