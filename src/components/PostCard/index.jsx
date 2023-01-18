@@ -62,7 +62,7 @@ export default function PostCard({
         <S.PostCardContentContainer>
           <S.PostCardUserName>{author.username}</S.PostCardUserName>
           <S.PostCardUserId>&#64;{author.accountname}</S.PostCardUserId>
-          {content.includes('"map":{') ? (
+          {content.includes('"map":') ? (
             <S.PostCardContentTxt>
               {JSON.parse(content).content}
             </S.PostCardContentTxt>
